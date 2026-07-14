@@ -1,0 +1,341 @@
+/* ============================================================
+   색상, 폰트, 여백 등은 전부 여기 :root 변수에서 관리합니다.
+   전체 톤을 바꾸고 싶으면 이 값들만 수정하세요.
+============================================================ */
+:root {
+  --bg-page: #ffffff;
+  --bg-soft: #efeeec;      /* 히어로/이미지 박스 배경 */
+  --bg-dark: #0b0b0c;      /* 다크 목업 배경 */
+  --text-primary: #17171a;
+  --text-secondary: #6b6b6e;
+  --text-tertiary: #9a9a9d;
+  --accent-green: #2fb56a; /* Shipped 점 색상 */
+  --line: #e7e6e3;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --max-width: 760px;
+
+  --font-display: "Newsreader", "Georgia", serif;
+  --font-body: "Inter", -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 56px 24px 96px;
+  position: relative;
+}
+
+/* ---------- 상단 장식 아이콘 ---------- */
+.topbar-icons {
+  position: absolute;
+  top: 40px;
+  right: 24px;
+  display: flex;
+  gap: 8px;
+}
+.icon-btn {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ---------- 헤더 ---------- */
+.hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 32px;
+  padding-right: 120px;
+}
+.hero-header h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 44px;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+.subtitle {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+.status-pill {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  margin-top: 6px;
+}
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  display: inline-block;
+}
+
+/* ---------- 이미지 공통: 히어로 / 다크 / 라이트 목업 ---------- */
+.hero-media,
+.media-dark,
+.media-light,
+.quote-media {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  margin: 24px 0;
+}
+.hero-media img,
+.media-dark img,
+.media-light img,
+.quote-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero-media { background: var(--bg-soft); min-height: 380px; }
+.media-dark { background: var(--bg-dark); min-height: 300px; }
+.media-light { background: var(--bg-soft); min-height: 300px; flex-direction: column; }
+
+/* 이미지가 없을 때(placeholder) 안내 문구 표시 */
+.placeholder-label {
+  display: none;
+  position: absolute;
+  color: var(--text-tertiary);
+  font-size: 13px;
+  text-align: center;
+  padding: 0 32px;
+}
+.placeholder .placeholder-label { display: block; }
+
+/* ---------- 인트로 문단 ---------- */
+.intro { margin: 32px 0; font-size: 16px; }
+.intro strong { font-weight: 600; }
+
+.link-chip {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.link-chip:hover { background: var(--bg-soft); }
+
+/* ---------- 메타 정보 그리드 ---------- */
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 32px 0 16px;
+}
+.meta-item { display: flex; flex-direction: column; gap: 6px; }
+.meta-label {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  text-transform: none;
+}
+.meta-value {
+  font-size: 14.5px;
+  color: var(--text-primary);
+}
+.team-line {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 32px;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 32px 0;
+}
+
+/* ---------- 인용구 이미지 ---------- */
+.quote-media {
+  background: var(--bg-dark);
+  min-height: 260px;
+  padding: 32px;
+  text-align: center;
+}
+.quote-media blockquote {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.5;
+}
+.quote-media img { position: absolute; inset: 0; opacity: 0.55; }
+
+/* ---------- 본문 섹션 공통 ---------- */
+.content-block { margin: 48px 0; }
+.content-block h2 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0 0 14px;
+}
+.content-block p { margin: 0 0 14px; font-size: 15.5px; color: var(--text-primary); }
+.content-block p:last-child { margin-bottom: 0; }
+
+.finding { margin: 20px 0; }
+.finding h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+.finding p { color: var(--text-secondary); font-size: 15px; margin: 0; }
+
+/* ---------- 기능 카드 그리드 ---------- */
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+.feature-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px;
+  background: var(--bg-soft);
+  border-radius: var(--radius-md);
+  font-size: 14.5px;
+}
+.feature-icon { font-size: 20px; flex-shrink: 0; }
+
+/* ---------- 세부 기능 블록 ---------- */
+.detail-block h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+.detail-icon { font-size: 18px; }
+
+.caption {
+  font-size: 13px !important;
+  color: var(--text-tertiary) !important;
+}
+
+/* ---------- 토글 스위치 (장식) ---------- */
+.toggle-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #fff;
+  border-radius: 999px;
+  font-size: 13.5px;
+  margin-top: 16px;
+}
+.toggle {
+  width: 40px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  flex-shrink: 0;
+}
+.toggle .toggle-knob {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  margin-left: auto;
+}
+
+/* ---------- 푸터 ---------- */
+.page-footer {
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.logo-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--text-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.footer-nav { display: flex; gap: 12px; }
+.footer-nav a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+.footer-nav a:hover { background: var(--bg-soft); }
+
+/* ---------- 반응형 (모바일) ---------- */
+@media (max-width: 640px) {
+  .page { padding: 88px 18px 64px; }
+  .hero-header {
+    flex-direction: column;
+    padding-right: 0;
+  }
+  .hero-header h1 { font-size: 32px; }
+  .meta-grid { grid-template-columns: 1fr 1fr; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .quote-media blockquote { font-size: 18px; }
+}

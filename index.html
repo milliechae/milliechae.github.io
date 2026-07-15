@@ -1,249 +1,807 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Android Private Space — 프로젝트 케이스 스터디</title>
+<title>Yoon Chae — Product Designer</title>
+<meta name="description" content="Product Designer specializing in complex, data-heavy enterprise platforms. 8 years designing for Samsung, SK hynix, and B2B SaaS products.">
+<script>
+  // 페이지 렌더링 전에 테마를 먼저 결정해서 화면 깜빡임(FOUC) 방지
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = saved || (systemDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Newsreader:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* Open Runde — 타이틀용 폰트 (Fontsource CDN) */
+@font-face {
+  font-family: 'Open Runde';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/open-runde@latest/latin-500-normal.woff2) format('woff2'),
+       url(https://cdn.jsdelivr.net/fontsource/fonts/open-runde@latest/latin-500-normal.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Runde';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/open-runde@latest/latin-600-normal.woff2) format('woff2'),
+       url(https://cdn.jsdelivr.net/fontsource/fonts/open-runde@latest/latin-600-normal.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Runde';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/open-runde@latest/latin-700-normal.woff2) format('woff2'),
+       url(https://cdn.jsdelivr.net/fontsource/fonts/open-runde@latest/latin-700-normal.woff) format('woff');
+}
+
+/* ============================================================
+   컬러/폰트/여백은 전부 여기 :root 변수로 관리합니다.
+   톤을 바꾸고 싶으면 이 값들만 수정하면 전체에 반영됩니다.
+============================================================= */
+:root {
+  --bg-page: #FFFFFF;      /* 완전 흰색 */
+  --bg-soft: #F4F3EF;       /* 카드/섹션 배경 (흰색과 구분되는 살짝 톤) */
+  --bg-stamp: #171512;      /* 스탯 블록 다크 배경 (테마 무관 고정) */
+  --ink: #171512;
+  --ink-soft: #5B564C;
+  --ink-faint: #9A9384;
+  --accent: #2F4B3C;        /* 딥 파인 그린 — 포인트 컬러 */
+  --accent-soft: #DCE5DD;
+  --gold: #A9822F;          /* 숫자 강조용 골드 */
+  --line: #E4DECE;
+
+  --font-display: "Open Runde", "Fraunces", "Newsreader", Georgia, serif;
+  --font-serif: "Newsreader", Georgia, serif;
+  --font-body: "Inter", -apple-system, "Apple SD Gothic Neo", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --max-width: 1040px;
+}
+
+/* ---------- 다크 모드 팔레트 ---------- */
+/* "Precision Paper" 톤을 유지하되 반전 — 순검정이 아니라 따뜻한 다크브라운 베이스 */
+html[data-theme="dark"] {
+  --bg-page: #17140F;
+  --bg-soft: #211D16;
+  --ink: #F3EFE6;
+  --ink-soft: #B9B2A2;
+  --ink-faint: #6E6858;
+  --accent: #74B090;
+  --accent-soft: #22332B;
+  --gold: #D2B168;
+  --line: #332E24;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* 테마 전환시 색상 변화가 뚝뚝 끊기지 않도록 공통 트랜지션 */
+.site-header, .trust-strip, .project-card, .fact, .btn-secondary, footer.site-footer {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ---------- 다크모드 토글 스위치 ---------- */
+.theme-toggle {
+  position: relative;
+  width: 64px;
+  height: 34px;
+  border-radius: 999px;
+  border: none;
+  background: var(--bg-soft);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0 9px;
+  transition: background-color 0.3s ease;
+}
+.theme-toggle .track-icon {
+  font-size: 13px;
+  color: var(--ink-faint);
+  line-height: 1;
+}
+.theme-toggle .track-icon.sun { margin-right: auto; }
+.theme-toggle .track-icon.moon { margin-left: auto; }
+.theme-toggle .knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--ink);
+  transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+}
+html[data-theme="dark"] .theme-toggle .knob { transform: translateX(30px); }
+.theme-toggle .knob .knob-sun { display: inline; }
+.theme-toggle .knob .knob-moon { display: none; }
+html[data-theme="dark"] .theme-toggle .knob .knob-sun { display: none; }
+html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
+
+.wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+
+/* ---------- 헤더 ---------- */
+.site-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 0;
+}
+
+/* ---------- 히어로: Instrument Plate ---------- */
+.hero { padding: 56px 0 64px; }
+
+.plate {
+  position: relative;
+  border-radius: 2px;
+  padding: 48px 40px 36px;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: rise 0.8s ease forwards;
+}
+.plate-mark {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--ink-faint);
+  line-height: 1;
+  opacity: 0;
+  animation: rise 0.5s ease forwards;
+  animation-delay: 0.55s;
+}
+.plate-mark.tl { top: -8px; left: -8px; }
+.plate-mark.tr { top: -8px; right: -8px; }
+.plate-mark.bl { bottom: -8px; left: -8px; }
+.plate-mark.br { bottom: -8px; right: -8px; }
+
+.plate-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  margin-bottom: 32px;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: rise 0.6s ease forwards;
+  animation-delay: 0.1s;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(30px, 5vw, 52px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 28px;
+  max-width: 18ch;
+}
+.hero h1 .line {
+  display: block;
+  overflow: hidden;
+}
+.hero h1 .line span {
+  display: block;
+  opacity: 0;
+  transform: translateY(115%);
+  animation: rise 0.8s cubic-bezier(.2,.7,.2,1) forwards;
+}
+.hero h1 .line:nth-child(1) span { animation-delay: 0.22s; }
+.hero h1 .line:nth-child(2) span { animation-delay: 0.34s; }
+.hero h1 .line:nth-child(3) span { animation-delay: 0.46s; }
+
+.hero p.sub {
+  max-width: 52ch;
+  font-size: 16.5px;
+  color: var(--ink-soft);
+  margin: 0 0 32px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: rise 0.7s ease forwards;
+  animation-delay: 0.58s;
+}
+.hero .cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: rise 0.7s ease forwards;
+  animation-delay: 0.7s;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { transform: translateY(-2px); background: #24392D; }
+.btn-secondary { border-color: var(--line); color: var(--ink); }
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+/* 플레이트 하단의 오실로스코프 파형 — 로드 시 그려지는 애니메이션 */
+.plate-wave {
+  width: 100%;
+  height: 28px;
+  margin-top: 36px;
+  display: block;
+}
+.plate-wave path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  opacity: 0.55;
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: draw-wave 1.8s cubic-bezier(.3,.6,.2,1) forwards;
+  animation-delay: 0.85s;
+}
+@keyframes draw-wave {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes rise {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- 신뢰 스트립 (재직/협업 회사) ---------- */
+.trust-strip {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 18px 0;
+}
+.trust-strip .wrap {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.trust-strip .label {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.trust-strip .company {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+}
+
+/* ---------- 스펙시트 스탯 블록 (시그니처 요소) ---------- */
+.specsheet {
+  background: var(--bg-stamp);
+  color: #F1ECE0;
+  border-radius: 4px;
+  margin: 64px 0;
+  padding: 40px 32px;
+}
+.specsheet-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: #A79F8C;
+  text-transform: uppercase;
+  border-bottom: 1px solid #38352C;
+  padding-bottom: 16px;
+  margin-bottom: 28px;
+}
+.specsheet-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.spec-item { min-width: 0; }
+.spec-number {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 500;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.spec-number .unit { font-size: 0.5em; color: #C9BB94; margin-left: 2px; }
+.spec-label {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: #A79F8C;
+  line-height: 1.5;
+}
+
+/* ---------- 섹션 공통 ---------- */
+section.block { padding: 64px 0; }
+.section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 12px;
+}
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 500;
+  margin: 0 0 16px;
+  max-width: 26ch;
+}
+.section-desc {
+  color: var(--ink-soft);
+  max-width: 60ch;
+  margin: 0 0 40px;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* ---------- 프로젝트 카드 ---------- */
+.project-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--bg-page);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+.project-card:hover {
+  background: var(--bg-soft);
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.project-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg-soft);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.project-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.project-thumb .thumb-fallback {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+  color: var(--ink-faint);
+}
+.project-thumb.no-image .thumb-fallback { display: flex; }
+.project-thumb .thumb-icon { font-size: 32px; }
+.project-thumb .thumb-index {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+.project-card:hover .project-thumb img { transform: scale(1.03); }
+.project-thumb img { transition: transform 0.35s ease; }
+
+.project-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.project-tag {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.project-info h3 {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.3;
+}
+.project-info p { margin: 0; color: var(--ink-soft); font-size: 14px; }
+.project-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+.project-arrow {
+  font-size: 16px;
+  color: var(--ink-faint);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+.project-card:hover .project-arrow { transform: translateX(4px); color: var(--accent); }
+
+/* ---------- About ---------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: start;
+}
+.about-grid p { color: var(--ink-soft); margin: 0 0 16px; font-size: 15.5px; }
+.about-facts { display: flex; flex-direction: column; gap: 18px; }
+.fact { border-top: 1px solid var(--line); padding-top: 14px; }
+.fact .k { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+.fact .v { font-size: 15px; margin-top: 4px; }
+
+/* ---------- 푸터 ---------- */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 48px 0 64px;
+}
+.site-footer .footer-head {
+  font-family: var(--font-serif);
+  font-size: clamp(24px, 3.5vw, 34px);
+  margin: 0 0 24px;
+  max-width: 20ch;
+}
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; font-size: 14.5px; }
+.footer-links a { text-decoration: none; color: var(--ink-soft); border-bottom: 1px solid transparent; }
+.footer-links a:hover { color: var(--accent); border-color: var(--accent); }
+.footer-meta {
+  margin-top: 40px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+
+/* ---------- 반응형 ---------- */
+@media (max-width: 720px) {
+  .specsheet-grid { grid-template-columns: 1fr 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
+  .project-list { grid-template-columns: 1fr; }
+  .plate { padding: 32px 20px 24px; }
+  .plate-mark { display: none; }
+}
+</style>
 </head>
 <body>
 
-<!-- ============================================================
-  이 파일은 케이스 스터디 1개 페이지입니다.
-  프로젝트를 여러 개 만들려면 이 파일을 통째로 복사해서
-  case-study-2.html 처럼 새 파일을 만들고 내용만 바꾸면 됩니다.
-============================================================= -->
-
-<div class="page">
-
-  <!-- 상단 아이콘 (장식용) : 지워도 되고 그대로 둬도 됩니다 -->
-  <div class="topbar-icons">
-    <span class="icon-btn" aria-hidden="true">⚙︎</span>
-    <span class="icon-btn" aria-hidden="true">☾</span>
-    <a href="index.html" class="icon-btn" aria-label="닫기">✕</a>
-  </div>
-
-  <header class="hero-header">
-    <div class="hero-header__text">
-      <!-- ① 프로젝트 제목 -->
-      <h1>Android Private Space</h1>
-      <!-- ② 한 줄 설명 -->
-      <p class="subtitle">Protecting millions' sensitive apps and data</p>
-    </div>
-    <!-- ③ 상태 배지: Shipped / In progress / Concept 등으로 텍스트만 바꾸면 됨 -->
-    <span class="status-pill">
-      <span class="status-dot"></span> Shipped
+<header class="site-header wrap">
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" type="button">
+    <span class="track-icon sun">☀</span>
+    <span class="track-icon moon">☾</span>
+    <span class="knob">
+      <span class="knob-sun">☀</span>
+      <span class="knob-moon">☾</span>
     </span>
-  </header>
+  </button>
+</header>
 
-  <!-- ④ 히어로 이미지: images/hero.png 를 실제 스크린샷/목업으로 교체하세요 -->
-  <div class="hero-media">
-    <img src="images/hero.png" alt="프로젝트 히어로 이미지" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
-    <span class="placeholder-label">여기에 images/hero.png 를 넣으세요 (권장: 1200×800 이상)</span>
+<section class="hero wrap">
+  <div class="plate">
+    <span class="plate-mark tl">┼</span>
+    <span class="plate-mark tr">┼</span>
+    <span class="plate-mark bl">┼</span>
+    <span class="plate-mark br">┼</span>
+
+    <div class="plate-meta">
+      <span>PORTFOLIO / 2026</span>
+      <span>SEOUL, KR</span>
+    </div>
+
+    <!-- ② 헤드라인: 원하면 문구 교체 가능 (줄바꿈 위치가 애니메이션에 영향을 주니, 문장 구조는 유지 추천) -->
+    <h1>
+      <span class="line"><span>I turn complex, high-stakes</span></span>
+      <span class="line"><span>data into interfaces people</span></span>
+      <span class="line"><span>can actually use under pressure.</span></span>
+    </h1>
+
+    <!-- ③ 서브텍스트 -->
+    <p class="sub">
+      8 years designing enterprise data platforms — re-engaged directly by
+      Samsung Electronics and SK hynix after each engagement.
+    </p>
+
+    <div class="cta-row">
+      <a href="#work" class="btn btn-primary">View case studies</a>
+      <a href="mailto:iam.millie.y@gmail.com" class="btn btn-secondary">Get in touch</a>
+    </div>
+
+    <svg class="plate-wave" viewBox="0 0 800 40" preserveAspectRatio="none" aria-hidden="true">
+      <path id="waveLine" d="M0,20 C60,4 100,36 160,20 C220,4 260,36 320,20 C380,4 420,36 480,20 C540,4 580,36 640,20 C700,4 740,36 800,20" />
+    </svg>
   </div>
+</section>
 
-  <!-- ⑤ 프로젝트 소개 문단 -->
-  <section class="intro">
-    <p>
-      I led the design of <strong>Android Private Space</strong> — a new privacy protection feature
-      on Android launched at Google I/O. Android Private Space gives users a separate compartment
-      on their devices for installing apps they wish to keep to themselves.
-    </p>
-    <!-- 참고 링크 버튼: 없으면 이 <a> 태그를 지우세요 -->
-    <a href="#" class="link-chip" target="_blank" rel="noopener">Google Blog ↗</a>
-  </section>
-
-  <!-- ⑥ 메타 정보: Product / Role / Timeline / Skills / Team -->
-  <section class="meta-grid">
-    <div class="meta-item">
-      <span class="meta-label">Product</span>
-      <span class="meta-value">Android</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">My role</span>
-      <span class="meta-value">Design lead</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Timeline</span>
-      <span class="meta-value">Q2 2023 – Q2 2024</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Skills</span>
-      <span class="meta-value">Product design, Stakeholder management, Interactive prototyping, User research &amp; testing</span>
-    </div>
-  </section>
-
-  <section class="team-line">
-    <span class="meta-label">Team</span>
-    <span class="meta-value">Deepak Mallya, Misa Gareau, Rachel Burrows, Simon Roberts</span>
-  </section>
-
-  <hr class="divider">
-
-  <!-- ⑦ 인용구 이미지 섹션: images/quote-bg.jpg 로 교체 -->
-  <figure class="quote-media">
-    <img src="images/quote-bg.jpg" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
-    <span class="placeholder-label">여기에 images/quote-bg.jpg 를 넣으세요 (가로로 넓은 분위기 사진)</span>
-    <blockquote>
-      "Handing someone your phone<br>
-      can feel like handing over your whole diary…"
-    </blockquote>
-  </figure>
-
-  <!-- ⑧ 본문 섹션: Problem -->
-  <section class="content-block">
-    <h2>Problem: Stopping the 'Hand-off Anxiety'</h2>
-    <p>
-      Approximately one out of four users (28%) has unintentionally revealed information they
-      wished to keep private while lending their phones to friends and family. While solutions
-      exist on the market, they often fall short in fully concealing app presence, leaving
-      potential leakage points.
-    </p>
-    <p>
-      Recognising this gap, we saw this as a massive opportunity to help users regain control
-      of what their phone says about them.
-    </p>
-  </section>
-
-  <!-- ⑨ Research -->
-  <section class="content-block">
-    <h2>Research</h2>
-    <p>
-      Getting individuals to discuss personal matters on their phones proved to be quite
-      challenging. In the early stages of the project, we interviewed and surveyed over 900
-      participants to understand their use-cases and struggles.
-    </p>
-
-    <div class="finding">
-      <h3>Not feeling in-control while sharing</h3>
-      <p>50% of leakages happen through unanticipated app notifications while sharing the phone.</p>
-    </div>
-    <div class="finding">
-      <h3>Password sharing is common</h3>
-      <p>Borrowers sometimes know the screen PIN, especially among users' closest friends/family — where the consequence of revealing is generally high.</p>
-    </div>
-    <div class="finding">
-      <h3>Ad-hoc device sharing</h3>
-      <p>Fewer than 50% of participants reported that borrowers ever ask for permission to borrow their phones, giving users virtually no time to prepare.</p>
-    </div>
-  </section>
-
-  <!-- ⑩ Solution -->
-  <section class="content-block">
-    <h2>Solution: Not your average app locker</h2>
-    <p>
-      Android Private Space gives users a separate compartment on their devices for installing
-      apps they wish to keep to themselves, so they can feel more in control and comfortable
-      sharing their phone with others.
-    </p>
-
-    <!-- 기능 카드 4개: 아이콘(이모지)과 텍스트만 바꾸면 됩니다 -->
-    <div class="feature-grid">
-      <div class="feature-card">
-        <span class="feature-icon">🔕</span>
-        <span>Private notifications are hidden</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">🖼️</span>
-        <span>Private files and photos are hidden</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">⭐</span>
-        <span>Private app suggestions are removed</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">↺</span>
-        <span>Separate Google account used to protect download history, etc.</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ⑪ 세부 기능 1 -->
-  <section class="content-block detail-block">
-    <h3><span class="detail-icon">🧭</span> Hiding digital footprints</h3>
-    <p>
-      From the beginning, we insisted on users being able to use and access their private
-      apps seamlessly when they need it, and hide them entirely swiftly. Turns out to
-      thoroughly hide the entire footprint of an app from one's device is quite more complex
-      than we anticipated, as it spans across many system surfaces such as settings.
-    </p>
-    <p>
-      We paid meticulous attention to the footprint of apps across the whole operating system
-      to minimise leakage from apps in Private Space — going beyond just concealing app icons.
-    </p>
-  </section>
-
-  <!-- ⑫ 세부 기능 2 -->
-  <section class="content-block detail-block">
-    <h3><span class="detail-icon">🔑</span> An additional layer of security</h3>
-    <p>
-      Users have the option to set a different lock from their device lock. This ensures
-      that even if someone borrowing the phone is aware of the device lock, they still
-      won't be able to access Private Space.
-    </p>
-  </section>
-
-  <!-- ⑬ 세부 기능 3 + 이미지(다크 배경 목업) -->
-  <section class="content-block detail-block">
-    <h3><span class="detail-icon">🔒</span> Lock Private Space inconspicuously with one press</h3>
-    <p>
-      In order not to draw suspicion from others, locking Private Space is natural and
-      discreet. With just a press of the device's power button, users can quickly lock
-      their Private Space, reducing the preparation time needed before lending their
-      devices to others.
-    </p>
-    <div class="media-dark">
-      <img src="images/lock-demo.png" alt="잠금 데모 이미지" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
-      <span class="placeholder-label">여기에 images/lock-demo.png 를 넣으세요 (다크 배경 목업 추천)</span>
-    </div>
-  </section>
-
-  <!-- ⑭ 세부 기능 4 + 이미지(라이트 배경 + 토글) -->
-  <section class="content-block detail-block">
-    <h3><span class="detail-icon">📱</span> Hiding Private Space on your phone</h3>
-    <p>
-      "Hang on… isn't it kind of obvious to have a 'Private' section on your phone?"
-      For those seeking a more heightened level of privacy, they have the option to hide
-      their Private Space automatically when they are not using it.
-    </p>
-    <div class="media-light">
-      <img src="images/hide-demo.png" alt="숨김 데모 이미지" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
-      <span class="placeholder-label">여기에 images/hide-demo.png 를 넣으세요</span>
-      <div class="toggle-row">
-        <span>👁️‍🗨️ Hide Private Space</span>
-        <span class="toggle on" aria-hidden="true"><span class="toggle-knob"></span></span>
-      </div>
-    </div>
-    <p class="caption">Private Space hides itself automatically when it locks.</p>
-  </section>
-
-  <!-- ⑮ Impact -->
-  <section class="content-block">
-    <h2>Impact: Trust &amp; safety for millions</h2>
-    <p>
-      Not many things are as surreal as seeing your work unveiled at Google I/O. Private
-      Space will also be made available to OEMs to adopt, extending its reach to a wider
-      user base. You can read about the full feature announcement on the Google Blog.
-    </p>
-    <p>
-      The feature was also recognised as one of Android 15's "Top 5 features" by MKBHD.
-    </p>
-    <a href="#" class="link-chip" target="_blank" rel="noopener">Google Blog ↗</a>
-  </section>
-
-  <footer class="page-footer">
-    <!-- ⑯ 로고 이니셜: 본인 이니셜로 교체 -->
-    <div class="logo-mark">DM</div>
-    <div class="footer-nav">
-      <a href="#" aria-label="이전 프로젝트">←</a>
-      <a href="#" aria-label="다음 프로젝트">→</a>
-    </div>
-  </footer>
-
+<div class="trust-strip">
+  <div class="wrap">
+    <span class="label">Trusted by</span>
+    <span class="company">Samsung Electronics</span>
+    <span class="company">SK hynix</span>
+    <span class="company">Brique, Inc.</span>
+  </div>
 </div>
+
+<div class="wrap">
+  <!-- ④ 스펙시트 스탯 블록: 숫자만 실제 데이터로 확인 후 조정 -->
+  <div class="specsheet reveal">
+    <div class="specsheet-head">
+      <span>Track record</span>
+      <span>Verified across 3 enterprise platforms</span>
+    </div>
+    <div class="specsheet-grid">
+      <div class="spec-item">
+        <div class="spec-number" data-count="25"><span class="value">0</span><span class="unit">%</span></div>
+        <div class="spec-label">Faster issue resolution<br>on anomaly detection dashboard</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-number" data-count="90"><span class="value">0</span><span class="unit">%+</span></div>
+        <div class="spec-label">User satisfaction<br>after redesign</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-number" data-count="8"><span class="value">0</span><span class="unit">yrs</span></div>
+        <div class="spec-label">Enterprise product<br>design experience</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-number" data-count="2"><span class="value">0</span><span class="unit">×</span></div>
+        <div class="spec-label">Re-engaged directly by<br>Samsung &amp; SK hynix</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="block wrap" id="work">
+  <p class="section-eyebrow reveal">Selected work</p>
+  <h2 class="section-title reveal">Four systems, one habit: making dense data legible under deadline pressure.</h2>
+  <p class="section-desc reveal">Each project below follows the same process — understand the real workflow, find where users lose time, then design the smallest interface that removes it.</p>
+
+  <!-- ⑤ 프로젝트 4개: href를 실제 case study 파일명으로 연결하고,
+       images/ 폴더에 썸네일을 넣으면 자동으로 아이콘 대신 표시됩니다 -->
+  <div class="project-list reveal">
+    <a href="project-anomaly-detection.html" class="project-card">
+      <span class="project-thumb">
+        <img src="images/thumb-anomaly.jpg" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
+        <span class="thumb-fallback">
+          <span class="thumb-icon">🟢</span>
+          <span class="thumb-index">01</span>
+        </span>
+      </span>
+      <span class="project-body">
+        <span class="project-tag">Shipped — SK hynix</span>
+        <span class="project-info">
+          <h3>Semiconductor Anomaly Detection Dashboard</h3>
+          <p>Real-time monitoring UI that cut issue-resolution time by 25%</p>
+        </span>
+        <span class="project-foot">
+          <span class="project-arrow">→</span>
+        </span>
+      </span>
+    </a>
+    <a href="project-analytics-platform.html" class="project-card">
+      <span class="project-thumb">
+        <img src="images/thumb-analytics.jpg" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
+        <span class="thumb-fallback">
+          <span class="thumb-icon">🔷</span>
+          <span class="thumb-index">02</span>
+        </span>
+      </span>
+      <span class="project-body">
+        <span class="project-tag">Shipped — Samsung / SK hynix</span>
+        <span class="project-info">
+          <h3>BRIQUE Analytics — Workflow-Based Data Platform</h3>
+          <p>No-code data pipeline builder for enterprise analysts</p>
+        </span>
+        <span class="project-foot">
+          <span class="project-arrow">→</span>
+        </span>
+      </span>
+    </a>
+    <a href="project-equipment-notification.html" class="project-card">
+      <span class="project-thumb">
+        <img src="images/thumb-bee.jpg" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
+        <span class="thumb-fallback">
+          <span class="thumb-icon">🔔</span>
+          <span class="thumb-index">03</span>
+        </span>
+      </span>
+      <span class="project-body">
+        <span class="project-tag">Shipped — SK hynix</span>
+        <span class="project-info">
+          <h3>Bee — Real-Time Equipment Notification Dashboard</h3>
+          <p>Cut operator response time with a prioritized, user-reorderable UI</p>
+        </span>
+        <span class="project-foot">
+          <span class="project-arrow">→</span>
+        </span>
+      </span>
+    </a>
+    <a href="project-pumkin-finance.html" class="project-card">
+      <span class="project-thumb">
+        <img src="images/thumb-pumkin.jpg" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
+        <span class="thumb-fallback">
+          <span class="thumb-icon">🪙</span>
+          <span class="thumb-index">04</span>
+        </span>
+      </span>
+      <span class="project-body">
+        <span class="project-tag">Concept — Personal project</span>
+        <span class="project-info">
+          <h3>Pumkin — Personal Finance Dashboard</h3>
+          <p>A self-directed exploration of why saving money feels so hard</p>
+        </span>
+        <span class="project-foot">
+          <span class="project-arrow">→</span>
+        </span>
+      </span>
+    </a>
+  </div>
+</section>
+
+<section class="block wrap" id="about">
+  <p class="section-eyebrow reveal">About</p>
+  <div class="about-grid reveal">
+    <div>
+      <!-- ⑥ 자기소개 문단: 원하는 내용으로 수정 -->
+      <p>
+        I'm a product designer based in Seoul, working across enterprise data
+        platforms, manufacturing intelligence tools, and B2B SaaS products.
+        Most of my work sits at the intersection of dense, real-time data and
+        the people who have to act on it fast — process managers reading
+        equipment status, analysts building data pipelines, engineers mapping
+        manufacturing recipes.
+      </p>
+      <p>
+        Currently splitting time between an ongoing contract with SK hynix and
+        independent product design work through Nextrunners, where I design
+        design systems and explore AI-integrated creative workflows.
+      </p>
+    </div>
+    <div class="about-facts">
+      <div class="fact">
+        <div class="k">Currently</div>
+        <div class="v">Senior UI Designer (Contract) — SK hynix</div>
+      </div>
+      <div class="fact">
+        <div class="k">Also</div>
+        <div class="v">Lead UI/UX Design Specialist — Nextrunners</div>
+      </div>
+      <div class="fact">
+        <div class="k">Based in</div>
+        <div class="v">Seoul, South Korea</div>
+      </div>
+      <div class="fact">
+        <div class="k">Tools</div>
+        <div class="v">Figma, Adobe XD, Design Systems, AI-integrated workflows</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer wrap" id="contact">
+  <h2 class="footer-head reveal">Let's talk about your next data-heavy product.</h2>
+  <div class="footer-links reveal">
+    <a href="mailto:iam.millie.y@gmail.com">iam.millie.y@gmail.com</a>
+    <a href="https://kr.linkedin.com/in/yoonchae-design" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="yoonchae-portfolio-2025.pdf" target="_blank" rel="noopener">Download résumé (PDF)</a>
+  </div>
+  <p class="footer-meta">© 2026 Yoon Chae. Built with care, one pixel at a time.</p>
+</footer>
+
+<script>
+// 다크모드 토글
+const themeToggle = document.getElementById('themeToggle');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+});
+
+// 숫자 카운트업 애니메이션
+function animateNumber(el) {
+  const target = parseFloat(el.dataset.count);
+  const valueEl = el.querySelector('.value');
+  const duration = 1200;
+  const start = performance.now();
+  function tick(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    valueEl.textContent = Math.round(target * eased);
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+// 스크롤 리빌 + 카운트업 트리거
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (prefersReducedMotion) {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+  document.querySelectorAll('.spec-number').forEach(el => {
+    el.querySelector('.value').textContent = el.dataset.count;
+  });
+} else {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        if (entry.target.classList.contains('specsheet')) {
+          entry.target.querySelectorAll('.spec-number').forEach(animateNumber);
+        }
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+</script>
 
 </body>
 </html>

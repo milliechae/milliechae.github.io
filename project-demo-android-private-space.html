@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Android Private Space — 프로젝트 케이스 스터디</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================================
+  이 파일은 케이스 스터디 1개 페이지입니다.
+  프로젝트를 여러 개 만들려면 이 파일을 통째로 복사해서
+  case-study-2.html 처럼 새 파일을 만들고 내용만 바꾸면 됩니다.
+============================================================= -->
+
+<div class="page">
+
+  <!-- 상단 아이콘 (장식용) : 지워도 되고 그대로 둬도 됩니다 -->
+  <div class="topbar-icons">
+    <span class="icon-btn" aria-hidden="true">⚙︎</span>
+    <span class="icon-btn" aria-hidden="true">☾</span>
+    <a href="index.html" class="icon-btn" aria-label="닫기">✕</a>
+  </div>
+
+  <header class="hero-header">
+    <div class="hero-header__text">
+      <!-- ① 프로젝트 제목 -->
+      <h1>Android Private Space</h1>
+      <!-- ② 한 줄 설명 -->
+      <p class="subtitle">Protecting millions' sensitive apps and data</p>
+    </div>
+    <!-- ③ 상태 배지: Shipped / In progress / Concept 등으로 텍스트만 바꾸면 됨 -->
+    <span class="status-pill">
+      <span class="status-dot"></span> Shipped
+    </span>
+  </header>
+
+  <!-- ④ 히어로 이미지: images/hero.png 를 실제 스크린샷/목업으로 교체하세요 -->
+  <div class="hero-media">
+    <img src="images/hero.png" alt="프로젝트 히어로 이미지" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+    <span class="placeholder-label">여기에 images/hero.png 를 넣으세요 (권장: 1200×800 이상)</span>
+  </div>
+
+  <!-- ⑤ 프로젝트 소개 문단 -->
+  <section class="intro">
+    <p>
+      I led the design of <strong>Android Private Space</strong> — a new privacy protection feature
+      on Android launched at Google I/O. Android Private Space gives users a separate compartment
+      on their devices for installing apps they wish to keep to themselves.
+    </p>
+    <!-- 참고 링크 버튼: 없으면 이 <a> 태그를 지우세요 -->
+    <a href="#" class="link-chip" target="_blank" rel="noopener">Google Blog ↗</a>
+  </section>
+
+  <!-- ⑥ 메타 정보: Product / Role / Timeline / Skills / Team -->
+  <section class="meta-grid">
+    <div class="meta-item">
+      <span class="meta-label">Product</span>
+      <span class="meta-value">Android</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">My role</span>
+      <span class="meta-value">Design lead</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Timeline</span>
+      <span class="meta-value">Q2 2023 – Q2 2024</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Skills</span>
+      <span class="meta-value">Product design, Stakeholder management, Interactive prototyping, User research &amp; testing</span>
+    </div>
+  </section>
+
+  <section class="team-line">
+    <span class="meta-label">Team</span>
+    <span class="meta-value">Deepak Mallya, Misa Gareau, Rachel Burrows, Simon Roberts</span>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ⑦ 인용구 이미지 섹션: images/quote-bg.jpg 로 교체 -->
+  <figure class="quote-media">
+    <img src="images/quote-bg.jpg" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+    <span class="placeholder-label">여기에 images/quote-bg.jpg 를 넣으세요 (가로로 넓은 분위기 사진)</span>
+    <blockquote>
+      "Handing someone your phone<br>
+      can feel like handing over your whole diary…"
+    </blockquote>
+  </figure>
+
+  <!-- ⑧ 본문 섹션: Problem -->
+  <section class="content-block">
+    <h2>Problem: Stopping the 'Hand-off Anxiety'</h2>
+    <p>
+      Approximately one out of four users (28%) has unintentionally revealed information they
+      wished to keep private while lending their phones to friends and family. While solutions
+      exist on the market, they often fall short in fully concealing app presence, leaving
+      potential leakage points.
+    </p>
+    <p>
+      Recognising this gap, we saw this as a massive opportunity to help users regain control
+      of what their phone says about them.
+    </p>
+  </section>
+
+  <!-- ⑨ Research -->
+  <section class="content-block">
+    <h2>Research</h2>
+    <p>
+      Getting individuals to discuss personal matters on their phones proved to be quite
+      challenging. In the early stages of the project, we interviewed and surveyed over 900
+      participants to understand their use-cases and struggles.
+    </p>
+
+    <div class="finding">
+      <h3>Not feeling in-control while sharing</h3>
+      <p>50% of leakages happen through unanticipated app notifications while sharing the phone.</p>
+    </div>
+    <div class="finding">
+      <h3>Password sharing is common</h3>
+      <p>Borrowers sometimes know the screen PIN, especially among users' closest friends/family — where the consequence of revealing is generally high.</p>
+    </div>
+    <div class="finding">
+      <h3>Ad-hoc device sharing</h3>
+      <p>Fewer than 50% of participants reported that borrowers ever ask for permission to borrow their phones, giving users virtually no time to prepare.</p>
+    </div>
+  </section>
+
+  <!-- ⑩ Solution -->
+  <section class="content-block">
+    <h2>Solution: Not your average app locker</h2>
+    <p>
+      Android Private Space gives users a separate compartment on their devices for installing
+      apps they wish to keep to themselves, so they can feel more in control and comfortable
+      sharing their phone with others.
+    </p>
+
+    <!-- 기능 카드 4개: 아이콘(이모지)과 텍스트만 바꾸면 됩니다 -->
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🔕</span>
+        <span>Private notifications are hidden</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🖼️</span>
+        <span>Private files and photos are hidden</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⭐</span>
+        <span>Private app suggestions are removed</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">↺</span>
+        <span>Separate Google account used to protect download history, etc.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑪ 세부 기능 1 -->
+  <section class="content-block detail-block">
+    <h3><span class="detail-icon">🧭</span> Hiding digital footprints</h3>
+    <p>
+      From the beginning, we insisted on users being able to use and access their private
+      apps seamlessly when they need it, and hide them entirely swiftly. Turns out to
+      thoroughly hide the entire footprint of an app from one's device is quite more complex
+      than we anticipated, as it spans across many system surfaces such as settings.
+    </p>
+    <p>
+      We paid meticulous attention to the footprint of apps across the whole operating system
+      to minimise leakage from apps in Private Space — going beyond just concealing app icons.
+    </p>
+  </section>
+
+  <!-- ⑫ 세부 기능 2 -->
+  <section class="content-block detail-block">
+    <h3><span class="detail-icon">🔑</span> An additional layer of security</h3>
+    <p>
+      Users have the option to set a different lock from their device lock. This ensures
+      that even if someone borrowing the phone is aware of the device lock, they still
+      won't be able to access Private Space.
+    </p>
+  </section>
+
+  <!-- ⑬ 세부 기능 3 + 이미지(다크 배경 목업) -->
+  <section class="content-block detail-block">
+    <h3><span class="detail-icon">🔒</span> Lock Private Space inconspicuously with one press</h3>
+    <p>
+      In order not to draw suspicion from others, locking Private Space is natural and
+      discreet. With just a press of the device's power button, users can quickly lock
+      their Private Space, reducing the preparation time needed before lending their
+      devices to others.
+    </p>
+    <div class="media-dark">
+      <img src="images/lock-demo.png" alt="잠금 데모 이미지" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+      <span class="placeholder-label">여기에 images/lock-demo.png 를 넣으세요 (다크 배경 목업 추천)</span>
+    </div>
+  </section>
+
+  <!-- ⑭ 세부 기능 4 + 이미지(라이트 배경 + 토글) -->
+  <section class="content-block detail-block">
+    <h3><span class="detail-icon">📱</span> Hiding Private Space on your phone</h3>
+    <p>
+      "Hang on… isn't it kind of obvious to have a 'Private' section on your phone?"
+      For those seeking a more heightened level of privacy, they have the option to hide
+      their Private Space automatically when they are not using it.
+    </p>
+    <div class="media-light">
+      <img src="images/hide-demo.png" alt="숨김 데모 이미지" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+      <span class="placeholder-label">여기에 images/hide-demo.png 를 넣으세요</span>
+      <div class="toggle-row">
+        <span>👁️‍🗨️ Hide Private Space</span>
+        <span class="toggle on" aria-hidden="true"><span class="toggle-knob"></span></span>
+      </div>
+    </div>
+    <p class="caption">Private Space hides itself automatically when it locks.</p>
+  </section>
+
+  <!-- ⑮ Impact -->
+  <section class="content-block">
+    <h2>Impact: Trust &amp; safety for millions</h2>
+    <p>
+      Not many things are as surreal as seeing your work unveiled at Google I/O. Private
+      Space will also be made available to OEMs to adopt, extending its reach to a wider
+      user base. You can read about the full feature announcement on the Google Blog.
+    </p>
+    <p>
+      The feature was also recognised as one of Android 15's "Top 5 features" by MKBHD.
+    </p>
+    <a href="#" class="link-chip" target="_blank" rel="noopener">Google Blog ↗</a>
+  </section>
+
+  <footer class="page-footer">
+    <!-- ⑯ 로고 이니셜: 본인 이니셜로 교체 -->
+    <div class="logo-mark">DM</div>
+    <div class="footer-nav">
+      <a href="#" aria-label="이전 프로젝트">←</a>
+      <a href="#" aria-label="다음 프로젝트">→</a>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

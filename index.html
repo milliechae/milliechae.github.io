@@ -204,14 +204,11 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 }
 
 .hero h1 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(30px, 5vw, 52px);
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  margin: 0 auto 28px;
-  max-width: 20ch;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto 32px;
+  gap: 2px;
 }
 .hero h1 .line {
   display: block;
@@ -221,11 +218,35 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
   display: block;
   opacity: 0;
   transform: translateY(115%);
-  animation: rise 0.8s cubic-bezier(.2,.7,.2,1) forwards;
+  animation: rise 0.75s cubic-bezier(.2,.7,.2,1) forwards;
 }
-.hero h1 .line:nth-child(1) span { animation-delay: 0.22s; }
-.hero h1 .line:nth-child(2) span { animation-delay: 0.34s; }
-.hero h1 .line:nth-child(3) span { animation-delay: 0.46s; }
+.hero h1 .word-lg {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(30px, 6vw, 58px);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.hero h1 .word-sm {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(13px, 1.7vw, 17px);
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin: 6px 0;
+}
+.hero h1 .word-accent { color: var(--accent); }
+.hero h1 .word-gold { color: var(--gold); }
+
+.hero h1 .line:nth-child(1) span { animation-delay: 0.12s; }
+.hero h1 .line:nth-child(2) span { animation-delay: 0.20s; }
+.hero h1 .line:nth-child(3) span { animation-delay: 0.30s; }
+.hero h1 .line:nth-child(4) span { animation-delay: 0.42s; }
+.hero h1 .line:nth-child(5) span { animation-delay: 0.50s; }
+.hero h1 .line:nth-child(6) span { animation-delay: 0.62s; }
+.hero h1 .line:nth-child(7) span { animation-delay: 0.70s; }
 
 .hero p.sub {
   max-width: 52ch;
@@ -235,7 +256,7 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
   opacity: 0;
   transform: translateY(10px);
   animation: rise 0.7s ease forwards;
-  animation-delay: 0.58s;
+  animation-delay: 0.95s;
 }
 .hero .cta-row {
   display: flex;
@@ -245,7 +266,7 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
   opacity: 0;
   transform: translateY(10px);
   animation: rise 0.7s ease forwards;
-  animation-delay: 0.7s;
+  animation-delay: 1.08s;
 }
 .btn {
   display: inline-flex;
@@ -280,7 +301,7 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
   stroke-dasharray: 900;
   stroke-dashoffset: 900;
   animation: draw-wave 1.8s cubic-bezier(.3,.6,.2,1) forwards;
-  animation-delay: 0.85s;
+  animation-delay: 1.2s;
 }
 @keyframes draw-wave {
   to { stroke-dashoffset: 0; }
@@ -559,11 +580,16 @@ section.block { padding: 64px 0; }
       <span>SEOUL, KR</span>
     </div>
 
-    <!-- ② 헤드라인: 원하면 문구 교체 가능 (줄바꿈 위치가 애니메이션에 영향을 주니, 문장 구조는 유지 추천) -->
+    <!-- ② 헤드라인: 줄마다 크기/색이 다름 — 큰 줄은 word-lg, 작은 줄은 word-sm,
+         포인트 줄은 word-accent/word-gold 클래스로 조절하세요 -->
     <h1>
-      <span class="line"><span>I turn complex, high-stakes</span></span>
-      <span class="line"><span>data into interfaces people</span></span>
-      <span class="line"><span>can actually use under pressure.</span></span>
+      <span class="line"><span class="word-sm">I</span></span>
+      <span class="line"><span class="word-lg">turn complex</span></span>
+      <span class="line"><span class="word-lg word-accent">high-stakes data</span></span>
+      <span class="line"><span class="word-sm">into</span></span>
+      <span class="line"><span class="word-lg">interfaces people</span></span>
+      <span class="line"><span class="word-sm">can actually use</span></span>
+      <span class="line"><span class="word-lg word-gold">under pressure.</span></span>
     </h1>
 
     <!-- ③ 서브텍스트 -->

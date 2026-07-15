@@ -168,6 +168,7 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
   position: relative;
   border-radius: 2px;
   padding: 48px 40px 36px;
+  text-align: center;
   opacity: 0;
   transform: translateY(14px);
   animation: rise 0.8s ease forwards;
@@ -189,7 +190,8 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 
 .plate-meta {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 32px;
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.08em;
@@ -207,8 +209,9 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
   font-size: clamp(30px, 5vw, 52px);
   line-height: 1.15;
   letter-spacing: -0.01em;
-  margin: 0 0 28px;
-  max-width: 18ch;
+  margin: 0 auto 28px;
+  max-width: 20ch;
+  text-align: center;
 }
 .hero h1 .line {
   display: block;
@@ -228,7 +231,7 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
   max-width: 52ch;
   font-size: 16.5px;
   color: var(--ink-soft);
-  margin: 0 0 32px;
+  margin: 0 auto 32px;
   opacity: 0;
   transform: translateY(10px);
   animation: rise 0.7s ease forwards;
@@ -236,6 +239,7 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 }
 .hero .cta-row {
   display: flex;
+  justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
   opacity: 0;
@@ -624,7 +628,7 @@ section.block { padding: 64px 0; }
   <!-- ⑤ 프로젝트 4개: href를 실제 case study 파일명으로 연결하고,
        images/ 폴더에 썸네일을 넣으면 자동으로 아이콘 대신 표시됩니다 -->
   <div class="project-list reveal">
-    <a href="project-anomaly-detection.html" class="project-card">
+    <a href="project-demo-android-private-space.html" class="project-card">
       <span class="project-thumb">
         <img src="images/thumb-anomaly.jpg" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
         <span class="thumb-fallback">
@@ -643,7 +647,7 @@ section.block { padding: 64px 0; }
         </span>
       </span>
     </a>
-    <a href="project-analytics-platform.html" class="project-card">
+    <a href="project-demo-android-private-space.html" class="project-card">
       <span class="project-thumb">
         <img src="images/thumb-analytics.jpg" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
         <span class="thumb-fallback">
@@ -662,7 +666,7 @@ section.block { padding: 64px 0; }
         </span>
       </span>
     </a>
-    <a href="project-equipment-notification.html" class="project-card">
+    <a href="project-demo-android-private-space.html" class="project-card">
       <span class="project-thumb">
         <img src="images/thumb-bee.jpg" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
         <span class="thumb-fallback">
@@ -681,7 +685,7 @@ section.block { padding: 64px 0; }
         </span>
       </span>
     </a>
-    <a href="project-pumkin-finance.html" class="project-card">
+    <a href="project-demo-android-private-space.html" class="project-card">
       <span class="project-thumb">
         <img src="images/thumb-pumkin.jpg" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
         <span class="thumb-fallback">

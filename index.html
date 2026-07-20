@@ -83,7 +83,7 @@
   --accent: #2F4B3C;        /* 딥 파인 그린 — 포인트 컬러 */
   --accent-soft: #DCE5DD;
   --gold: #A9822F;          /* 숫자 강조용 골드 */
-  --line: #E4DECE;
+  --line: #9E9EA7;
 
   /* Track record(스펙시트) 전용 색상 — 라이트 테마: 흰 배경 + 검정 글자 */
   --stamp-bg: #FFFFFF;
@@ -110,7 +110,7 @@ html[data-theme="dark"] {
   --accent: #74B090;
   --accent-soft: #22332B;
   --gold: #D2B168;
-  --line: #332E24;
+  --line: #9E9EA7;
 
   /* Track record(스펙시트) 전용 색상 — 다크 테마: 어두운 배경 + 밝은 글자 */
   --stamp-bg: #171512;
@@ -334,11 +334,10 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 .specsheet {
   background: var(--stamp-bg);
   color: var(--stamp-ink);
-  border: 1px solid var(--stamp-line);
   border-radius: 4px;
   margin: 64px 0;
   padding: 40px 32px;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 .specsheet-head {
   display: flex;
@@ -349,7 +348,6 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
   letter-spacing: 0.06em;
   color: var(--stamp-faint);
   text-transform: uppercase;
-  border-bottom: 1px solid var(--stamp-line);
   padding-bottom: 16px;
   margin-bottom: 28px;
 }

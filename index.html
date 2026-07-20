@@ -52,6 +52,24 @@
        url(https://cdn.jsdelivr.net/fontsource/fonts/open-runde@latest/latin-700-normal.woff) format('woff');
 }
 
+/* Mona Sans — 이름(타이틀) 전용 폰트 */
+@font-face {
+  font-family: 'Mona Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/mona-sans@latest/latin-700-normal.woff2) format('woff2'),
+       url(https://cdn.jsdelivr.net/fontsource/fonts/mona-sans@latest/latin-700-normal.woff) format('woff');
+}
+@font-face {
+  font-family: 'Mona Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/mona-sans@latest/latin-800-normal.woff2) format('woff2'),
+       url(https://cdn.jsdelivr.net/fontsource/fonts/mona-sans@latest/latin-800-normal.woff) format('woff');
+}
+
 /* ============================================================
    컬러/폰트/여백은 전부 여기 :root 변수로 관리합니다.
    톤을 바꾸고 싶으면 이 값들만 수정하면 전체에 반영됩니다.
@@ -206,8 +224,8 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 .hero-text { display: flex; flex-direction: column; align-items: center; }
 
 .hero h1 {
-  font-family: var(--font-display);
-  font-weight: 600;
+  font-family: 'Mona Sans', var(--font-display);
+  font-weight: 800;
   font-size: 32px;
   line-height: 1.2;
   letter-spacing: -0.01em;

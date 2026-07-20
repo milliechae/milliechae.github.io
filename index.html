@@ -163,14 +163,20 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 
 /* ---------- 히어로: Instrument Plate ---------- */
 /* ---------- 히어로: 프로필형 (아바타 + 이름 + 태그 + 버튼) ---------- */
-.hero { padding: 44px 0 56px; text-align: center; }
+.hero { padding: 64px 0 56px; }
+
+.hero-profile {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+}
 
 .avatar {
-  width: 104px;
-  height: 104px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 0 auto 24px;
+  flex-shrink: 0;
   background: var(--bg-soft);
   display: flex;
   align-items: center;
@@ -183,16 +189,18 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 .avatar .avatar-fallback {
   display: none;
   font-family: var(--font-display);
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 600;
   color: var(--ink-faint);
 }
 .avatar.no-image .avatar-fallback { display: block; }
 
+.hero-text { padding-top: 4px; }
+
 .hero h1 {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(38px, 6.5vw, 68px);
+  font-size: clamp(34px, 5.5vw, 56px);
   line-height: 1.05;
   letter-spacing: -0.01em;
   color: var(--ink);
@@ -206,7 +214,7 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 .hero .location {
   font-size: 16px;
   color: var(--ink-faint);
-  margin: 0 0 16px;
+  margin: 0 0 10px;
   opacity: 0;
   transform: translateY(10px);
   animation: rise 0.7s ease forwards;
@@ -214,29 +222,21 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 }
 
 .hero .tags {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 0 0 32px;
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin: 0 0 28px;
   opacity: 0;
   transform: translateY(10px);
   animation: rise 0.7s ease forwards;
   animation-delay: 0.26s;
 }
-.hero .tags span {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  letter-spacing: 0.02em;
-  color: var(--ink-soft);
-  background: var(--bg-soft);
-  padding: 6px 14px;
-  border-radius: 999px;
+.hero .tags span:not(:last-child)::after {
+  content: " / ";
+  color: var(--ink-faint);
 }
 
 .hero .cta-row {
   display: flex;
-  justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
   opacity: 0;
@@ -505,6 +505,7 @@ section.block { padding: 64px 0; }
   .specsheet-grid { grid-template-columns: 1fr 1fr; }
   .about-grid { grid-template-columns: 1fr; }
   .project-list { grid-template-columns: 1fr; }
+  .hero-profile { flex-direction: column; align-items: flex-start; gap: 20px; }
 }
 </style>
 </head>
@@ -522,29 +523,33 @@ section.block { padding: 64px 0; }
 </header>
 
 <section class="hero wrap">
-  <!-- ① 프로필 사진: images/profile.jpg 를 넣으면 자동으로 반영됩니다. 없으면 이니셜로 표시돼요 -->
-  <div class="avatar">
-    <img src="images/profile.jpg" alt="Millie Chae" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
-    <span class="avatar-fallback">YC</span>
-  </div>
+  <div class="hero-profile">
+    <!-- ① 프로필 사진: images/profile.jpg 를 넣으면 자동으로 반영됩니다. 없으면 이니셜로 표시돼요 -->
+    <div class="avatar">
+      <img src="images/profile.jpg" alt="Millie Chae" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
+      <span class="avatar-fallback">MC</span>
+    </div>
 
-  <!-- ② 이름 -->
-  <h1>Millie Chae</h1>
+    <div class="hero-text">
+      <!-- ② 이름 -->
+      <h1>Millie Chae</h1>
 
-  <!-- ③ 위치 -->
-  <p class="location">Amsterdam, Netherlands</p>
+      <!-- ③ 위치 -->
+      <p class="location">Amsterdam, Netherlands</p>
 
-  <!-- ④ 태그: 원하는 만큼 추가/삭제 가능 -->
-  <div class="tags">
-    <span>Product Design</span>
-    <span>Data Visualization</span>
-    <span>Design Systems</span>
-    <span>B2B SaaS</span>
-  </div>
+      <!-- ④ 태그: 원하는 만큼 추가/삭제 가능 -->
+      <div class="tags">
+        <span>Product Design</span>
+        <span>Data Visualization</span>
+        <span>Design Systems</span>
+        <span>B2B SaaS</span>
+      </div>
 
-  <div class="cta-row">
-    <a href="mailto:iam.millie.y@gmail.com" class="btn btn-primary">Get in touch</a>
-    <a href="#work" class="btn btn-secondary">View work</a>
+      <div class="cta-row">
+        <a href="mailto:iam.millie.y@gmail.com" class="btn btn-primary">Get in touch</a>
+        <a href="#work" class="btn btn-secondary">View work</a>
+      </div>
+    </div>
   </div>
 </section>
 

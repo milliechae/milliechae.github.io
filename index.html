@@ -77,14 +77,19 @@
 :root {
   --bg-page: #FFFFFF;      /* 완전 흰색 */
   --bg-soft: #F4F3EF;       /* 카드/섹션 배경 (흰색과 구분되는 살짝 톤) */
-  --bg-stamp: #171512;      /* 스탯 블록 다크 배경 (테마 무관 고정) */
   --ink: #171512;
   --ink-soft: #5B564C;
-  --ink-faint: #9A9384;
+  --ink-faint: #9E9EA7;
   --accent: #2F4B3C;        /* 딥 파인 그린 — 포인트 컬러 */
   --accent-soft: #DCE5DD;
   --gold: #A9822F;          /* 숫자 강조용 골드 */
   --line: #E4DECE;
+
+  /* Track record(스펙시트) 전용 색상 — 라이트 테마: 흰 배경 + 검정 글자 */
+  --stamp-bg: #FFFFFF;
+  --stamp-ink: #171512;
+  --stamp-line: #E4DECE;
+  --stamp-faint: #9E9EA7;
 
   --font-display: "Open Runde", -apple-system, "Apple SD Gothic Neo", sans-serif;
   --font-serif: "Open Runde", -apple-system, "Apple SD Gothic Neo", sans-serif;
@@ -101,11 +106,17 @@ html[data-theme="dark"] {
   --bg-soft: #211D16;
   --ink: #F3EFE6;
   --ink-soft: #B9B2A2;
-  --ink-faint: #6E6858;
+  --ink-faint: #8C8C94;
   --accent: #74B090;
   --accent-soft: #22332B;
   --gold: #D2B168;
   --line: #332E24;
+
+  /* Track record(스펙시트) 전용 색상 — 다크 테마: 어두운 배경 + 밝은 글자 */
+  --stamp-bg: #171512;
+  --stamp-ink: #F1ECE0;
+  --stamp-line: #38352C;
+  --stamp-faint: #A79F8C;
 }
 
 * { box-sizing: border-box; }
@@ -225,7 +236,7 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 
 .hero h1 {
   font-family: 'Mona Sans', var(--font-display);
-  font-weight: 800;
+  font-weight: 700;
   font-size: 32px;
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -321,11 +332,13 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 
 /* ---------- 스펙시트 스탯 블록 (시그니처 요소) ---------- */
 .specsheet {
-  background: var(--bg-stamp);
-  color: #F1ECE0;
+  background: var(--stamp-bg);
+  color: var(--stamp-ink);
+  border: 1px solid var(--stamp-line);
   border-radius: 4px;
   margin: 64px 0;
   padding: 40px 32px;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 .specsheet-head {
   display: flex;
@@ -334,9 +347,9 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.06em;
-  color: #A79F8C;
+  color: var(--stamp-faint);
   text-transform: uppercase;
-  border-bottom: 1px solid #38352C;
+  border-bottom: 1px solid var(--stamp-line);
   padding-bottom: 16px;
   margin-bottom: 28px;
 }
@@ -350,16 +363,16 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
   font-family: var(--font-display);
   font-size: clamp(30px, 4vw, 44px);
   font-weight: 500;
-  color: #fff;
+  color: var(--stamp-ink);
   line-height: 1;
   margin-bottom: 10px;
   font-variant-numeric: tabular-nums;
 }
-.spec-number .unit { font-size: 0.5em; color: #C9BB94; margin-left: 2px; }
+.spec-number .unit { font-size: 0.5em; color: var(--gold); margin-left: 2px; }
 .spec-label {
   font-family: var(--font-mono);
   font-size: 12.5px;
-  color: #A79F8C;
+  color: var(--stamp-faint);
   line-height: 1.5;
 }
 

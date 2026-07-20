@@ -1,3 +1,37 @@
+/* Open Runde — 전체 폰트 (Fontsource CDN) */
+@font-face {
+  font-family: 'Open Runde';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/open-runde@latest/latin-400-normal.woff2) format('woff2'),
+       url(https://cdn.jsdelivr.net/fontsource/fonts/open-runde@latest/latin-400-normal.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Runde';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/open-runde@latest/latin-500-normal.woff2) format('woff2'),
+       url(https://cdn.jsdelivr.net/fontsource/fonts/open-runde@latest/latin-500-normal.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Runde';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/open-runde@latest/latin-600-normal.woff2) format('woff2'),
+       url(https://cdn.jsdelivr.net/fontsource/fonts/open-runde@latest/latin-600-normal.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Runde';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/open-runde@latest/latin-700-normal.woff2) format('woff2'),
+       url(https://cdn.jsdelivr.net/fontsource/fonts/open-runde@latest/latin-700-normal.woff) format('woff');
+}
+
 /* ============================================================
    색상, 폰트, 여백 등은 전부 여기 :root 변수에서 관리합니다.
    전체 톤을 바꾸고 싶으면 이 값들만 수정하세요.
@@ -16,8 +50,18 @@
   --radius-sm: 8px;
   --max-width: 760px;
 
-  --font-display: "Newsreader", "Georgia", serif;
-  --font-body: "Inter", -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-display: "Open Runde", -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-body: "Open Runde", -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+
+/* ---------- 다크 모드 팔레트 ---------- */
+html[data-theme="dark"] {
+  --bg-page: #17140F;
+  --bg-soft: #211D16;
+  --text-primary: #F3EFE6;
+  --text-secondary: #B9B2A2;
+  --text-tertiary: #6E6858;
+  --line: #332E24;
 }
 
 * { box-sizing: border-box; }
@@ -31,7 +75,17 @@ body {
   font-family: var(--font-body);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+.icon-btn, .feature-card, .hero-media, .media-dark, .media-light, .toggle-row, .link-chip, .footer-nav a {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.theme-toggle { border: none; }
+.icon-dark { display: none; }
+html[data-theme="dark"] .icon-light { display: none; }
+html[data-theme="dark"] .icon-dark { display: inline; }
 
 .page {
   max-width: var(--max-width);

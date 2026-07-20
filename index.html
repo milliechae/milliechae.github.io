@@ -16,10 +16,17 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Newsreader:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 /* Open Runde — 타이틀용 폰트 (Fontsource CDN) */
+@font-face {
+  font-family: 'Open Runde';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/open-runde@latest/latin-400-normal.woff2) format('woff2'),
+       url(https://cdn.jsdelivr.net/fontsource/fonts/open-runde@latest/latin-400-normal.woff) format('woff');
+}
 @font-face {
   font-family: 'Open Runde';
   font-style: normal;
@@ -61,10 +68,10 @@
   --gold: #A9822F;          /* 숫자 강조용 골드 */
   --line: #E4DECE;
 
-  --font-display: "Open Runde", "Fraunces", "Newsreader", Georgia, serif;
-  --font-serif: "Newsreader", Georgia, serif;
-  --font-body: "Inter", -apple-system, "Apple SD Gothic Neo", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-display: "Open Runde", -apple-system, "Apple SD Gothic Neo", sans-serif;
+  --font-serif: "Open Runde", -apple-system, "Apple SD Gothic Neo", sans-serif;
+  --font-body: "Open Runde", -apple-system, "Apple SD Gothic Neo", sans-serif;
+  --font-mono: "Open Runde", -apple-system, "Apple SD Gothic Neo", sans-serif;
 
   --max-width: 1040px;
 }
@@ -163,20 +170,21 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 
 /* ---------- 히어로: Instrument Plate ---------- */
 /* ---------- 히어로: 프로필형 (아바타 + 이름 + 태그 + 버튼) ---------- */
-.hero { padding: 64px 0 56px; }
+.hero { padding: 60px 0 56px; text-align: center; }
 
 .hero-profile {
   display: flex;
-  align-items: flex-start;
-  gap: 32px;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
 
 .avatar {
-  width: 96px;
-  height: 96px;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
   overflow: hidden;
-  flex-shrink: 0;
+  margin: 0 auto 20px;
   background: var(--bg-soft);
   display: flex;
   align-items: center;
@@ -189,22 +197,22 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 .avatar .avatar-fallback {
   display: none;
   font-family: var(--font-display);
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 600;
   color: var(--ink-faint);
 }
 .avatar.no-image .avatar-fallback { display: block; }
 
-.hero-text { padding-top: 4px; }
+.hero-text { display: flex; flex-direction: column; align-items: center; }
 
 .hero h1 {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(34px, 5.5vw, 56px);
-  line-height: 1.05;
+  font-size: clamp(32px, 4.6vw, 46px);
+  line-height: 1.1;
   letter-spacing: -0.01em;
   color: var(--ink);
-  margin: 0 0 10px;
+  margin: 0 0 8px;
   opacity: 0;
   transform: translateY(10px);
   animation: rise 0.7s ease forwards;
@@ -212,9 +220,9 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 }
 
 .hero .location {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--ink-faint);
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   opacity: 0;
   transform: translateY(10px);
   animation: rise 0.7s ease forwards;
@@ -222,7 +230,7 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 }
 
 .hero .tags {
-  font-size: 15px;
+  font-size: 13.5px;
   color: var(--ink-soft);
   margin: 0 0 28px;
   opacity: 0;
@@ -237,6 +245,7 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 
 .hero .cta-row {
   display: flex;
+  justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
   opacity: 0;
@@ -248,9 +257,9 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 14px 26px;
+  padding: 13px 24px;
   border-radius: 999px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   text-decoration: none;
   border: 1px solid transparent;
@@ -505,7 +514,6 @@ section.block { padding: 64px 0; }
   .specsheet-grid { grid-template-columns: 1fr 1fr; }
   .about-grid { grid-template-columns: 1fr; }
   .project-list { grid-template-columns: 1fr; }
-  .hero-profile { flex-direction: column; align-items: flex-start; gap: 20px; }
 }
 </style>
 </head>
@@ -546,7 +554,7 @@ section.block { padding: 64px 0; }
       </div>
 
       <div class="cta-row">
-        <a href="mailto:iam.millie.y@gmail.com" class="btn btn-primary">Get in touch</a>
+        <a href="https://www.linkedin.com/in/milliechae/" target="_blank" rel="noopener" class="btn btn-primary">LinkedIn</a>
         <a href="#work" class="btn btn-secondary">View work</a>
       </div>
     </div>
@@ -721,7 +729,7 @@ section.block { padding: 64px 0; }
   <h2 class="footer-head reveal">Let's talk about your next data-heavy product.</h2>
   <div class="footer-links reveal">
     <a href="mailto:iam.millie.y@gmail.com">iam.millie.y@gmail.com</a>
-    <a href="https://kr.linkedin.com/in/yoonchae-design" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/milliechae/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="yoonchae-portfolio-2025.pdf" target="_blank" rel="noopener">Download résumé (PDF)</a>
   </div>
   <p class="footer-meta">© 2026 Millie Chae. Built with care, one pixel at a time.</p>

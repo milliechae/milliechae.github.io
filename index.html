@@ -318,7 +318,6 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
   font-family: var(--font-mono);
   font-size: 11.5px;
   color: var(--ink-faint);
-  text-transform: uppercase;
   letter-spacing: 0.06em;
 }
 .trust-strip .company {
@@ -328,16 +327,9 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
   letter-spacing: 0.02em;
 }
 .trust-strip .company-logo {
-  height: 18px;
+  height: 26px;
   width: auto;
   display: block;
-  filter: grayscale(100%);
-  opacity: 0.55;
-  transition: opacity 0.25s ease, filter 0.25s ease;
-}
-.trust-strip .company-logo:hover {
-  filter: grayscale(0%);
-  opacity: 1;
 }
 
 /* ---------- 스펙시트 스탯 블록 (시그니처 요소) ---------- */
@@ -627,9 +619,16 @@ section.block { padding: 64px 0; }
       <img src="images/samsung-logo.png" alt="Samsung Electronics" class="company-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
       <span class="company" style="display:none">Samsung Electronics</span>
     </span>
-    <!-- SK hynix, Brique 로고 파일 생기면 같은 방식으로 img 태그로 교체하세요 -->
-    <span class="company">SK hynix</span>
-    <span class="company">Brique, Inc.</span>
+    <!-- SK hynix 로고 -->
+    <span class="company-slot">
+      <img src="images/skhynix-logo.svg" alt="SK hynix" class="company-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
+      <span class="company" style="display:none">SK hynix</span>
+    </span>
+    <!-- Brique 로고 (블랙 버전) -->
+    <span class="company-slot">
+      <img src="images/brique-logo-black.png" alt="Brique, Inc." class="company-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
+      <span class="company" style="display:none">Brique, Inc.</span>
+    </span>
   </div>
 </div>
 

@@ -414,17 +414,16 @@ section.block { padding: 64px 0; }
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background: var(--bg-page);
-  border: 1px solid var(--line);
+  background: var(--bg-soft);
   border-radius: 12px;
   padding: 16px;
   text-decoration: none;
   color: var(--ink);
-  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 .project-card:hover {
   background: var(--bg-soft);
-  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
   transform: translateY(-3px);
 }
 
@@ -434,7 +433,7 @@ section.block { padding: 64px 0; }
   aspect-ratio: 16 / 10;
   border-radius: 8px;
   overflow: hidden;
-  background: var(--bg-soft);
+  background: var(--bg-page);
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -473,6 +472,9 @@ section.block { padding: 64px 0; }
   flex: 1;
 }
 .project-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   align-self: flex-start;
   font-family: var(--font-mono);
   font-size: 11px;
@@ -482,6 +484,29 @@ section.block { padding: 64px 0; }
   background: var(--accent-soft);
   padding: 4px 10px;
   border-radius: 999px;
+}
+.status-dot {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2FB56A;
+  flex-shrink: 0;
+}
+.status-dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid #2FB56A;
+  animation: dot-ping 2s ease-out infinite;
+}
+.status-concept .status-dot { background: var(--ink-faint); }
+.status-concept .status-dot::after { display: none; }
+
+@keyframes dot-ping {
+  0% { opacity: 0.6; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2.4); }
 }
 .project-info h3 {
   font-family: var(--font-serif);
@@ -644,7 +669,7 @@ section.block { padding: 64px 0; }
         </span>
       </span>
       <span class="project-body">
-        <span class="project-tag">Shipped — SK hynix</span>
+        <span class="project-tag status-shipped"><span class="status-dot"></span>Shipped — SK hynix</span>
         <span class="project-info">
           <h3>Semiconductor Anomaly Detection Dashboard</h3>
           <p>Real-time monitoring UI that cut issue-resolution time by 25%</p>
@@ -663,7 +688,7 @@ section.block { padding: 64px 0; }
         </span>
       </span>
       <span class="project-body">
-        <span class="project-tag">Shipped — Samsung / SK hynix</span>
+        <span class="project-tag status-shipped"><span class="status-dot"></span>Shipped — Samsung / SK hynix</span>
         <span class="project-info">
           <h3>BRIQUE Analytics — Workflow-Based Data Platform</h3>
           <p>No-code data pipeline builder for enterprise analysts</p>
@@ -682,7 +707,7 @@ section.block { padding: 64px 0; }
         </span>
       </span>
       <span class="project-body">
-        <span class="project-tag">Shipped — SK hynix</span>
+        <span class="project-tag status-shipped"><span class="status-dot"></span>Shipped — SK hynix</span>
         <span class="project-info">
           <h3>Bee — Real-Time Equipment Notification Dashboard</h3>
           <p>Cut operator response time with a prioritized, user-reorderable UI</p>
@@ -701,7 +726,7 @@ section.block { padding: 64px 0; }
         </span>
       </span>
       <span class="project-body">
-        <span class="project-tag">Concept — Personal project</span>
+        <span class="project-tag status-concept"><span class="status-dot"></span>Concept — Personal project</span>
         <span class="project-info">
           <h3>Pumkin — Personal Finance Dashboard</h3>
           <p>A self-directed exploration of why saving money feels so hard</p>

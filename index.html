@@ -209,8 +209,8 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 }
 
 .avatar {
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   overflow: hidden;
   margin: 0 auto 20px;
@@ -305,8 +305,6 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 
 /* ---------- 신뢰 스트립 (재직/협업 회사) ---------- */
 .trust-strip {
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
   padding: 18px 0;
 }
 .trust-strip .wrap {
@@ -328,6 +326,18 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
   font-size: 13.5px;
   color: var(--ink-soft);
   letter-spacing: 0.02em;
+}
+.trust-strip .company-logo {
+  height: 18px;
+  width: auto;
+  display: block;
+  filter: grayscale(100%);
+  opacity: 0.55;
+  transition: opacity 0.25s ease, filter 0.25s ease;
+}
+.trust-strip .company-logo:hover {
+  filter: grayscale(0%);
+  opacity: 1;
 }
 
 /* ---------- 스펙시트 스탯 블록 (시그니처 요소) ---------- */
@@ -582,7 +592,7 @@ section.block { padding: 64px 0; }
   <div class="hero-profile">
     <!-- ① 프로필 사진: images/profile.jpg 를 넣으면 자동으로 반영됩니다. 없으면 이니셜로 표시돼요 -->
     <div class="avatar">
-      <img src="images/profile.jpg" alt="Millie Chae" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
+      <img src="images/Profile01.svg" alt="Millie Chae" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
       <span class="avatar-fallback">MC</span>
     </div>
 
@@ -612,7 +622,12 @@ section.block { padding: 64px 0; }
 <div class="trust-strip">
   <div class="wrap">
     <span class="label">Trusted by</span>
-    <span class="company">Samsung Electronics</span>
+    <!-- Samsung 로고: images/samsung-logo.png 없으면 자동으로 텍스트로 표시 -->
+    <span class="company-slot">
+      <img src="images/samsung-logo.png" alt="Samsung Electronics" class="company-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
+      <span class="company" style="display:none">Samsung Electronics</span>
+    </span>
+    <!-- SK hynix, Brique 로고 파일 생기면 같은 방식으로 img 태그로 교체하세요 -->
     <span class="company">SK hynix</span>
     <span class="company">Brique, Inc.</span>
   </div>
@@ -656,7 +671,7 @@ section.block { padding: 64px 0; }
   <div class="project-list reveal">
     <a href="project-demo-android-private-space.html" class="project-card">
       <span class="project-thumb">
-        <img src="images/thumb-anomaly.jpg" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
+        <img src="images/project01.png" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
         <span class="thumb-fallback">
           <span class="thumb-icon">🟢</span>
           <span class="thumb-index">01</span>
@@ -672,7 +687,7 @@ section.block { padding: 64px 0; }
     </a>
     <a href="project-demo-android-private-space.html" class="project-card">
       <span class="project-thumb">
-        <img src="images/thumb-analytics.jpg" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
+        <img src="images/project03.png" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
         <span class="thumb-fallback">
           <span class="thumb-icon">🔷</span>
           <span class="thumb-index">02</span>
@@ -688,7 +703,7 @@ section.block { padding: 64px 0; }
     </a>
     <a href="project-demo-android-private-space.html" class="project-card">
       <span class="project-thumb">
-        <img src="images/thumb-bee.jpg" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
+        <img src="images/project04.png" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
         <span class="thumb-fallback">
           <span class="thumb-icon">🔔</span>
           <span class="thumb-index">03</span>
@@ -704,7 +719,7 @@ section.block { padding: 64px 0; }
     </a>
     <a href="project-demo-android-private-space.html" class="project-card">
       <span class="project-thumb">
-        <img src="images/thumb-pumkin.jpg" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
+        <img src="images/project02.png" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
         <span class="thumb-fallback">
           <span class="thumb-icon">🪙</span>
           <span class="thumb-index">04</span>

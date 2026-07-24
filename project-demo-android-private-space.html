@@ -28,9 +28,9 @@
   <header class="hero-header">
     <div class="hero-header__text">
       <!-- ① 프로젝트 제목 -->
-      <h1>Android Private Space</h1>
+      <h1>Anomaly Detection Service</h1>
       <!-- ② 한 줄 설명 -->
-      <p class="subtitle">Protecting millions' sensitive apps and data</p>
+      <p class="subtitle">Helping semiconductor operators detect equipment failures before they become production losses.</p>
     </div>
     <!-- ③ 상태 배지: Shipped / In progress / Concept 등으로 텍스트만 바꾸면 됨 -->
     <span class="status-pill">
@@ -47,9 +47,10 @@
   <!-- ⑤ 프로젝트 소개 문단 -->
   <section class="intro">
     <p>
-      I led the design of <strong>Android Private Space</strong> — a new privacy protection feature
-      on Android launched at Google I/O. Android Private Space gives users a separate compartment
-      on their devices for installing apps they wish to keep to themselves.
+      I led the design of <strong>Semiconductor Anomaly Detection Service,</strong> an AI-powered monitoring 
+      platform designed for semiconductor manufacturing environments. Working closely with
+      data analysts and developers, I designed a monitoring experience that enables operators
+      to quickly identify abnormal equipment conditions, understand root causes, and respond before production is affected.
     </p>
     <!-- 참고 링크 버튼: 없으면 이 <a> 태그를 지우세요 -->
     <a href="#" class="link-chip" target="_blank" rel="noopener">Google Blog ↗</a>
@@ -59,7 +60,8 @@
   <section class="meta-grid">
     <div class="meta-item">
       <span class="meta-label">Product</span>
-      <span class="meta-value">Android</span>
+      <span class="meta-value">Semiconductor Anomaly Detection Service
+</span>
     </div>
     <div class="meta-item">
       <span class="meta-label">My role</span>
@@ -71,13 +73,13 @@
     </div>
     <div class="meta-item">
       <span class="meta-label">Skills</span>
-      <span class="meta-value">Product design, Stakeholder management, Interactive prototyping, User research &amp; testing</span>
+      <span class="meta-value">Product design, Interactive prototyping, User research &amp; testing</span>
     </div>
   </section>
 
   <section class="team-line">
-    <span class="meta-label">Team</span>
-    <span class="meta-value">Deepak Mallya, Misa Gareau, Rachel Burrows, Simon Roberts</span>
+    <span class="meta-label">Client</span>
+    <span class="meta-value">Samsung Electronics</span>
   </section>
 
   <hr class="divider">
@@ -94,12 +96,11 @@
 
   <!-- ⑧ 본문 섹션: Problem -->
   <section class="content-block">
-    <h2>Problem: Stopping the 'Hand-off Anxiety'</h2>
+    <h2>Problem: Detecting anomalies isn't the problem. Understanding them is.</h2>
     <p>
-      Approximately one out of four users (28%) has unintentionally revealed information they
-      wished to keep private while lending their phones to friends and family. While solutions
-      exist on the market, they often fall short in fully concealing app presence, leaving
-      potential leakage points.
+      Manufacturing systems already generate thousands of real-time alerts and sensor readings every day. The real challenge begins after an anomaly is detected.
+
+Operators still spend valuable time identifying which equipment is affected, locating the exact component, and understanding what caused the issue before taking action.
     </p>
     <p>
       Recognising this gap, we saw this as a massive opportunity to help users regain control
@@ -111,63 +112,65 @@
   <section class="content-block">
     <h2>Research</h2>
     <p>
-      Getting individuals to discuss personal matters on their phones proved to be quite
-      challenging. In the early stages of the project, we interviewed and surveyed over 900
-      participants to understand their use-cases and struggles.
+      Understanding how operators investigate anomalies. To understand how operators respond to equipment anomalies in real manufacturing environments, I conducted user interviews, workflow analysis, and collaborated closely with domain experts throughout the design process.
+      Rather than focusing on what users clicked, the research aimed to uncover how they made decisions under time pressure and what information they needed most when responding to equipment failures.
     </p>
 
     <div class="finding">
-      <h3>Not feeling in-control while sharing</h3>
-      <p>50% of leakages happen through unanticipated app notifications while sharing the phone.</p>
+      <h3>Finding the affected equipment takes too long.</h3>
+      <p>Operators often knew an anomaly had occurred, but identifying the exact equipment or chamber required navigating multiple screens and interpreting complex equipment IDs.</p>
     </div>
     <div class="finding">
-      <h3>Password sharing is common</h3>
-      <p>Borrowers sometimes know the screen PIN, especially among users' closest friends/family — where the consequence of revealing is generally high.</p>
+      <h3>AI detects anomalies, but doesn't provide enough context.</h3>
+      <p>Receiving an alert wasn't enough. Operators needed to understand what changed, why it mattered, and whether immediate action was required.</p>
     </div>
     <div class="finding">
-      <h3>Ad-hoc device sharing</h3>
-      <p>Fewer than 50% of participants reported that borrowers ever ask for permission to borrow their phones, giving users virtually no time to prepare.</p>
+      <h3>Critical information is scattered across multiple views.</h3>
+      <p>Investigating a single anomaly required switching between dashboards, logs, equipment information, and monitoring screens.
+
+This fragmented workflow increased cognitive load during time-sensitive situations.</p>
+    </div>
+    <div class="finding">
+      <h3>Repetitive equipment management slows daily operations.</h3>
+      <p>Routine configuration tasks were repeated across multiple pieces of equipment, increasing manual effort and creating opportunities for human error.</p>
     </div>
   </section>
 
   <!-- ⑩ Solution -->
   <section class="content-block">
-    <h2>Solution: Not your average app locker</h2>
+    <h2>Solution: Designing for faster understanding, not just better monitoring.</h2>
     <p>
-      Android Private Space gives users a separate compartment on their devices for installing
-      apps they wish to keep to themselves, so they can feel more in control and comfortable
-      sharing their phone with others.
+      Based on the research findings, I redesigned the monitoring experience to help operators move seamlessly from detection to understanding, and finally to action.
+      Instead of exposing more data, the interface prioritizes the information users need most at the moment an anomaly occurs.
     </p>
 
     <!-- 기능 카드 4개: 아이콘(이모지)과 텍스트만 바꾸면 됩니다 -->
     <div class="feature-grid">
       <div class="feature-card">
         <span class="feature-icon">🔕</span>
-        <span>Private notifications are hidden</span>
+        <span>See the affected equipment at a glance.</span>
       </div>
       <div class="feature-card">
         <span class="feature-icon">🖼️</span>
-        <span>Private files and photos are hidden</span>
+        <span>Make anomaly status instantly recognizable.</span>
       </div>
       <div class="feature-card">
         <span class="feature-icon">⭐</span>
-        <span>Private app suggestions are removed</span>
+        <span>Keep investigation in a single workflow.</span>
       </div>
       <div class="feature-card">
         <span class="feature-icon">↺</span>
-        <span>Separate Google account used to protect download history, etc.</span>
+        <span>Reduce repetitive operational tasks.</span>
       </div>
     </div>
   </section>
 
   <!-- ⑪ 세부 기능 1 -->
   <section class="content-block detail-block">
-    <h3><span class="detail-icon">🧭</span> Hiding digital footprints</h3>
+    <h3><span class="detail-icon">🧭</span> See the affected equipment at a glance.</h3>
     <p>
-      From the beginning, we insisted on users being able to use and access their private
-      apps seamlessly when they need it, and hide them entirely swiftly. Turns out to
-      thoroughly hide the entire footprint of an app from one's device is quite more complex
-      than we anticipated, as it spans across many system surfaces such as settings.
+      Operators no longer need to interpret complex equipment IDs or switch between multiple screens.
+      By introducing a visual equipment map based on the real manufacturing environment, the affected chamber can be identified immediately.
     </p>
     <p>
       We paid meticulous attention to the footprint of apps across the whole operating system
@@ -177,22 +180,19 @@
 
   <!-- ⑫ 세부 기능 2 -->
   <section class="content-block detail-block">
-    <h3><span class="detail-icon">🔑</span> An additional layer of security</h3>
+    <h3><span class="detail-icon">🔑</span> Make anomaly status instantly recognizable.</h3>
     <p>
-      Users have the option to set a different lock from their device lock. This ensures
-      that even if someone borrowing the phone is aware of the device lock, they still
-      won't be able to access Private Space.
+      Rather than relying on tables and numbers, equipment status is communicated through consistent visual indicators and standardized color semantics.
+      This reduces cognitive load and allows operators to recognize abnormal conditions without reading detailed information.
     </p>
   </section>
 
   <!-- ⑬ 세부 기능 3 + 이미지(다크 배경 목업) -->
   <section class="content-block detail-block">
-    <h3><span class="detail-icon">🔒</span> Lock Private Space inconspicuously with one press</h3>
+    <h3><span class="detail-icon">🔒</span> Keep investigation in a single workflow.</h3>
     <p>
-      In order not to draw suspicion from others, locking Private Space is natural and
-      discreet. With just a press of the device's power button, users can quickly lock
-      their Private Space, reducing the preparation time needed before lending their
-      devices to others.
+      Investigating an anomaly previously required switching between multiple systems.
+      The redesigned workflow consolidates related information into one place, helping operators investigate, verify, and respond without interrupting their flow.
     </p>
     <div class="media-dark">
       <img src="images/lock-demo.png" alt="잠금 데모 이미지" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
@@ -202,11 +202,10 @@
 
   <!-- ⑭ 세부 기능 4 + 이미지(라이트 배경 + 토글) -->
   <section class="content-block detail-block">
-    <h3><span class="detail-icon">📱</span> Hiding Private Space on your phone</h3>
+    <h3><span class="detail-icon">📱</span> Reduce repetitive operational tasks.</h3>
     <p>
-      "Hang on… isn't it kind of obvious to have a 'Private' section on your phone?"
-      For those seeking a more heightened level of privacy, they have the option to hide
-      their Private Space automatically when they are not using it.
+      Managing equipment settings often involved repeating the same actions across multiple devices.
+      To improve operational efficiency, bulk management features and simplified configuration flows were introduced.
     </p>
     <div class="media-light">
       <img src="images/hide-demo.png" alt="숨김 데모 이미지" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
@@ -221,15 +220,24 @@
 
   <!-- ⑮ Impact -->
   <section class="content-block">
-    <h2>Impact: Trust &amp; safety for millions</h2>
+    <h2>Impact: Helping operators make faster decisions with greater confidence.</h2>
     <p>
-      Not many things are as surreal as seeing your work unveiled at Google I/O. Private
-      Space will also be made available to OEMs to adopt, extending its reach to a wider
-      user base. You can read about the full feature announcement on the Google Blog.
+      The redesigned monitoring experience reduced the time required to identify abnormal equipment and streamlined the investigation workflow.
+      By simplifying complex operational data into actionable information, the platform helped operators respond more confidently in time-critical situations.
     </p>
     <p>
-      The feature was also recognised as one of Android 15's "Top 5 features" by MKBHD.
+     -
     </p>
+    <a href="#" class="link-chip" target="_blank" rel="noopener">Google Blog ↗</a>
+  </section>
+
+  <!-- ⑮ reflection -->
+  <section class="content-block">
+    <h2>Reflection</h2>
+    <p>
+    Building AI-powered products isn't just about surfacing predictions.
+    It's about helping people trust the system, understand uncertainty, and make confident decisions under pressure.</p>
+    
     <a href="#" class="link-chip" target="_blank" rel="noopener">Google Blog ↗</a>
   </section>
 

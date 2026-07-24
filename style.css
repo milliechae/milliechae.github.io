@@ -127,15 +127,15 @@ html[data-theme="dark"] .icon-dark { display: inline; }
 }
 .hero-header h1 {
   font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 44px;
+  font-weight: 700;
+  font-size: 48px;
   letter-spacing: -0.01em;
   margin: 0 0 8px;
 }
 .subtitle {
   margin: 0;
   color: var(--text-secondary);
-  font-size: 16px;
+  font-size: 18px;
 }
 .status-pill {
   flex-shrink: 0;
@@ -227,7 +227,7 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   text-transform: none;
 }
 .meta-value {
-  font-size: 14.5px;
+  font-size: 15px;
   color: var(--text-primary);
 }
 .team-line {
@@ -266,20 +266,20 @@ html[data-theme="dark"] .icon-dark { display: inline; }
 .content-block { margin: 48px 0; }
 .content-block h2 {
   font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 500;
+  font-size: 26px;
+  font-weight: 600;
   margin: 0 0 14px;
 }
-.content-block p { margin: 0 0 14px; font-size: 15.5px; color: var(--text-primary); }
+.content-block p { margin: 0 0 14px; font-size: 16px; color: var(--text-primary); }
 .content-block p:last-child { margin-bottom: 0; }
 
 .finding { margin: 20px 0; }
 .finding h3 {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   margin: 0 0 4px;
 }
-.finding p { color: var(--text-secondary); font-size: 15px; margin: 0; }
+.finding p { color: var(--text-secondary); font-size: 15.5px; margin: 0; }
 
 /* ---------- 기능 카드 그리드 ---------- */
 .feature-grid {

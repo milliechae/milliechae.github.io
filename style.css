@@ -104,7 +104,7 @@ html[data-theme="dark"] .icon-dark { display: inline; }
 }
 .back-arrow {
   position: absolute;
-  right: 0;
+  left: 0;
   top: 8px;
   width: 34px;
   height: 34px;
@@ -171,33 +171,31 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 .hero-header h1 {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 3rem;
+  font-size: 48px;
   letter-spacing: -0.05em;
   line-height: 1.15;
   color: var(--text-primary);
   margin: 0 0 8px;
 }
-@media (min-width: 768px) {
-  .hero-header h1 { font-size: 3.75rem; }
-}
 .subtitle {
   margin: 0;
   color: #666666;
   font-weight: 400;
-  font-size: 1.25rem;
+  font-size: 19px;
   letter-spacing: -0.02em;
   line-height: 1.4;
-}
-@media (min-width: 768px) {
-  .subtitle { font-size: 1.375rem; }
 }
 html[data-theme="dark"] .subtitle { color: #9E9E9E; }
 .status-pill {
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 8px 14px;
+  width: 89px;
+  height: 28px;
+  box-sizing: border-box;
+  padding: 0 14px;
   border-radius: 999px;
   background: var(--bg-soft);
   font-size: 13px;
@@ -442,7 +440,6 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
   .hero-header {
     flex-direction: column;
   }
-  .hero-header h1 { font-size: 2.25rem; }
   .meta-grid { grid-template-columns: 1fr 1fr; }
   .feature-grid { grid-template-columns: 1fr; }
   .quote-media blockquote { font-size: 18px; }

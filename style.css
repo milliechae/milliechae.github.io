@@ -166,7 +166,7 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
   justify-content: space-between;
   align-items: flex-start;
   gap: 24px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 .hero-header h1 {
   font-family: var(--font-display);
@@ -234,7 +234,7 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
   object-fit: cover;
   display: block;
 }
-.hero-media { background: var(--bg-soft); min-height: 380px; }
+.hero-media { background: var(--bg-soft); min-height: 380px; margin-top: 0; }
 .media-dark { background: var(--bg-dark); min-height: 300px; }
 .media-light { background: var(--bg-soft); min-height: 300px; flex-direction: column; }
 

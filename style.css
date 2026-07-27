@@ -166,7 +166,7 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
   justify-content: space-between;
   align-items: flex-start;
   gap: 24px;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 .hero-header h1 {
   font-family: var(--font-display);
@@ -270,10 +270,12 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
 .meta-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin: 32px 0 16px;
+  row-gap: 28px;
+  column-gap: 24px;
+  margin: 32px 0;
 }
 .meta-item { display: flex; flex-direction: column; gap: 6px; }
+.meta-item--spacer { visibility: hidden; }
 .meta-label {
   font-size: 12px;
   color: var(--text-tertiary);
@@ -282,12 +284,6 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
 .meta-value {
   font-size: 15px;
   color: var(--text-primary);
-}
-.team-line {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 32px;
 }
 
 .divider {

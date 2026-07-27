@@ -18,12 +18,18 @@
 
 <div class="page">
 
-  <!-- 상단 아이콘 (장식용) : 지워도 되고 그대로 둬도 됩니다 -->
-  <div class="topbar-icons">
-    <span class="icon-btn" aria-hidden="true">⚙︎</span>
-    <span class="icon-btn" aria-hidden="true">☾</span>
-    <a href="index.html" class="icon-btn" aria-label="닫기">✕</a>
-  </div>
+  <!-- 상단 바: 다크모드 토글(홈 화면과 동일) + 오른쪽 뒤로가기 -->
+  <header class="site-header">
+    <button class="theme-toggle" id="themeToggle" aria-label="다크모드 전환" type="button">
+      <span class="track-icon sun">☀</span>
+      <span class="track-icon moon">☾</span>
+      <span class="knob">
+        <span class="knob-sun">☀</span>
+        <span class="knob-moon">☾</span>
+      </span>
+    </button>
+    <a href="index.html" class="back-arrow" aria-label="뒤로가기">←</a>
+  </header>
 
   <header class="hero-header">
     <div class="hero-header__text">

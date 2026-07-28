@@ -229,6 +229,8 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
 .media-dark img,
 .media-light img,
 .quote-media img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;

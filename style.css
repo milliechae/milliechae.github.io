@@ -224,10 +224,7 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
   justify-content: center;
   margin-top: 24px;
   margin-bottom: 24px;
-  /* 풀블리드: 텍스트 컬럼(--max-width)보다 넓게, 뷰포트 기준으로 중앙 정렬 */
-  width: min(100vw, 1080px);
-  margin-left: 50%;
-  transform: translateX(-50%);
+  width: 100%;
 }
 /* 스크린샷/목업 이미지는 실제 이미지 비율에 맞춰 박스 높이가 폭에 따라 같이 늘어나도록
    aspect-ratio를 사용합니다. (고정 min-height만 쓰면 폭이 넓어졌을 때 이미지가 심하게
@@ -460,10 +457,4 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
   .meta-grid { grid-template-columns: 1fr 1fr; }
   .feature-grid { grid-template-columns: 1fr; }
   .quote-media blockquote { font-size: 18px; }
-  .hero-media,
-  .media-dark,
-  .media-light,
-  .quote-media {
-    border-radius: 0;
-  }
 }

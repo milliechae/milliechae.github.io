@@ -66,7 +66,7 @@ html[data-theme="dark"] {
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
   margin: 0;
@@ -223,7 +223,12 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
   align-items: center;
   justify-content: center;
   min-height: 320px;
-  margin: 24px 0;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  /* 풀블리드: 텍스트 컬럼(--max-width)보다 넓게, 뷰포트 기준으로 중앙 정렬 */
+  width: min(100vw, 1080px);
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 .hero-media img,
 .media-dark img,
@@ -441,4 +446,10 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
   .meta-grid { grid-template-columns: 1fr 1fr; }
   .feature-grid { grid-template-columns: 1fr; }
   .quote-media blockquote { font-size: 18px; }
+  .hero-media,
+  .media-dark,
+  .media-light,
+  .quote-media {
+    border-radius: 0;
+  }
 }

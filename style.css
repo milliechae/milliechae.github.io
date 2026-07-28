@@ -192,7 +192,7 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
   align-items: center;
   justify-content: center;
   gap: 6px;
-  width: 89px;
+  width: auto;
   height: 28px;
   box-sizing: border-box;
   padding: 0 14px;
@@ -202,13 +202,35 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
   font-weight: 500;
   white-space: nowrap;
   margin-top: 6px;
+  transition: transform 0.15s ease, background-color 0.3s ease;
+}
+.status-pill:hover {
+  transform: translateY(-1px);
 }
 .status-dot {
+  position: relative;
+  flex-shrink: 0;
   width: 7px;
   height: 7px;
   border-radius: 50%;
   background: var(--accent-green);
   display: inline-block;
+}
+/* Shipped 상태를 은은하게 강조하는 pulse 마이크로 인터랙션 */
+.status-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--accent-green);
+  animation: status-pulse 2.2s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .status-dot::after { animation: none; }
+}
+@keyframes status-pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.6); opacity: 0; }
 }
 
 /* ---------- 이미지 공통: 히어로 / 다크 / 라이트 목업 ---------- */

@@ -226,14 +226,9 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
   margin-bottom: 24px;
   width: 100%;
 }
-/* 스크린샷/목업 이미지는 실제 이미지 비율에 맞춰 박스 높이가 폭에 따라 같이 늘어나도록
-   aspect-ratio를 사용합니다. (고정 min-height만 쓰면 폭이 넓어졌을 때 이미지가 심하게
-   잘리거나, 반대로 여백만 커 보이는 문제가 생겨요.) */
-.hero-media,
-.media-dark,
-.media-light {
-  aspect-ratio: 16 / 9;
-}
+/* 스크린샷/목업 이미지는 각 이미지의 실제 비율에 맞춰 HTML에서 개별적으로
+   style="aspect-ratio: ..."를 지정합니다. (하나의 비율로 통일하면 이미지마다
+   실제 비율이 달라서 빈 여백이 생기거나 잘리는 문제가 생겨요.) */
 .hero-media img,
 .media-dark img,
 .media-light img {

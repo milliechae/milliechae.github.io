@@ -246,8 +246,7 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 24px;
-  margin-bottom: 24px;
+  margin: 24px 0;
   width: 100%;
 }
 /* 스크린샷/목업 이미지는 각 이미지의 실제 비율에 맞춰 HTML에서 개별적으로

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytics Dashboard Service — 프로젝트 케이스 스터디</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="site-header">
+    <button class="theme-toggle" id="themeToggle" aria-label="다크모드 전환" type="button">
+      <span class="track-icon sun">☀</span>
+      <span class="track-icon moon">☾</span>
+      <span class="knob">
+        <span class="knob-sun">☀</span>
+        <span class="knob-moon">☾</span>
+      </span>
+    </button>
+    <a href="index.html" class="back-arrow" aria-label="뒤로가기">←</a>
+  </header>
+
+  <header class="hero-header">
+    <div class="hero-header__text">
+      <h1>Analytics Dashboard Service</h1>
+      <p class="subtitle">Designing an internal data-analytics platform that turns complex workflows into something analysts actually want to use.</p>
+    </div>
+    <span class="status-pill">
+      <span class="status-dot"></span> Shipped
+    </span>
+  </header>
+
+  <div class="hero-media" style="aspect-ratio: 1800 / 1012;">
+    <img src="images/brique-hero.jpg" alt="BRIQUE Analytics 웹 대시보드 UI 디자인">
+  </div>
+
+  <section class="intro">
+    <p>
+      I designed <strong>Analytics Dashboard Service,</strong> BRIQUE's in-house data-analytics
+      platform, sold to large manufacturers including Samsung Electronics and SK hynix. The product
+      helps internal data analysts build workflows, manage data libraries, and visualize large
+      datasets — without needing to write code.
+    </p>
+  </section>
+
+  <section class="meta-grid meta-grid-6">
+    <div class="meta-item">
+      <span class="meta-label">Product</span>
+      <span class="meta-value">Analytics Dashboard Service</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">My role</span>
+      <span class="meta-value">UI/UX Designer</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Timeline</span>
+      <span class="meta-value">BRIQUE — 날짜 확인 필요</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Client</span>
+      <span class="meta-value">Samsung Electronics, SK hynix</span>
+    </div>
+    <div class="meta-item meta-item--spacer" aria-hidden="true"></div>
+    <div class="meta-item">
+      <span class="meta-label">Skills</span>
+      <span class="meta-value">Product design, Design systems, Data visualization</span>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <figure class="quote-media">
+    <img src="images/brique-dashboard-detail.jpg" alt="">
+    <blockquote>
+      "Data analysis tools don't have to feel like<br>
+      spreadsheets from a decade ago."
+    </blockquote>
+  </figure>
+
+  <section class="content-block">
+    <h2>Challenge: Making a powerful, feature-heavy platform feel simple.</h2>
+    <p>
+      As a data-analytics platform, providing an easy-to-use UI/UX was a significant challenge due
+      to its sheer number of features. Deciding which data to surface and which to omit — out of a
+      vast amount available — was a constant balancing act.
+    </p>
+    <p>
+      We also wanted the product to feel different from the dark, dense, spreadsheet-like tools
+      analysts were already tired of. Above all, the design prioritized convenience, so the everyday
+      work of connecting and cleaning data would feel less like a chore.
+    </p>
+  </section>
+
+  <section class="content-block">
+    <h2>Approach: A brighter, workflow-first way to work with data.</h2>
+    <p>
+      Normally, data analysis tools are complex and difficult to use. I focused on making the
+      experience simple and engaging, while making sure users could quickly grasp their data at a
+      glance — connecting data libraries visually rather than through code.
+    </p>
+
+    <div class="media-light" style="aspect-ratio: 1800 / 1007;">
+      <img src="images/brique-workflow-detail.jpg" alt="데이터 라이브러리를 연결해 워크플로우를 만드는 화면">
+    </div>
+
+    <div class="finding">
+      <h3>Customizable, visual workflows.</h3>
+      <p>Users can create workflows by connecting data libraries based on the type of analysis they want to perform, modify variables in a detailed view, and visually confirm that the workflow is progressing in the sequence they set.</p>
+    </div>
+    <div class="finding">
+      <h3>An intuitive home for libraries and workflows.</h3>
+      <p>An intuitive main dashboard helps analysts manage the data libraries and workflows used for collecting, storing, processing, and analyzing large volumes of data at a glance.</p>
+    </div>
+    <div class="finding">
+      <h3>Color and achievement, not just spreadsheets.</h3>
+      <p>Data libraries are color-coded by each stage of analysis so their category is recognizable at a glance, and achievement-based elements were added to keep the process of connecting libraries dynamic and visually engaging.</p>
+    </div>
+  </section>
+
+  <section class="content-block detail-block">
+    <h3><span class="detail-icon">🧩</span> A workflow builder analysts can actually read.</h3>
+    <p>
+      Conditions like IF and SWITCH, memo notes for collaboration, and result nodes that highlight
+      outcomes are all represented visually, so progress and connections are understandable at a
+      glance rather than buried in logs.
+    </p>
+    <div class="media-dark" style="aspect-ratio: 1800 / 1012;">
+      <img src="images/brique-dashboard-detail.jpg" alt="워크플로우 라이브러리와 대시보드 화면">
+    </div>
+    <p>
+      Essential functions such as run, save, and settings sit at the top for quick access, and
+      tooltips guide first-time users through the tool without needing a manual.
+    </p>
+  </section>
+
+  <section class="content-block detail-block">
+    <h3><span class="detail-icon">🎛️</span> User-centered controls for every step.</h3>
+    <div class="media-light" style="aspect-ratio: 1800 / 1141;">
+      <img src="images/brique-uicontrol-detail.jpg" alt="데이터 분석 워크플로우 UI 컨트롤 화면">
+    </div>
+    <p>
+      This intuitive workflow visualization tool was designed to help users easily understand
+      progress and connections at a glance, with icons and tags designed for quick access to key
+      information throughout the analysis process.
+    </p>
+  </section>
+
+  <section class="content-block">
+    <h2>Impact: A brighter alternative that stuck.</h2>
+    <p>
+      This solution is currently used by Samsung and SK Hynix, who were already weary of the dark,
+      dull internal systems they'd been using. By incorporating more vibrant colors rather than the
+      usual black-and-white schemes they were used to, we captured users' attention at first glance
+      — and the approach also gave BRIQUE a more scalable product to build on going forward.
+    </p>
+  </section>
+
+  <section class="content-block">
+    <h2>Reflection</h2>
+    <p>
+      Designing for data analysts taught me that "powerful" and "usable" aren't opposites — they
+      just require ruthless prioritization of what actually needs to be on screen at any given moment.
+    </p>
+  </section>
+
+  <footer class="page-footer">
+    <a class="footer-cta" href="milliechae-portfolio.pdf" target="_blank" rel="noopener" aria-label="전체 포트폴리오 PDF 보기">See the full story <span aria-hidden="true">→</span></a>
+    <div class="footer-nav">
+      <a href="project-demo-android-private-space.html" aria-label="이전 프로젝트">←</a>
+      <a href="project-demo-bee-equipment-notification.html" aria-label="다음 프로젝트">→</a>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

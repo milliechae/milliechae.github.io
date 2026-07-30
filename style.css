@@ -209,6 +209,8 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
   transform: translateY(-1px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
+.status-pill.status-concept .status-dot { background: var(--text-tertiary); }
+.status-pill.status-concept .status-dot::after { display: none; }
 .status-dot {
   position: relative;
   flex-shrink: 0;

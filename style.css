@@ -488,3 +488,321 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
   .feature-grid { grid-template-columns: 1fr; }
   .quote-media blockquote { font-size: 18px; }
 }
+
+/* =========================================
+   Design Challenge Card
+========================================= */
+
+.design-challenge-card{
+    margin-top:40px;
+    padding:28px 30px;
+    border:1px solid var(--line);
+    border-radius:20px;
+    background:var(--bg-soft);
+}
+
+.challenge-label{
+    display:inline-block;
+    margin-bottom:14px;
+
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.12em;
+    color:var(--text-tertiary);
+}
+
+.design-challenge-card h3{
+    margin:0 0 14px;
+
+    font-size:28px;
+    line-height:1.4;
+    font-weight:600;
+    letter-spacing:-0.03em;
+}
+
+.design-challenge-card p{
+    margin:0;
+
+    font-size:15px;
+    color:var(--text-secondary);
+    line-height:1.7;
+}
+
+.pain-list{
+    margin:24px 0 0;
+    padding-left:20px;
+}
+
+.pain-list li{
+    margin-bottom:10px;
+    color:var(--text-primary);
+}
+
+/* ===============================
+   Research
+================================ */
+
+.research-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:32px;
+    margin-top:48px;
+}
+
+.research-item{
+    padding-top:20px;
+    border-top:1px solid var(--line);
+}
+
+.research-number{
+    display:block;
+    margin-bottom:16px;
+
+    font-size:14px;
+    font-weight:600;
+    color:var(--text-tertiary);
+}
+
+.research-item h3{
+    margin-bottom:12px;
+
+    font-size:22px;
+    line-height:1.4;
+}
+
+.research-item p{
+    color:var(--text-secondary);
+    line-height:1.8;
+}
+
+@media (max-width:900px){
+
+.research-grid{
+    grid-template-columns:1fr;
+}
+
+}
+/* ===========================
+   Research Image
+=========================== */
+
+.research-media{
+    margin:56px 0;
+    padding:0;
+    background:transparent;
+    border:none;
+    border-radius:0;
+    box-shadow:none;
+}
+
+.research-media img{
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius:18px;
+}
+/* =====================================================
+   Research → Design Principles Flow
+===================================================== */
+
+.section-flow{
+
+    display:flex;
+    justify-content:center;
+    margin:56px 0 48px;
+
+}
+
+.flow-line{
+
+    width:140px;
+    height:auto;
+
+}
+
+.flow-line path{
+
+    fill:none;
+
+    stroke:#111;
+
+    stroke-width:2.2;
+
+    stroke-linecap:round;
+
+    stroke-linejoin:round;
+
+    stroke-dasharray:8 8;
+
+}
+
+.hypothesis-list{
+    margin-top:40px;
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+}
+
+.hypothesis-item{
+    padding-top:18px;
+    border-top:1px solid #e5e5e5;
+}
+
+.hypothesis-item strong{
+    display:block;
+    font-size:18px;
+    font-weight:700;
+    color:#111;
+    margin-bottom:8px;
+}
+
+.hypothesis-item p{
+    margin:0;
+    font-size:16px;
+    line-height:1.75;
+    color:#666;
+}
+
+/* ===========================
+   UI Solution
+=========================== */
+
+.solution-section{
+
+    margin:140px 0;
+
+}
+
+.solution-label{
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    margin-bottom:18px;
+
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+
+    color:#8d8d8d;
+}
+
+.solution-title{
+
+    max-width:720px;
+
+    margin-bottom:18px;
+
+    font-size:48px;
+    line-height:1.18;
+    font-weight:700;
+}
+
+.solution-description{
+
+    max-width:720px;
+
+    margin-bottom:60px;
+
+    font-size:18px;
+    line-height:1.7;
+
+    color:#666;
+}
+
+.solution-image{
+
+    position:relative;
+
+    margin-bottom:56px;
+}
+
+.solution-image img{
+
+    width:100%;
+
+    border-radius:24px;
+
+    display:block;
+}
+
+/* ---------- Pins ---------- */
+
+.pin{
+
+    position:absolute;
+
+    width:34px;
+    height:34px;
+
+    border-radius:50%;
+
+    background:#111;
+
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:15px;
+    font-weight:700;
+}
+
+/* 위치는 나중에 이미지에 맞게 수정 */
+
+.pin-1{
+
+    top:22%;
+    left:18%;
+}
+
+.pin-2{
+
+    top:48%;
+    left:58%;
+}
+
+.pin-3{
+
+    bottom:18%;
+    right:22%;
+}
+
+/* ---------- Points ---------- */
+
+.solution-points{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:48px;
+}
+
+.solution-point{
+
+    padding-top:18px;
+
+    border-top:1px solid #e8e8e8;
+}
+
+.solution-point h3{
+
+    margin-bottom:12px;
+
+    font-size:20px;
+
+    font-weight:700;
+}
+
+.solution-point p{
+
+    font-size:16px;
+
+    line-height:1.75;
+
+    color:#666;
+}

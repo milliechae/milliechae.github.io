@@ -27,7 +27,7 @@
   <header class="hero-header">
     <div class="hero-header__text">
       <h1>Equipment Notification System</h1>
-      <p class="subtitle">A real-time equipment monitoring dashboard ("Bee") that turns scattered alerts into a single, prioritized workflow.</p>
+      <p class="subtitle">A real-time equipment monitoring dashboard (Bee) that turns scattered alerts into a single, prioritized workflow.</p>
     </div>
     <span class="status-pill">
       <span class="status-dot"></span> Shipped
@@ -35,7 +35,7 @@
   </header>
 
   <div class="hero-media" style="aspect-ratio: 1800 / 1012;">
-    <img src="images/bee-hero.jpg" alt="Bee 실시간 장비 데이터 대시보드">
+    <img src="images/bee-hero.png" alt="Bee 실시간 장비 데이터 대시보드">
   </div>
 
   <section class="intro">
@@ -73,38 +73,231 @@
   <hr class="divider">
 
   <figure class="quote-media">
-    <img src="images/bee-anomaly-list.jpg" alt="">
+    <img src="images/bee-anomaly-list.png" alt="">
     <blockquote>
-      "Green means go. Yellow means look closer.<br>
-      Never make anyone guess."
+      Green means go. Yellow means look closer.<br>
+      Never make anyone guess.
     </blockquote>
   </figure>
 
-  <section class="content-block">
-    <h2>Challenge: Real-time data, without the overwhelm.</h2>
-    <p>
-      Effectively visualizing complex, real-time equipment data without overwhelming users was a
-      major challenge, requiring extensive research and iterative improvements to balance clarity
-      and informativeness.
-    </p>
-    <p>
-      Understanding and incorporating user workflows was crucial in deciding which information to
-      prioritize and how to structure it on the dashboard — one that also had to stay scalable as
-      data volume and complexity grew, while fitting cleanly into existing manufacturing environments.
-    </p>
-  </section>
+  <!-- <section class="content-block">
+  <h2>Pain Point</h2>
+  <p class="pain-heading"> 
+  Operators spent more time finding the right information than acting on it.
+  </p>
+  <p>
+    Operators had access to all the data they needed, but not the clarity to understand what required attention first.
+    Critical alerts were often buried among routine notifications, making quick decision-making increasingly difficult.
+  </p>
 
-  <section class="content-block">
-    <h2>Approach: A workflow-centric dashboard.</h2>
+  <ul class="pain-list">
+    <li>Hundreds of real-time alerts</li>
+    <li>Difficult prioritization</li>
+    <li>Frequent context switching</li>
+  </ul>
+
+  <div class="design-challenge-card">
+    <span class="challenge-label">DESIGN CHALLENGE</span>
+
+    <h3>
+      How might we help operators instantly recognize what matters most in complex equipment data,
+      while keeping the interface intuitive and scalable?
+    </h3>
+
     <p>
-      The main section of the dashboard provides an overview of equipment status, with anomalies
-      highlighted using color indicators, while the left panel surfaces notifications about the
-      detailed components of each piece of equipment.
+      The goal was to reduce cognitive load by surfacing only the most relevant information,
+      allowing operators to identify priorities and respond faster without disrupting their workflow.
+    </p>
+  </div>
+
+</section>
+-->
+
+<section class="content-block">
+
+  <span class="section-label">PAIN POINT</span>
+
+  <h2 class="pain-heading">
+    Operators spent more time finding the right information than acting on it.
+  </h2>
+
+  <p>
+    Operators had access to all the data they needed, but not the clarity to understand what required attention first.
+    Critical alerts were often buried among routine notifications, making quick decision-making increasingly difficult.
+  </p>
+
+  <ul class="pain-list">
+    <li>
+      <strong>Hundreds of real-time alerts</strong><br>
+      Large volumes of notifications made it difficult to identify what truly required immediate attention.
+    </li>
+
+    <li>
+      <strong>Difficult prioritization</strong><br>
+      Critical equipment issues were easily mixed with routine operational updates.
+    </li>
+
+    <li>
+      <strong>Frequent context switching</strong><br>
+      Operators constantly moved between multiple screens before understanding the full situation.
+    </li>
+  </ul>
+
+  <div class="design-challenge-card">
+
+    <span class="challenge-label">✦ DESIGN CHALLENGE</span>
+
+    <h3>
+      How might we help operators instantly recognize what matters most in complex equipment data,
+      while keeping the interface intuitive and scalable?
+    </h3>
+
+    <p>
+      The goal was to reduce cognitive load by presenting only the most relevant information,
+      allowing operators to recognize priorities and take action faster.
     </p>
 
-    <div class="media-dark" style="aspect-ratio: 1800 / 884;">
-      <img src="images/bee-equipment-list.jpg" alt="장비 리스트와 상세 상태를 보여주는 화면">
+  </div>
+
+</section>
+
+<section class="content-block">
+
+  <span class="section-label">RESEARCH</span>
+
+  <h2 class="pain-heading">
+    Understanding how operators actually work.
+  </h2>
+
+  <p>
+    Before exploring interface solutions, I focused on understanding how operators monitored equipment,
+    responded to anomalies, and searched for information throughout their daily workflow.
+    Through interviews, workflow analysis, and collaborative discussions with domain experts,
+    several behavioral patterns consistently emerged.
+  </p>
+
+ 
+<div class="research-media">
+    <img src="images/bee-research.png" alt="Research">
+</div>
+
+  <div class="research-grid">
+
+    <div class="research-item">
+      <span class="research-number">01</span>
+
+      <h3>Operators searched by task, not hierarchy.</h3>
+
+      <p>
+        Rather than navigating complex equipment trees,
+        operators relied on search, recently viewed equipment,
+        and production context to locate information quickly.
+      </p>
     </div>
+
+    <div class="research-item">
+      <span class="research-number">02</span>
+
+      <h3>Not every alert deserved equal attention.</h3>
+
+      <p>
+        Users mentally separated notifications into
+        critical, monitor, and ignore.
+        Existing interfaces treated every alert equally,
+        increasing cognitive load.
+      </p>
+    </div>
+
+    <div class="research-item">
+      <span class="research-number">03</span>
+
+      <h3>Context switching slowed response time.</h3>
+
+      <p>
+        Investigating a single anomaly often required
+        opening multiple pages before enough context
+        was available to make a decision.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<div class="section-flow">
+
+<svg class="flow-line" viewBox="0 0 220 180">
+
+<path
+d="
+M110 5
+L110 42
+
+C110 62,
+125 74,
+138 82
+
+S178 92,
+188 122
+
+S198 148,
+205 170
+"/>
+
+</svg>
+
+</div>
+
+
+<section class="design-challenge-card">
+
+    <span class="challenge-label">✦ DESIGN HYPOTHESIS</span>
+
+    <h2>
+        Three hypotheses guided the redesign of the monitoring experience.
+    </h2>
+
+    <p class="challenge-description">
+        Research findings were translated into three assumptions that guided our design decisions before moving into interface exploration.
+    </p>
+
+    <div class="hypothesis-list">
+
+        <div class="hypothesis-item">
+            <strong>01&nbsp;&nbsp;Prioritize critical information</strong>
+            <p>If critical alerts are surfaced before secondary information, operators will recognize urgent issues faster.</p>
+        </div>
+
+        <div class="hypothesis-item">
+            <strong>02&nbsp;&nbsp;Reduce context switching</strong>
+            <p>If monitoring and issue reporting happen in one continuous workflow, unnecessary navigation will decrease.</p>
+        </div>
+
+        <div class="hypothesis-item">
+            <strong>03&nbsp;&nbsp;Make information instantly scannable</strong>
+            <p>If equipment status can be understood at a glance, cognitive load during monitoring will be reduced.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- 디자인 솔루션 기존 기획 -->
+<section class="content-block">
+
+  <h2>Design Solution</h2>
+
+  <p>
+    Rather than displaying every piece of equipment data equally, the dashboard was designed around
+    user workflows—prioritizing critical information, reducing unnecessary navigation, and helping
+    operators move from detection to action as quickly as possible.
+  </p>
+
+  <div class="media-dark" style="aspect-ratio: 1800 / 884;">
+    <img src="images/bee-equipment-list.png" alt="Equipment dashboard overview">
+  </div>
+
+    
 
     <div class="finding">
       <h3>Lists, not category trees.</h3>
@@ -159,6 +352,8 @@
   </footer>
 
 </div>
+
+
 
 </body>
 </html>

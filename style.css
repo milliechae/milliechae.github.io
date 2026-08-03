@@ -396,11 +396,11 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 17px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 700;
   margin: 0 0 12px;
 }
-.detail-icon { font-size: 18px; }
+.detail-icon { font-size: 20px; }
 
 .caption {
   font-size: 13px !important;

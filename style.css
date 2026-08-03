@@ -523,7 +523,52 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
     font-size: 12px;
     font-weight: 600;
     letter-spacing: .12em;
-    color: var(--text-primary);
+    color: var(--text-secondary);
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 28px 0;
+}
+.stat-card {
+  padding: 24px 20px;
+  background: var(--bg-soft);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+.stat-number-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+}
+.stat-number {
+  font-size: 44px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.stat-percent {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.stat-arrow {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent-green);
+  margin-left: 2px;
+}
+.stat-label {
+  margin-top: 8px;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+}
+@media (max-width: 640px) {
+  .stat-grid { grid-template-columns: 1fr; }
 }
 .pain-heading {
     font-size: 28px;

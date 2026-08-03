@@ -561,6 +561,15 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
   font-weight: 700;
   color: var(--accent-green);
   margin-left: 2px;
+  display: inline-block;
+  animation: stat-arrow-bob 1.6s ease-in-out infinite;
+}
+@keyframes stat-arrow-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stat-arrow { animation: none; }
 }
 .stat-label {
   margin-top: 8px;

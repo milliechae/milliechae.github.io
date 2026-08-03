@@ -360,13 +360,18 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
 .content-block p { margin: 0 0 14px; font-size: 16px; color: var(--text-primary); }
 .content-block p:last-child { margin-bottom: 0; }
 
-.finding { margin: 20px 0; }
+.finding { margin: 56px 0; }
+.finding:first-of-type { margin-top: 40px; }
 .finding h3 {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0 0 4px;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.finding p { color: var(--text-secondary); font-size: 15.5px; margin: 0; }
+.finding h3 .finding-icon { font-size: 20px; line-height: 1; }
+.finding p { color: var(--text-secondary); font-size: 15.5px; margin: 14px 0 0; }
 
 /* ---------- 기능 카드 그리드 ---------- */
 .feature-grid {

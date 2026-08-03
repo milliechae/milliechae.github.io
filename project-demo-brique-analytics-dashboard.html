@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Analytics Dashboard Service — 프로젝트 케이스 스터디</title>
+<title>BRIQUE Analytics — Workflow-Based Data Platform — 프로젝트 케이스 스터디</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="style.css">
@@ -26,8 +26,8 @@
 
   <header class="hero-header">
     <div class="hero-header__text">
-      <h1>Analytics Dashboard Service</h1>
-      <p class="subtitle">Designing an internal data-analytics platform that turns complex workflows into something analysts actually want to use.</p>
+      <h1>BRIQUE Analytics</h1>
+      <p class="subtitle">A no-code, workflow-based data pipeline builder that lets enterprise analysts build and maintain pipelines without writing a line of code.</p>
     </div>
     <span class="status-pill">
       <span class="status-dot"></span> Shipped
@@ -35,22 +35,22 @@
   </header>
 
   <div class="hero-media" style="aspect-ratio: 1800 / 1012;">
-    <img src="images/brique-hero.jpg" alt="BRIQUE Analytics 웹 대시보드 UI 디자인">
+    <img src="images/brique-hero.png" alt="BRIQUE Analytics 워크플로우 기반 데이터 파이프라인 대시보드">
   </div>
 
   <section class="intro">
     <p>
-      I designed <strong>Analytics Dashboard Service,</strong> BRIQUE's in-house data-analytics
-      platform, sold to large manufacturers including Samsung Electronics and SK hynix. The product
-      helps internal data analysts build workflows, manage data libraries, and visualize large
-      datasets — without needing to write code.
+      I designed <strong>BRIQUE Analytics,</strong> a workflow-based data platform sold to enterprise
+      clients including Samsung and SK hynix. The product lets analysts build, debug, and maintain
+      complex data pipelines visually — turning a process that used to require an engineering ticket
+      into something they can do themselves.
     </p>
   </section>
 
   <section class="meta-grid meta-grid-6">
     <div class="meta-item">
       <span class="meta-label">Product</span>
-      <span class="meta-value">Analytics Dashboard Service</span>
+      <span class="meta-value">BRIQUE Analytics — Workflow-Based Data Platform</span>
     </div>
     <div class="meta-item">
       <span class="meta-label">My role</span>
@@ -62,108 +62,239 @@
     </div>
     <div class="meta-item">
       <span class="meta-label">Client</span>
-      <span class="meta-value">Samsung Electronics, SK hynix</span>
+      <span class="meta-value">Samsung / SK hynix</span>
     </div>
     <div class="meta-item meta-item--spacer" aria-hidden="true"></div>
     <div class="meta-item">
       <span class="meta-label">Skills</span>
-      <span class="meta-value">Product design, Design systems, Data visualization</span>
+      <span class="meta-value">Product design, Design systems, Data visualization, User research</span>
     </div>
   </section>
 
   <hr class="divider">
 
   <figure class="quote-media">
-    <img src="images/brique-dashboard-detail.jpg" alt="">
+    <img src="images/brique-pipeline-canvas.png" alt="">
     <blockquote>
-      "Data analysis tools don't have to feel like<br>
-      spreadsheets from a decade ago."
+      The best pipeline is the one an analyst<br>
+      can build without waiting on an engineer.
     </blockquote>
   </figure>
 
   <section class="content-block">
-    <h2>Challenge: Making a powerful, feature-heavy platform feel simple.</h2>
+
+    <span class="section-label">PAIN POINT</span>
+
+    <h2 class="pain-heading">
+      Every new pipeline meant filing a ticket and waiting on engineering.
+    </h2>
+
     <p>
-      As a data-analytics platform, providing an easy-to-use UI/UX was a significant challenge due
-      to its sheer number of features. Deciding which data to surface and which to omit — out of a
-      vast amount available — was a constant balancing act.
+      Analysts understood the data better than anyone, but had no way to act on that understanding
+      without routing every change through a backlog they didn't control.
     </p>
-    <p>
-      We also wanted the product to feel different from the dark, dense, spreadsheet-like tools
-      analysts were already tired of. Above all, the design prioritized convenience, so the everyday
-      work of connecting and cleaning data would feel less like a chore.
-    </p>
+
+    <ul class="pain-list">
+      <li>
+        <strong>Engineering bottleneck</strong><br>
+        Even small changes to a pipeline required an engineer's time, turning simple requests into multi-day waits.
+      </li>
+
+      <li>
+        <strong>Opaque pipeline logic</strong><br>
+        Once built, pipelines lived in code that non-technical analysts couldn't read, audit, or safely modify.
+      </li>
+
+      <li>
+        <strong>No visibility into pipeline health</strong><br>
+        When something broke downstream, there was no easy way to see where in the pipeline the problem started.
+      </li>
+    </ul>
+
+    <div class="design-challenge-card">
+
+      <span class="challenge-label">✦ DESIGN CHALLENGE</span>
+
+      <h3>
+        How might we let analysts build and maintain complex data pipelines themselves, without needing to write or read code?
+      </h3>
+
+      <p>
+        The goal was to translate pipeline logic into something visual and inspectable, so building a
+        pipeline felt closer to sketching a process than writing a script.
+      </p>
+
+    </div>
+
   </section>
 
   <section class="content-block">
-    <h2>Approach: A brighter, workflow-first way to work with data.</h2>
+
+    <span class="section-label">RESEARCH</span>
+
+    <h2 class="pain-heading">
+      Understanding how analysts actually build pipelines.
+    </h2>
+
     <p>
-      Normally, data analysis tools are complex and difficult to use. I focused on making the
-      experience simple and engaging, while making sure users could quickly grasp their data at a
-      glance — connecting data libraries visually rather than through code.
+      Before designing the workflow builder, I spent time with analysts to understand how they thought
+      through a pipeline from raw data to finished report, and where the current process broke down.
     </p>
 
-    <div class="media-light" style="aspect-ratio: 1800 / 1007;">
-      <img src="images/brique-workflow-detail.jpg" alt="데이터 라이브러리를 연결해 워크플로우를 만드는 화면">
+    <div class="research-media">
+      <img src="images/brique-research.png" alt="Research">
+    </div>
+
+    <div class="research-grid">
+
+      <div class="research-item">
+        <span class="research-number">01</span>
+
+        <h3>Analysts think in steps, not schemas.</h3>
+
+        <p>
+          People described their pipelines as a sequence of transformations — filter, then join,
+          then aggregate — not as abstract data structures.
+        </p>
+      </div>
+
+      <div class="research-item">
+        <span class="research-number">02</span>
+
+        <h3>Debugging was the real bottleneck, not building.</h3>
+
+        <p>
+          Initial pipeline setup was often fine. What consistently ate time was figuring out
+          where a pipeline had gone wrong once it did.
+        </p>
+      </div>
+
+      <div class="research-item">
+        <span class="research-number">03</span>
+
+        <h3>Reusability was invisible.</h3>
+
+        <p>
+          Teams frequently rebuilt near-identical pipeline steps from scratch because there was
+          no way to find or reuse work someone else had already done.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <div class="section-flow">
+
+    <svg class="flow-line" viewBox="0 0 220 180">
+
+      <path
+      d="
+      M110 5
+      L110 42
+
+      C110 62,
+      125 74,
+      138 82
+
+      S178 92,
+      188 122
+
+      S198 148,
+      205 170
+      "/>
+
+    </svg>
+
+  </div>
+
+  <section class="design-challenge-card">
+
+    <span class="challenge-label">✦ DESIGN HYPOTHESIS</span>
+
+    <h2>
+      Three hypotheses guided the redesign of the pipeline-building experience.
+    </h2>
+
+    <p class="challenge-description">
+      Research findings were translated into three assumptions that guided our design decisions before moving into interface exploration.
+    </p>
+
+    <div class="hypothesis-list">
+
+      <div class="hypothesis-item">
+        <strong>01&nbsp;&nbsp;Represent pipelines as visual workflows</strong>
+        <p>If pipeline steps are shown as connected nodes instead of code, analysts will be able to build and understand pipelines without engineering support.</p>
+      </div>
+
+      <div class="hypothesis-item">
+        <strong>02&nbsp;&nbsp;Surface data health at every step</strong>
+        <p>If analysts can preview data at each node, debugging will move from guesswork to direct inspection.</p>
+      </div>
+
+      <div class="hypothesis-item">
+        <strong>03&nbsp;&nbsp;Make components reusable across teams</strong>
+        <p>If pipeline steps can be saved and shared, teams will stop rebuilding the same logic from scratch.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="content-block">
+
+    <h2>Design Solution</h2>
+
+    <p>
+      Rather than exposing pipeline logic as code, the platform was designed around a visual
+      workflow canvas — making construction, inspection, and reuse all part of the same
+      continuous experience.
+    </p>
+
+    <div class="media-dark" style="aspect-ratio: 1800 / 884;">
+      <img src="images/brique-workflow-overview.png" alt="Workflow canvas overview">
     </div>
 
     <div class="finding">
-      <h3>Customizable, visual workflows.</h3>
-      <p>Users can create workflows by connecting data libraries based on the type of analysis they want to perform, modify variables in a detailed view, and visually confirm that the workflow is progressing in the sequence they set.</p>
+      <h3>A drag-and-drop workflow canvas, not a code editor.</h3>
+      <p>Analysts assemble pipelines by connecting steps on a canvas, translating the "filter, then join, then aggregate" mental model directly into the interface.</p>
     </div>
     <div class="finding">
-      <h3>An intuitive home for libraries and workflows.</h3>
-      <p>An intuitive main dashboard helps analysts manage the data libraries and workflows used for collecting, storing, processing, and analyzing large volumes of data at a glance.</p>
+      <h3>Node-level data preview at every step.</h3>
+      <p>Every node in the pipeline can be inspected on its own, so when something breaks, analysts can see exactly which step introduced the problem instead of debugging the pipeline end to end.</p>
     </div>
     <div class="finding">
-      <h3>Color and achievement, not just spreadsheets.</h3>
-      <p>Data libraries are color-coded by each stage of analysis so their category is recognizable at a glance, and achievement-based elements were added to keep the process of connecting libraries dynamic and visually engaging.</p>
+      <h3>Reusable, shareable pipeline components.</h3>
+      <p>Common steps can be saved as reusable components and shared across teams, cutting down on duplicated work and keeping pipeline logic consistent org-wide.</p>
     </div>
   </section>
 
   <section class="content-block detail-block">
-    <h3><span class="detail-icon">🧩</span> A workflow builder analysts can actually read.</h3>
+    <h3><span class="detail-icon">🧱</span> Build once, reuse everywhere.</h3>
     <p>
-      Conditions like IF and SWITCH, memo notes for collaboration, and result nodes that highlight
-      outcomes are all represented visually, so progress and connections are understandable at a
-      glance rather than buried in logs.
+      Saved components live in a shared library, with an auto-suggestion feature that surfaces
+      existing steps as analysts build, so teams stop reinventing logic that already exists elsewhere in the org.
     </p>
-    <div class="media-dark" style="aspect-ratio: 1800 / 1012;">
-      <img src="images/brique-dashboard-detail.jpg" alt="워크플로우 라이브러리와 대시보드 화면">
+    <div class="media-light" style="aspect-ratio: 1800 / 905;">
+      <img src="images/brique-component-library.jpg" alt="재사용 가능한 파이프라인 컴포넌트 라이브러리 화면">
     </div>
-    <p>
-      Essential functions such as run, save, and settings sit at the top for quick access, and
-      tooltips guide first-time users through the tool without needing a manual.
-    </p>
-  </section>
-
-  <section class="content-block detail-block">
-    <h3><span class="detail-icon">🎛️</span> User-centered controls for every step.</h3>
-    <div class="media-light" style="aspect-ratio: 1800 / 1141;">
-      <img src="images/brique-uicontrol-detail.jpg" alt="데이터 분석 워크플로우 UI 컨트롤 화면">
-    </div>
-    <p>
-      This intuitive workflow visualization tool was designed to help users easily understand
-      progress and connections at a glance, with icons and tags designed for quick access to key
-      information throughout the analysis process.
-    </p>
   </section>
 
   <section class="content-block">
-    <h2>Impact: A brighter alternative that stuck.</h2>
+    <h2>Impact: Fewer tickets, faster pipelines.</h2>
     <p>
-      This solution is currently used by Samsung and SK Hynix, who were already weary of the dark,
-      dull internal systems they'd been using. By incorporating more vibrant colors rather than the
-      usual black-and-white schemes they were used to, we captured users' attention at first glance
-      — and the approach also gave BRIQUE a more scalable product to build on going forward.
+      By moving pipeline construction out of engineering's queue and into analysts' hands, the
+      platform shortened the distance between having a data question and getting an answer,
+      cutting down on both request backlogs and debugging time.
     </p>
   </section>
 
   <section class="content-block">
     <h2>Reflection</h2>
     <p>
-      Designing for data analysts taught me that "powerful" and "usable" aren't opposites — they
-      just require ruthless prioritization of what actually needs to be on screen at any given moment.
+      The platform could have exposed every possible transformation from day one. What actually
+      earned analysts' trust was letting them see, at every step, exactly what the pipeline was
+      doing — before it did anything clever.
     </p>
   </section>
 

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pumkin — Finance Dashboard 프로젝트 케이스 스터디</title>
+<title>Pumkin — Personal Finance Dashboard — 프로젝트 케이스 스터디</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="style.css">
@@ -26,34 +26,34 @@
 
   <header class="hero-header">
     <div class="hero-header__text">
-      <h1>Pumkin — Finance Dashboard</h1>
-      <p class="subtitle">A friendlier way to manage spending habits, built for people who dread opening their banking app.</p>
+      <h1>Pumkin — Personal Finance Dashboard</h1>
+      <p class="subtitle">A self-directed exploration of why saving money feels so hard, and a dashboard designed to make progress visible.</p>
     </div>
-    <span class="status-pill status-concept">
+    <span class="status-pill">
       <span class="status-dot"></span> Concept
     </span>
   </header>
 
-  <div class="hero-media" style="aspect-ratio: 1800 / 1113;">
-    <img src="images/pumkin-hero.jpg" alt="Pumkin 온라인 금융 관리 서비스 웹 대시보드">
+  <div class="hero-media" style="aspect-ratio: 1800 / 1012;">
+    <img src="images/pumkin-hero.png" alt="Pumkin 개인 자산 관리 대시보드 메인 화면">
   </div>
 
   <section class="intro">
     <p>
-      <strong>Pumkin</strong> is a personal project: an online finance management service that lets
-      people manage bank account statements and credit card statements in one centralized platform —
-      designed to address the fragmented interfaces of the tools that already exist.
+      I designed <strong>Pumkin,</strong> a self-directed personal finance dashboard, to explore a question
+      most budgeting apps never really answer: if the math of saving is simple, why does saving still feel
+      so hard? The product reframes saving as something you can watch happening, not just a number you're told to hit.
     </p>
   </section>
 
   <section class="meta-grid meta-grid-6">
     <div class="meta-item">
       <span class="meta-label">Product</span>
-      <span class="meta-value">Pumkin — Finance Dashboard</span>
+      <span class="meta-value">Pumkin — Personal Finance Dashboard</span>
     </div>
     <div class="meta-item">
       <span class="meta-label">My role</span>
-      <span class="meta-value">UI/UX Designer</span>
+      <span class="meta-value">Product Designer (solo)</span>
     </div>
     <div class="meta-item">
       <span class="meta-label">Timeline</span>
@@ -61,92 +61,238 @@
     </div>
     <div class="meta-item">
       <span class="meta-label">Client</span>
-      <span class="meta-value">Personal project</span>
+      <span class="meta-value">Self-directed</span>
     </div>
     <div class="meta-item meta-item--spacer" aria-hidden="true"></div>
     <div class="meta-item">
       <span class="meta-label">Skills</span>
-      <span class="meta-value">Product design, Interaction design, Visual design</span>
+      <span class="meta-value">Product design, Behavioral design, Interaction design</span>
     </div>
   </section>
 
   <hr class="divider">
 
   <figure class="quote-media">
-    <img src="images/pumkin-overview.jpg" alt="">
+    <img src="images/pumkin-goal-view.png" alt="">
     <blockquote>
-      "Managing money shouldn't feel<br>
-      like homework."
+      Saving isn't a math problem.<br>
+      It's a motivation problem.
     </blockquote>
   </figure>
 
   <section class="content-block">
-    <h2>Why: spending habits, and the literacy gap behind them.</h2>
+
+    <span class="section-label">PAIN POINT</span>
+
+    <h2 class="pain-heading">
+      People don't fail at saving because they can't do the math. They fail because saving feels invisible and joyless.
+    </h2>
+
     <p>
-      In OECD countries, people with lower financial literacy tend to have lower savings rates and
-      higher consumption growth than income growth — and they struggle to reduce spending. Existing
-      services don't integrate bank account statements and credit card statements, leaving people to
-      track their finances across scattered, disconnected apps.
+      Most budgeting tools show a number once a month and expect that to be motivating. In practice, the gap
+      between deciding to save and actually seeing it work is where most people give up.
     </p>
-    <p>
-      My hypothesis: providing detailed card statements and cash management together, in one place,
-      can help people actually improve their savings and spending habits — not just observe them.
-    </p>
+
+    <ul class="pain-list">
+      <li>
+        <strong>Progress feels invisible</strong><br>
+        A balance that updates once a month gives no sense of momentum day to day, so there's nothing to feel good about in the meantime.
+      </li>
+
+      <li>
+        <strong>One-size-fits-all budgets</strong><br>
+        Generic categories like "dining" or "entertainment" don't map to what someone is actually saving for, so the numbers feel arbitrary.
+      </li>
+
+      <li>
+        <strong>No emotional payoff</strong><br>
+        Saving is framed as restriction — what you can't spend — instead of progress toward something you chose.
+      </li>
+    </ul>
+
+    <div class="design-challenge-card">
+
+      <span class="challenge-label">✦ DESIGN CHALLENGE</span>
+
+      <h3>
+        How might we make saving money feel rewarding in the moment, not just as a distant future outcome?
+      </h3>
+
+      <p>
+        The goal was to shrink the distance between an action — putting money aside — and a feeling of
+        progress, so saving reinforces itself instead of relying on willpower alone.
+      </p>
+
+    </div>
+
   </section>
 
   <section class="content-block">
-    <h2>Approach: manage together, understand at a glance.</h2>
+
+    <span class="section-label">RESEARCH</span>
+
+    <h2 class="pain-heading">
+      Understanding why saving apps get abandoned.
+    </h2>
+
     <p>
-      The primary audience is individual users who recognize the need for better financial
-      management but are frustrated by fragmented interfaces. Three service concepts guided the
-      design: managing everything together, simplified navigation, and integrated insights across
-      spending and saving.
+      Before designing any screens, I talked to people about their actual relationship with money — not the
+      budget they think they should follow, but the one they actually live by. A few patterns kept coming up.
     </p>
 
-    <div class="media-light" style="aspect-ratio: 1800 / 938;">
-      <img src="images/pumkin-overview.jpg" alt="계좌 잔액, 최근 거래, 카드, 저축 목표, 신용점수를 한 화면에 보여주는 대시보드">
+    <div class="research-media">
+      <img src="images/pumkin-research.png" alt="Research">
+    </div>
+
+    <div class="research-grid">
+
+      <div class="research-item">
+        <span class="research-number">01</span>
+
+        <h3>People compare "should" budgets against actual life.</h3>
+
+        <p>
+          Preset budget categories rarely matched how people actually thought about their spending,
+          which made the numbers feel disconnected from reality.
+        </p>
+      </div>
+
+      <div class="research-item">
+        <span class="research-number">02</span>
+
+        <h3>Small wins mattered more than big totals.</h3>
+
+        <p>
+          A large end goal felt abstract and far away. What kept people engaged was noticing
+          progress on a much shorter timescale.
+        </p>
+      </div>
+
+      <div class="research-item">
+        <span class="research-number">03</span>
+
+        <h3>Shame killed consistency.</h3>
+
+        <p>
+          Apps that flagged "bad" spending made people disengage entirely rather than course-correct,
+          breaking the habit instead of reinforcing it.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <div class="section-flow">
+
+    <svg class="flow-line" viewBox="0 0 220 180">
+
+      <path
+      d="
+      M110 5
+      L110 42
+
+      C110 62,
+      125 74,
+      138 82
+
+      S178 92,
+      188 122
+
+      S198 148,
+      205 170
+      "/>
+
+    </svg>
+
+  </div>
+
+  <section class="design-challenge-card">
+
+    <span class="challenge-label">✦ DESIGN HYPOTHESIS</span>
+
+    <h2>
+      Three hypotheses guided the direction of Pumkin.
+    </h2>
+
+    <p class="challenge-description">
+      Research findings were translated into three assumptions that shaped the design before any interface exploration began.
+    </p>
+
+    <div class="hypothesis-list">
+
+      <div class="hypothesis-item">
+        <strong>01&nbsp;&nbsp;Make progress visible in real time</strong>
+        <p>If people can see savings accumulate as it happens, they'll feel more connected to the outcome than to a monthly summary.</p>
+      </div>
+
+      <div class="hypothesis-item">
+        <strong>02&nbsp;&nbsp;Let goals be personal, not generic categories</strong>
+        <p>If users define their own goals instead of picking from preset categories, the numbers will feel more relevant and worth tracking.</p>
+      </div>
+
+      <div class="hypothesis-item">
+        <strong>03&nbsp;&nbsp;Celebrate small wins immediately</strong>
+        <p>If every deposit — no matter how small — gets acknowledged, saving will start to feel rewarding on its own, not just as a means to an end.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="content-block">
+
+    <h2>Design Solution</h2>
+
+    <p>
+      Rather than treating saving as a spreadsheet exercise, Pumkin was built around the feeling of
+      watching something grow — reframing every part of the experience around progress the user
+      can see and feel.
+    </p>
+
+    <div class="media-dark" style="aspect-ratio: 1800 / 884;">
+      <img src="images/pumkin-goals-overview.png" alt="Goals overview">
     </div>
 
     <div class="finding">
-      <h3>A dashboard for easy overview.</h3>
-      <p>The dashboard centers around a personalized welcome message and account balance, clearly displaying key transactions and credit scores for a quick read on financial status, using a simplified design and color coding to enhance readability.</p>
+      <h3>Goals you actually chose, not categories a bank picked.</h3>
+      <p>Instead of preset budget categories, users name what they're actually saving for. Each goal has its own visual identity, so the dashboard reflects intention, not just transaction history.</p>
     </div>
     <div class="finding">
-      <h3>Smart, personalized savings management.</h3>
-      <p>Users can set up and manage savings plans by intuitively adjusting interest rate and duration with a slider, with monthly auto-transfer options and notification settings to make saving close to effortless.</p>
+      <h3>A growth visual instead of a spreadsheet.</h3>
+      <p>Balances are shown as a living, growing visual rather than a static number, so progress reads at a glance and updates the moment money moves.</p>
+    </div>
+    <div class="finding">
+      <h3>Small deposits that feel like a win, not a chore.</h3>
+      <p>Every deposit, even a small one, triggers a brief, positive moment — reinforcing the habit instead of waiting for a milestone to feel good about progress.</p>
     </div>
   </section>
 
   <section class="content-block detail-block">
-    <h3><span class="detail-icon">💳</span> Streamlined card navigation.</h3>
+    <h3><span class="detail-icon">🎉</span> Celebrate the deposit, not just the goal.</h3>
     <p>
-      A card slide allows quick switching and visual confirmation of owned cards, while a financial
-      summary neatly displays the week's balance and account information for a clear overview of
-      overall financial status.
+      A micro-celebration appears the moment money is set aside, no matter the amount — reinforcing
+      the habit in the moment instead of asking users to wait for a milestone to feel good about progress.
     </p>
-    <div class="media-dark" style="aspect-ratio: 1800 / 1012;">
-      <img src="images/pumkin-cards.jpg" alt="카드 슬라이드와 주간 잔액 요약 화면">
+    <div class="media-light" style="aspect-ratio: 1800 / 905;">
+      <img src="images/pumkin-deposit-celebration.jpg" alt="소액 저축 시 나타나는 마이크로 인터랙션 화면">
     </div>
   </section>
 
-  <section class="content-block detail-block">
-    <h3><span class="detail-icon">🎯</span> Simple components for easy motivation.</h3>
+  <section class="content-block">
+    <h2>Outcome: Validating the idea before the metrics exist.</h2>
     <p>
-      Specific savings goals — travel, car, house — are shown in a list, so users can view their
-      progress at a glance. Each item clearly displays the target amount and achievement period, and
-      the achievement status is visually highlighted to keep motivation going.
+      As a self-directed concept, Pumkin's results so far come from prototype testing rather than
+      production data. Update this section with real usability-testing results once you have them.
     </p>
-    <div class="media-light" style="aspect-ratio: 1800 / 1005;">
-      <img src="images/pumkin-goals.jpg" alt="저축 목표별 진행 상태를 보여주는 화면">
-    </div>
   </section>
 
   <section class="content-block">
     <h2>Reflection</h2>
     <p>
-      Pumkin pushed me to design for an emotion — the mild dread of checking your bank balance —
-      rather than just a task. Bright colors and soft curves did more for engagement here than any
-      dashboard density could.
+      Motivation is a design problem, not just a math problem. The hardest part of Pumkin wasn't the
+      interface — it was resisting the urge to add more numbers. The moments that mattered most were
+      the smallest ones: a deposit landing, a goal inching forward.
     </p>
   </section>
 

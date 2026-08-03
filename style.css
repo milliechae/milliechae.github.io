@@ -375,17 +375,6 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
 .finding h3 .finding-icon { font-size: 20px; line-height: 1; }
 .finding p { color: var(--text-secondary); font-size: 15.5px; margin: 14px 0 0; }
 
-.heatmap-card {
-  margin: 28px 0;
-  padding: 24px;
-  background: var(--bg-soft);
-  border-radius: var(--radius-md);
-}
-.heatmap-card .caption {
-  display: block;
-  margin-top: 14px;
-}
-
 /* ---------- 기능 카드 그리드 ---------- */
 .feature-grid {
   display: grid;

@@ -523,7 +523,7 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
     font-size: 12px;
     font-weight: 600;
     letter-spacing: .12em;
-    color: var(--text-tertiary);
+    color: var(--text-primary);
 }
 .pain-heading {
     font-size: 28px;

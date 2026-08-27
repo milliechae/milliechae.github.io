@@ -275,12 +275,6 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
   display: block;
 }
 .hero-media { background: var(--bg-soft); margin-top: 0; }
-.hero-media img {
-  inset: 20px;
-  width: auto;
-  height: auto;
-  border-radius: 12px;
-}
 .media-dark { background: var(--bg-dark); }
 .media-light { background: var(--bg-soft); flex-direction: column; }
 

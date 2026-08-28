@@ -123,6 +123,21 @@
   transition: background 0.2s ease, color 0.2s ease;
 }
 .mp-demo-replay:hover { background: #6C5CE7; color: #fff; }
+
+/* ---------- 페이지 진입 애니메이션 (히어로 영역) ---------- */
+@keyframes heroRise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-header h1 { animation: heroRise 0.7s ease both; }
+.hero-header .subtitle { animation: heroRise 0.7s ease both 0.1s; }
+.hero-header .status-pill { animation: heroRise 0.7s ease both 0.16s; }
+.hero-media { animation: heroRise 0.8s ease both 0.24s; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-header h1, .hero-header .subtitle, .hero-header .status-pill, .hero-media {
+    animation: none;
+  }
+}
 </style>
 </head>
 <body>

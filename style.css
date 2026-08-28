@@ -274,10 +274,18 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
   object-fit: cover;
   display: block;
 }
-.hero-media { background: var(--bg-soft); margin-top: 0; }
+.hero-media {
+  background: var(--bg-soft);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin: 24px 0 0;
+  width: 100%;
+  box-sizing: border-box;
+}
 .hero-media img {
-  inset: 24px;
-  width: auto;
+  position: static;
+  display: block;
+  width: 100%;
   height: auto;
   border-radius: 12px;
 }

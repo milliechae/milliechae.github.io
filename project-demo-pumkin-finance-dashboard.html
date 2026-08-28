@@ -139,24 +139,42 @@
   }
 }
 
-/* ---------- 히어로 이미지 안 카드 캐러셀 점 인디케이터 라이브 애니메이션 ---------- */
+/* ---------- 히어로 이미지 안 모찌 마스코트가 콩콩 뛰는 애니메이션 ---------- */
 .mp-hero-frame { position: relative; display: block; line-height: 0; }
-.mp-hero-dot {
+.mp-hero-mascot-cover {
   position: absolute;
-  width: 0.5%;
-  height: 0.7%;
-  min-width: 8px;
-  min-height: 8px;
-  border-radius: 50%;
-  background: #C4C4C4;
+  top: 10.26%;
+  left: 8.34%;
+  width: 5.4%;
+  height: 6.6%;
+  background: #ffffff;
   transform: translate(-50%, -50%);
   opacity: 0;
-  transition: background 0.35s ease, opacity 0.4s ease;
 }
-.mp-hero-dot.active { background: #000000; }
-.mp-hero-frame.ready .mp-hero-dot { opacity: 1; }
+.mp-hero-mascot {
+  position: absolute;
+  top: 10.26%;
+  left: 8.34%;
+  width: 4.55%;
+  height: auto;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transform-origin: center bottom;
+}
+.mp-hero-frame.ready .mp-hero-mascot-cover,
+.mp-hero-frame.ready .mp-hero-mascot { opacity: 1; }
+.mp-hero-frame.ready .mp-hero-mascot { animation: mochiHop 2.2s ease-in-out infinite; }
+@keyframes mochiHop {
+  0%   { transform: translate(-50%, -50%) translateY(0) scale(1, 1); }
+  12%  { transform: translate(-50%, -50%) translateY(-22%) scale(1, 1); }
+  24%  { transform: translate(-50%, -50%) translateY(-22%) scale(1, 1); }
+  34%  { transform: translate(-50%, -50%) translateY(0) scale(1.1, 0.88); }
+  42%  { transform: translate(-50%, -50%) translateY(0) scale(1, 1); }
+  100% { transform: translate(-50%, -50%) translateY(0) scale(1, 1); }
+}
 @media (prefers-reduced-motion: reduce) {
-  .mp-hero-dot { transition: none; }
+  .mp-hero-mascot { animation: none; }
 }
 </style>
 </head>
@@ -189,10 +207,8 @@
   <div class="hero-media" style="background: transparent;">
     <div class="mp-hero-frame" id="mpHeroFrame">
       <img src="images/pumkin-hero.png" alt="Mochi Pay 개인 자산 관리 대시보드 메인 화면" id="mpHeroImg">
-      <span class="mp-hero-dot" style="top:50.10%; left:79.79%;"></span>
-      <span class="mp-hero-dot active" style="top:50.10%; left:81.00%;"></span>
-      <span class="mp-hero-dot" style="top:50.10%; left:82.21%;"></span>
-      <span class="mp-hero-dot" style="top:50.10%; left:83.42%;"></span>
+      <span class="mp-hero-mascot-cover"></span>
+      <img class="mp-hero-mascot" src="images/mochi-mascot.jpg" alt="">
     </div>
   </div>
 
@@ -496,22 +512,14 @@
     });
   }
 
-  // 히어로 대시보드 안 카드 캐러셀 점 인디케이터 애니메이션
+  // 히어로 대시보드 안 모찌 마스코트 콩콩 애니메이션 (이미지 로드 완료 후에만 표시)
   (function () {
     var frame = document.getElementById('mpHeroFrame');
     var img = document.getElementById('mpHeroImg');
     if (!frame || !img) return;
 
     function start() {
-      // 이미지가 실제로 그려진 뒤에만 점을 보여줘서, 로딩 중 위치 어긋남이 보이지 않게 함
       frame.classList.add('ready');
-      var dots = frame.querySelectorAll('.mp-hero-dot');
-      var current = 1;
-      setInterval(function () {
-        dots[current].classList.remove('active');
-        current = (current + 1) % dots.length;
-        dots[current].classList.add('active');
-      }, 1800);
     }
 
     if (img.complete && img.naturalWidth > 0) {

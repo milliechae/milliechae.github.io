@@ -106,6 +106,50 @@
 }
 .mp-demo-toast.show { opacity: 1; transform: translateY(0); }
 
+/* ---------- 카드가 옆으로 흐르는 슬라이딩 캐러셀 ---------- */
+.mp-cards-frame { position: relative; display: block; line-height: 0; }
+.mp-cardrow-cover {
+  position: absolute;
+  top: 18%;
+  left: 25.5%;
+  width: 64%;
+  height: 15.76%;
+  background: #fcfcfc;
+  opacity: 0;
+}
+.mp-cardrow-viewport {
+  position: absolute;
+  top: 18%;
+  left: 25.5%;
+  width: 64%;
+  height: 15.76%;
+  overflow: hidden;
+  opacity: 0;
+}
+.mp-cards-frame.ready .mp-cardrow-cover,
+.mp-cards-frame.ready .mp-cardrow-viewport { opacity: 1; }
+.mp-cardrow-track {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 3%;
+  width: max-content;
+  animation: cardScroll 14s linear infinite;
+}
+.mp-cardrow-track img {
+  height: 92%;
+  width: auto;
+  flex-shrink: 0;
+  border-radius: 8%;
+}
+@keyframes cardScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mp-cardrow-track { animation: none; }
+}
+
 /* ---------- 히어로 이미지 안 잔액 숫자 카운트업 애니메이션 ---------- */
 .mp-hero-frame { position: relative; display: block; line-height: 0; }
 .mp-hero-balance-cover {
@@ -386,7 +430,22 @@
     </p>
 
     <div class="media-light" style="background: transparent; padding: 0;">
-      <img src="images/pumkin-goals-overview.jpg" alt="Mochi Pay 카드 캐러셀과 최근 거래내역, 잔액 화면">
+      <div class="mp-cards-frame" id="mpCardsFrame">
+        <img src="images/pumkin-goals-overview.jpg" alt="Mochi Pay 카드 캐러셀과 최근 거래내역, 잔액 화면" id="mpCardsImg">
+        <span class="mp-cardrow-cover"></span>
+        <div class="mp-cardrow-viewport">
+          <div class="mp-cardrow-track">
+            <img src="images/mochi-card-blue.png" alt="">
+            <img src="images/mochi-card-purple.png" alt="">
+            <img src="images/mochi-card-teal.png" alt="">
+            <img src="images/mochi-card-cyan.png" alt="">
+            <img src="images/mochi-card-blue.png" alt="">
+            <img src="images/mochi-card-purple.png" alt="">
+            <img src="images/mochi-card-teal.png" alt="">
+            <img src="images/mochi-card-cyan.png" alt="">
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="finding">
@@ -471,6 +530,21 @@
       localStorage.setItem('theme', next);
     });
   }
+
+  // 카드 슬라이딩 캐러셀 (이미지 로드 완료 후에만 표시)
+  (function () {
+    var frame = document.getElementById('mpCardsFrame');
+    var img = document.getElementById('mpCardsImg');
+    if (!frame || !img) return;
+
+    function start() { frame.classList.add('ready'); }
+
+    if (img.complete && img.naturalWidth > 0) {
+      start();
+    } else {
+      img.addEventListener('load', start);
+    }
+  })();
 
   // 히어로 대시보드 안 잔액 숫자 카운트업 (이미지 로드 완료 후에만 표시, 계속 반복)
   (function () {

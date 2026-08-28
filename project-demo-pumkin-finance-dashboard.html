@@ -491,7 +491,7 @@
     });
   }
 
-  // 히어로 대시보드 안 잔액 숫자 카운트업 (이미지 로드 완료 후에만 표시)
+  // 히어로 대시보드 안 잔액 숫자 카운트업 (이미지 로드 완료 후에만 표시, 계속 반복)
   (function () {
     var frame = document.getElementById('mpHeroFrame');
     var img = document.getElementById('mpHeroImg');
@@ -500,6 +500,7 @@
 
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var target = 27350600;
+    var pauseBetween = 2200; // 한 세트 끝나고 쉬는 시간
 
     function countUp() {
       frame.classList.add('ready');
@@ -514,7 +515,15 @@
         var eased = 1 - Math.pow(1 - progress, 3);
         var value = Math.round(target * eased);
         balanceEl.textContent = '€ ' + value.toLocaleString('en-US');
-        if (progress < 1) requestAnimationFrame(step);
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          // 잠시 쉬었다가 처음부터 다시 재생
+          setTimeout(function () {
+            balanceEl.textContent = '€ 0';
+            setTimeout(countUp, 250);
+          }, pauseBetween);
+        }
       }
       requestAnimationFrame(step);
     }

@@ -106,45 +106,6 @@
 }
 .mp-demo-toast.show { opacity: 1; transform: translateY(0); }
 
-/* ---------- 카드 캐러셀: 활성 카드 펄스 + 점 인디케이터 순환 ---------- */
-.mp-cards-frame { position: relative; display: block; line-height: 0; }
-.mp-card-pulse {
-  position: absolute;
-  top: 17.6%;
-  left: 42.5%;
-  width: 14.25%;
-  height: 16%;
-  border-radius: 9%;
-  box-shadow: 0 0 0 0 rgba(137,121,230,0.45);
-  opacity: 0;
-}
-.mp-cards-frame.ready .mp-card-pulse {
-  opacity: 1;
-  animation: cardGlow 2.6s ease-in-out infinite;
-}
-@keyframes cardGlow {
-  0%   { box-shadow: 0 0 0 0 rgba(137,121,230,0.4); }
-  50%  { box-shadow: 0 0 0 14px rgba(137,121,230,0); }
-  100% { box-shadow: 0 0 0 0 rgba(137,121,230,0); }
-}
-.mp-card-dot {
-  position: absolute;
-  width: 0.5%;
-  height: 0.65%;
-  min-width: 6px;
-  min-height: 6px;
-  border-radius: 50%;
-  background: #CACACA;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: background 0.35s ease;
-}
-.mp-card-dot.active { background: #1A1A1A; }
-.mp-cards-frame.ready .mp-card-dot { opacity: 1; }
-@media (prefers-reduced-motion: reduce) {
-  .mp-card-pulse { animation: none; }
-}
-
 /* ---------- 히어로 이미지 안 잔액 숫자 카운트업 애니메이션 ---------- */
 .mp-hero-frame { position: relative; display: block; line-height: 0; }
 .mp-hero-balance-cover {
@@ -425,14 +386,7 @@
     </p>
 
     <div class="media-light" style="background: transparent; padding: 0;">
-      <div class="mp-cards-frame" id="mpCardsFrame">
-        <img src="images/pumkin-goals-overview.jpg" alt="Mochi Pay 카드 캐러셀과 최근 거래내역, 잔액 화면" id="mpCardsImg">
-        <span class="mp-card-pulse"></span>
-        <span class="mp-card-dot" style="top:36.48%; left:48.25%;"></span>
-        <span class="mp-card-dot active" style="top:36.48%; left:49.30%;"></span>
-        <span class="mp-card-dot" style="top:36.48%; left:50.30%;"></span>
-        <span class="mp-card-dot" style="top:36.48%; left:51.35%;"></span>
-      </div>
+      <img src="images/pumkin-goals-overview.jpg" alt="Mochi Pay 카드 캐러셀과 최근 거래내역, 잔액 화면">
     </div>
 
     <div class="finding">
@@ -517,31 +471,6 @@
       localStorage.setItem('theme', next);
     });
   }
-
-  // 카드 캐러셀 점 인디케이터 순환 + 활성 카드 펄스 (이미지 로드 완료 후에만 표시)
-  (function () {
-    var frame = document.getElementById('mpCardsFrame');
-    var img = document.getElementById('mpCardsImg');
-    if (!frame || !img) return;
-
-    function start() {
-      frame.classList.add('ready');
-      var dots = frame.querySelectorAll('.mp-card-dot');
-      if (!dots.length) return;
-      var current = 1;
-      setInterval(function () {
-        dots[current].classList.remove('active');
-        current = (current + 1) % dots.length;
-        dots[current].classList.add('active');
-      }, 2600);
-    }
-
-    if (img.complete && img.naturalWidth > 0) {
-      start();
-    } else {
-      img.addEventListener('load', start);
-    }
-  })();
 
   // 히어로 대시보드 안 잔액 숫자 카운트업 (이미지 로드 완료 후에만 표시, 계속 반복)
   (function () {

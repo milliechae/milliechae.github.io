@@ -138,44 +138,6 @@
     animation: none;
   }
 }
-
-/* ---------- 히어로 이미지 안 모찌 마스코트가 콩콩 뛰는 애니메이션 ---------- */
-.mp-hero-frame { position: relative; display: block; line-height: 0; }
-.mp-hero-mascot-cover {
-  position: absolute;
-  top: 10.26%;
-  left: 8.34%;
-  width: 5.4%;
-  height: 6.6%;
-  background: #ffffff;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-}
-.mp-hero-mascot {
-  position: absolute;
-  top: 10.26%;
-  left: 8.34%;
-  width: 4.55%;
-  height: auto;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transform-origin: center bottom;
-}
-.mp-hero-frame.ready .mp-hero-mascot-cover,
-.mp-hero-frame.ready .mp-hero-mascot { opacity: 1; }
-.mp-hero-frame.ready .mp-hero-mascot { animation: mochiHop 2.2s ease-in-out infinite; }
-@keyframes mochiHop {
-  0%   { transform: translate(-50%, -50%) translateY(0) scale(1, 1); }
-  12%  { transform: translate(-50%, -50%) translateY(-22%) scale(1, 1); }
-  24%  { transform: translate(-50%, -50%) translateY(-22%) scale(1, 1); }
-  34%  { transform: translate(-50%, -50%) translateY(0) scale(1.1, 0.88); }
-  42%  { transform: translate(-50%, -50%) translateY(0) scale(1, 1); }
-  100% { transform: translate(-50%, -50%) translateY(0) scale(1, 1); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .mp-hero-mascot { animation: none; }
-}
 </style>
 </head>
 <body>
@@ -205,11 +167,7 @@
   </header>
 
   <div class="hero-media" style="background: transparent;">
-    <div class="mp-hero-frame" id="mpHeroFrame">
-      <img src="images/pumkin-hero.png" alt="Mochi Pay 개인 자산 관리 대시보드 메인 화면" id="mpHeroImg">
-      <span class="mp-hero-mascot-cover"></span>
-      <img class="mp-hero-mascot" src="images/mochi-mascot.jpg" alt="">
-    </div>
+    <img src="images/pumkin-hero.png" alt="Mochi Pay 개인 자산 관리 대시보드 메인 화면">
   </div>
 
   <section class="intro">
@@ -511,23 +469,6 @@
       localStorage.setItem('theme', next);
     });
   }
-
-  // 히어로 대시보드 안 모찌 마스코트 콩콩 애니메이션 (이미지 로드 완료 후에만 표시)
-  (function () {
-    var frame = document.getElementById('mpHeroFrame');
-    var img = document.getElementById('mpHeroImg');
-    if (!frame || !img) return;
-
-    function start() {
-      frame.classList.add('ready');
-    }
-
-    if (img.complete && img.naturalWidth > 0) {
-      start();
-    } else {
-      img.addEventListener('load', start);
-    }
-  })();
 
   // 소액 저축 마이크로 인터랙션 데모
   (function () {

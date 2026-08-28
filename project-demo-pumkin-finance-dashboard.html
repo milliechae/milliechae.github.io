@@ -106,24 +106,6 @@
 }
 .mp-demo-toast.show { opacity: 1; transform: translateY(0); }
 
-.mp-demo-replay {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 32px;
-  padding: 8px 16px;
-  border: 1.5px solid #6C5CE7;
-  border-radius: 999px;
-  background: var(--bg-page);
-  color: #6C5CE7;
-  font-size: 13px;
-  font-family: var(--font-body);
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-.mp-demo-replay:hover { background: #6C5CE7; color: #fff; }
-
 /* ---------- 히어로 이미지 안 잔액 숫자 카운트업 애니메이션 ---------- */
 .mp-hero-frame { position: relative; display: block; line-height: 0; }
 .mp-hero-balance-cover {
@@ -445,7 +427,6 @@
         <span class="mp-demo-confetti c4"></span>
       </div>
       <div class="mp-demo-toast" id="mpToast">Nice! €25 closer to Traveling 🎉</div>
-      <button class="mp-demo-replay" id="mpReplay" type="button">↻ Replay animation</button>
     </div>
   </section>
 
@@ -535,16 +516,16 @@
     }
   })();
 
-  // 소액 저축 마이크로 인터랙션 데모
+  // 소액 저축 마이크로 인터랙션 데모 (무한 반복)
   (function () {
     var card = document.querySelector('.mp-demo-card');
     var amount = document.getElementById('mpAmount');
     var toast = document.getElementById('mpToast');
-    var replayBtn = document.getElementById('mpReplay');
     var demo = document.getElementById('mpDemo');
     if (!card) return;
 
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var pauseBetween = 2200;
 
     function play() {
       card.classList.remove('playing');
@@ -555,22 +536,28 @@
 
       if (reduceMotion) {
         amount.textContent = '€1,625';
-      } else {
-        var from = 1600, to = 1625, duration = 1100, start = null;
-        function step(ts) {
-          if (!start) start = ts;
-          var progress = Math.min((ts - start) / duration, 1);
-          var eased = 1 - Math.pow(1 - progress, 3);
-          var value = Math.round(from + (to - from) * eased);
-          amount.textContent = '€' + value.toLocaleString('en-US');
-          if (progress < 1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
+        setTimeout(function () { toast.classList.add('show'); }, 0);
+        return;
       }
-      setTimeout(function () { toast.classList.add('show'); }, reduceMotion ? 0 : 300);
-    }
 
-    if (replayBtn) replayBtn.addEventListener('click', play);
+      var from = 1600, to = 1625, duration = 1100, start = null;
+      function step(ts) {
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var value = Math.round(from + (to - from) * eased);
+        amount.textContent = '€' + value.toLocaleString('en-US');
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      setTimeout(function () { toast.classList.add('show'); }, 300);
+
+      // 잠시 쉬었다가 처음부터 다시 재생
+      setTimeout(function () {
+        amount.textContent = '€1,600';
+        setTimeout(play, 250);
+      }, duration + pauseBetween);
+    }
 
     var played = false;
     var observer = new IntersectionObserver(function (entries) {

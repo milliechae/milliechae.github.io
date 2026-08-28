@@ -138,6 +138,28 @@
     animation: none;
   }
 }
+
+/* ---------- 히어로 이미지 안 저축 프로그레스바 라이브 애니메이션 ---------- */
+.mp-hero-frame { position: relative; display: block; line-height: 0; }
+.mp-hero-bar { position: absolute; height: 0.45%; min-height: 3px; }
+.mp-hero-track, .mp-hero-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+}
+.mp-hero-track { background: #E8E5FC; width: 100%; }
+.mp-hero-fill {
+  background: linear-gradient(90deg,#8b7ff0,#6C5CE7);
+  width: 0%;
+  transition: width 1s cubic-bezier(.2,.8,.2,1);
+}
+.mp-hero-frame.playing .f1 { width: 39%; transition-delay: 0.1s; }
+.mp-hero-frame.playing .f2 { width: 37%; transition-delay: 0.28s; }
+.mp-hero-frame.playing .f3 { width: 39%; transition-delay: 0.46s; }
+@media (prefers-reduced-motion: reduce) {
+  .mp-hero-fill { transition: none; }
+  .mp-hero-frame .f1, .mp-hero-frame .f2, .mp-hero-frame .f3 { width: 39%; }
+}
 </style>
 </head>
 <body>
@@ -167,7 +189,21 @@
   </header>
 
   <div class="hero-media">
-    <img src="images/pumkin-hero.png" alt="Mochi Pay 개인 자산 관리 대시보드 메인 화면">
+    <div class="mp-hero-frame" id="mpHeroFrame">
+      <img src="images/pumkin-hero.png" alt="Mochi Pay 개인 자산 관리 대시보드 메인 화면">
+      <span class="mp-hero-bar" style="top:73.2%; left:50.53%; width:16.93%;">
+        <span class="mp-hero-track"></span>
+        <span class="mp-hero-fill f1"></span>
+      </span>
+      <span class="mp-hero-bar" style="top:80.1%; left:50.53%; width:16.93%;">
+        <span class="mp-hero-track"></span>
+        <span class="mp-hero-fill f2"></span>
+      </span>
+      <span class="mp-hero-bar" style="top:87.0%; left:50.53%; width:16.93%;">
+        <span class="mp-hero-track"></span>
+        <span class="mp-hero-fill f3"></span>
+      </span>
+    </div>
   </div>
 
   <section class="intro">
@@ -469,6 +505,13 @@
       localStorage.setItem('theme', next);
     });
   }
+
+  // 히어로 대시보드 안 저축 프로그레스바 애니메이션
+  (function () {
+    var frame = document.getElementById('mpHeroFrame');
+    if (!frame) return;
+    setTimeout(function () { frame.classList.add('playing'); }, 500);
+  })();
 
   // 소액 저축 마이크로 인터랙션 데모
   (function () {

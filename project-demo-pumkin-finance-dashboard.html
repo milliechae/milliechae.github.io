@@ -138,6 +138,26 @@
     animation: none;
   }
 }
+
+/* ---------- 히어로 이미지 안 카드 캐러셀 점 인디케이터 라이브 애니메이션 ---------- */
+.mp-hero-frame { position: relative; display: block; line-height: 0; }
+.mp-hero-dot {
+  position: absolute;
+  width: 0.5%;
+  height: 0.7%;
+  min-width: 8px;
+  min-height: 8px;
+  border-radius: 50%;
+  background: #C4C4C4;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: background 0.35s ease, opacity 0.4s ease;
+}
+.mp-hero-dot.active { background: #000000; }
+.mp-hero-frame.ready .mp-hero-dot { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .mp-hero-dot { transition: none; }
+}
 </style>
 </head>
 <body>
@@ -167,7 +187,13 @@
   </header>
 
   <div class="hero-media" style="background: transparent;">
-    <img src="images/pumkin-hero.png" alt="Mochi Pay 개인 자산 관리 대시보드 메인 화면">
+    <div class="mp-hero-frame" id="mpHeroFrame">
+      <img src="images/pumkin-hero.png" alt="Mochi Pay 개인 자산 관리 대시보드 메인 화면" id="mpHeroImg">
+      <span class="mp-hero-dot" style="top:50.10%; left:79.79%;"></span>
+      <span class="mp-hero-dot active" style="top:50.10%; left:81.00%;"></span>
+      <span class="mp-hero-dot" style="top:50.10%; left:82.21%;"></span>
+      <span class="mp-hero-dot" style="top:50.10%; left:83.42%;"></span>
+    </div>
   </div>
 
   <section class="intro">
@@ -469,6 +495,31 @@
       localStorage.setItem('theme', next);
     });
   }
+
+  // 히어로 대시보드 안 카드 캐러셀 점 인디케이터 애니메이션
+  (function () {
+    var frame = document.getElementById('mpHeroFrame');
+    var img = document.getElementById('mpHeroImg');
+    if (!frame || !img) return;
+
+    function start() {
+      // 이미지가 실제로 그려진 뒤에만 점을 보여줘서, 로딩 중 위치 어긋남이 보이지 않게 함
+      frame.classList.add('ready');
+      var dots = frame.querySelectorAll('.mp-hero-dot');
+      var current = 1;
+      setInterval(function () {
+        dots[current].classList.remove('active');
+        current = (current + 1) % dots.length;
+        dots[current].classList.add('active');
+      }, 1800);
+    }
+
+    if (img.complete && img.naturalWidth > 0) {
+      start();
+    } else {
+      img.addEventListener('load', start);
+    }
+  })();
 
   // 소액 저축 마이크로 인터랙션 데모
   (function () {

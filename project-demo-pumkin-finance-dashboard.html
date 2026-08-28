@@ -7,6 +7,122 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="style.css">
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = saved || (systemDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+<style>
+/* ---------- 소액 저축 마이크로 인터랙션 데모 (이 페이지 전용) ---------- */
+.mp-demo { margin: 24px 0; padding: 28px 24px; background: var(--bg-soft); border-radius: var(--radius-lg); text-align: center; }
+.mp-demo-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 16px 18px;
+  background: var(--bg-page);
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  text-align: left;
+  transition: transform 0.25s ease;
+}
+.mp-demo-card.playing { animation: mpPulse 0.5s ease; }
+.mp-demo-icon { font-size: 28px; line-height: 1; flex-shrink: 0; }
+.mp-demo-info { flex: 1; min-width: 0; }
+.mp-demo-toprow { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.mp-demo-title { font-weight: 600; color: var(--text-primary); font-size: 15px; }
+.mp-demo-amount { font-weight: 700; color: var(--text-primary); font-size: 15px; transition: color 0.3s ease; }
+.mp-demo-card.playing .mp-demo-amount { color: #6C5CE7; }
+.mp-demo-sub { display: block; font-size: 12.5px; color: var(--text-tertiary); margin: 2px 0 8px; }
+.mp-demo-track { height: 6px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.mp-demo-fill { height: 100%; width: 43%; border-radius: 999px; background: linear-gradient(90deg,#8b7ff0,#6C5CE7); transition: width 1.1s cubic-bezier(.2,.8,.2,1); }
+.mp-demo-card.playing .mp-demo-fill { width: 54%; }
+
+.mp-demo-float {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #6C5CE7;
+  opacity: 0;
+  transform: translateY(0);
+  pointer-events: none;
+}
+.mp-demo-card.playing .mp-demo-float { animation: mpFloatUp 1.3s ease forwards; }
+
+.mp-demo-confetti {
+  position: absolute;
+  top: 18px;
+  right: 26px;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  opacity: 0;
+  pointer-events: none;
+}
+.mp-demo-confetti.c1 { background: #6C5CE7; }
+.mp-demo-confetti.c2 { background: #F5A623; }
+.mp-demo-confetti.c3 { background: #00C556; }
+.mp-demo-confetti.c4 { background: #E14B4B; }
+.mp-demo-card.playing .mp-demo-confetti.c1 { animation: mpConfetti1 0.9s ease forwards; }
+.mp-demo-card.playing .mp-demo-confetti.c2 { animation: mpConfetti2 0.9s ease forwards 0.05s; }
+.mp-demo-card.playing .mp-demo-confetti.c3 { animation: mpConfetti3 0.9s ease forwards 0.1s; }
+.mp-demo-card.playing .mp-demo-confetti.c4 { animation: mpConfetti4 0.9s ease forwards 0.02s; }
+
+@keyframes mpPulse {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.025); }
+  100% { transform: scale(1); }
+}
+@keyframes mpFloatUp {
+  0% { opacity: 0; transform: translateY(6px); }
+  20% { opacity: 1; transform: translateY(0); }
+  75% { opacity: 1; transform: translateY(-14px); }
+  100% { opacity: 0; transform: translateY(-22px); }
+}
+@keyframes mpConfetti1 { 0% { opacity:0; transform: translate(0,0) rotate(0deg);} 15%{opacity:1;} 100% { opacity:0; transform: translate(-38px,-30px) rotate(140deg);} }
+@keyframes mpConfetti2 { 0% { opacity:0; transform: translate(0,0) rotate(0deg);} 15%{opacity:1;} 100% { opacity:0; transform: translate(20px,-42px) rotate(-120deg);} }
+@keyframes mpConfetti3 { 0% { opacity:0; transform: translate(0,0) rotate(0deg);} 15%{opacity:1;} 100% { opacity:0; transform: translate(40px,-14px) rotate(200deg);} }
+@keyframes mpConfetti4 { 0% { opacity:0; transform: translate(0,0) rotate(0deg);} 15%{opacity:1;} 100% { opacity:0; transform: translate(-18px,-46px) rotate(-90deg);} }
+
+.mp-demo-toast {
+  max-width: 420px;
+  margin: 14px auto 0;
+  padding: 10px 16px;
+  background: var(--bg-page);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.mp-demo-toast.show { opacity: 1; transform: translateY(0); }
+
+.mp-demo-replay {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg-page);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.mp-demo-replay:hover { border-color: #6C5CE7; color: #6C5CE7; }
+</style>
 </head>
 <body>
 
@@ -274,8 +390,25 @@
       A micro-celebration appears the moment money is set aside, no matter the amount — reinforcing
       the habit in the moment instead of asking users to wait for a milestone to feel good about progress.
     </p>
-    <div class="media-light">
-      <img src="images/pumkin-deposit-celebration.jpg" alt="소액 저축 시 나타나는 마이크로 인터랙션 화면">
+    <div class="mp-demo" id="mpDemo">
+      <div class="mp-demo-card">
+        <span class="mp-demo-icon">🏝️</span>
+        <div class="mp-demo-info">
+          <div class="mp-demo-toprow">
+            <span class="mp-demo-title">Traveling</span>
+            <span class="mp-demo-amount" id="mpAmount">€1,600</span>
+          </div>
+          <span class="mp-demo-sub">Achieved in 6 months</span>
+          <div class="mp-demo-track"><div class="mp-demo-fill" id="mpFill"></div></div>
+        </div>
+        <span class="mp-demo-float" id="mpFloat">+€25</span>
+        <span class="mp-demo-confetti c1"></span>
+        <span class="mp-demo-confetti c2"></span>
+        <span class="mp-demo-confetti c3"></span>
+        <span class="mp-demo-confetti c4"></span>
+      </div>
+      <div class="mp-demo-toast" id="mpToast">Nice! €25 closer to Traveling 🎉</div>
+      <button class="mp-demo-replay" id="mpReplay" type="button">↻ Replay animation</button>
     </div>
   </section>
 
@@ -309,5 +442,52 @@
 
 </div>
 
+<script>
+  // 다크모드 토글 (이 페이지에 누락되어 있어서 같이 추가함)
+  var themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var current = document.documentElement.getAttribute('data-theme');
+      var next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  }
+
+  // 소액 저축 마이크로 인터랙션 데모
+  (function () {
+    var card = document.querySelector('.mp-demo-card');
+    var amount = document.getElementById('mpAmount');
+    var toast = document.getElementById('mpToast');
+    var replayBtn = document.getElementById('mpReplay');
+    var demo = document.getElementById('mpDemo');
+    if (!card) return;
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function play() {
+      card.classList.remove('playing');
+      toast.classList.remove('show');
+      // 리플로우로 애니메이션 재시작
+      void card.offsetWidth;
+      card.classList.add('playing');
+      setTimeout(function () { amount.textContent = '€1,625'; }, reduceMotion ? 0 : 550);
+      setTimeout(function () { toast.classList.add('show'); }, reduceMotion ? 0 : 300);
+    }
+
+    if (replayBtn) replayBtn.addEventListener('click', play);
+
+    var played = false;
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !played) {
+          played = true;
+          setTimeout(play, 400);
+        }
+      });
+    }, { threshold: 0.5 });
+    observer.observe(demo);
+  })();
+</script>
 </body>
 </html>

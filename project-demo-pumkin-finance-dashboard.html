@@ -17,7 +17,7 @@
 </script>
 <style>
 /* ---------- 소액 저축 마이크로 인터랙션 데모 (이 페이지 전용) ---------- */
-.mp-demo { margin: 24px 0; padding: 28px 24px; background: var(--bg-soft); border-radius: var(--radius-lg); text-align: center; }
+.mp-demo { margin: 24px 0; padding: 8px 0 0; text-align: center; }
 .mp-demo-card {
   position: relative;
   display: flex;
@@ -110,18 +110,19 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-top: 16px;
+  margin-top: 32px;
   padding: 8px 16px;
-  border: 1px solid var(--line);
+  border: 1.5px solid #6C5CE7;
   border-radius: 999px;
   background: var(--bg-page);
-  color: var(--text-secondary);
+  color: #6C5CE7;
   font-size: 13px;
   font-family: var(--font-body);
+  font-weight: 500;
   cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
-.mp-demo-replay:hover { border-color: #6C5CE7; color: #6C5CE7; }
+.mp-demo-replay:hover { background: #6C5CE7; color: #fff; }
 </style>
 </head>
 <body>
@@ -471,7 +472,21 @@
       // 리플로우로 애니메이션 재시작
       void card.offsetWidth;
       card.classList.add('playing');
-      setTimeout(function () { amount.textContent = '€1,625'; }, reduceMotion ? 0 : 550);
+
+      if (reduceMotion) {
+        amount.textContent = '€1,625';
+      } else {
+        var from = 1600, to = 1625, duration = 1100, start = null;
+        function step(ts) {
+          if (!start) start = ts;
+          var progress = Math.min((ts - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          var value = Math.round(from + (to - from) * eased);
+          amount.textContent = '€' + value.toLocaleString('en-US');
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
       setTimeout(function () { toast.classList.add('show'); }, reduceMotion ? 0 : 300);
     }
 

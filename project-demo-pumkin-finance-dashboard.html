@@ -138,6 +138,38 @@
     animation: none;
   }
 }
+
+/* ---------- 히어로 이미지 안 잔액 숫자 카운트업 애니메이션 ---------- */
+.mp-hero-frame { position: relative; display: block; line-height: 0; }
+.mp-hero-balance-cover {
+  position: absolute;
+  top: 25.64%;
+  left: 14.40%;
+  width: 17.5%;
+  height: 4.5%;
+  background: #ffffff;
+  opacity: 0;
+}
+.mp-hero-balance {
+  position: absolute;
+  top: 25.64%;
+  left: 14.40%;
+  height: 4.5%;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  color: #121212;
+  white-space: nowrap;
+  opacity: 0;
+}
+.mp-hero-frame.ready .mp-hero-balance-cover,
+.mp-hero-frame.ready .mp-hero-balance { opacity: 1; }
+@media (max-width: 640px) {
+  .mp-hero-balance { font-size: 12px; }
+}
 </style>
 </head>
 <body>
@@ -167,7 +199,11 @@
   </header>
 
   <div class="hero-media" style="background: transparent;">
-    <img src="images/pumkin-hero.png" alt="Mochi Pay 개인 자산 관리 대시보드 메인 화면">
+    <div class="mp-hero-frame" id="mpHeroFrame">
+      <img src="images/pumkin-hero.png" alt="Mochi Pay 개인 자산 관리 대시보드 메인 화면" id="mpHeroImg">
+      <span class="mp-hero-balance-cover"></span>
+      <span class="mp-hero-balance" id="mpHeroBalance">€ 0</span>
+    </div>
   </div>
 
   <section class="intro">
@@ -469,6 +505,41 @@
       localStorage.setItem('theme', next);
     });
   }
+
+  // 히어로 대시보드 안 잔액 숫자 카운트업 (이미지 로드 완료 후에만 표시)
+  (function () {
+    var frame = document.getElementById('mpHeroFrame');
+    var img = document.getElementById('mpHeroImg');
+    var balanceEl = document.getElementById('mpHeroBalance');
+    if (!frame || !img || !balanceEl) return;
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var target = 27350600;
+
+    function countUp() {
+      frame.classList.add('ready');
+      if (reduceMotion) {
+        balanceEl.textContent = '€ ' + target.toLocaleString('en-US');
+        return;
+      }
+      var start = null, duration = 1600;
+      function step(ts) {
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var value = Math.round(target * eased);
+        balanceEl.textContent = '€ ' + value.toLocaleString('en-US');
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    if (img.complete && img.naturalWidth > 0) {
+      setTimeout(countUp, 300);
+    } else {
+      img.addEventListener('load', function () { setTimeout(countUp, 300); });
+    }
+  })();
 
   // 소액 저축 마이크로 인터랙션 데모
   (function () {

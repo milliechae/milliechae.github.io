@@ -106,50 +106,81 @@
 }
 .mp-demo-toast.show { opacity: 1; transform: translateY(0); }
 
-/* ---------- 카드가 옆으로 흐르는 슬라이딩 캐러셀 ---------- */
+/* ---------- Design Solution 이미지 위 마이크로인터랙션 ---------- */
+/* (예전의 좌우 무한 슬라이드 캐러셀은 부자연스러워서 제거하고,
+   왼쪽 거래내역 카드는 각자 다른 리듬으로 살짝 떠다니는 모션으로,
+   오른쪽 잔액은 히어로와 동일한 카운트업 패턴으로 교체함) */
 .mp-cards-frame { position: relative; display: block; line-height: 0; }
-.mp-cardrow-cover {
+
+.mp-goals-cover {
   position: absolute;
-  top: 18%;
-  left: 35.25%;
+  top: 41.2%;
+  left: 4%;
   width: 27.75%;
-  height: 15.76%;
-  background: #fcfcfc;
+  height: 58.32%;
+  background: #ffffff;
   opacity: 0;
 }
-.mp-cardrow-viewport {
+.mp-cards-frame.ready .mp-goals-cover { opacity: 1; }
+
+.mp-float-card {
   position: absolute;
-  top: 18%;
-  left: 35.25%;
-  width: 27.75%;
-  height: 15.76%;
-  overflow: hidden;
+  left: 5.2%;
+  width: 25.4%;
+  background-image: url('images/pumkin-goals-overview.jpg');
+  background-repeat: no-repeat;
+  background-position-x: 6.971%;
   opacity: 0;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%);
+  will-change: transform;
 }
-.mp-cards-frame.ready .mp-cardrow-cover,
-.mp-cards-frame.ready .mp-cardrow-viewport { opacity: 1; }
-.mp-cardrow-track {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  gap: 3%;
-  width: max-content;
-  animation: cardScroll 14s linear infinite;
-}
-.mp-cardrow-track img {
-  height: 92%;
-  width: auto;
-  flex-shrink: 0;
-  border-radius: 8%;
-}
-@keyframes cardScroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+.mp-cards-frame.ready .mp-float-card { opacity: 1; }
+
+.mp-float-1 { top: 43.2%; height: 19.04%; background-size: 393.7% 525.21%; background-position-y: 53.36%; }
+.mp-float-2 { top: 62.48%; height: 15.84%; background-size: 393.7% 631.31%; background-position-y: 74.24%; }
+.mp-float-3 { top: 78.96%; height: 18.96%; background-size: 393.7% 527.43%; background-position-y: 97.433%; }
+
+.mp-cards-frame.ready .mp-float-1 { animation: mpFloatBob 4.6s ease-in-out 0.1s infinite; }
+.mp-cards-frame.ready .mp-float-2 { animation: mpFloatBob 5.2s ease-in-out 0.9s infinite; }
+.mp-cards-frame.ready .mp-float-3 { animation: mpFloatBob 4.9s ease-in-out 0.5s infinite; }
+
+@keyframes mpFloatBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .mp-cardrow-track { animation: none; }
+  .mp-cards-frame.ready .mp-float-1,
+  .mp-cards-frame.ready .mp-float-2,
+  .mp-cards-frame.ready .mp-float-3 { animation: none; }
+}
+
+.mp-goals-balance-cover {
+  position: absolute;
+  top: 53.2%;
+  left: 71.95%;
+  width: 13.05%;
+  height: 3.28%;
+  background: #ffffff;
+  opacity: 0;
+}
+.mp-goals-balance {
+  position: absolute;
+  top: 53.2%;
+  left: 71.95%;
+  height: 3.28%;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: -0.01em;
+  color: #121212;
+  white-space: nowrap;
+  opacity: 0;
+}
+.mp-cards-frame.ready .mp-goals-balance-cover,
+.mp-cards-frame.ready .mp-goals-balance { opacity: 1; }
+@media (max-width: 640px) {
+  .mp-goals-balance { font-size: 7px; }
 }
 
 /* ---------- 히어로 이미지 안 잔액 숫자 카운트업 애니메이션 ---------- */
@@ -434,19 +465,12 @@
     <div class="media-light" style="background: transparent; padding: 0;">
       <div class="mp-cards-frame" id="mpCardsFrame">
         <img src="images/pumkin-goals-overview.jpg" alt="Mochi Pay 카드 캐러셀과 최근 거래내역, 잔액 화면" id="mpCardsImg">
-        <span class="mp-cardrow-cover"></span>
-        <div class="mp-cardrow-viewport">
-          <div class="mp-cardrow-track">
-            <img src="images/mochi-card-blue.png" alt="">
-            <img src="images/mochi-card-purple.png" alt="">
-            <img src="images/mochi-card-teal.png" alt="">
-            <img src="images/mochi-card-cyan.png" alt="">
-            <img src="images/mochi-card-blue.png" alt="">
-            <img src="images/mochi-card-purple.png" alt="">
-            <img src="images/mochi-card-teal.png" alt="">
-            <img src="images/mochi-card-cyan.png" alt="">
-          </div>
-        </div>
+        <span class="mp-goals-cover" aria-hidden="true"></span>
+        <div class="mp-float-card mp-float-1" aria-hidden="true"></div>
+        <div class="mp-float-card mp-float-2" aria-hidden="true"></div>
+        <div class="mp-float-card mp-float-3" aria-hidden="true"></div>
+        <span class="mp-goals-balance-cover" aria-hidden="true"></span>
+        <span class="mp-goals-balance" id="mpGoalsBalance" aria-hidden="true">€ 0</span>
       </div>
     </div>
 
@@ -533,15 +557,63 @@
     });
   }
 
-  // 카드 슬라이딩 캐러셀 (이미지 로드 완료 후에만 표시)
+  // Design Solution 이미지 — 로드 완료 후 플로팅 카드 + 잔액 카운트업 표시
   (function () {
     var frame = document.getElementById('mpCardsFrame');
     var img = document.getElementById('mpCardsImg');
+    var balanceEl = document.getElementById('mpGoalsBalance');
     if (!frame || !img) return;
 
-    function start() { frame.classList.add('ready'); }
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var target = 27350600;
+    var pauseBetween = 2200;
+    var played = false;
 
-    if (img.complete && img.naturalWidth > 0) {
+    function countUp() {
+      if (!balanceEl) return;
+      if (reduceMotion) {
+        balanceEl.textContent = '€ ' + target.toLocaleString('en-US');
+        return;
+      }
+      var start = null, duration = 1400;
+      function step(ts) {
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var value = Math.round(target * eased);
+        balanceEl.textContent = '€ ' + value.toLocaleString('en-US');
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          setTimeout(function () {
+            balanceEl.textContent = '€ 0';
+            setTimeout(countUp, 250);
+          }, pauseBetween);
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    function start() {
+      frame.classList.add('ready');
+      if (played) return;
+      played = true;
+      setTimeout(countUp, 300);
+    }
+
+    // 뷰포트에 들어왔을 때만 재생 시작 (스크롤 안 하면 굳이 안 돌아가게)
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            if (img.complete && img.naturalWidth > 0) start();
+            else img.addEventListener('load', start);
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      io.observe(frame);
+    } else if (img.complete && img.naturalWidth > 0) {
       start();
     } else {
       img.addEventListener('load', start);

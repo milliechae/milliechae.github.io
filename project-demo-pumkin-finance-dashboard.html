@@ -245,6 +245,98 @@
 @media (max-width: 640px) {
   .mp-hero-balance { font-size: 12px; }
 }
+/* ---------- Outcome 섹션: 저축플랜 슬라이더 라이브 데모 ---------- */
+.mp-savings-frame { position: relative; display: block; line-height: 0; }
+
+.mp-rate-cover {
+  position: absolute;
+  top: 22.368%;
+  left: 39.813%;
+  width: 20.374%;
+  height: 5.263%;
+  background: #ffffff;
+  opacity: 0;
+}
+.mp-rate-value {
+  position: absolute;
+  top: 22.368%;
+  left: 39.813%;
+  height: 5.263%;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 34px;
+  color: #6C5CE7;
+  white-space: nowrap;
+  opacity: 0;
+}
+.mp-rate-value .mp-rate-pct { font-size: 20px; font-weight: 700; color: #a7a0e8; margin-left: 6px; }
+
+.mp-slider-track {
+  position: absolute;
+  top: 41.228%;
+  left: 13.617%;
+  width: 70.686%;
+  height: 6px;
+  border-radius: 999px;
+  background: #e6e4e1;
+  opacity: 0;
+}
+.mp-slider-fill {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 63%;
+  border-radius: 999px;
+  background: #7B68EE;
+}
+.mp-slider-handle {
+  position: absolute;
+  top: 50%;
+  left: 63%;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 3px 10px rgba(80,70,140,0.35), 0 0 0 1px rgba(0,0,0,0.03);
+  transform: translate(-50%, -50%);
+}
+.mp-slider-badge {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 63%;
+  transform: translateX(-50%);
+  background: #7B68EE;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+.mp-slider-badge::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #7B68EE;
+}
+
+.mp-savings-frame.ready .mp-rate-cover,
+.mp-savings-frame.ready .mp-rate-value,
+.mp-savings-frame.ready .mp-slider-track { opacity: 1; }
+
+@media (max-width: 480px) {
+  .mp-rate-value { font-size: 24px; }
+  .mp-rate-value .mp-rate-pct { font-size: 15px; }
+  .mp-slider-handle { width: 20px; height: 20px; }
+  .mp-slider-badge { font-size: 11px; padding: 4px 8px; }
+}
+
 </style>
 </head>
 <body>
@@ -577,8 +669,17 @@
       As a self-directed concept, Mochi Pay's results so far come from prototype testing rather than
       production data. Update this section with real usability-testing results once you have them.
     </p>
-    <div class="media-light" style="background: transparent; padding: 0;">
-      <img src="images/pumkin-savings-plan.png" alt="4주 저축 플랜 설정 및 예상 금액 확인 화면">
+    <div class="media-light" style="background: transparent; padding: 0; max-width: 420px; margin-left: auto; margin-right: auto;">
+      <div class="mp-savings-frame" id="mpSavingsFrame">
+        <img src="images/mp-savings-card.png" alt="4주 저축 플랜 설정 및 예상 금액 확인 화면" id="mpSavingsImg">
+        <span class="mp-rate-cover" aria-hidden="true"></span>
+        <span class="mp-rate-value" id="mpRateValue" aria-hidden="true">3.70<span class="mp-rate-pct">%</span></span>
+        <div class="mp-slider-track" aria-hidden="true">
+          <div class="mp-slider-fill" id="mpSliderFill"></div>
+          <div class="mp-slider-handle" id="mpSliderHandle"></div>
+          <div class="mp-slider-badge" id="mpSliderBadge">25</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -655,6 +756,63 @@
       if (played) return;
       played = true;
       setTimeout(countUp, 300);
+    }
+
+    if (img.complete && img.naturalWidth > 0) {
+      start();
+    } else {
+      img.addEventListener('load', start);
+    }
+  })();
+
+  // 저축플랜 슬라이더 라이브 데모 (6개월 <-> 36개월 왕복, 연이율/배지 동기화)
+  (function () {
+    var frame = document.getElementById('mpSavingsFrame');
+    var img = document.getElementById('mpSavingsImg');
+    var rateEl = document.getElementById('mpRateValue');
+    var fillEl = document.getElementById('mpSliderFill');
+    var handleEl = document.getElementById('mpSliderHandle');
+    var badgeEl = document.getElementById('mpSliderBadge');
+    if (!frame || !img) return;
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var MIN_M = 6, MAX_M = 36;
+    var MIN_RATE = 1.80, MAX_RATE = 4.80;
+    var cycleMs = 7000; // 왕복 한 사이클
+
+    function applyProgress(p) {
+      // p: 0~1
+      var month = Math.round(MIN_M + p * (MAX_M - MIN_M));
+      var rate = MIN_RATE + p * (MAX_RATE - MIN_RATE);
+      var posPct = p * 100;
+      if (rateEl) rateEl.childNodes[0].nodeValue = rate.toFixed(2);
+      if (fillEl) fillEl.style.width = posPct + '%';
+      if (handleEl) handleEl.style.left = posPct + '%';
+      if (badgeEl) {
+        badgeEl.style.left = posPct + '%';
+        badgeEl.textContent = month;
+      }
+    }
+
+    function triangleWave(t) {
+      // 0->1->0 반복
+      var x = (t % cycleMs) / cycleMs; // 0~1
+      return x < 0.5 ? (x * 2) : (2 - x * 2);
+    }
+
+    function loop(ts) {
+      var p = triangleWave(ts);
+      applyProgress(p);
+      requestAnimationFrame(loop);
+    }
+
+    function start() {
+      frame.classList.add('ready');
+      if (reduceMotion) {
+        applyProgress((25 - MIN_M) / (MAX_M - MIN_M));
+        return;
+      }
+      requestAnimationFrame(loop);
     }
 
     if (img.complete && img.naturalWidth > 0) {

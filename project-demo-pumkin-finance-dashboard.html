@@ -140,41 +140,50 @@
 }
 .mp-cards-frame.ready .mp-goals-cover { opacity: 1; }
 
-.mp-float-card {
+.mp-float-mask {
   position: absolute;
   left: 5.2%;
   width: 25.4%;
-  background-image: url('images/pumkin-goals-overview.jpg');
-  background-repeat: no-repeat repeat;
-  background-position-x: 6.971%;
+  overflow: hidden;
   opacity: 0;
 }
-.mp-cards-frame.ready .mp-float-card { opacity: 1; }
+.mp-cards-frame.ready .mp-float-mask { opacity: 1; }
 
-.mp-float-1 { top: 43.2%; height: 19.04%; background-size: 393.7% 525.21%; background-position-y: 53.36%; }
-.mp-float-2 { top: 62.48%; height: 15.84%; background-size: 393.7% 631.31%; background-position-y: 74.24%; }
-.mp-float-3 { top: 78.96%; height: 18.96%; background-size: 393.7% 527.43%; background-position-y: 97.433%; }
+.mp-float-mask-1 { top: 43.2%; height: 19.04%; }
+.mp-float-mask-2 { top: 62.48%; height: 15.84%; }
+.mp-float-mask-3 { top: 78.96%; height: 18.96%; }
 
-.mp-cards-frame.ready .mp-float-1 { animation: mpScroll1 3.2s linear infinite; }
-.mp-cards-frame.ready .mp-float-2 { animation: mpScroll2 3.6s linear infinite; }
-.mp-cards-frame.ready .mp-float-3 { animation: mpScroll3 3.4s linear infinite; }
+.mp-float-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%;
+}
+.mp-cards-frame.ready .mp-float-track-1 { animation: mpTrackUp 6s linear infinite; }
+.mp-cards-frame.ready .mp-float-track-2 { animation: mpTrackUp 6s linear infinite; }
+.mp-cards-frame.ready .mp-float-track-3 { animation: mpTrackUp 6s linear infinite; }
 
-@keyframes mpScroll1 {
-  from { background-position-y: 53.36%; }
-  to   { background-position-y: 153.36%; }
+@keyframes mpTrackUp {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
 }
-@keyframes mpScroll2 {
-  from { background-position-y: 74.24%; }
-  to   { background-position-y: 174.24%; }
+
+.mp-float-tile {
+  width: 100%;
+  height: 50%;
+  background-image: url('images/pumkin-goals-overview.jpg');
+  background-repeat: no-repeat;
+  background-position-x: 6.971%;
 }
-@keyframes mpScroll3 {
-  from { background-position-y: 97.433%; }
-  to   { background-position-y: 197.433%; }
-}
+.mp-float-tile-1 { background-size: 393.7% 525.21%; background-position-y: 53.36%; }
+.mp-float-tile-2 { background-size: 393.7% 631.31%; background-position-y: 74.24%; }
+.mp-float-tile-3 { background-size: 393.7% 527.43%; background-position-y: 97.433%; }
+
 @media (prefers-reduced-motion: reduce) {
-  .mp-cards-frame.ready .mp-float-1,
-  .mp-cards-frame.ready .mp-float-2,
-  .mp-cards-frame.ready .mp-float-3 { animation: none; }
+  .mp-cards-frame.ready .mp-float-track-1,
+  .mp-cards-frame.ready .mp-float-track-2,
+  .mp-cards-frame.ready .mp-float-track-3 { animation: none; }
 }
 
 .mp-goals-balance-cover {
@@ -492,9 +501,24 @@
           <div class="mp-cards-frame" id="mpCardsFrame">
             <img src="images/pumkin-goals-overview.jpg" alt="Mochi Pay 카드 캐러셀과 최근 거래내역, 잔액 화면" id="mpCardsImg">
             <span class="mp-goals-cover" aria-hidden="true"></span>
-            <div class="mp-float-card mp-float-1" aria-hidden="true"></div>
-            <div class="mp-float-card mp-float-2" aria-hidden="true"></div>
-            <div class="mp-float-card mp-float-3" aria-hidden="true"></div>
+            <div class="mp-float-mask mp-float-mask-1" aria-hidden="true">
+              <div class="mp-float-track mp-float-track-1">
+                <div class="mp-float-tile mp-float-tile-1"></div>
+                <div class="mp-float-tile mp-float-tile-1"></div>
+              </div>
+            </div>
+            <div class="mp-float-mask mp-float-mask-2" aria-hidden="true">
+              <div class="mp-float-track mp-float-track-2">
+                <div class="mp-float-tile mp-float-tile-2"></div>
+                <div class="mp-float-tile mp-float-tile-2"></div>
+              </div>
+            </div>
+            <div class="mp-float-mask mp-float-mask-3" aria-hidden="true">
+              <div class="mp-float-track mp-float-track-3">
+                <div class="mp-float-tile mp-float-tile-3"></div>
+                <div class="mp-float-tile mp-float-tile-3"></div>
+              </div>
+            </div>
             <span class="mp-goals-balance-cover" aria-hidden="true"></span>
             <span class="mp-goals-balance" id="mpGoalsBalance" aria-hidden="true">€ 0</span>
           </div>
@@ -585,17 +609,48 @@
     });
   }
 
-  // Design Solution 이미지 — 로드 완료 후 플로팅 카드 표시 (잔액은 애니메이션 없이 고정 표시)
+  // Design Solution 이미지 — 로드 완료 후 플로팅 카드 + 잔액 카운트업 표시
   (function () {
     var frame = document.getElementById('mpCardsFrame');
     var img = document.getElementById('mpCardsImg');
     var balanceEl = document.getElementById('mpGoalsBalance');
     if (!frame || !img) return;
 
-    if (balanceEl) balanceEl.textContent = '€ 27,350,600';
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var target = 27350600;
+    var pauseBetween = 2200;
+    var played = false;
+
+    function countUp() {
+      if (!balanceEl) return;
+      if (reduceMotion) {
+        balanceEl.textContent = '€ ' + target.toLocaleString('en-US');
+        return;
+      }
+      var start = null, duration = 1400;
+      function step(ts) {
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var value = Math.round(target * eased);
+        balanceEl.textContent = '€ ' + value.toLocaleString('en-US');
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          setTimeout(function () {
+            balanceEl.textContent = '€ 0';
+            setTimeout(countUp, 250);
+          }, pauseBetween);
+        }
+      }
+      requestAnimationFrame(step);
+    }
 
     function start() {
       frame.classList.add('ready');
+      if (played) return;
+      played = true;
+      setTimeout(countUp, 300);
     }
 
     if (img.complete && img.naturalWidth > 0) {

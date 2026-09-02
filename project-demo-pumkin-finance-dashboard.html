@@ -124,75 +124,9 @@
 }
 
 /* ---------- Design Solution 이미지 위 마이크로인터랙션 ---------- */
-/* (예전의 좌우 무한 슬라이드 캐러셀은 부자연스러워서 제거하고,
-   왼쪽 거래내역 카드는 각자 다른 리듬으로 살짝 떠다니는 모션으로,
-   오른쪽 잔액은 히어로와 동일한 카운트업 패턴으로 교체함) */
+/* (왼쪽 거래내역 카드는 여러 방식으로 시도했지만 전부 부자연스러워서 제거함.
+   오른쪽 잔액만 히어로와 동일한 카운트업 패턴 유지) */
 .mp-cards-frame { position: relative; display: block; line-height: 0; }
-
-.mp-goals-cover {
-  position: absolute;
-  top: 41.2%;
-  left: 4%;
-  width: 27.75%;
-  height: 58.32%;
-  background: #ffffff;
-  opacity: 0;
-}
-.mp-cards-frame.ready .mp-goals-cover { opacity: 1; }
-
-.mp-float-mask {
-  position: absolute;
-  left: 5.2%;
-  width: 25.4%;
-  overflow: hidden;
-  opacity: 0;
-}
-.mp-cards-frame.ready .mp-float-mask { opacity: 1; }
-
-.mp-float-mask-1 { top: 43.2%; height: 19.04%; }
-.mp-float-mask-2 { top: 62.48%; height: 15.84%; }
-.mp-float-mask-3 { top: 78.96%; height: 18.96%; }
-
-.mp-float-track {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 200%;
-}
-/* block2는 원본 이미지에 두 카드 사이 회색 구분선이 있어서,
-   그 부분을 뺀 깨끗한 한 줄만 4번 반복시켜서 자연스럽게 흐르게 함 */
-.mp-float-track-2 { height: 145.455%; }
-
-.mp-cards-frame.ready .mp-float-track-1 { animation: mpTrackUp 6s linear infinite; }
-.mp-cards-frame.ready .mp-float-track-2 { animation: mpTrackUp2 5s linear infinite; }
-.mp-cards-frame.ready .mp-float-track-3 { animation: mpTrackUp 6s linear infinite; }
-
-@keyframes mpTrackUp {
-  from { transform: translateY(0); }
-  to   { transform: translateY(-50%); }
-}
-@keyframes mpTrackUp2 {
-  from { transform: translateY(0); }
-  to   { transform: translateY(-25%); }
-}
-
-.mp-float-tile {
-  width: 100%;
-  height: 50%;
-  background-image: url('images/pumkin-goals-overview.jpg');
-  background-repeat: no-repeat;
-  background-position-x: 6.971%;
-}
-.mp-float-tile-1 { background-size: 393.7% 525.21%; background-position-y: 53.36%; }
-.mp-float-tile-2 { height: 25%; background-size: 393.7% 1736.11%; background-position-y: 66.469%; }
-.mp-float-tile-3 { background-size: 393.7% 527.43%; background-position-y: 97.433%; }
-
-@media (prefers-reduced-motion: reduce) {
-  .mp-cards-frame.ready .mp-float-track-1,
-  .mp-cards-frame.ready .mp-float-track-2,
-  .mp-cards-frame.ready .mp-float-track-3 { animation: none; }
-}
 
 .mp-goals-balance-cover {
   position: absolute;
@@ -508,27 +442,6 @@
         <div class="media-light" style="background: transparent; padding: 0;">
           <div class="mp-cards-frame" id="mpCardsFrame">
             <img src="images/pumkin-goals-overview.jpg" alt="Mochi Pay 카드 캐러셀과 최근 거래내역, 잔액 화면" id="mpCardsImg">
-            <span class="mp-goals-cover" aria-hidden="true"></span>
-            <div class="mp-float-mask mp-float-mask-1" aria-hidden="true">
-              <div class="mp-float-track mp-float-track-1">
-                <div class="mp-float-tile mp-float-tile-1"></div>
-                <div class="mp-float-tile mp-float-tile-1"></div>
-              </div>
-            </div>
-            <div class="mp-float-mask mp-float-mask-2" aria-hidden="true">
-              <div class="mp-float-track mp-float-track-2">
-                <div class="mp-float-tile mp-float-tile-2"></div>
-                <div class="mp-float-tile mp-float-tile-2"></div>
-                <div class="mp-float-tile mp-float-tile-2"></div>
-                <div class="mp-float-tile mp-float-tile-2"></div>
-              </div>
-            </div>
-            <div class="mp-float-mask mp-float-mask-3" aria-hidden="true">
-              <div class="mp-float-track mp-float-track-3">
-                <div class="mp-float-tile mp-float-tile-3"></div>
-                <div class="mp-float-tile mp-float-tile-3"></div>
-              </div>
-            </div>
             <span class="mp-goals-balance-cover" aria-hidden="true"></span>
             <span class="mp-goals-balance" id="mpGoalsBalance" aria-hidden="true">€ 0</span>
           </div>

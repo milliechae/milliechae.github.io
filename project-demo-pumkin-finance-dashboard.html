@@ -114,7 +114,7 @@
   transform: translateX(-50%);
 }
 .mp-bleed-inner {
-  max-width: 1120px;
+  max-width: 952px;
   margin: 0 auto;
   padding: 0 32px;
   box-sizing: border-box;
@@ -145,10 +145,9 @@
   left: 5.2%;
   width: 25.4%;
   background-image: url('images/pumkin-goals-overview.jpg');
-  background-repeat: no-repeat;
+  background-repeat: no-repeat repeat;
   background-position-x: 6.971%;
   opacity: 0;
-  will-change: transform;
 }
 .mp-cards-frame.ready .mp-float-card { opacity: 1; }
 
@@ -156,15 +155,21 @@
 .mp-float-2 { top: 62.48%; height: 15.84%; background-size: 393.7% 631.31%; background-position-y: 74.24%; }
 .mp-float-3 { top: 78.96%; height: 18.96%; background-size: 393.7% 527.43%; background-position-y: 97.433%; }
 
-.mp-cards-frame.ready .mp-float-1 { animation: mpScrollAway 3.6s ease-in-out 0s infinite; }
-.mp-cards-frame.ready .mp-float-2 { animation: mpScrollAway 3.6s ease-in-out 1.2s infinite; }
-.mp-cards-frame.ready .mp-float-3 { animation: mpScrollAway 3.6s ease-in-out 2.4s infinite; }
+.mp-cards-frame.ready .mp-float-1 { animation: mpScroll1 3.2s linear infinite; }
+.mp-cards-frame.ready .mp-float-2 { animation: mpScroll2 3.6s linear infinite; }
+.mp-cards-frame.ready .mp-float-3 { animation: mpScroll3 3.4s linear infinite; }
 
-@keyframes mpScrollAway {
-  0%, 8% { transform: translateY(0); opacity: 1; }
-  42% { transform: translateY(-16px); opacity: 0; }
-  43% { transform: translateY(16px); opacity: 0; }
-  92%, 100% { transform: translateY(0); opacity: 1; }
+@keyframes mpScroll1 {
+  from { background-position-y: 53.36%; }
+  to   { background-position-y: 153.36%; }
+}
+@keyframes mpScroll2 {
+  from { background-position-y: 74.24%; }
+  to   { background-position-y: 174.24%; }
+}
+@keyframes mpScroll3 {
+  from { background-position-y: 97.433%; }
+  to   { background-position-y: 197.433%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .mp-cards-frame.ready .mp-float-1,
@@ -174,23 +179,23 @@
 
 .mp-goals-balance-cover {
   position: absolute;
-  top: 53.2%;
+  top: 52.24%;
   left: 71.95%;
-  width: 13.05%;
-  height: 3.28%;
+  width: 15.5%;
+  height: 5.44%;
   background: #ffffff;
   opacity: 0;
 }
 .mp-goals-balance {
   position: absolute;
-  top: 53.2%;
+  top: 52.24%;
   left: 71.95%;
-  height: 3.28%;
+  height: 5.44%;
   display: flex;
   align-items: center;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 22px;
   letter-spacing: -0.01em;
   color: #121212;
   white-space: nowrap;
@@ -199,7 +204,7 @@
 .mp-cards-frame.ready .mp-goals-balance-cover,
 .mp-cards-frame.ready .mp-goals-balance { opacity: 1; }
 @media (max-width: 640px) {
-  .mp-goals-balance { font-size: 7px; }
+  .mp-goals-balance { font-size: 14px; }
 }
 
 /* ---------- 히어로 이미지 안 잔액 숫자 카운트업 애니메이션 ---------- */

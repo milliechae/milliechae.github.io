@@ -145,33 +145,39 @@
   left: 4%;
   width: 27.75%;
 }
-.mp-row {
+.mp-cards-frame .mp-static { display: block; width: 100%; height: auto; }
+
+.mp-txn-row { position: relative; width: 100%; line-height: 0; }
+.mp-cards-frame .mp-txn-row .mp-static { display: block; width: 63.29%; height: auto; }
+.mp-cards-frame .mp-price {
+  position: absolute;
+  top: 0;
+  right: 0;
   display: block;
-  width: 100%;
+  width: 36.71%;
   height: auto;
   opacity: 0;
-  transform: translateY(-26px);
+  transform: scale(0.4) translateY(4px);
+  transform-origin: right center;
 }
-.mp-cards-frame.ready .mp-row {
-  animation: mpRowDrop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+.mp-cards-frame.ready .mp-price {
+  animation: mpPricePop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
-.mp-cards-frame.ready .mp-list-block .mp-row:nth-child(1) { animation-delay: 0s; }
-.mp-cards-frame.ready .mp-list-block .mp-row:nth-child(2) { animation-delay: 0.12s; }
-.mp-cards-frame.ready .mp-list-block .mp-row:nth-child(3) { animation-delay: 0.24s; }
-.mp-cards-frame.ready .mp-list-block .mp-row:nth-child(4) { animation-delay: 0.36s; }
-.mp-cards-frame.ready .mp-list-block .mp-row:nth-child(5) { animation-delay: 0.48s; }
-.mp-cards-frame.ready .mp-list-block .mp-row:nth-child(6) { animation-delay: 0.6s; }
-.mp-cards-frame.ready .mp-list-block .mp-row:nth-child(7) { animation-delay: 0.72s; }
+.mp-cards-frame.ready .mp-list-block .mp-txn-row:nth-of-type(1) .mp-price { animation-delay: 0.05s; }
+.mp-cards-frame.ready .mp-list-block .mp-txn-row:nth-of-type(2) .mp-price { animation-delay: 0.22s; }
+.mp-cards-frame.ready .mp-list-block .mp-txn-row:nth-of-type(3) .mp-price { animation-delay: 0.39s; }
+.mp-cards-frame.ready .mp-list-block .mp-txn-row:nth-of-type(4) .mp-price { animation-delay: 0.56s; }
+.mp-cards-frame.ready .mp-list-block .mp-txn-row:nth-of-type(5) .mp-price { animation-delay: 0.73s; }
 
-@keyframes mpRowDrop {
-  0%   { opacity: 0; transform: translateY(-26px); }
-  55%  { opacity: 1; transform: translateY(6px); }
-  75%  { transform: translateY(-3px); }
-  90%  { transform: translateY(1px); }
-  100% { opacity: 1; transform: translateY(0); }
+@keyframes mpPricePop {
+  0%   { opacity: 0; transform: scale(0.4) translateY(4px); }
+  55%  { opacity: 1; transform: scale(1.18) translateY(-3px); }
+  75%  { transform: scale(0.94) translateY(1px); }
+  90%  { transform: scale(1.04) translateY(0); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .mp-cards-frame.ready .mp-row { animation: none; opacity: 1; transform: none; }
+  .mp-cards-frame.ready .mp-price { animation: none; opacity: 1; transform: none; }
 }
 
 .mp-goals-balance-cover {
@@ -490,13 +496,28 @@
             <img src="images/pumkin-goals-overview.jpg" alt="Mochi Pay 카드 캐러셀과 최근 거래내역, 잔액 화면" id="mpCardsImg">
             <span class="mp-goals-cover" aria-hidden="true"></span>
             <div class="mp-list-block" aria-hidden="true">
-              <img class="mp-row" src="images/mp-seg0-header.png" alt="">
-              <img class="mp-row" src="images/mp-seg1-row1.png" alt="">
-              <img class="mp-row" src="images/mp-seg2-row2.png" alt="">
-              <img class="mp-row" src="images/mp-seg3-label.png" alt="">
-              <img class="mp-row" src="images/mp-seg4-row3.png" alt="">
-              <img class="mp-row" src="images/mp-seg5-row4.png" alt="">
-              <img class="mp-row" src="images/mp-seg6-row5.png" alt="">
+              <img class="mp-static" src="images/mp-seg0-header.png" alt="">
+              <div class="mp-txn-row">
+                <img class="mp-static" src="images/mp-seg1-row1-left.png" alt="">
+                <img class="mp-price" src="images/mp-seg1-row1-right.png" alt="">
+              </div>
+              <div class="mp-txn-row">
+                <img class="mp-static" src="images/mp-seg2-row2-left.png" alt="">
+                <img class="mp-price" src="images/mp-seg2-row2-right.png" alt="">
+              </div>
+              <img class="mp-static" src="images/mp-seg3-label.png" alt="">
+              <div class="mp-txn-row">
+                <img class="mp-static" src="images/mp-seg4-row3-left.png" alt="">
+                <img class="mp-price" src="images/mp-seg4-row3-right.png" alt="">
+              </div>
+              <div class="mp-txn-row">
+                <img class="mp-static" src="images/mp-seg5-row4-left.png" alt="">
+                <img class="mp-price" src="images/mp-seg5-row4-right.png" alt="">
+              </div>
+              <div class="mp-txn-row">
+                <img class="mp-static" src="images/mp-seg6-row5-left.png" alt="">
+                <img class="mp-price" src="images/mp-seg6-row5-right.png" alt="">
+              </div>
             </div>
             <span class="mp-goals-balance-cover" aria-hidden="true"></span>
             <span class="mp-goals-balance" id="mpGoalsBalance" aria-hidden="true">€ 0</span>

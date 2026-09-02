@@ -160,13 +160,21 @@
   width: 100%;
   height: 200%;
 }
+/* block2는 원본 이미지에 두 카드 사이 회색 구분선이 있어서,
+   그 부분을 뺀 깨끗한 한 줄만 4번 반복시켜서 자연스럽게 흐르게 함 */
+.mp-float-track-2 { height: 145.455%; }
+
 .mp-cards-frame.ready .mp-float-track-1 { animation: mpTrackUp 6s linear infinite; }
-.mp-cards-frame.ready .mp-float-track-2 { animation: mpTrackUp 6s linear infinite; }
+.mp-cards-frame.ready .mp-float-track-2 { animation: mpTrackUp2 5s linear infinite; }
 .mp-cards-frame.ready .mp-float-track-3 { animation: mpTrackUp 6s linear infinite; }
 
 @keyframes mpTrackUp {
   from { transform: translateY(0); }
   to   { transform: translateY(-50%); }
+}
+@keyframes mpTrackUp2 {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-25%); }
 }
 
 .mp-float-tile {
@@ -177,7 +185,7 @@
   background-position-x: 6.971%;
 }
 .mp-float-tile-1 { background-size: 393.7% 525.21%; background-position-y: 53.36%; }
-.mp-float-tile-2 { background-size: 393.7% 631.31%; background-position-y: 74.24%; }
+.mp-float-tile-2 { height: 25%; background-size: 393.7% 1736.11%; background-position-y: 66.469%; }
 .mp-float-tile-3 { background-size: 393.7% 527.43%; background-position-y: 97.433%; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -509,6 +517,8 @@
             </div>
             <div class="mp-float-mask mp-float-mask-2" aria-hidden="true">
               <div class="mp-float-track mp-float-track-2">
+                <div class="mp-float-tile mp-float-tile-2"></div>
+                <div class="mp-float-tile mp-float-tile-2"></div>
                 <div class="mp-float-tile mp-float-tile-2"></div>
                 <div class="mp-float-tile mp-float-tile-2"></div>
               </div>

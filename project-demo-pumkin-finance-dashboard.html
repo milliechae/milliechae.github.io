@@ -585,63 +585,20 @@
     });
   }
 
-  // Design Solution 이미지 — 로드 완료 후 플로팅 카드 + 잔액 카운트업 표시
+  // Design Solution 이미지 — 로드 완료 후 플로팅 카드 표시 (잔액은 애니메이션 없이 고정 표시)
   (function () {
     var frame = document.getElementById('mpCardsFrame');
     var img = document.getElementById('mpCardsImg');
     var balanceEl = document.getElementById('mpGoalsBalance');
     if (!frame || !img) return;
 
-    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var target = 27350600;
-    var pauseBetween = 2200;
-    var played = false;
-
-    function countUp() {
-      if (!balanceEl) return;
-      if (reduceMotion) {
-        balanceEl.textContent = '€ ' + target.toLocaleString('en-US');
-        return;
-      }
-      var start = null, duration = 1400;
-      function step(ts) {
-        if (!start) start = ts;
-        var progress = Math.min((ts - start) / duration, 1);
-        var eased = 1 - Math.pow(1 - progress, 3);
-        var value = Math.round(target * eased);
-        balanceEl.textContent = '€ ' + value.toLocaleString('en-US');
-        if (progress < 1) {
-          requestAnimationFrame(step);
-        } else {
-          setTimeout(function () {
-            balanceEl.textContent = '€ 0';
-            setTimeout(countUp, 250);
-          }, pauseBetween);
-        }
-      }
-      requestAnimationFrame(step);
-    }
+    if (balanceEl) balanceEl.textContent = '€ 27,350,600';
 
     function start() {
       frame.classList.add('ready');
-      if (played) return;
-      played = true;
-      setTimeout(countUp, 300);
     }
 
-    // 뷰포트에 들어왔을 때만 재생 시작 (스크롤 안 하면 굳이 안 돌아가게)
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            if (img.complete && img.naturalWidth > 0) start();
-            else img.addEventListener('load', start);
-            io.disconnect();
-          }
-        });
-      }, { threshold: 0.3 });
-      io.observe(frame);
-    } else if (img.complete && img.naturalWidth > 0) {
+    if (img.complete && img.naturalWidth > 0) {
       start();
     } else {
       img.addEventListener('load', start);

@@ -157,7 +157,23 @@
   display: block;
   line-height: 0;
 }
-.mp-icon img { display: block; width: 100%; height: 100%; }
+.mp-icon img { display: block; width: 100%; height: 100%; position: relative; z-index: 2; }
+
+.mp-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0.7);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.mp-icon.type-plus::before { background: rgba(15, 189, 143, 0.4); }
+.mp-icon.type-minus::before { background: rgba(248, 61, 89, 0.4); }
 
 .mp-icon-1 { left: 9.557%; top: 31.016%; }
 .mp-icon-2 { left: 9.557%; top: 43.836%; }
@@ -165,22 +181,42 @@
 .mp-icon-4 { left: 9.557%; top: 78.945%; }
 .mp-icon-5 { left: 9.557%; top: 91.765%; }
 
-.mp-cards-frame.ready .mp-icon-1 { animation: mpIconPulse 2.6s ease-in-out 0s infinite; }
-.mp-cards-frame.ready .mp-icon-2 { animation: mpIconPulse 2.6s ease-in-out 0.5s infinite; }
-.mp-cards-frame.ready .mp-icon-3 { animation: mpIconPulse 2.6s ease-in-out 1s infinite; }
-.mp-cards-frame.ready .mp-icon-4 { animation: mpIconPulse 2.6s ease-in-out 1.5s infinite; }
-.mp-cards-frame.ready .mp-icon-5 { animation: mpIconPulse 2.6s ease-in-out 2s infinite; }
+.mp-cards-frame.ready .mp-icon-1 img { animation: mpIconBounce 3.6s ease-in-out 0s infinite; }
+.mp-cards-frame.ready .mp-icon-2 img { animation: mpIconBounce 3.6s ease-in-out 0.7s infinite; }
+.mp-cards-frame.ready .mp-icon-3 img { animation: mpIconBounce 3.6s ease-in-out 1.4s infinite; }
+.mp-cards-frame.ready .mp-icon-4 img { animation: mpIconBounce 3.6s ease-in-out 2.1s infinite; }
+.mp-cards-frame.ready .mp-icon-5 img { animation: mpIconBounce 3.6s ease-in-out 2.8s infinite; }
 
-@keyframes mpIconPulse {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.28); }
+.mp-cards-frame.ready .mp-icon-1::before { animation: mpRingPing 3.6s ease-out 0s infinite; }
+.mp-cards-frame.ready .mp-icon-2::before { animation: mpRingPing 3.6s ease-out 0.7s infinite; }
+.mp-cards-frame.ready .mp-icon-3::before { animation: mpRingPing 3.6s ease-out 1.4s infinite; }
+.mp-cards-frame.ready .mp-icon-4::before { animation: mpRingPing 3.6s ease-out 2.1s infinite; }
+.mp-cards-frame.ready .mp-icon-5::before { animation: mpRingPing 3.6s ease-out 2.8s infinite; }
+
+@keyframes mpIconBounce {
+  0%   { transform: scale(1); }
+  8%   { transform: scale(1.55); }
+  18%  { transform: scale(0.82); }
+  28%  { transform: scale(1.12); }
+  38%, 100% { transform: scale(1); }
+}
+@keyframes mpRingPing {
+  0%   { transform: translate(-50%, -50%) scale(0.7); opacity: 0; }
+  8%   { opacity: 0.6; }
+  40%  { transform: translate(-50%, -50%) scale(2.3); opacity: 0; }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(2.3); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .mp-cards-frame.ready .mp-icon-1,
-  .mp-cards-frame.ready .mp-icon-2,
-  .mp-cards-frame.ready .mp-icon-3,
-  .mp-cards-frame.ready .mp-icon-4,
-  .mp-cards-frame.ready .mp-icon-5 { animation: none; }
+  .mp-cards-frame.ready .mp-icon-1 img,
+  .mp-cards-frame.ready .mp-icon-2 img,
+  .mp-cards-frame.ready .mp-icon-3 img,
+  .mp-cards-frame.ready .mp-icon-4 img,
+  .mp-cards-frame.ready .mp-icon-5 img,
+  .mp-cards-frame.ready .mp-icon-1::before,
+  .mp-cards-frame.ready .mp-icon-2::before,
+  .mp-cards-frame.ready .mp-icon-3::before,
+  .mp-cards-frame.ready .mp-icon-4::before,
+  .mp-cards-frame.ready .mp-icon-5::before { animation: none; }
 }
 
 .mp-goals-balance-cover {
@@ -500,11 +536,11 @@
             <span class="mp-goals-cover" aria-hidden="true"></span>
             <div class="mp-list-block" aria-hidden="true">
               <img class="mp-list-img" src="images/mp-list.png" alt="">
-              <span class="mp-icon mp-icon-1"><img src="images/mp-minus.png" alt=""></span>
-              <span class="mp-icon mp-icon-2"><img src="images/mp-plus.png" alt=""></span>
-              <span class="mp-icon mp-icon-3"><img src="images/mp-plus.png" alt=""></span>
-              <span class="mp-icon mp-icon-4"><img src="images/mp-minus.png" alt=""></span>
-              <span class="mp-icon mp-icon-5"><img src="images/mp-plus.png" alt=""></span>
+              <span class="mp-icon mp-icon-1 type-minus"><img src="images/mp-minus.png" alt=""></span>
+              <span class="mp-icon mp-icon-2 type-plus"><img src="images/mp-plus.png" alt=""></span>
+              <span class="mp-icon mp-icon-3 type-plus"><img src="images/mp-plus.png" alt=""></span>
+              <span class="mp-icon mp-icon-4 type-minus"><img src="images/mp-minus.png" alt=""></span>
+              <span class="mp-icon mp-icon-5 type-plus"><img src="images/mp-plus.png" alt=""></span>
             </div>
             <span class="mp-goals-balance-cover" aria-hidden="true"></span>
             <span class="mp-goals-balance" id="mpGoalsBalance" aria-hidden="true">€ 0</span>

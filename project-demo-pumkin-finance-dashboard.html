@@ -784,23 +784,31 @@
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var MIN_M = 6, MAX_M = 36;
     var MIN_RATE = 1.80, MAX_RATE = 4.80;
-    var cycleMs = 7000; // 왕복 한 사이클
+    var P_REST = (27 - MIN_M) / (MAX_M - MIN_M); // 27개월 지점 (0~1)
+    var durA = 1600;  // 27 -> 6 (깔끔하게 이동, 오버슈트 없음)
+    var durB = 2100;  // 6 -> 36 (깔끔하게 이동, 오버슈트 없음)
+    var durC = 1400;  // 36 -> 27 로 이동하면서 살짝 넘쳤다가 튕기듯 정착
+    var durHold = 1600; // 27에서 잠깐 정지
+    var cycleMs = durA + durB + durC + durHold;
 
     function applyProgress(pRaw) {
-      // pRaw: 위치/필용 (살짝 오버슈트 허용), pClamped: 숫자 표시용 (0~1로 고정)
+      // pRaw: 위치/필용 (27 정착 구간에서만 살짝 오버슈트 허용), pClamped: 숫자 표시용 (0~1로 고정)
       var pClamped = Math.max(0, Math.min(1, pRaw));
       var month = Math.round(MIN_M + pClamped * (MAX_M - MIN_M));
       var rate = MIN_RATE + pClamped * (MAX_RATE - MIN_RATE);
       var posPct = pRaw * 100;
       if (rateEl) rateEl.childNodes[0].nodeValue = rate.toFixed(2);
-      if (fillEl) fillEl.style.width = Math.max(0, posPct) + '%';
-      if (handleEl) handleEl.style.left = posPct + '%';
+      if (fillEl) fillEl.style.width = Math.max(0, Math.min(100, posPct)) + '%';
+      if (handleEl) handleEl.style.left = Math.max(0, Math.min(100, posPct)) + '%';
       if (badgeEl) {
-        badgeEl.style.left = posPct + '%';
+        badgeEl.style.left = Math.max(0, Math.min(100, posPct)) + '%';
         badgeEl.textContent = month;
       }
     }
 
+    function easeInOutQuad(t) {
+      return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+    }
     function easeOutBack(x) {
       var c1 = 1.70158;
       var c3 = c1 + 1;
@@ -808,13 +816,26 @@
     }
 
     function triangleWave(t) {
-      // 카카오뱅크 느낌: 왕복 끝 지점에서 살짝 넘쳤다가 튕기듯 정착
-      var x = (t % cycleMs) / cycleMs; // 0~1
-      if (x < 0.5) {
-        return easeOutBack(x / 0.5);
-      } else {
-        return 1 - easeOutBack((x - 0.5) / 0.5);
+      var x = t % cycleMs;
+      if (x < durA) {
+        // 27 -> 6, 깔끔한 이동
+        var h = x / durA;
+        return P_REST + (0 - P_REST) * easeInOutQuad(h);
       }
+      x -= durA;
+      if (x < durB) {
+        // 6 -> 36, 깔끔한 이동
+        var h2 = x / durB;
+        return 0 + (1 - 0) * easeInOutQuad(h2);
+      }
+      x -= durB;
+      if (x < durC) {
+        // 36 -> 27, 살짝 넘쳤다가 튕기며 정착
+        var h3 = x / durC;
+        return 1 + (P_REST - 1) * easeOutBack(h3);
+      }
+      // 정지 구간: 27에서 유지
+      return P_REST;
     }
 
     function loop(ts) {
@@ -826,7 +847,7 @@
     function start() {
       frame.classList.add('ready');
       if (reduceMotion) {
-        applyProgress((25 - MIN_M) / (MAX_M - MIN_M));
+        applyProgress(P_REST);
         return;
       }
       requestAnimationFrame(loop);

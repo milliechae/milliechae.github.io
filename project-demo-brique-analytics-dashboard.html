@@ -7,6 +7,23 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="style.css">
+<style>
+  .bq-bleed {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .bq-bleed-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    box-sizing: border-box;
+  }
+  @media (max-width: 640px) {
+    .bq-bleed-inner { padding: 0 16px; }
+  }
+</style>
 </head>
 <body>
 
@@ -34,8 +51,12 @@
     </span>
   </header>
 
-  <div class="hero-media" style="background: transparent;">
-    <img src="images/brique-hero.svg" alt="BRIQUE Analytics 워크플로우 기반 데이터 파이프라인 대시보드">
+  <div class="bq-bleed">
+    <div class="bq-bleed-inner">
+      <div class="hero-media" style="background: transparent;">
+        <img src="images/brique-hero.svg" alt="BRIQUE Analytics 워크플로우 기반 데이터 파이프라인 대시보드">
+      </div>
+    </div>
   </div>
 
   <section class="intro">

@@ -275,7 +275,10 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
 }
 .quote-media img {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -356,7 +359,7 @@ html[data-theme="dark"] .subtitle { color: #9E9E9E; }
   font-size: 22px;
   line-height: 1.5;
 }
-.quote-media img { position: absolute; inset: 0; opacity: 0.55; }
+.quote-media img { position: absolute; top: 0; right: 0; bottom: 0; left: 0; opacity: 0.55; }
 
 /* ---------- 본문 섹션 공통 ---------- */
 .content-block { margin: 48px 0; }

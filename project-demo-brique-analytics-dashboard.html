@@ -56,17 +56,30 @@
   @media (max-width: 640px) {
     .bq-cursor { width: 11px; height: 11px; margin-left: -5.5px; margin-top: -5.5px; }
   }
-  .bq-complib-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    margin: 32px 0;
+  .bq-single-img {
+    margin: 20px 0 0;
   }
-  .bq-complib-grid img {
+  .bq-single-img img {
     width: 100%;
     height: auto;
     display: block;
     border-radius: 12px;
+  }
+  .bq-pair-img {
+    display: flex;
+    gap: 12px;
+    margin: 20px 0 0;
+  }
+  .bq-pair-img img {
+    width: 50%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    flex: 1 1 0;
+  }
+  @media (max-width: 480px) {
+    .bq-pair-img { flex-direction: column; }
+    .bq-pair-img img { width: 100%; }
   }
   @media (prefers-reduced-motion: reduce) {
     .bq-node { opacity: 1; transform: none; }
@@ -345,10 +358,17 @@
     <div class="finding">
       <h3>Node-level data preview at every step.</h3>
       <p>Every node in the pipeline can be inspected on its own, so when something breaks, analysts can see exactly which step introduced the problem instead of debugging the pipeline end to end.</p>
+      <div class="bq-single-img">
+        <img src="images/brique-complib-canvas.png" alt="워크플로우 캔버스">
+      </div>
     </div>
     <div class="finding">
       <h3>Reusable, shareable pipeline components.</h3>
       <p>Common steps can be saved as reusable components and shared across teams, cutting down on duplicated work and keeping pipeline logic consistent org-wide.</p>
+      <div class="bq-pair-img">
+        <img src="images/brique-complib-attribute.png" alt="Attribute 패널">
+        <img src="images/brique-complib-library.png" alt="Library 패널">
+      </div>
     </div>
   </section>
 
@@ -358,11 +378,6 @@
       Saved components live in a shared library, with an auto-suggestion feature that surfaces
       existing steps as analysts build, so teams stop reinventing logic that already exists elsewhere in the org.
     </p>
-    <div class="bq-complib-grid">
-      <img src="images/brique-complib-canvas.png" alt="워크플로우 캔버스">
-      <img src="images/brique-complib-attribute.png" alt="Attribute 패널">
-      <img src="images/brique-complib-library.png" alt="Library 패널">
-    </div>
   </section>
 
   <section class="content-block">

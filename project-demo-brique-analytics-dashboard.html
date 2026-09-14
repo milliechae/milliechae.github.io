@@ -15,6 +15,18 @@
     padding-top: 35.71%;
     margin: 56px 0;
   }
+  .bq-complib-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 32px 0;
+  }
+  .bq-complib-grid img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+  }
   .bq-node-demo svg {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -338,8 +350,10 @@
       Saved components live in a shared library, with an auto-suggestion feature that surfaces
       existing steps as analysts build, so teams stop reinventing logic that already exists elsewhere in the org.
     </p>
-    <div class="media-light" style="background: transparent;">
-      <img src="images/brique-component-library.jpg" alt="재사용 가능한 파이프라인 컴포넌트 라이브러리 화면">
+    <div class="bq-complib-grid">
+      <img src="images/brique-complib-canvas.png" alt="워크플로우 캔버스">
+      <img src="images/brique-complib-attribute.png" alt="Attribute 패널">
+      <img src="images/brique-complib-library.png" alt="Library 패널">
     </div>
   </section>
 

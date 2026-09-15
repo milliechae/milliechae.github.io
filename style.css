@@ -131,7 +131,7 @@ html[data-theme="dark"] .icon-dark { display: inline; }
 .theme-toggle {
   position: relative;
   width: 64px;
-  height: 34px;
+  height: 36px;
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,0.6);
   background: rgba(255,255,255,0.55);

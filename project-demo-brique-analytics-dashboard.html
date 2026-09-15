@@ -217,8 +217,8 @@
     </h2>
 
     <p>
-      Before designing the workflow builder, I spent time with analysts to understand how they thought
-      through a pipeline from raw data to finished report, and where the current process broke down.
+      I spent time with analysts to understand how they moved from raw data to a finished report,
+      and where that process broke down.
     </p>
 
     <div class="research-media">
@@ -233,19 +233,17 @@
         <h3>Analysts think in steps, not schemas.</h3>
 
         <p>
-          People described their pipelines as a sequence of transformations — filter, then join,
-          then aggregate — not as abstract data structures.
+          They described pipelines as a sequence of transformations — filter, then join, then aggregate.
         </p>
       </div>
 
       <div class="research-item">
         <span class="research-number">02</span>
 
-        <h3>Debugging was the real bottleneck, not building.</h3>
+        <h3>Debugging was the real bottleneck.</h3>
 
         <p>
-          Initial pipeline setup was often fine. What consistently ate time was figuring out
-          where a pipeline had gone wrong once it did.
+          Setup was rarely the problem; finding where a pipeline broke was.
         </p>
       </div>
 
@@ -255,8 +253,7 @@
         <h3>Reusability was invisible.</h3>
 
         <p>
-          Teams frequently rebuilt near-identical pipeline steps from scratch because there was
-          no way to find or reuse work someone else had already done.
+          Teams kept rebuilding steps from scratch with no way to find existing work.
         </p>
       </div>
 
@@ -304,17 +301,17 @@
 
       <div class="hypothesis-item">
         <strong>01&nbsp;&nbsp;Represent pipelines as visual workflows</strong>
-        <p>If pipeline steps are shown as connected nodes instead of code, analysts will be able to build and understand pipelines without engineering support.</p>
+        <p>Connected nodes instead of code, so analysts can build without engineering support.</p>
       </div>
 
       <div class="hypothesis-item">
         <strong>02&nbsp;&nbsp;Surface data health at every step</strong>
-        <p>If analysts can preview data at each node, debugging will move from guesswork to direct inspection.</p>
+        <p>Debugging becomes direct inspection instead of guesswork.</p>
       </div>
 
       <div class="hypothesis-item">
         <strong>03&nbsp;&nbsp;Make components reusable across teams</strong>
-        <p>If pipeline steps can be saved and shared, teams will stop rebuilding the same logic from scratch.</p>
+        <p>Saved logic instead of rebuilt logic.</p>
       </div>
 
     </div>
@@ -352,32 +349,20 @@
     </div>
 
     <div class="finding">
-      <h3>A drag-and-drop workflow canvas, not a code editor.</h3>
-      <p>Analysts assemble pipelines by connecting steps on a canvas, translating the "filter, then join, then aggregate" mental model directly into the interface.</p>
-    </div>
-    <div class="finding">
-      <h3>Node-level data preview at every step.</h3>
-      <p>Every node in the pipeline can be inspected on its own, so when something breaks, analysts can see exactly which step introduced the problem instead of debugging the pipeline end to end.</p>
+      <h3>A visual canvas, not a code editor.</h3>
+      <p>Analysts connect steps on a canvas — filter, join, aggregate — and inspect any node's data at any point.</p>
       <div class="bq-single-img">
         <img src="images/brique-complib-canvas.png" alt="워크플로우 캔버스">
       </div>
     </div>
     <div class="finding">
-      <h3>Reusable, shareable pipeline components.</h3>
-      <p>Common steps can be saved as reusable components and shared across teams, cutting down on duplicated work and keeping pipeline logic consistent org-wide.</p>
+      <h3>Reusable, shareable components.</h3>
+      <p>Common steps live in a shared library with auto-suggestion, so teams stop rebuilding logic that already exists.</p>
       <div class="bq-pair-img">
         <img src="images/brique-complib-attribute.png" alt="Attribute 패널">
         <img src="images/brique-complib-library.png" alt="Library 패널">
       </div>
     </div>
-  </section>
-
-  <section class="content-block detail-block">
-    <h3><span class="detail-icon">🧱</span> Build once, reuse everywhere.</h3>
-    <p>
-      Saved components live in a shared library, with an auto-suggestion feature that surfaces
-      existing steps as analysts build, so teams stop reinventing logic that already exists elsewhere in the org.
-    </p>
   </section>
 
   <section class="content-block">

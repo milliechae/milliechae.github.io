@@ -174,19 +174,19 @@ html[data-theme="dark"] .icon-dark { display: inline; }
 .theme-toggle:active { transform: translateY(0) scale(0.98); }
 .theme-toggle .track-icon { display: none; }
 
-/* knob: 30x30, inset 2px, single rim + 단일 subtle inner highlight */
+/* knob: 28x28, inset 3px 동일, single rim + 대칭 그림자 */
 .theme-toggle .knob {
   position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 30px;
-  height: 30px;
+  top: 3px;
+  left: 3px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   border: 1px solid rgba(255,255,255,0.4);
   background: rgba(255,255,255,0.01);
   -webkit-backdrop-filter: blur(8px) saturate(185%);
   backdrop-filter: blur(8px) saturate(185%);
-  box-shadow: 0 1.5px 4px -1px rgba(0,0,0,0.08);
+  box-shadow: 0 0 3px rgba(0,0,0,0.08);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -209,7 +209,7 @@ html[data-theme="dark"] .icon-dark { display: inline; }
 .theme-toggle .knob-moon { display: none; }
 html[data-theme="dark"] .theme-toggle .knob-sun { display: none; }
 html[data-theme="dark"] .theme-toggle .knob-moon { display: flex; }
-/* 이동거리 = track(64) - inset(2)*2 - knob(30) = 30px */
+/* 이동거리 = track(64) - inset(3)*2 - knob(28) = 30px */
 html[data-theme="dark"] .theme-toggle .knob { transform: translateX(30px); }
 
 html[data-theme="dark"] .theme-toggle {
@@ -228,7 +228,7 @@ html[data-theme="dark"] .theme-toggle::after {
 html[data-theme="dark"] .theme-toggle .knob {
   border-color: rgba(255,255,255,0.28);
   background: rgba(255,255,255,0.006);
-  box-shadow: 0 1.5px 4px -1px rgba(0,0,0,0.2);
+  box-shadow: 0 0 3px rgba(0,0,0,0.18);
   color: #c2c2c8;
 }
 html[data-theme="dark"] .theme-toggle .knob::before {

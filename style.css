@@ -125,16 +125,17 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   width: 64px;
   height: 34px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.6);
-  background: linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,255,255,0.1));
-  -webkit-backdrop-filter: blur(14px) saturate(180%);
-  backdrop-filter: blur(14px) saturate(180%);
+  border: 1.5px solid rgba(255,255,255,0.8);
+  background: linear-gradient(160deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.12) 45%, rgba(255,255,255,0.4) 100%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  backdrop-filter: blur(18px) saturate(180%);
   box-shadow:
-    inset 0 1.5px 2px rgba(255,255,255,0.9),
-    inset 0 -3px 4px rgba(0,0,0,0.08),
-    0 2px 4px rgba(0,0,0,0.08),
-    0 10px 24px rgba(0,0,0,0.22),
-    0 3px 10px rgba(0,0,0,0.14);
+    inset 0 2.5px 3px rgba(255,255,255,1),
+    inset 0 -6px 8px -3px rgba(255,255,255,0.5),
+    inset 0 -3px 6px rgba(0,0,0,0.12),
+    0 1px 1px rgba(255,255,255,0.9),
+    0 14px 30px rgba(0,0,0,0.26),
+    0 4px 10px rgba(0,0,0,0.16);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -146,8 +147,16 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 55%;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(255,255,255,0));
+  height: 60%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0));
+  pointer-events: none;
+}
+.theme-toggle::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 12%; right: 12%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(255,255,255,0.35), rgba(255,255,255,0));
   pointer-events: none;
 }
 .theme-toggle .track-icon { display: none; }
@@ -158,11 +167,12 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: radial-gradient(circle at 32% 28%, #ffffff 0%, #f4f4f4 55%, #e6e6e6 100%);
+  background: radial-gradient(circle at 32% 26%, #ffffff 0%, #f6f6f6 50%, #e2e2e2 100%);
   box-shadow:
-    inset 0 1.5px 1.5px rgba(255,255,255,0.95),
-    inset 0 -2px 3px rgba(0,0,0,0.08),
-    2px 4px 9px rgba(0,0,0,0.3);
+    inset 0 1.5px 1.5px rgba(255,255,255,1),
+    inset 0 -3px 4px rgba(0,0,0,0.1),
+    2px 5px 10px rgba(0,0,0,0.32),
+    0 1px 1px rgba(255,255,255,0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -171,19 +181,33 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   z-index: 1;
   transition: transform 0.35s cubic-bezier(.4,0,.2,1);
 }
-.theme-toggle .knob-sun { display: inline; color: #e8a33d; }
-.theme-toggle .knob-moon { display: none; color: #7c8591; }
+.theme-toggle .knob::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  width: 8px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.95);
+  filter: blur(1px);
+}
+.theme-toggle .knob-sun,
+.theme-toggle .knob-moon { position: relative; z-index: 1; }
+.theme-toggle .knob-sun { display: inline; color: #8a8a8a; }
+.theme-toggle .knob-moon { display: none; color: #8a8a8a; }
 html[data-theme="dark"] .theme-toggle .knob-sun { display: none; }
 html[data-theme="dark"] .theme-toggle .knob-moon { display: inline; }
 html[data-theme="dark"] .theme-toggle .knob { transform: translateX(32px); }
 html[data-theme="dark"] .theme-toggle {
-  border-color: rgba(255,255,255,0.22);
-  background: linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04));
+  border-color: rgba(255,255,255,0.3);
+  background: linear-gradient(160deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.05) 45%, rgba(255,255,255,0.15) 100%);
   box-shadow:
-    inset 0 1.5px 2px rgba(255,255,255,0.25),
-    inset 0 -3px 4px rgba(0,0,0,0.3),
-    0 10px 26px rgba(0,0,0,0.55),
-    0 3px 10px rgba(0,0,0,0.35);
+    inset 0 2px 3px rgba(255,255,255,0.35),
+    inset 0 -6px 8px -3px rgba(255,255,255,0.12),
+    inset 0 -3px 6px rgba(0,0,0,0.35),
+    0 14px 32px rgba(0,0,0,0.6),
+    0 4px 10px rgba(0,0,0,0.4);
 }
 
 /* ---------- 헤더 ---------- */

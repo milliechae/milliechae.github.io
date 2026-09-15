@@ -127,11 +127,10 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   cursor: pointer;
 }
 
-/* ---------- 다크/라이트 토글: 진짜 유리 링 구조 ----------
-   기존 방식(내부 채움 + inset shadow)을 버리고,
-   background-clip: border-box / padding-box 기법으로
-   "채워진 면"이 아니라 "얇은 링(테두리)"만 굴절광으로 그려지도록 재구현.
-   내부(padding-box)는 사실상 완전 투명, 링(border-box)만 conic-gradient로 방향별 빛을 가짐.
+/* ---------- 다크/라이트 토글: 끊어진 불규칙 하이라이트 유리 ----------
+   전체 둘레를 감싸는 연속된 링(회색 테두리처럼 보이는 원인) 대신,
+   빛을 받는 지점에만 하이라이트가 끊어져서 나타나도록 conic-gradient에
+   넓은 transparent 구간을 섞어 넣음. 대부분의 둘레는 완전 투명.
 */
 .theme-toggle {
   position: relative;
@@ -140,15 +139,24 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   border-radius: 999px;
   border: 2px solid transparent;
   background:
-    linear-gradient(rgba(255,255,255,0.02), rgba(255,255,255,0.02)) padding-box,
+    linear-gradient(rgba(255,255,255,0.012), rgba(255,255,255,0.012)) padding-box,
     conic-gradient(from 0deg,
-      rgba(255,255,255,0.95) 0deg,
-      rgba(255,255,255,0.35) 70deg,
-      rgba(255,255,255,0.18) 105deg,
-      rgba(130,145,160,0.55) 180deg,
-      rgba(255,255,255,0.18) 255deg,
-      rgba(255,255,255,0.35) 290deg,
-      rgba(255,255,255,0.95) 360deg
+      transparent 0deg,
+      rgba(255,255,255,0.85) 10deg,
+      rgba(255,255,255,0.4) 28deg,
+      transparent 48deg,
+      transparent 78deg,
+      rgba(255,255,255,0.26) 95deg,
+      transparent 115deg,
+      transparent 172deg,
+      rgba(160,195,225,0.1) 182deg,
+      transparent 192deg,
+      transparent 248deg,
+      rgba(255,255,255,0.24) 265deg,
+      transparent 282deg,
+      transparent 332deg,
+      rgba(255,255,255,0.85) 350deg,
+      transparent 360deg
     ) border-box;
   -webkit-backdrop-filter: blur(22px) saturate(190%);
   backdrop-filter: blur(22px) saturate(190%);
@@ -166,23 +174,14 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(115deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.12) 16%, rgba(255,255,255,0) 30%);
-  pointer-events: none;
-}
-/* 링 바로 안쪽의 아주 얇은 2차 굴절선 (밝은 링 다음에 살짝 어두워지는 두께감) */
-.theme-toggle::after {
-  content: '';
-  position: absolute;
-  inset: 2px;
-  border-radius: inherit;
-  box-shadow: inset 0 0 0 1px rgba(90,100,115,0.12);
+  background: linear-gradient(115deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.08) 16%, rgba(255,255,255,0) 28%);
   pointer-events: none;
 }
 .theme-toggle:hover { transform: translateY(-0.5px); }
 .theme-toggle:active { transform: translateY(0) scale(0.98); }
 .theme-toggle .track-icon { display: none; }
 
-/* knob: 볼록 유리 렌즈 - 같은 border-box 링 기법 + 내부 특수 하이라이트/음영 */
+/* knob: 유리 렌즈 - 끊어진 하이라이트, 중앙 최대한 clear */
 .theme-toggle .knob {
   position: absolute;
   top: 3px;
@@ -192,35 +191,38 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   border-radius: 50%;
   border: 2px solid transparent;
   background:
-    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02), rgba(255,255,255,0.02)) padding-box,
-    conic-gradient(from 40deg,
-      rgba(255,255,255,0.4) 0deg,
-      rgba(255,255,255,0.95) 40deg,
-      rgba(255,255,255,0.3) 90deg,
-      rgba(185,205,225,0.3) 160deg,
-      rgba(150,178,205,0.28) 200deg,
-      rgba(185,205,225,0.3) 250deg,
-      rgba(255,255,255,0.5) 330deg,
-      rgba(255,255,255,0.4) 360deg
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.012), rgba(255,255,255,0.012)) padding-box,
+    conic-gradient(from 0deg,
+      transparent 0deg,
+      rgba(255,255,255,0.9) 18deg,
+      rgba(255,255,255,0.45) 42deg,
+      transparent 68deg,
+      transparent 148deg,
+      rgba(180,205,225,0.14) 164deg,
+      transparent 180deg,
+      transparent 196deg,
+      rgba(150,178,205,0.14) 212deg,
+      transparent 228deg,
+      transparent 332deg,
+      rgba(255,255,255,0.65) 350deg,
+      transparent 360deg
     ) border-box;
   -webkit-backdrop-filter: blur(10px) saturate(190%);
   backdrop-filter: blur(10px) saturate(190%);
-  box-shadow: 0 1.5px 4px -1px rgba(0,0,0,0.09);
+  box-shadow: 0 1.5px 4px -1px rgba(0,0,0,0.08);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #808080;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-/* knob 좌상단 스페큘러 점 + 우하단 아주 옅고 넓게 번진 ice-blue-gray 굴절 (경계 안 보이게) */
+/* knob 안쪽 좌상단 스페큘러 점 하나만 (삼각형 음영 전부 제거) */
 .theme-toggle .knob::before {
   content: '';
   position: absolute;
   inset: 2px;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at 26% 22%, rgba(255,255,255,0.95), rgba(255,255,255,0) 24%),
-    radial-gradient(circle at 78% 82%, rgba(160,195,225,0.1), rgba(160,195,225,0.03) 40%, rgba(255,255,255,0) 62%);
+  background: radial-gradient(circle at 26% 22%, rgba(255,255,255,0.85), rgba(255,255,255,0) 22%);
   pointer-events: none;
 }
 .theme-toggle .knob svg { width: 16px; height: 16px; display: block; position: relative; z-index: 1; }
@@ -232,43 +234,52 @@ html[data-theme="dark"] .theme-toggle .knob { transform: translateX(44px); }
 
 html[data-theme="dark"] .theme-toggle {
   background:
-    linear-gradient(rgba(255,255,255,0.015), rgba(255,255,255,0.015)) padding-box,
+    linear-gradient(rgba(255,255,255,0.01), rgba(255,255,255,0.01)) padding-box,
     conic-gradient(from 0deg,
-      rgba(255,255,255,0.4) 0deg,
-      rgba(255,255,255,0.14) 70deg,
-      rgba(255,255,255,0.06) 105deg,
-      rgba(0,0,0,0.4) 180deg,
-      rgba(255,255,255,0.06) 255deg,
-      rgba(255,255,255,0.14) 290deg,
-      rgba(255,255,255,0.4) 360deg
+      transparent 0deg,
+      rgba(255,255,255,0.32) 10deg,
+      rgba(255,255,255,0.12) 28deg,
+      transparent 48deg,
+      transparent 78deg,
+      rgba(255,255,255,0.09) 95deg,
+      transparent 115deg,
+      transparent 172deg,
+      rgba(90,130,170,0.22) 182deg,
+      transparent 192deg,
+      transparent 248deg,
+      rgba(255,255,255,0.08) 265deg,
+      transparent 282deg,
+      transparent 332deg,
+      rgba(255,255,255,0.32) 350deg,
+      transparent 360deg
     ) border-box;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 8px 18px rgba(0,0,0,0.14);
 }
 html[data-theme="dark"] .theme-toggle::before {
-  background: linear-gradient(115deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.04) 16%, rgba(255,255,255,0) 30%);
-}
-html[data-theme="dark"] .theme-toggle::after {
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.3);
+  background: linear-gradient(115deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.03) 16%, rgba(255,255,255,0) 28%);
 }
 html[data-theme="dark"] .theme-toggle .knob {
   background:
-    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.015), rgba(255,255,255,0.015)) padding-box,
-    conic-gradient(from 40deg,
-      rgba(255,255,255,0.14) 0deg,
-      rgba(255,255,255,0.42) 40deg,
-      rgba(255,255,255,0.12) 90deg,
-      rgba(130,155,180,0.26) 160deg,
-      rgba(70,90,110,0.3) 200deg,
-      rgba(130,155,180,0.26) 250deg,
-      rgba(255,255,255,0.2) 330deg,
-      rgba(255,255,255,0.14) 360deg
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.01), rgba(255,255,255,0.01)) padding-box,
+    conic-gradient(from 0deg,
+      transparent 0deg,
+      rgba(255,255,255,0.4) 18deg,
+      rgba(255,255,255,0.16) 42deg,
+      transparent 68deg,
+      transparent 148deg,
+      rgba(120,155,190,0.2) 164deg,
+      transparent 180deg,
+      transparent 196deg,
+      rgba(90,125,160,0.2) 212deg,
+      transparent 228deg,
+      transparent 332deg,
+      rgba(255,255,255,0.3) 350deg,
+      transparent 360deg
     ) border-box;
   color: #c2c2c8;
 }
 html[data-theme="dark"] .theme-toggle .knob::before {
-  background:
-    radial-gradient(circle at 26% 22%, rgba(210,210,218,0.6), rgba(255,255,255,0) 24%),
-    radial-gradient(circle at 78% 82%, rgba(120,150,180,0.16), rgba(120,150,180,0.04) 40%, rgba(255,255,255,0) 62%);
+  background: radial-gradient(circle at 26% 22%, rgba(210,210,218,0.5), rgba(255,255,255,0) 22%);
 }
 @media (max-width: 480px) {
   .theme-toggle { width: 76px; height: 40px; }

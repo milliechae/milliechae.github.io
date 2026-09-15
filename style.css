@@ -127,40 +127,27 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   cursor: pointer;
 }
 
-/* ---------- 다크/라이트 토글: 끊어진 불규칙 하이라이트 유리 ----------
-   전체 둘레를 감싸는 연속된 링(회색 테두리처럼 보이는 원인) 대신,
-   빛을 받는 지점에만 하이라이트가 끊어져서 나타나도록 conic-gradient에
-   넓은 transparent 구간을 섞어 넣음. 대부분의 둘레는 완전 투명.
+/* ---------- 다크/라이트 토글: crystal-clear icy glass ----------
+   conic-gradient(방사형 빛줄기 = metallic 느낌의 원인)를 완전히 제거.
+   단순한 border + box-shadow(방향별) + 특정 지점에 국소적으로만 있는
+   작은 radial-gradient(중심에서 뻗지 않음)로만 구성. gray/black 톤 없음.
 */
 .theme-toggle {
   position: relative;
   width: 90px;
   height: 46px;
   border-radius: 999px;
-  border: 2px solid transparent;
-  background:
-    linear-gradient(rgba(255,255,255,0.012), rgba(255,255,255,0.012)) padding-box,
-    conic-gradient(from 0deg,
-      transparent 0deg,
-      rgba(255,255,255,0.85) 10deg,
-      rgba(255,255,255,0.4) 28deg,
-      transparent 48deg,
-      transparent 78deg,
-      rgba(255,255,255,0.26) 95deg,
-      transparent 115deg,
-      transparent 172deg,
-      rgba(160,195,225,0.1) 182deg,
-      transparent 192deg,
-      transparent 248deg,
-      rgba(255,255,255,0.24) 265deg,
-      transparent 282deg,
-      transparent 332deg,
-      rgba(255,255,255,0.85) 350deg,
-      transparent 360deg
-    ) border-box;
+  border: 1px solid rgba(255,255,255,0.32);
+  background: rgba(255,255,255,0.015);
   -webkit-backdrop-filter: blur(22px) saturate(190%);
   backdrop-filter: blur(22px) saturate(190%);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 8px 18px rgba(0,0,0,0.03);
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.65),
+    inset 0 -1px 1.5px rgba(190,225,255,0.14),
+    inset 1px 0 1px rgba(255,255,255,0.18),
+    inset -1px 0 1.5px rgba(190,225,255,0.08),
+    0 2px 4px rgba(0,0,0,0.05),
+    0 8px 18px rgba(0,0,0,0.03);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -168,20 +155,31 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-/* 상단 한쪽에서 들어오는 비대칭 스페큘러 하이라이트 (반사광) */
+/* 상단 한쪽에서 들어오는 white specular (선형, 방사형 아님) */
 .theme-toggle::before {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(115deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.08) 16%, rgba(255,255,255,0) 28%);
+  background: linear-gradient(160deg, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0.06) 16%, rgba(255,255,255,0) 28%);
+  pointer-events: none;
+}
+/* 특정 지점(우측 곡면, 하단)에만 국소적으로 있는 아주 옅은 ice-blue glow - 중심에서 뻗지 않음 */
+.theme-toggle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(45% 60% at 96% 55%, rgba(190,225,255,0.12), transparent 70%),
+    radial-gradient(55% 45% at 55% 100%, rgba(190,225,255,0.1), transparent 70%);
   pointer-events: none;
 }
 .theme-toggle:hover { transform: translateY(-0.5px); }
 .theme-toggle:active { transform: translateY(0) scale(0.98); }
 .theme-toggle .track-icon { display: none; }
 
-/* knob: 유리 렌즈 - 끊어진 하이라이트, 중앙 최대한 clear */
+/* knob: 맑은 볼록 유리 렌즈 - 중앙 완전 clear, 가장자리만 white+ice-blue */
 .theme-toggle .knob {
   position: absolute;
   top: 3px;
@@ -189,40 +187,32 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 2px solid transparent;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.012), rgba(255,255,255,0.012)) padding-box,
-    conic-gradient(from 0deg,
-      transparent 0deg,
-      rgba(255,255,255,0.9) 18deg,
-      rgba(255,255,255,0.45) 42deg,
-      transparent 68deg,
-      transparent 148deg,
-      rgba(180,205,225,0.14) 164deg,
-      transparent 180deg,
-      transparent 196deg,
-      rgba(150,178,205,0.14) 212deg,
-      transparent 228deg,
-      transparent 332deg,
-      rgba(255,255,255,0.65) 350deg,
-      transparent 360deg
-    ) border-box;
+  border: 1px solid rgba(255,255,255,0.38);
+  background: rgba(255,255,255,0.012);
   -webkit-backdrop-filter: blur(10px) saturate(190%);
   backdrop-filter: blur(10px) saturate(190%);
-  box-shadow: 0 1.5px 4px -1px rgba(0,0,0,0.08);
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.7),
+    inset 0 -1px 1.5px rgba(190,225,255,0.16),
+    inset 1px 0 1px rgba(255,255,255,0.14),
+    inset -1px 0 1px rgba(190,225,255,0.1),
+    0 1.5px 4px -1px rgba(0,0,0,0.08);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #808080;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-/* knob 안쪽 좌상단 스페큘러 점 하나만 (삼각형 음영 전부 제거) */
+/* knob 좌상단 white specular 점 + 좌하단/하단 국소 ice-blue glow (중심 방사 아님) */
 .theme-toggle .knob::before {
   content: '';
   position: absolute;
-  inset: 2px;
+  inset: 1px;
   border-radius: 50%;
-  background: radial-gradient(circle at 26% 22%, rgba(255,255,255,0.85), rgba(255,255,255,0) 22%);
+  background:
+    radial-gradient(circle at 26% 22%, rgba(255,255,255,0.8), rgba(255,255,255,0) 24%),
+    radial-gradient(45% 40% at 26% 88%, rgba(190,225,255,0.12), transparent 72%),
+    radial-gradient(40% 35% at 60% 98%, rgba(190,225,255,0.1), transparent 72%);
   pointer-events: none;
 }
 .theme-toggle .knob svg { width: 16px; height: 16px; display: block; position: relative; z-index: 1; }
@@ -233,53 +223,40 @@ html[data-theme="dark"] .theme-toggle .knob-moon { display: flex; }
 html[data-theme="dark"] .theme-toggle .knob { transform: translateX(44px); }
 
 html[data-theme="dark"] .theme-toggle {
-  background:
-    linear-gradient(rgba(255,255,255,0.01), rgba(255,255,255,0.01)) padding-box,
-    conic-gradient(from 0deg,
-      transparent 0deg,
-      rgba(255,255,255,0.32) 10deg,
-      rgba(255,255,255,0.12) 28deg,
-      transparent 48deg,
-      transparent 78deg,
-      rgba(255,255,255,0.09) 95deg,
-      transparent 115deg,
-      transparent 172deg,
-      rgba(90,130,170,0.22) 182deg,
-      transparent 192deg,
-      transparent 248deg,
-      rgba(255,255,255,0.08) 265deg,
-      transparent 282deg,
-      transparent 332deg,
-      rgba(255,255,255,0.32) 350deg,
-      transparent 360deg
-    ) border-box;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 8px 18px rgba(0,0,0,0.14);
+  border-color: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.008);
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.22),
+    inset 0 -1px 1.5px rgba(140,195,255,0.22),
+    inset 1px 0 1px rgba(255,255,255,0.08),
+    inset -1px 0 1.5px rgba(140,195,255,0.14),
+    0 2px 4px rgba(0,0,0,0.2),
+    0 8px 18px rgba(0,0,0,0.14);
 }
 html[data-theme="dark"] .theme-toggle::before {
-  background: linear-gradient(115deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.03) 16%, rgba(255,255,255,0) 28%);
+  background: linear-gradient(160deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 16%, rgba(255,255,255,0) 28%);
+}
+html[data-theme="dark"] .theme-toggle::after {
+  background:
+    radial-gradient(45% 60% at 96% 55%, rgba(140,195,255,0.16), transparent 70%),
+    radial-gradient(55% 45% at 55% 100%, rgba(140,195,255,0.14), transparent 70%);
 }
 html[data-theme="dark"] .theme-toggle .knob {
-  background:
-    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.01), rgba(255,255,255,0.01)) padding-box,
-    conic-gradient(from 0deg,
-      transparent 0deg,
-      rgba(255,255,255,0.4) 18deg,
-      rgba(255,255,255,0.16) 42deg,
-      transparent 68deg,
-      transparent 148deg,
-      rgba(120,155,190,0.2) 164deg,
-      transparent 180deg,
-      transparent 196deg,
-      rgba(90,125,160,0.2) 212deg,
-      transparent 228deg,
-      transparent 332deg,
-      rgba(255,255,255,0.3) 350deg,
-      transparent 360deg
-    ) border-box;
+  border-color: rgba(255,255,255,0.28);
+  background: rgba(255,255,255,0.006);
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.24),
+    inset 0 -1px 1.5px rgba(140,195,255,0.22),
+    inset 1px 0 1px rgba(255,255,255,0.1),
+    inset -1px 0 1px rgba(140,195,255,0.14),
+    0 1.5px 4px -1px rgba(0,0,0,0.2);
   color: #c2c2c8;
 }
 html[data-theme="dark"] .theme-toggle .knob::before {
-  background: radial-gradient(circle at 26% 22%, rgba(210,210,218,0.5), rgba(255,255,255,0) 22%);
+  background:
+    radial-gradient(circle at 26% 22%, rgba(220,220,226,0.5), rgba(255,255,255,0) 24%),
+    radial-gradient(45% 40% at 26% 88%, rgba(140,195,255,0.16), transparent 72%),
+    radial-gradient(40% 35% at 60% 98%, rgba(140,195,255,0.14), transparent 72%);
 }
 @media (max-width: 480px) {
   .theme-toggle { width: 76px; height: 40px; }

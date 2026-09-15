@@ -72,12 +72,18 @@ html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
   margin: 0;
-  background: var(--bg-page);
+  background:
+    radial-gradient(1100px 640px at 50% 4%, rgba(222,230,240,0.24) 0%, rgba(236,241,246,0.14) 24%, rgba(255,255,255,0) 54%),
+    radial-gradient(680px 460px at 74% 2%, rgba(210,225,245,0.09) 0%, rgba(255,255,255,0) 48%),
+    var(--bg-page);
   color: var(--text-primary);
   font-family: var(--font-body);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+html[data-theme="dark"] body {
+  background: var(--bg-page);
 }
 
 .icon-btn, .feature-card, .hero-media, .media-dark, .media-light, .toggle-row, .link-chip, .footer-nav a {
@@ -103,7 +109,6 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   align-items: center;
   position: relative;
   padding: 12px 0 36px;
-  background: radial-gradient(180px 110px at 50% 45%, rgba(10,20,35,0.035), transparent 72%);
 }
 .back-arrow {
   position: absolute;
@@ -215,9 +220,6 @@ html[data-theme="dark"] .theme-toggle .knob-sun { display: none; }
 html[data-theme="dark"] .theme-toggle .knob-moon { display: flex; }
 html[data-theme="dark"] .theme-toggle .knob { transform: translateX(44px); }
 
-html[data-theme="dark"] .site-header {
-  background: radial-gradient(180px 110px at 50% 45%, rgba(255,255,255,0.03), transparent 72%);
-}
 html[data-theme="dark"] .theme-toggle {
   border-color: rgba(255,255,255,0.2);
   background: linear-gradient(180deg,

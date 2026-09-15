@@ -133,13 +133,19 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   width: 64px;
   height: 34px;
   border-radius: 999px;
-  border: none;
-  background: var(--bg-soft);
+  border: 1px solid rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.55);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
   cursor: pointer;
   display: flex;
   align-items: center;
   padding: 0 9px;
-  transition: background-color 0.3s ease;
+  box-shadow:
+    0 6px 16px rgba(0,0,0,0.12),
+    0 2px 6px rgba(0,0,0,0.06),
+    inset 0 0 10px rgba(120,170,255,0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 .theme-toggle .track-icon {
   font-size: 13px;
@@ -170,6 +176,12 @@ html[data-theme="dark"] .theme-toggle .knob { transform: translateX(30px); }
 .theme-toggle .knob-moon { display: none; color: #808080; }
 html[data-theme="dark"] .theme-toggle .knob-sun { display: none; }
 html[data-theme="dark"] .theme-toggle .knob-moon { display: flex; }
+html[data-theme="dark"] .theme-toggle {
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.35),
+    0 2px 6px rgba(0,0,0,0.2),
+    inset 0 0 10px rgba(120,170,255,0.28);
+}
 
 /* ---------- 헤더 ---------- */
 .hero-header {

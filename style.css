@@ -127,54 +127,27 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   cursor: pointer;
 }
 
-/* ---------- 다크/라이트 토글: pixel-perfect geometry + single-rim glass ----------
-   Back button(34x34)과 같은 높이(34px)로 맞춤.
-   track 64x34, knob 30x30, inset 2px(상하좌우 동일).
-   outline은 border 1개만 사용 (box-shadow inset 링 제거 -> 이중선 방지).
-   방향별 빛은 ::before/::after의 area-fill 그라데이션으로만 표현 (선 아님).
-*/
+/* ---------- 다크/라이트 토글: 메인 홈과 완전히 동일한 스타일 ---------- */
 .theme-toggle {
   position: relative;
   width: 64px;
   height: 34px;
-  border-radius: 17px;
-  border: 1px solid rgba(255,255,255,0.35);
-  background: rgba(255,255,255,0.015);
-  -webkit-backdrop-filter: blur(20px) saturate(185%);
-  backdrop-filter: blur(20px) saturate(185%);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 8px 18px rgba(0,0,0,0.03);
+  border-radius: 999px;
+  border: none;
+  background: var(--bg-soft);
   cursor: pointer;
   display: flex;
   align-items: center;
-  padding: 0;
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 0 9px;
+  transition: background-color 0.3s ease;
 }
-/* 상단 white specular (area fill) */
-.theme-toggle::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(160deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.05) 18%, rgba(255,255,255,0) 30%);
-  pointer-events: none;
+.theme-toggle .track-icon {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  line-height: 1;
 }
-/* 우측 곡면 + 하단에만 국소적인 옅은 ice-blue (area fill) */
-.theme-toggle::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background:
-    radial-gradient(45% 60% at 97% 55%, rgba(190,225,255,0.1), transparent 70%),
-    radial-gradient(55% 45% at 55% 100%, rgba(190,225,255,0.08), transparent 70%);
-  pointer-events: none;
-}
-.theme-toggle:hover { transform: translateY(-0.5px); }
-.theme-toggle:active { transform: translateY(0) scale(0.98); }
-.theme-toggle .track-icon { display: none; }
-
-/* knob: 28x28, inset 3px 동일, single rim + 대칭 그림자 */
+.theme-toggle .track-icon.sun { margin-right: auto; }
+.theme-toggle .track-icon.moon { margin-left: auto; }
 .theme-toggle .knob {
   position: absolute;
   top: 3px;
@@ -182,61 +155,21 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.4);
-  background: rgba(255,255,255,0.01);
-  -webkit-backdrop-filter: blur(8px) saturate(185%);
-  backdrop-filter: blur(8px) saturate(185%);
-  box-shadow: 0 0 3px rgba(0,0,0,0.08);
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #808080;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-size: 14px;
+  color: var(--text-primary);
+  transition: transform 0.35s cubic-bezier(.4,0,.2,1);
 }
-/* 좌상단 specular 점 + 하단 아주 옅은 ice-blue (둘 다 area fill, 링 아님) */
-.theme-toggle .knob::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 28% 24%, rgba(255,255,255,0.7), rgba(255,255,255,0) 26%),
-    radial-gradient(50% 42% at 45% 92%, rgba(190,225,255,0.09), transparent 72%);
-  pointer-events: none;
-}
-.theme-toggle .knob svg { width: 15px; height: 15px; display: block; position: relative; z-index: 1; }
-.theme-toggle .knob-sun { display: flex; }
-.theme-toggle .knob-moon { display: none; }
+.theme-toggle .knob svg { width: 15px; height: 15px; display: block; }
+html[data-theme="dark"] .theme-toggle .knob { transform: translateX(30px); }
+.theme-toggle .knob-sun { display: flex; color: #808080; }
+.theme-toggle .knob-moon { display: none; color: #808080; }
 html[data-theme="dark"] .theme-toggle .knob-sun { display: none; }
 html[data-theme="dark"] .theme-toggle .knob-moon { display: flex; }
-/* 이동거리 = track(64) - inset(3)*2 - knob(28) = 30px */
-html[data-theme="dark"] .theme-toggle .knob { transform: translateX(30px); }
-
-html[data-theme="dark"] .theme-toggle {
-  border-color: rgba(255,255,255,0.2);
-  background: rgba(255,255,255,0.008);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 8px 18px rgba(0,0,0,0.14);
-}
-html[data-theme="dark"] .theme-toggle::before {
-  background: linear-gradient(160deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 18%, rgba(255,255,255,0) 30%);
-}
-html[data-theme="dark"] .theme-toggle::after {
-  background:
-    radial-gradient(45% 60% at 97% 55%, rgba(140,195,255,0.15), transparent 70%),
-    radial-gradient(55% 45% at 55% 100%, rgba(140,195,255,0.13), transparent 70%);
-}
-html[data-theme="dark"] .theme-toggle .knob {
-  border-color: rgba(255,255,255,0.28);
-  background: rgba(255,255,255,0.006);
-  box-shadow: 0 0 3px rgba(0,0,0,0.18);
-  color: #c2c2c8;
-}
-html[data-theme="dark"] .theme-toggle .knob::before {
-  background:
-    radial-gradient(circle at 28% 24%, rgba(220,220,226,0.45), rgba(255,255,255,0) 26%),
-    radial-gradient(50% 42% at 45% 92%, rgba(140,195,255,0.14), transparent 72%);
-}
-
 
 /* ---------- 헤더 ---------- */
 .hero-header {

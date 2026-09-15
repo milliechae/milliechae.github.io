@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mochi Pay — Personal Finance Dashboard — 프로젝트 케이스 스터디</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = saved || (systemDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+<style>
+/* ---------- 소액 저축 마이크로 인터랙션 데모 (이 페이지 전용) ---------- */
+.mp-demo { margin: 24px 0; padding: 8px 0 0; text-align: center; }
+.mp-demo-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 16px 18px;
+  background: var(--bg-page);
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  text-align: left;
+  transition: transform 0.25s ease;
+}
+.mp-demo-card.playing { animation: mpPulse 0.5s ease; }
+.mp-demo-icon { font-size: 28px; line-height: 1; flex-shrink: 0; }
+.mp-demo-info { flex: 1; min-width: 0; }
+.mp-demo-toprow { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.mp-demo-title { font-weight: 600; color: var(--text-primary); font-size: 15px; }
+.mp-demo-amount { font-weight: 700; color: var(--text-primary); font-size: 15px; transition: color 0.3s ease; }
+.mp-demo-card.playing .mp-demo-amount { color: #6C5CE7; }
+.mp-demo-sub { display: block; font-size: 12.5px; color: var(--text-tertiary); margin: 2px 0 8px; }
+.mp-demo-track { height: 6px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.mp-demo-fill { height: 100%; width: 43%; border-radius: 999px; background: linear-gradient(90deg,#8b7ff0,#6C5CE7); transition: width 1.1s cubic-bezier(.2,.8,.2,1); }
+.mp-demo-card.playing .mp-demo-fill { width: 54%; }
+
+.mp-demo-float {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #6C5CE7;
+  opacity: 0;
+  transform: translateY(0);
+  pointer-events: none;
+}
+.mp-demo-card.playing .mp-demo-float { animation: mpFloatUp 1.3s ease forwards; }
+
+.mp-demo-confetti {
+  position: absolute;
+  top: 18px;
+  right: 26px;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  opacity: 0;
+  pointer-events: none;
+}
+.mp-demo-confetti.c1 { background: #6C5CE7; }
+.mp-demo-confetti.c2 { background: #F5A623; }
+.mp-demo-confetti.c3 { background: #00C556; }
+.mp-demo-confetti.c4 { background: #E14B4B; }
+.mp-demo-card.playing .mp-demo-confetti.c1 { animation: mpConfetti1 0.9s ease forwards; }
+.mp-demo-card.playing .mp-demo-confetti.c2 { animation: mpConfetti2 0.9s ease forwards 0.05s; }
+.mp-demo-card.playing .mp-demo-confetti.c3 { animation: mpConfetti3 0.9s ease forwards 0.1s; }
+.mp-demo-card.playing .mp-demo-confetti.c4 { animation: mpConfetti4 0.9s ease forwards 0.02s; }
+
+@keyframes mpPulse {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.025); }
+  100% { transform: scale(1); }
+}
+@keyframes mpFloatUp {
+  0% { opacity: 0; transform: translateY(6px); }
+  20% { opacity: 1; transform: translateY(0); }
+  75% { opacity: 1; transform: translateY(-14px); }
+  100% { opacity: 0; transform: translateY(-22px); }
+}
+@keyframes mpConfetti1 { 0% { opacity:0; transform: translate(0,0) rotate(0deg);} 15%{opacity:1;} 100% { opacity:0; transform: translate(-38px,-30px) rotate(140deg);} }
+@keyframes mpConfetti2 { 0% { opacity:0; transform: translate(0,0) rotate(0deg);} 15%{opacity:1;} 100% { opacity:0; transform: translate(20px,-42px) rotate(-120deg);} }
+@keyframes mpConfetti3 { 0% { opacity:0; transform: translate(0,0) rotate(0deg);} 15%{opacity:1;} 100% { opacity:0; transform: translate(40px,-14px) rotate(200deg);} }
+@keyframes mpConfetti4 { 0% { opacity:0; transform: translate(0,0) rotate(0deg);} 15%{opacity:1;} 100% { opacity:0; transform: translate(-18px,-46px) rotate(-90deg);} }
+
+.mp-demo-toast {
+  max-width: 420px;
+  margin: 14px auto 0;
+  padding: 10px 16px;
+  background: var(--bg-page);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.mp-demo-toast.show { opacity: 1; transform: translateY(0); }
+
+/* ---------- Design Solution 이미지: 이 섹션만 본문 폭(760px) 밖으로 확장 ---------- */
+.mp-bleed {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.mp-bleed-inner {
+  max-width: 952px;
+  margin: 0 auto;
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+@media (max-width: 640px) {
+  .mp-bleed-inner { padding: 0 12px; }
+}
+
+/* ---------- Design Solution 이미지 위 마이크로인터랙션 ---------- */
+/* (왼쪽 거래내역은 분리된 리스트 이미지로 교체하고,
+   위에서부터 한 줄씩 쌓이는 느낌으로 한 번 등장하는 리빌 애니메이션을 줌) */
+.mp-cards-frame { position: relative; display: block; line-height: 0; }
+
+.mp-goals-cover {
+  position: absolute;
+  top: 41.2%;
+  left: 4%;
+  width: 27.75%;
+  height: 58.32%;
+  background: #ffffff;
+  opacity: 0;
+}
+.mp-cards-frame.ready .mp-goals-cover { opacity: 1; }
+
+.mp-list-block {
+  position: absolute;
+  top: 41.2%;
+  left: 4%;
+  width: 27.75%;
+}
+.mp-cards-frame .mp-static { display: block; width: 100%; height: auto; }
+
+.mp-txn-row { position: relative; width: 100%; line-height: 0; }
+.mp-cards-frame .mp-txn-row .mp-static { display: block; width: 63.29%; height: auto; }
+.mp-cards-frame .mp-price {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 36.71%;
+  height: auto;
+  opacity: 0;
+  transform: scale(0.4) translateY(4px);
+  transform-origin: right center;
+}
+.mp-cards-frame.ready .mp-price {
+  animation: mpPricePop 3.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+.mp-cards-frame.ready .mp-list-block .mp-txn-row:nth-of-type(1) .mp-price { animation-delay: 0.05s; }
+.mp-cards-frame.ready .mp-list-block .mp-txn-row:nth-of-type(2) .mp-price { animation-delay: 0.22s; }
+.mp-cards-frame.ready .mp-list-block .mp-txn-row:nth-of-type(3) .mp-price { animation-delay: 0.39s; }
+.mp-cards-frame.ready .mp-list-block .mp-txn-row:nth-of-type(4) .mp-price { animation-delay: 0.56s; }
+.mp-cards-frame.ready .mp-list-block .mp-txn-row:nth-of-type(5) .mp-price { animation-delay: 0.73s; }
+
+/* 팝인 -> 잠깐 유지 -> 살짝 사라짐 -> (반복) 팝인, 순서로 계속 도는 사이클 */
+@keyframes mpPricePop {
+  0%     { opacity: 0; transform: scale(0.4) translateY(4px); }
+  10.3%  { opacity: 1; transform: scale(1.18) translateY(-3px); }
+  14.1%  { transform: scale(0.94) translateY(1px); }
+  16.9%  { transform: scale(1.04) translateY(0); }
+  18.75% { opacity: 1; transform: scale(1) translateY(0); }
+  88%    { opacity: 1; transform: scale(1) translateY(0); }
+  94%    { opacity: 0; transform: scale(0.6) translateY(2px); }
+  100%   { opacity: 0; transform: scale(0.4) translateY(4px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mp-cards-frame.ready .mp-price { animation: none; opacity: 1; transform: none; }
+}
+
+.mp-goals-balance-cover {
+  position: absolute;
+  top: 52.24%;
+  left: 71.95%;
+  width: 15.5%;
+  height: 5.44%;
+  background: #ffffff;
+  opacity: 0;
+}
+.mp-goals-balance {
+  position: absolute;
+  top: 52.24%;
+  left: 71.95%;
+  height: 5.44%;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  color: #121212;
+  white-space: nowrap;
+  opacity: 0;
+}
+.mp-cards-frame.ready .mp-goals-balance-cover,
+.mp-cards-frame.ready .mp-goals-balance { opacity: 1; }
+@media (max-width: 640px) {
+  .mp-goals-balance { font-size: 14px; }
+}
+
+/* ---------- 히어로 이미지 안 잔액 숫자 카운트업 애니메이션 ---------- */
+.mp-hero-frame { position: relative; display: block; line-height: 0; }
+.mp-hero-balance-cover {
+  position: absolute;
+  top: 25.64%;
+  left: 14.40%;
+  width: 17.5%;
+  height: 4.5%;
+  background: #ffffff;
+  opacity: 0;
+}
+.mp-hero-balance {
+  position: absolute;
+  top: 25.64%;
+  left: 14.40%;
+  height: 4.5%;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  color: #121212;
+  white-space: nowrap;
+  opacity: 0;
+}
+.mp-hero-frame.ready .mp-hero-balance-cover,
+.mp-hero-frame.ready .mp-hero-balance { opacity: 1; }
+@media (max-width: 640px) {
+  .mp-hero-balance { font-size: 12px; }
+}
+/* ---------- Outcome 섹션: 저축플랜 슬라이더 라이브 데모 (토스 스타일) ---------- */
+.mp-savings-frame { position: relative; display: block; line-height: 0; }
+
+.mp-rate-cover {
+  position: absolute;
+  top: 29.888%;
+  left: 13.667%;
+  width: 6.111%;
+  height: 2.929%;
+  background: #ffffff;
+  opacity: 0;
+}
+.mp-slider-cover {
+  position: absolute;
+  top: 34.109%;
+  left: 5.0%;
+  width: 23.611%;
+  height: 6.891%;
+  background: #ffffff;
+  opacity: 0;
+}
+.mp-savings-frame.ready .mp-slider-cover { opacity: 1; }
+.mp-rate-value {
+  position: absolute;
+  top: 29.888%;
+  left: 13.667%;
+  height: 2.929%;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: 21px;
+  color: #6C5CE7;
+  white-space: nowrap;
+  opacity: 0;
+}
+.mp-rate-value .mp-rate-pct { font-size: 12px; font-weight: 700; color: #6C5CE7; opacity: 0.55; margin-left: 3px; }
+
+.mp-slider-track {
+  position: absolute;
+  top: 39.707%;
+  left: 7.111%;
+  width: 18.806%;
+  height: 4px;
+  border-radius: 999px;
+  background: #EDECF3;
+  opacity: 0;
+}
+.mp-slider-fill {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 63%;
+  border-radius: 999px;
+  background: #7B6AEA;
+}
+.mp-slider-handle {
+  position: absolute;
+  top: 50%;
+  left: 63%;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(70,60,140,0.35), 0 0 0 2px rgba(123,106,234,0.18);
+  transform: translate(-50%, -50%);
+}
+.mp-slider-badge {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 63%;
+  transform: translateX(-50%);
+  background: #7B6AEA;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-size: 8px;
+  line-height: 1;
+  padding: 3px 5px;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+
+.mp-savings-frame.ready .mp-rate-cover,
+.mp-savings-frame.ready .mp-rate-value,
+.mp-savings-frame.ready .mp-slider-track { opacity: 1; }
+
+@media (max-width: 480px) {
+  .mp-rate-value { font-size: 13px; }
+  .mp-rate-value .mp-rate-pct { font-size: 8px; }
+  .mp-slider-handle { width: 8px; height: 8px; box-shadow: 0 1px 3px rgba(70,60,140,0.35), 0 0 0 1.5px rgba(123,106,234,0.18); }
+  .mp-slider-badge { font-size: 6px; padding: 2px 4px; border-radius: 4px; }
+  .mp-slider-track { height: 3px; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="site-header">
+    <button class="theme-toggle" id="themeToggle" aria-label="다크모드 전환" type="button">
+      <span class="track-icon sun">☀</span>
+      <span class="track-icon moon">☾</span>
+      <span class="knob">
+        <span class="knob-sun">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+            <circle cx="12" cy="12" r="4"/>
+            <line x1="12" y1="2" x2="12" y2="4"/>
+            <line x1="12" y1="20" x2="12" y2="22"/>
+            <line x1="4.2" y1="4.2" x2="5.6" y2="5.6"/>
+            <line x1="18.4" y1="18.4" x2="19.8" y2="19.8"/>
+            <line x1="2" y1="12" x2="4" y2="12"/>
+            <line x1="20" y1="12" x2="22" y2="12"/>
+            <line x1="4.2" y1="19.8" x2="5.6" y2="18.4"/>
+            <line x1="18.4" y1="5.6" x2="19.8" y2="4.2"/>
+          </svg>
+        </span>
+        <span class="knob-moon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>
+          </svg>
+        </span>
+      </span>
+    </button>
+    <a href="index.html" class="back-arrow" aria-label="뒤로가기">←</a>
+  </header>
+
+  <header class="hero-header">
+    <div class="hero-header__text">
+      <h1>Mochi Pay — Personal Finance Dashboard</h1>
+      <p class="subtitle">A self-directed exploration of why saving money feels so hard, and a dashboard designed to make progress visible.</p>
+    </div>
+    <span class="status-pill">
+      <span class="status-dot"></span> Concept
+    </span>
+  </header>
+
+  <div class="hero-media" style="background: transparent;">
+    <div class="mp-hero-frame" id="mpHeroFrame">
+      <img src="images/pumkin-hero.png" alt="Mochi Pay 개인 자산 관리 대시보드 메인 화면" id="mpHeroImg">
+      <span class="mp-hero-balance-cover"></span>
+      <span class="mp-hero-balance" id="mpHeroBalance">€ 0</span>
+    </div>
+  </div>
+
+  <section class="intro">
+    <p>
+      I designed <strong>Mochi Pay,</strong> a self-directed personal finance dashboard, to explore a question
+      most budgeting apps never really answer: if the math of saving is simple, why does saving still feel
+      so hard? The product reframes saving as something you can watch happening, not just a number you're told to hit.
+    </p>
+  </section>
+
+  <section class="meta-grid meta-grid-6">
+    <div class="meta-item">
+      <span class="meta-label">Product</span>
+      <span class="meta-value">Mochi Pay — Personal Finance Dashboard</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">My role</span>
+      <span class="meta-value">Product Designer (solo)</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Timeline</span>
+      <span class="meta-value">Personal project — 날짜 확인 필요</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Client</span>
+      <span class="meta-value">Self-directed</span>
+    </div>
+    <div class="meta-item meta-item--spacer" aria-hidden="true"></div>
+    <div class="meta-item">
+      <span class="meta-label">Skills</span>
+      <span class="meta-value">Product design, Behavioral design, Interaction design</span>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <figure class="quote-media">
+    <img src="images/pumkin-receipts-quote.jpg" alt="구겨진 종이 영수증 더미">
+    <blockquote>
+      Saving isn't a math problem.<br>
+      It's a motivation problem.
+    </blockquote>
+  </figure>
+
+  <section class="content-block">
+
+    <span class="section-label">PAIN POINT</span>
+
+    <h2 class="pain-heading">
+      People don't fail at saving because they can't do the math. They fail because saving feels invisible and joyless.
+    </h2>
+
+    <p>
+      Most budgeting tools show a number once a month and expect that to be motivating. In practice, the gap
+      between deciding to save and actually seeing it work is where most people give up.
+    </p>
+
+    <ul class="pain-list">
+      <li>
+        <strong>Progress feels invisible</strong><br>
+        A balance that updates once a month gives no sense of momentum day to day, so there's nothing to feel good about in the meantime.
+      </li>
+
+      <li>
+        <strong>One-size-fits-all budgets</strong><br>
+        Generic categories like "dining" or "entertainment" don't map to what someone is actually saving for, so the numbers feel arbitrary.
+      </li>
+
+      <li>
+        <strong>No emotional payoff</strong><br>
+        Saving is framed as restriction — what you can't spend — instead of progress toward something you chose.
+      </li>
+    </ul>
+
+    <div class="design-challenge-card">
+
+      <span class="challenge-label">✦ DESIGN CHALLENGE</span>
+
+      <h3>
+        How might we make saving money feel rewarding in the moment, not just as a distant future outcome?
+      </h3>
+
+      <p>
+        The goal was to shrink the distance between an action — putting money aside — and a feeling of
+        progress, so saving reinforces itself instead of relying on willpower alone.
+      </p>
+
+    </div>
+
+  </section>
+
+  <section class="content-block">
+
+    <span class="section-label">RESEARCH</span>
+
+    <h2 class="pain-heading">
+      Understanding why saving apps get abandoned.
+    </h2>
+
+    <p>
+      Before designing any screens, I talked to people about their actual relationship with money — not the
+      budget they think they should follow, but the one they actually live by. A few patterns kept coming up.
+    </p>
+
+    <div class="research-media">
+      <img src="images/pumkin-research.png" alt="Research">
+    </div>
+
+    <div class="research-grid">
+
+      <div class="research-item">
+        <span class="research-number">01</span>
+
+        <h3>People compare "should" budgets against actual life.</h3>
+
+        <p>
+          Preset budget categories rarely matched how people actually thought about their spending,
+          which made the numbers feel disconnected from reality.
+        </p>
+      </div>
+
+      <div class="research-item">
+        <span class="research-number">02</span>
+
+        <h3>Small wins mattered more than big totals.</h3>
+
+        <p>
+          A large end goal felt abstract and far away. What kept people engaged was noticing
+          progress on a much shorter timescale.
+        </p>
+      </div>
+
+      <div class="research-item">
+        <span class="research-number">03</span>
+
+        <h3>Shame killed consistency.</h3>
+
+        <p>
+          Apps that flagged "bad" spending made people disengage entirely rather than course-correct,
+          breaking the habit instead of reinforcing it.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <div class="section-flow">
+
+    <svg class="flow-line" viewBox="0 0 220 180">
+
+      <path
+      d="
+      M110 5
+      L110 42
+
+      C110 62,
+      125 74,
+      138 82
+
+      S178 92,
+      188 122
+
+      S198 148,
+      205 170
+      "/>
+
+    </svg>
+
+  </div>
+
+  <section class="design-challenge-card">
+
+    <span class="challenge-label">✦ DESIGN HYPOTHESIS</span>
+
+    <h2>
+      Three hypotheses guided the direction of Mochi Pay.
+    </h2>
+
+    <p class="challenge-description">
+      Research findings were translated into three assumptions that shaped the design before any interface exploration began.
+    </p>
+
+    <div class="hypothesis-list">
+
+      <div class="hypothesis-item">
+        <strong>01&nbsp;&nbsp;Make progress visible in real time</strong>
+        <p>If people can see savings accumulate as it happens, they'll feel more connected to the outcome than to a monthly summary.</p>
+      </div>
+
+      <div class="hypothesis-item">
+        <strong>02&nbsp;&nbsp;Let goals be personal, not generic categories</strong>
+        <p>If users define their own goals instead of picking from preset categories, the numbers will feel more relevant and worth tracking.</p>
+      </div>
+
+      <div class="hypothesis-item">
+        <strong>03&nbsp;&nbsp;Celebrate small wins immediately</strong>
+        <p>If every deposit — no matter how small — gets acknowledged, saving will start to feel rewarding on its own, not just as a means to an end.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="content-block">
+
+    <h2>Design Solution</h2>
+
+    <p>
+      Rather than treating saving as a spreadsheet exercise, Mochi Pay was built around the feeling of
+      watching something grow — reframing every part of the experience around progress the user
+      can see and feel.
+    </p>
+
+    <div class="mp-bleed">
+      <div class="mp-bleed-inner">
+        <div class="media-light" style="background: transparent; padding: 0;">
+          <div class="mp-cards-frame" id="mpCardsFrame">
+            <img src="images/pumkin-goals-overview.jpg" alt="Mochi Pay 카드 캐러셀과 최근 거래내역, 잔액 화면" id="mpCardsImg">
+            <span class="mp-goals-cover" aria-hidden="true"></span>
+            <div class="mp-list-block" aria-hidden="true">
+              <img class="mp-static" src="images/mp-seg0-header.png" alt="">
+              <div class="mp-txn-row">
+                <img class="mp-static" src="images/mp-seg1-row1-left.png" alt="">
+                <img class="mp-price" src="images/mp-seg1-row1-right.png" alt="">
+              </div>
+              <div class="mp-txn-row">
+                <img class="mp-static" src="images/mp-seg2-row2-left.png" alt="">
+                <img class="mp-price" src="images/mp-seg2-row2-right.png" alt="">
+              </div>
+              <img class="mp-static" src="images/mp-seg3-label.png" alt="">
+              <div class="mp-txn-row">
+                <img class="mp-static" src="images/mp-seg4-row3-left.png" alt="">
+                <img class="mp-price" src="images/mp-seg4-row3-right.png" alt="">
+              </div>
+              <div class="mp-txn-row">
+                <img class="mp-static" src="images/mp-seg5-row4-left.png" alt="">
+                <img class="mp-price" src="images/mp-seg5-row4-right.png" alt="">
+              </div>
+              <div class="mp-txn-row">
+                <img class="mp-static" src="images/mp-seg6-row5-left.png" alt="">
+                <img class="mp-price" src="images/mp-seg6-row5-right.png" alt="">
+              </div>
+            </div>
+            <span class="mp-goals-balance-cover" aria-hidden="true"></span>
+            <span class="mp-goals-balance" id="mpGoalsBalance" aria-hidden="true">€ 0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <h3>Goals you actually chose, not categories a bank picked.</h3>
+      <p>Instead of preset budget categories, users name what they're actually saving for. Each goal has its own visual identity, so the dashboard reflects intention, not just transaction history.</p>
+    </div>
+    <div class="finding">
+      <h3>A growth visual instead of a spreadsheet.</h3>
+      <p>Balances are shown as a living, growing visual rather than a static number, so progress reads at a glance and updates the moment money moves.</p>
+    </div>
+    <div class="finding">
+      <h3>Small deposits that feel like a win, not a chore.</h3>
+      <p>Every deposit, even a small one, triggers a brief, positive moment — reinforcing the habit instead of waiting for a milestone to feel good about progress.</p>
+    </div>
+  </section>
+
+  <section class="content-block detail-block">
+    <h3><span class="detail-icon">🎉</span> Celebrate the deposit, not just the goal.</h3>
+    <p>
+      A micro-celebration appears the moment money is set aside, no matter the amount — reinforcing
+      the habit in the moment instead of asking users to wait for a milestone to feel good about progress.
+    </p>
+    <div class="mp-demo" id="mpDemo">
+      <div class="mp-demo-card">
+        <span class="mp-demo-icon">🏝️</span>
+        <div class="mp-demo-info">
+          <div class="mp-demo-toprow">
+            <span class="mp-demo-title">Traveling</span>
+            <span class="mp-demo-amount" id="mpAmount">€1,600</span>
+          </div>
+          <span class="mp-demo-sub">Achieved in 6 months</span>
+          <div class="mp-demo-track"><div class="mp-demo-fill" id="mpFill"></div></div>
+        </div>
+        <span class="mp-demo-float" id="mpFloat">+€25</span>
+        <span class="mp-demo-confetti c1"></span>
+        <span class="mp-demo-confetti c2"></span>
+        <span class="mp-demo-confetti c3"></span>
+        <span class="mp-demo-confetti c4"></span>
+      </div>
+      <div class="mp-demo-toast" id="mpToast">Nice! €25 closer to Traveling 🎉</div>
+    </div>
+  </section>
+
+  <section class="content-block">
+    <h2>Outcome: Validating the idea before the metrics exist.</h2>
+    <p>
+      As a self-directed concept, Mochi Pay's results so far come from prototype testing rather than
+      production data. Update this section with real usability-testing results once you have them.
+    </p>
+    <div class="media-light" style="background: transparent; padding: 0;">
+      <div class="mp-savings-frame" id="mpSavingsFrame">
+        <img src="images/pumkin-savings-plan.png" alt="4주 저축 플랜 설정 및 예상 금액 확인 화면" id="mpSavingsImg">
+        <span class="mp-rate-cover" aria-hidden="true"></span>
+        <span class="mp-rate-value" id="mpRateValue" aria-hidden="true">3.70<span class="mp-rate-pct">%</span></span>
+        <span class="mp-slider-cover" aria-hidden="true"></span>
+        <div class="mp-slider-track" aria-hidden="true">
+          <div class="mp-slider-fill" id="mpSliderFill"></div>
+          <div class="mp-slider-handle" id="mpSliderHandle"></div>
+          <div class="mp-slider-badge" id="mpSliderBadge">25</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-block">
+    <h2>Reflection</h2>
+    <p>
+      Motivation is a design problem, not just a math problem. The hardest part of Mochi Pay wasn't the
+      interface — it was resisting the urge to add more numbers. The moments that mattered most were
+      the smallest ones: a deposit landing, a goal inching forward.
+    </p>
+  </section>
+
+  <footer class="page-footer">
+    <a class="footer-cta" href="milliechae-portfolio.pdf" target="_blank" rel="noopener" aria-label="전체 포트폴리오 PDF 보기">See the full story <span aria-hidden="true">→</span></a>
+    <div class="footer-nav">
+      <a href="project-demo-bee-equipment-notification.html" aria-label="이전 프로젝트">←</a>
+      <a href="project-demo-android-private-space.html" aria-label="다음 프로젝트">→</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // 다크모드 토글 (이 페이지에 누락되어 있어서 같이 추가함)
+  var themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var current = document.documentElement.getAttribute('data-theme');
+      var next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  }
+
+  // Design Solution 이미지 — 로드 완료 후 플로팅 카드 + 잔액 카운트업 표시
+  (function () {
+    var frame = document.getElementById('mpCardsFrame');
+    var img = document.getElementById('mpCardsImg');
+    var balanceEl = document.getElementById('mpGoalsBalance');
+    if (!frame || !img) return;
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var target = 27350600;
+    var pauseBetween = 2200;
+    var played = false;
+
+    function countUp() {
+      if (!balanceEl) return;
+      if (reduceMotion) {
+        balanceEl.textContent = '€ ' + target.toLocaleString('en-US');
+        return;
+      }
+      var start = null, duration = 1400;
+      function step(ts) {
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var value = Math.round(target * eased);
+        balanceEl.textContent = '€ ' + value.toLocaleString('en-US');
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          setTimeout(function () {
+            balanceEl.textContent = '€ 0';
+            setTimeout(countUp, 250);
+          }, pauseBetween);
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    function start() {
+      frame.classList.add('ready');
+      if (played) return;
+      played = true;
+      setTimeout(countUp, 300);
+    }
+
+    if (img.complete && img.naturalWidth > 0) {
+      start();
+    } else {
+      img.addEventListener('load', start);
+    }
+  })();
+
+  // 저축플랜 슬라이더 라이브 데모 (6개월 <-> 36개월 왕복, 연이율/배지 동기화)
+  (function () {
+    var frame = document.getElementById('mpSavingsFrame');
+    var img = document.getElementById('mpSavingsImg');
+    var rateEl = document.getElementById('mpRateValue');
+    var fillEl = document.getElementById('mpSliderFill');
+    var handleEl = document.getElementById('mpSliderHandle');
+    var badgeEl = document.getElementById('mpSliderBadge');
+    if (!frame || !img) return;
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var MIN_M = 6, MAX_M = 36;
+    var MIN_RATE = 1.80, MAX_RATE = 4.80;
+    var P_REST = (27 - MIN_M) / (MAX_M - MIN_M); // 27개월 지점 (0~1)
+    var durA = 1600;  // 27 -> 6 (깔끔하게 이동, 오버슈트 없음)
+    var durB = 2100;  // 6 -> 36 (깔끔하게 이동, 오버슈트 없음)
+    var durC = 1400;  // 36 -> 27 로 이동하면서 살짝 넘쳤다가 튕기듯 정착
+    var durHold = 1600; // 27에서 잠깐 정지
+    var cycleMs = durA + durB + durC + durHold;
+
+    function applyProgress(pRaw) {
+      // pRaw: 위치/필용 (27 정착 구간에서만 살짝 오버슈트 허용), pClamped: 숫자 표시용 (0~1로 고정)
+      var pClamped = Math.max(0, Math.min(1, pRaw));
+      var month = Math.round(MIN_M + pClamped * (MAX_M - MIN_M));
+      var rate = MIN_RATE + pClamped * (MAX_RATE - MIN_RATE);
+      var posPct = pRaw * 100;
+      if (rateEl) rateEl.childNodes[0].nodeValue = rate.toFixed(2);
+      if (fillEl) fillEl.style.width = Math.max(0, Math.min(100, posPct)) + '%';
+      if (handleEl) handleEl.style.left = Math.max(0, Math.min(100, posPct)) + '%';
+      if (badgeEl) {
+        badgeEl.style.left = Math.max(0, Math.min(100, posPct)) + '%';
+        badgeEl.textContent = month;
+      }
+    }
+
+    function easeInOutQuad(t) {
+      return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+    }
+    function easeOutBack(x) {
+      var c1 = 1.70158;
+      var c3 = c1 + 1;
+      return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
+    }
+
+    function triangleWave(t) {
+      var x = t % cycleMs;
+      if (x < durA) {
+        // 27 -> 6, 깔끔한 이동
+        var h = x / durA;
+        return P_REST + (0 - P_REST) * easeInOutQuad(h);
+      }
+      x -= durA;
+      if (x < durB) {
+        // 6 -> 36, 깔끔한 이동
+        var h2 = x / durB;
+        return 0 + (1 - 0) * easeInOutQuad(h2);
+      }
+      x -= durB;
+      if (x < durC) {
+        // 36 -> 27, 살짝 넘쳤다가 튕기며 정착
+        var h3 = x / durC;
+        return 1 + (P_REST - 1) * easeOutBack(h3);
+      }
+      // 정지 구간: 27에서 유지
+      return P_REST;
+    }
+
+    function loop(ts) {
+      var p = triangleWave(ts);
+      applyProgress(p);
+      requestAnimationFrame(loop);
+    }
+
+    function start() {
+      frame.classList.add('ready');
+      if (reduceMotion) {
+        applyProgress(P_REST);
+        return;
+      }
+      requestAnimationFrame(loop);
+    }
+
+    if (img.complete && img.naturalWidth > 0) {
+      start();
+    } else {
+      img.addEventListener('load', start);
+    }
+  })();
+
+  // 히어로 대시보드 안 잔액 숫자 카운트업 (이미지 로드 완료 후에만 표시, 계속 반복)
+  (function () {
+    var frame = document.getElementById('mpHeroFrame');
+    var img = document.getElementById('mpHeroImg');
+    var balanceEl = document.getElementById('mpHeroBalance');
+    if (!frame || !img || !balanceEl) return;
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var target = 27350600;
+    var pauseBetween = 2200; // 한 세트 끝나고 쉬는 시간
+
+    function countUp() {
+      frame.classList.add('ready');
+      if (reduceMotion) {
+        balanceEl.textContent = '€ ' + target.toLocaleString('en-US');
+        return;
+      }
+      var start = null, duration = 1600;
+      function step(ts) {
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var value = Math.round(target * eased);
+        balanceEl.textContent = '€ ' + value.toLocaleString('en-US');
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          // 잠시 쉬었다가 처음부터 다시 재생
+          setTimeout(function () {
+            balanceEl.textContent = '€ 0';
+            setTimeout(countUp, 250);
+          }, pauseBetween);
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    if (img.complete && img.naturalWidth > 0) {
+      setTimeout(countUp, 300);
+    } else {
+      img.addEventListener('load', function () { setTimeout(countUp, 300); });
+    }
+  })();
+
+  // 소액 저축 마이크로 인터랙션 데모 (무한 반복)
+  (function () {
+    var card = document.querySelector('.mp-demo-card');
+    var amount = document.getElementById('mpAmount');
+    var toast = document.getElementById('mpToast');
+    var demo = document.getElementById('mpDemo');
+    if (!card) return;
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var pauseBetween = 2200;
+
+    function play() {
+      card.classList.remove('playing');
+      toast.classList.remove('show');
+      // 리플로우로 애니메이션 재시작
+      void card.offsetWidth;
+      card.classList.add('playing');
+
+      if (reduceMotion) {
+        amount.textContent = '€1,625';
+        setTimeout(function () { toast.classList.add('show'); }, 0);
+        return;
+      }
+
+      var from = 1600, to = 1625, duration = 1100, start = null;
+      function step(ts) {
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var value = Math.round(from + (to - from) * eased);
+        amount.textContent = '€' + value.toLocaleString('en-US');
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      setTimeout(function () { toast.classList.add('show'); }, 300);
+
+      // 잠시 쉬었다가 처음부터 다시 재생
+      setTimeout(function () {
+        amount.textContent = '€1,600';
+        setTimeout(play, 250);
+      }, duration + pauseBetween);
+    }
+
+    var played = false;
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !played) {
+          played = true;
+          setTimeout(play, 400);
+        }
+      });
+    }, { threshold: 0.5 });
+    observer.observe(demo);
+  })();
+</script>
+</body>
+</html>

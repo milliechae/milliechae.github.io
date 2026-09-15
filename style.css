@@ -103,6 +103,7 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   align-items: center;
   position: relative;
   padding: 12px 0 36px;
+  background: radial-gradient(180px 110px at 50% 45%, rgba(10,20,35,0.035), transparent 72%);
 }
 .back-arrow {
   position: absolute;
@@ -120,23 +121,29 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   font-size: 16px;
   cursor: pointer;
 }
+
+/* ---------- 다크/라이트 토글: 4-레이어 liquid glass ----------
+   Layer 1 (요소 자체 background) : 투명한 베이스 유리체, 중앙일수록 거의 clear
+   Layer 2 (::before)            : 가장자리 굴절 - 상/하/좌/우 각기 다른 빛 반사
+   Layer 3 (::after 앞부분)       : 표면 스페큘러 하이라이트 밴드
+   Layer 4 (::after 뒷부분)       : 내부 caustic - 우하단 미세한 음영으로 입체감
+*/
 .theme-toggle {
   position: relative;
   width: 90px;
   height: 46px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.45);
-  background:
-    radial-gradient(ellipse at center, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 55%, rgba(255,255,255,0.1) 100%),
-    linear-gradient(180deg, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0.18) 14%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.18) 86%, rgba(255,255,255,0.3) 100%);
-  -webkit-backdrop-filter: blur(16px) saturate(150%);
-  backdrop-filter: blur(16px) saturate(150%);
+  border: 1px solid rgba(255,255,255,0.4);
+  /* Layer 1: 베이스 유리체 - 중앙은 거의 투명 */
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.26) 0%,
+    rgba(255,255,255,0.07) 42%,
+    rgba(255,255,255,0.05) 58%,
+    rgba(255,255,255,0.16) 100%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
   box-shadow:
-    inset 0 1.5px 1px rgba(255,255,255,0.85),
-    inset 0 -1px 1px rgba(130,140,150,0.22),
-    inset 1.5px 0 1px rgba(255,255,255,0.45),
-    inset -1.5px 0 1px rgba(255,255,255,0.22),
-    inset 0 0 0 0.5px rgba(255,255,255,0.3),
+    inset 0 0 0 0.5px rgba(255,255,255,0.2),
     0 2px 4px rgba(0,0,0,0.06),
     0 8px 18px rgba(0,0,0,0.035);
   cursor: pointer;
@@ -146,25 +153,36 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.35s ease, border-color 0.35s ease;
 }
+/* Layer 2: 가장자리 굴절 - 위는 밝게, 아래는 차갑게, 좌우 커브는 각기 다른 밝기 */
 .theme-toggle::before {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(160deg, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0) 22%, rgba(255,255,255,0) 78%, rgba(255,255,255,0.16) 100%);
+  background:
+    radial-gradient(130% 70% at 50% -15%, rgba(255,255,255,0.6), transparent 58%),
+    radial-gradient(130% 70% at 50% 115%, rgba(120,135,150,0.22), transparent 58%),
+    radial-gradient(55% 150% at -8% 50%, rgba(255,255,255,0.45), transparent 62%),
+    radial-gradient(55% 150% at 108% 50%, rgba(255,255,255,0.24), transparent 62%);
   pointer-events: none;
 }
+/* Layer 3 + 4: 표면 스페큘러 하이라이트 + 내부 caustic 음영 */
 .theme-toggle::after {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  box-shadow: inset 0 0 0 0.5px rgba(255,255,255,0.22);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.15) 28%, rgba(255,255,255,0) 46%),
+    radial-gradient(45% 55% at 78% 82%, rgba(50,60,75,0.10), transparent 72%);
+  mix-blend-mode: overlay;
   pointer-events: none;
 }
 .theme-toggle:hover { transform: translateY(-0.5px); }
 .theme-toggle:active { transform: translateY(0) scale(0.98); }
 .theme-toggle .track-icon { display: none; }
+
+/* knob: 흰 원이 아니라 볼록한 유리 렌즈 - 중심보다 가장자리가 밝음 */
 .theme-toggle .knob {
   position: absolute;
   top: 3px;
@@ -172,14 +190,16 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.55);
-  background: linear-gradient(160deg, rgba(255,255,255,0.68) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.22) 100%);
-  -webkit-backdrop-filter: blur(6px) saturate(140%);
-  backdrop-filter: blur(6px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.5);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0.22) 78%, rgba(255,255,255,0.42) 100%),
+    radial-gradient(circle at 30% 26%, rgba(255,255,255,0.85), rgba(255,255,255,0) 42%),
+    radial-gradient(circle at 72% 76%, rgba(50,60,75,0.14), rgba(255,255,255,0) 55%);
+  -webkit-backdrop-filter: blur(8px) saturate(160%);
+  backdrop-filter: blur(8px) saturate(160%);
   box-shadow:
-    inset 0 1.5px 1.5px rgba(255,255,255,0.95),
-    inset 0 -1.5px 2px rgba(0,0,0,0.08),
-    inset 1px 0 1px rgba(255,255,255,0.5),
+    inset 0 0 0 0.5px rgba(255,255,255,0.5),
+    inset 0 -1px 1.5px rgba(0,0,0,0.06),
     0 2px 5px -1px rgba(0,0,0,0.14),
     0 1px 2px rgba(0,0,0,0.07);
   display: flex;
@@ -188,36 +208,48 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   color: #808080;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.theme-toggle .knob svg { width: 16px; height: 16px; display: block; }
+.theme-toggle .knob svg { width: 16px; height: 16px; display: block; position: relative; z-index: 1; }
 .theme-toggle .knob-sun { display: flex; }
 .theme-toggle .knob-moon { display: none; }
 html[data-theme="dark"] .theme-toggle .knob-sun { display: none; }
 html[data-theme="dark"] .theme-toggle .knob-moon { display: flex; }
 html[data-theme="dark"] .theme-toggle .knob { transform: translateX(44px); }
+
+html[data-theme="dark"] .site-header {
+  background: radial-gradient(180px 110px at 50% 45%, rgba(255,255,255,0.03), transparent 72%);
+}
 html[data-theme="dark"] .theme-toggle {
-  border-color: rgba(255,255,255,0.22);
-  background:
-    radial-gradient(ellipse at center, rgba(255,255,255,0.02) 0%, rgba(0,0,0,0.03) 55%, rgba(255,255,255,0.05) 100%),
-    linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.04) 14%, rgba(0,0,0,0.05) 50%, rgba(255,255,255,0.03) 86%, rgba(255,255,255,0.1) 100%);
+  border-color: rgba(255,255,255,0.2);
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.1) 0%,
+    rgba(255,255,255,0.02) 42%,
+    rgba(0,0,0,0.04) 58%,
+    rgba(255,255,255,0.05) 100%);
   box-shadow:
-    inset 0 1.5px 1px rgba(255,255,255,0.28),
-    inset 0 -1px 1px rgba(0,0,0,0.3),
-    inset 1.5px 0 1px rgba(255,255,255,0.14),
-    inset -1.5px 0 1px rgba(255,255,255,0.06),
     inset 0 0 0 0.5px rgba(255,255,255,0.1),
     0 2px 4px rgba(0,0,0,0.18),
     0 8px 18px rgba(0,0,0,0.12);
 }
 html[data-theme="dark"] .theme-toggle::before {
-  background: linear-gradient(160deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 22%, rgba(255,255,255,0) 78%, rgba(255,255,255,0.06) 100%);
+  background:
+    radial-gradient(130% 70% at 50% -15%, rgba(255,255,255,0.22), transparent 58%),
+    radial-gradient(130% 70% at 50% 115%, rgba(0,0,0,0.3), transparent 58%),
+    radial-gradient(55% 150% at -8% 50%, rgba(255,255,255,0.14), transparent 62%),
+    radial-gradient(55% 150% at 108% 50%, rgba(255,255,255,0.07), transparent 62%);
 }
 html[data-theme="dark"] .theme-toggle::after {
-  box-shadow: inset 0 0 0 0.5px rgba(255,255,255,0.1);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.05) 28%, rgba(255,255,255,0) 46%),
+    radial-gradient(45% 55% at 78% 82%, rgba(0,0,0,0.25), transparent 72%);
+  mix-blend-mode: normal;
 }
 html[data-theme="dark"] .theme-toggle .knob {
-  border-color: rgba(255,255,255,0.3);
-  background: linear-gradient(160deg, rgba(130,130,138,0.65) 0%, rgba(75,75,84,0.4) 50%, rgba(65,65,74,0.34) 100%);
-  color: #b0b0b6;
+  border-color: rgba(255,255,255,0.28);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(90,90,98,0.1) 0%, rgba(80,80,88,0.18) 40%, rgba(110,110,118,0.4) 78%, rgba(140,140,148,0.55) 100%),
+    radial-gradient(circle at 30% 26%, rgba(200,200,208,0.55), rgba(255,255,255,0) 42%),
+    radial-gradient(circle at 72% 76%, rgba(0,0,0,0.25), rgba(255,255,255,0) 55%);
+  color: #c2c2c8;
 }
 @media (max-width: 480px) {
   .theme-toggle { width: 76px; height: 40px; }
@@ -225,6 +257,7 @@ html[data-theme="dark"] .theme-toggle .knob {
   .theme-toggle .knob svg { width: 14px; height: 14px; }
   html[data-theme="dark"] .theme-toggle .knob { transform: translateX(36px); }
 }
+
 
 /* ---------- 헤더 ---------- */
 .hero-header {

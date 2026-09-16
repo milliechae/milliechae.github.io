@@ -188,9 +188,7 @@ html[data-theme="dark"] .theme-toggle .knob .knob-sun { display: none; }
 html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 
 .lang-toggle {
-  position: absolute;
-  right: 0;
-  top: 8px;
+  position: relative;
   display: flex;
   align-items: center;
   height: 34px;
@@ -229,8 +227,23 @@ html[data-theme="dark"] .lang-toggle .lang-seg.active {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
   padding: 28px 0;
+  transition: padding 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.site-header.is-scrolled {
+  padding: 12px 0;
+  background: rgba(255,255,255,0.72);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.06);
+}
+html[data-theme="dark"] .site-header.is-scrolled {
+  background: rgba(23,20,15,0.72);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.35);
 }
 
 /* ---------- 히어로: Instrument Plate ---------- */
@@ -608,11 +621,7 @@ section.block { padding: 64px 0; }
 </head>
 <body>
 
-<header class="site-header wrap">
-  <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
-    <span class="lang-seg lang-en">EN</span>
-    <span class="lang-seg lang-ko">한글</span>
-  </button>
+<header class="site-header wrap" id="siteHeader">
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" type="button">
     <span class="track-icon sun">☀</span>
     <span class="track-icon moon">☾</span>
@@ -620,6 +629,10 @@ section.block { padding: 64px 0; }
       <span class="knob-sun">☀</span>
       <span class="knob-moon">☾</span>
     </span>
+  </button>
+  <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
+    <span class="lang-seg lang-en">EN</span>
+    <span class="lang-seg lang-ko">한글</span>
   </button>
 </header>
 
@@ -831,6 +844,19 @@ themeToggle.addEventListener('click', () => {
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
 });
+
+// 스크롤 시 헤더 플로팅 (애플식: 스크롤 내리면 배경+블러 생기며 살짝 떠오름)
+const siteHeader = document.getElementById('siteHeader');
+function updateHeaderScrollState() {
+  if (window.scrollY > 80) {
+    siteHeader.classList.add('is-scrolled');
+  } else {
+    siteHeader.classList.remove('is-scrolled');
+  }
+}
+updateHeaderScrollState();
+window.addEventListener('scroll', updateHeaderScrollState, { passive: true });
+
 
 // 언어 토글 (EN / 한글)
 const i18nDict = {

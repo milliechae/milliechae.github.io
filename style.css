@@ -781,8 +781,9 @@ html[data-theme="dark"] .status-pill {
 
     stroke-linejoin:round;
 
-    stroke-dasharray:8 8;
-
+}
+html[data-theme="dark"] .flow-line path{
+    stroke:#B9B2A2;
 }
 
 .hypothesis-list{

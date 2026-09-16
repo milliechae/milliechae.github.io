@@ -199,11 +199,12 @@ html[data-theme="dark"] .theme-toggle {
 
 /* ---------- 헤더 ---------- */
 .hero-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 24px;
   margin-bottom: 16px;
+}
+.hero-header::after {
+  content: '';
+  display: table;
+  clear: both;
 }
 .hero-header h1 {
   font-family: var(--font-display);
@@ -214,10 +215,7 @@ html[data-theme="dark"] .theme-toggle {
   color: var(--text-primary);
   margin: 0 0 8px;
 }
-.hero-header__text {
-  flex: 1 1 auto;
-  min-width: 0;
-}
+
 .subtitle {
   margin: 0;
   color: #666666;
@@ -228,6 +226,8 @@ html[data-theme="dark"] .theme-toggle {
 }
 html[data-theme="dark"] .subtitle { color: #9E9E9E; }
 .status-pill {
+  float: right;
+  margin-left: 20px;
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;

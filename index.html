@@ -224,22 +224,30 @@ html[data-theme="dark"] .lang-toggle .lang-seg.active {
 
 /* ---------- 헤더 ---------- */
 .site-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.site-header-inner {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 12px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  padding: 28px 0;
-  transition: padding 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  padding: 28px 24px;
+  transition: padding 0.3s ease;
 }
 .site-header.is-scrolled {
-  padding: 12px 0;
   background: rgba(255,255,255,0.72);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   backdrop-filter: blur(16px) saturate(180%);
   box-shadow: 0 1px 0 rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.06);
+}
+.site-header.is-scrolled .site-header-inner {
+  padding: 12px 24px;
 }
 html[data-theme="dark"] .site-header.is-scrolled {
   background: rgba(23,20,15,0.72);
@@ -621,19 +629,21 @@ section.block { padding: 64px 0; }
 </head>
 <body>
 
-<header class="site-header wrap" id="siteHeader">
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" type="button">
-    <span class="track-icon sun">☀</span>
-    <span class="track-icon moon">☾</span>
-    <span class="knob">
-      <span class="knob-sun">☀</span>
-      <span class="knob-moon">☾</span>
-    </span>
-  </button>
-  <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
-    <span class="lang-seg lang-en">EN</span>
-    <span class="lang-seg lang-ko">한글</span>
-  </button>
+<header class="site-header" id="siteHeader">
+  <div class="site-header-inner wrap">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" type="button">
+      <span class="track-icon sun">☀</span>
+      <span class="track-icon moon">☾</span>
+      <span class="knob">
+        <span class="knob-sun">☀</span>
+        <span class="knob-moon">☾</span>
+      </span>
+    </button>
+    <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
+      <span class="lang-seg lang-en">EN</span>
+      <span class="lang-seg lang-ko">한글</span>
+    </button>
+  </div>
 </header>
 
 <section class="hero wrap">

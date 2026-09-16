@@ -214,6 +214,10 @@ html[data-theme="dark"] .theme-toggle {
   color: var(--text-primary);
   margin: 0 0 8px;
 }
+.hero-header__text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
 .subtitle {
   margin: 0;
   color: #666666;

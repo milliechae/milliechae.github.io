@@ -389,6 +389,18 @@ html[data-theme="dark"] .status-pill {
   font-size: 15px;
   color: var(--text-primary);
 }
+.meta-value__main {
+  display: inline-block;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+.meta-value__sub {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-tertiary);
+}
 
 .divider {
   border: none;

@@ -187,6 +187,39 @@ html[data-theme="dark"] .theme-toggle .knob { transform: translateX(30px); }
 html[data-theme="dark"] .theme-toggle .knob .knob-sun { display: none; }
 html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
 
+.lang-toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 34px;
+  padding: 3px;
+  gap: 2px;
+  border-radius: 999px;
+  border: none;
+  background: var(--bg-soft);
+  cursor: pointer;
+}
+.lang-toggle .lang-seg {
+  padding: 0 12px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 999px;
+  color: var(--ink-faint);
+  transition: color 0.25s ease, background-color 0.25s ease;
+}
+.lang-toggle .lang-seg.active {
+  color: var(--ink);
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+html[data-theme="dark"] .lang-toggle .lang-seg.active {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
 .wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
 
 /* ---------- 헤더 ---------- */
@@ -194,6 +227,7 @@ html[data-theme="dark"] .theme-toggle .knob .knob-moon { display: inline; }
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 12px;
   padding: 28px 0;
 }
 
@@ -573,6 +607,10 @@ section.block { padding: 64px 0; }
 <body>
 
 <header class="site-header wrap">
+  <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
+    <span class="lang-seg lang-en">EN</span>
+    <span class="lang-seg lang-ko">한글</span>
+  </button>
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" type="button">
     <span class="track-icon sun">☀</span>
     <span class="track-icon moon">☾</span>
@@ -599,16 +637,16 @@ section.block { padding: 64px 0; }
 
       <!-- ④ 태그: 원하는 만큼 추가/삭제 가능 -->
       <div class="tags">
-        <span>Product Design</span>
-        <span>Data Visualization</span>
-        <span>Design Systems</span>
-        <span>B2B SaaS</span>
-        <span>User Research</span>
+        <span data-i18n="k1">Product Design</span>
+        <span data-i18n="k2">Data Visualization</span>
+        <span data-i18n="k3">Design Systems</span>
+        <span data-i18n="k4">B2B SaaS</span>
+        <span data-i18n="k5">User Research</span>
       </div>
 
       <div class="cta-row">
         <a href="https://www.linkedin.com/in/milliechae/" target="_blank" rel="noopener" class="btn btn-primary">LinkedIn</a>
-        <a href="#work" class="btn btn-secondary">View work</a>
+        <a href="#work" class="btn btn-secondary" data-i18n="k6">View work</a>
       </div>
     </div>
   </div>
@@ -616,7 +654,7 @@ section.block { padding: 64px 0; }
 
 <div class="trust-strip">
   <div class="wrap">
-    <span class="label">Trusted by</span>
+    <span class="label" data-i18n="k7">Trusted by</span>
     <!-- Samsung 로고: images/samsung-logo.png 없으면 자동으로 텍스트로 표시 -->
     <span class="company-slot">
       <img src="images/samsung-logo.png" alt="Samsung Electronics" class="company-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
@@ -639,25 +677,25 @@ section.block { padding: 64px 0; }
   <!-- ④ 스펙시트 스탯 블록: 숫자만 실제 데이터로 확인 후 조정 -->
   <div class="specsheet reveal">
     <div class="specsheet-head">
-      <span>Track record</span>
-      <span>Measured across 3 enterprise products</span>
+      <span data-i18n="k8">Track record</span>
+      <span data-i18n="k9">Measured across 3 enterprise products</span>
     </div>
     <div class="specsheet-grid">
       <div class="spec-item">
         <div class="spec-number" data-count="25"><span class="value">0</span><span class="unit">%</span></div>
-        <div class="spec-label">faster incident response on anomaly detection tools</div>
+        <div class="spec-label" data-i18n="k10">faster incident response on anomaly detection tools</div>
       </div>
       <div class="spec-item">
         <div class="spec-number" data-count="90"><span class="value">0</span><span class="unit">%+</span></div>
-        <div class="spec-label">User satisfaction<br>after redesign</div>
+        <div class="spec-label" data-i18n-html="k11">User satisfaction<br>after redesign</div>
       </div>
       <div class="spec-item">
         <div class="spec-number" data-count="8"><span class="value">0</span><span class="unit">yrs</span></div>
-        <div class="spec-label">designing complex, data-heavy enterprise products</div>
+        <div class="spec-label" data-i18n="k12">designing complex, data-heavy enterprise products</div>
       </div>
       <div class="spec-item">
         <div class="spec-number" data-count="2"><span class="value">0</span><span class="unit">×</span></div>
-        <div class="spec-label"> Enterprise platforms delivered for <br> Samsung &amp; SK hynix
+        <div class="spec-label" data-i18n-html="k13"> Enterprise platforms delivered for <br> Samsung &amp; SK hynix
         </div>
       </div>
     </div>
@@ -665,9 +703,9 @@ section.block { padding: 64px 0; }
 </div>
 
 <section class="block wrap" id="work">
-  <p class="section-eyebrow reveal">Selected work</p>
-  <h2 class="section-title reveal">Making dense data actionable under pressure.</h2>
-  <p class="section-desc reveal">Each project below follows the same process. I start by understanding the real workflow, pinpointing where users lose time, and designing the simplest interface that solves it.</p>
+  <p class="section-eyebrow reveal" data-i18n="k14">Selected work</p>
+  <h2 class="section-title reveal" data-i18n="k15">Making dense data actionable under pressure.</h2>
+  <p class="section-desc reveal" data-i18n="k16">Each project below follows the same process. I start by understanding the real workflow, pinpointing where users lose time, and designing the simplest interface that solves it.</p>
 
   <!-- ⑤ 프로젝트 4개: href를 실제 case study 파일명으로 연결하고,
        images/ 폴더에 썸네일을 넣으면 자동으로 아이콘 대신 표시됩니다 -->
@@ -681,10 +719,10 @@ section.block { padding: 64px 0; }
         </span>
       </span>
       <span class="project-body">
-        <span class="project-tag status-shipped"><span class="status-dot"></span>Shipped - SK hynix</span>
+        <span class="project-tag status-shipped"><span class="status-dot"></span><span data-i18n="k17">Shipped - SK hynix</span></span>
         <span class="project-info">
-          <h3>Semiconductor Anomaly Detection Service</h3>
-          <p>Real-time UI that reduced incident response time by 25%</p>
+          <h3 data-i18n="k18">Semiconductor Anomaly Detection Service</h3>
+          <p data-i18n="k19">Real-time UI that reduced incident response time by 25%</p>
         </span>
       </span>
     </a>
@@ -697,10 +735,10 @@ section.block { padding: 64px 0; }
         </span>
       </span>
       <span class="project-body">
-        <span class="project-tag status-shipped"><span class="status-dot"></span>Shipped - SK hynix</span>
+        <span class="project-tag status-shipped"><span class="status-dot"></span><span data-i18n="k17">Shipped - SK hynix</span></span>
         <span class="project-info">
-          <h3>Real Time Notification Dashboard</h3>
-          <p>Cut operator response times with prioritized, customizable alerts</p>
+          <h3 data-i18n="k21">Real Time Notification Dashboard</h3>
+          <p data-i18n="k22">Cut operator response times with prioritized, customizable alerts</p>
         </span>
       </span>
     </a>
@@ -713,10 +751,10 @@ section.block { padding: 64px 0; }
         </span>
       </span>
       <span class="project-body">
-        <span class="project-tag status-concept"><span class="status-dot"></span>Concept - Personal project</span>
+        <span class="project-tag status-concept"><span class="status-dot"></span><span data-i18n="k23">Concept - Personal project</span></span>
         <span class="project-info">
-          <h3>Mochi Pay — Personal Finance Dashboard</h3>
-          <p>A self-directed exploration of why saving money feels so hard</p>
+          <h3 data-i18n="k24">Mochi Pay — Personal Finance Dashboard</h3>
+          <p data-i18n="k25">A self-directed exploration of why saving money feels so hard</p>
         </span>
       </span>
     </a>
@@ -729,10 +767,10 @@ section.block { padding: 64px 0; }
         </span>
       </span>
       <span class="project-body">
-        <span class="project-tag status-shipped"><span class="status-dot"></span>Shipped - Samsung / SK hynix</span>
+        <span class="project-tag status-shipped"><span class="status-dot"></span><span data-i18n="k26">Shipped - Samsung / SK hynix</span></span>
         <span class="project-info">
-          <h3>Workflow Data Analytics Platform</h3>
-          <p>No-code data pipeline builder for enterprise analysts</p>
+          <h3 data-i18n="k27">Workflow Data Analytics Platform</h3>
+          <p data-i18n="k28">No-code data pipeline builder for enterprise analysts</p>
         </span>
       </span>
     </a>
@@ -740,46 +778,46 @@ section.block { padding: 64px 0; }
 </section>
 
 <section class="block wrap" id="about">
-  <p class="section-eyebrow reveal">About</p>
+  <p class="section-eyebrow reveal" data-i18n="k29">About</p>
   <div class="about-grid reveal">
     <div>
       <!-- ⑥ 자기소개 문단: 원하는 내용으로 수정 -->
-      <p>
+      <p data-i18n="k30">
        I design complex B2B SaaS platforms, turning intricate data architectures and AI workflows into actionable interfaces under pressure. 
       </p>
-      <p>
+      <p data-i18n="k31">
       Currently freelancing at Nextrunners on design systems and AI workflows, building on 8+ years of enterprise design experience for teams at Samsung and SK hynix.
       </p>
       
     </div>
     <div class="about-facts">
       <div class="fact">
-        <div class="k">Currently</div>
-        <div class="v">Freelance Senior Product Designer at Nextrunners</div>
+        <div class="k" data-i18n="k32">Currently</div>
+        <div class="v" data-i18n="k33">Freelance Senior Product Designer at Nextrunners</div>
       </div>
       <div class="fact">
-        <div class="k">Experience</div>
-        <div class="v">8+ Years in Enterprise &amp; B2B SaaS Product Design
+        <div class="k" data-i18n="k34">Experience</div>
+        <div class="v" data-i18n-html="k35">8+ Years in Enterprise &amp; B2B SaaS Product Design
                       (Led platform design for Samsung Electronics & SK hynix)</div>
       </div>
       <div class="fact">
-        <div class="k">Focus</div>
-        <div class="v">Product Design, Design Systems, Data Visualization, User Research</div>
+        <div class="k" data-i18n="k36">Focus</div>
+        <div class="v" data-i18n="k37">Product Design, Design Systems, Data Visualization, User Research</div>
       </div>
     </div>
   </div>
 </section>
 
 <footer class="site-footer wrap" id="contact">
-  <h2 class="footer-head reveal">Open for product challenges, design talks, or just a casual coffee chat.
+  <h2 class="footer-head reveal" data-i18n-html="k38">Open for product challenges, design talks, or just a casual coffee chat.
 
 Say hello!</h2>
   <div class="footer-links reveal">
     <a href="mailto:iam.millie.y@gmail.com">iam.millie.y@gmail.com</a>
     <a href="https://www.linkedin.com/in/milliechae/" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="milliechae-portfolio.pdf" target="_blank" rel="noopener">Download résumé (PDF)</a>
+    <a href="milliechae-portfolio.pdf" target="_blank" rel="noopener" data-i18n="k39">Download résumé (PDF)</a>
   </div>
-  <p class="footer-meta">© 2026 Millie Chae. Built with care, one pixel at a time.</p>
+  <p class="footer-meta" data-i18n="k40">© 2026 Millie Chae. Built with care, one pixel at a time.</p>
 </footer>
 
 <script>
@@ -790,6 +828,83 @@ themeToggle.addEventListener('click', () => {
   const next = current === 'dark' ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
+});
+
+// 언어 토글 (EN / 한글)
+const i18nDict = {
+  k1:  { ko: '프로덕트 디자인' },
+  k2:  { ko: '데이터 시각화' },
+  k3:  { ko: '디자인 시스템' },
+  k4:  { ko: 'B2B SaaS' },
+  k5:  { ko: '사용자 리서치' },
+  k6:  { ko: '작업물 보기' },
+  k7:  { ko: '함께한 기업' },
+  k8:  { ko: '성과' },
+  k9:  { ko: '3개 엔터프라이즈 프로덕트 기준' },
+  k10: { ko: '이상 탐지 도구 장애 대응 속도 개선' },
+  k11: { ko: '리디자인 후<br>사용자 만족도' },
+  k12: { ko: '복잡한 데이터 중심 엔터프라이즈 프로덕트 설계' },
+  k13: { ko: ' 삼성전자 & SK하이닉스에 <br> 납품한 엔터프라이즈 플랫폼' },
+  k14: { ko: '주요 작업' },
+  k15: { ko: '복잡한 데이터를, 압박 속에서도 실행 가능하게.' },
+  k16: { ko: '아래 프로젝트들은 모두 같은 과정을 따릅니다. 실제 워크플로우를 이해하고, 사용자가 시간을 낭비하는 지점을 짚어낸 뒤, 가장 단순한 해결책을 설계합니다.' },
+  k17: { ko: '출시 - SK하이닉스' },
+  k18: { ko: '반도체 이상 탐지 서비스' },
+  k19: { ko: '장애 대응 시간을 25% 단축한 실시간 UI' },
+  k21: { ko: '실시간 알림 대시보드' },
+  k22: { ko: '우선순위 기반 맞춤 알림으로 운영자 대응 시간 단축' },
+  k23: { ko: '컨셉 - 개인 프로젝트' },
+  k24: { ko: '모찌페이 — 개인 자산관리 대시보드' },
+  k25: { ko: '저축이 왜 이렇게 어렵게 느껴지는지에 대한 자기주도적 탐구' },
+  k26: { ko: '출시 - 삼성전자 / SK하이닉스' },
+  k27: { ko: '워크플로우 데이터 분석 플랫폼' },
+  k28: { ko: '엔터프라이즈 분석가를 위한 노코드 데이터 파이프라인 빌더' },
+  k29: { ko: '소개' },
+  k30: { ko: '복잡한 B2B SaaS 플랫폼을 디자인합니다. 정교한 데이터 아키텍처와 AI 워크플로우를, 압박이 있는 상황에서도 실행 가능한 인터페이스로 바꿔냅니다.' },
+  k31: { ko: '현재 Nextrunners에서 디자인 시스템과 AI 워크플로우를 중심으로 프리랜스로 활동 중이며, 삼성전자와 SK하이닉스 팀에서 쌓은 8년 이상의 엔터프라이즈 디자인 경력을 바탕으로 합니다.' },
+  k32: { ko: '현재' },
+  k33: { ko: 'Nextrunners 프리랜스 시니어 프로덕트 디자이너' },
+  k34: { ko: '경력' },
+  k35: { ko: '8년+ 엔터프라이즈 & B2B SaaS 프로덕트 디자인 경력<br>(삼성전자, SK하이닉스 플랫폼 디자인 리드)' },
+  k36: { ko: '포커스' },
+  k37: { ko: '프로덕트 디자인, 디자인 시스템, 데이터 시각화, 사용자 리서치' },
+  k38: { ko: '새로운 프로덕트 과제, 디자인 이야기, 가벼운 커피챗 모두 환영합니다.<br><br>인사해주세요!' },
+  k39: { ko: '이력서 다운로드 (PDF)' },
+  k40: { ko: '© 2026 Millie Chae. 한 픽셀 한 픽셀 정성을 담아 만들었습니다.' }
+};
+
+function applyLang(lang) {
+  var els = document.querySelectorAll('[data-i18n]');
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    if (!el.dataset.enCache) el.dataset.enCache = el.textContent;
+    var key = el.getAttribute('data-i18n');
+    el.textContent = lang === 'ko' ? (i18nDict[key] ? i18nDict[key].ko : el.dataset.enCache) : el.dataset.enCache;
+  }
+  var elsHtml = document.querySelectorAll('[data-i18n-html]');
+  for (var j = 0; j < elsHtml.length; j++) {
+    var elH = elsHtml[j];
+    if (!elH.dataset.enCache) elH.dataset.enCache = elH.innerHTML;
+    var keyH = elH.getAttribute('data-i18n-html');
+    elH.innerHTML = lang === 'ko' ? (i18nDict[keyH] ? i18nDict[keyH].ko : elH.dataset.enCache) : elH.dataset.enCache;
+  }
+  document.documentElement.setAttribute('lang', lang === 'ko' ? 'ko' : 'en');
+  const enSeg = document.querySelector('.lang-toggle .lang-en');
+  const koSeg = document.querySelector('.lang-toggle .lang-ko');
+  if (enSeg && koSeg) {
+    enSeg.classList.toggle('active', lang !== 'ko');
+    koSeg.classList.toggle('active', lang === 'ko');
+  }
+}
+
+const langToggle = document.getElementById('langToggle');
+const savedLang = localStorage.getItem('lang') || 'en';
+applyLang(savedLang);
+langToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('lang') === 'ko' ? 'ko' : 'en';
+  const next = current === 'ko' ? 'en' : 'ko';
+  localStorage.setItem('lang', next);
+  applyLang(next);
 });
 
 // 숫자 카운트업 애니메이션

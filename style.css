@@ -592,30 +592,21 @@ section.design-challenge-card{
 }
 .bq-peek-char{
     position: absolute;
-    top: -70px;
-    right: 24px;
-    width: 100px;
+    top: -100px;
+    right: 20px;
+    width: 150px;
     height: auto;
+    display: block;
     animation: bqPeek 3.6s ease-in-out infinite;
     pointer-events: none;
-}
-.bq-peek-q{
-    transform-origin: center;
-    transform-box: fill-box;
-    animation: bqPeekQ 3.6s ease-in-out infinite;
 }
 @keyframes bqPeek {
     0%, 100% { transform: translateY(0) rotate(0deg); }
     30%, 45% { transform: translateY(-6px) rotate(2.5deg); }
     75% { transform: translateY(0) rotate(0deg); }
 }
-@keyframes bqPeekQ {
-    0%, 100% { transform: translateY(0) rotate(-6deg); }
-    30%, 45% { transform: translateY(-2.5px) rotate(-3deg); }
-    75% { transform: translateY(0) rotate(-6deg); }
-}
 @media (prefers-reduced-motion: reduce) {
-    .bq-peek-char, .bq-peek-q { animation: none; }
+    .bq-peek-char { animation: none; }
 }
 
 .challenge-icon{

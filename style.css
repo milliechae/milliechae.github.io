@@ -578,7 +578,7 @@ html[data-theme="dark"] .status-pill {
 
 .bq-challenge-wrap{
     position: relative;
-    margin-top: 40px;
+    margin-top: 64px;
 }
 section.design-challenge-card{
     margin-top: 40px;
@@ -592,9 +592,9 @@ section.design-challenge-card{
 }
 .bq-peek-char{
     position: absolute;
-    top: -100px;
-    right: 20px;
-    width: 150px;
+    top: -82px;
+    right: 24px;
+    width: 120px;
     height: auto;
     display: block;
     animation: bqPeek 3.6s ease-in-out infinite;

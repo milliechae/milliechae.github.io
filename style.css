@@ -602,9 +602,9 @@ section.design-challenge-card{
 }
 .bq-peek-qmark{
     position: absolute;
-    top: -71px;
-    right: 101px;
-    width: 16px;
+    top: -98px;
+    right: 22px;
+    width: 20px;
     height: auto;
     display: block;
     animation: bqPeekQmark 3.6s ease-in-out infinite;

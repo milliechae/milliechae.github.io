@@ -577,11 +577,59 @@ html[data-theme="dark"] .status-pill {
 ========================================= */
 
 .design-challenge-card{
+    position: relative;
     margin-top:40px;
     padding:28px 30px;
     border:1px solid var(--line);
     border-radius:20px;
     background:var(--bg-soft);
+}
+.bq-peek-char{
+    position: absolute;
+    top: -46px;
+    right: 28px;
+    width: 76px;
+    height: auto;
+    transform-origin: 50% 100%;
+    animation: bqPeekTilt 3.2s ease-in-out infinite;
+    pointer-events: none;
+}
+.bq-peek-eyes{
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: bqPeekBlink 4.5s ease-in-out infinite;
+}
+.bq-peek-q{
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: bqPeekQBounce 2.4s ease-in-out infinite;
+}
+@keyframes bqPeekTilt {
+    0%, 100% { transform: rotate(-4deg); }
+    50% { transform: rotate(5deg); }
+}
+@keyframes bqPeekBlink {
+    0%, 88%, 100% { transform: scaleY(1); }
+    92% { transform: scaleY(0.1); }
+    96% { transform: scaleY(1); }
+}
+@keyframes bqPeekQBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .bq-peek-char, .bq-peek-eyes, .bq-peek-q { animation: none; }
+}
+
+.challenge-icon{
+    display: inline-block;
+    animation: bqIconSpin 3s linear infinite;
+}
+@keyframes bqIconSpin {
+    to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .challenge-icon { animation: none; }
 }
 
 .challenge-label{

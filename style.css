@@ -576,9 +576,15 @@ html[data-theme="dark"] .status-pill {
    Design Challenge Card
 ========================================= */
 
+.bq-challenge-wrap{
+    position: relative;
+    margin-top: 40px;
+}
+section.design-challenge-card{
+    margin-top: 40px;
+}
 .design-challenge-card{
     position: relative;
-    margin-top:40px;
     padding:28px 30px;
     border:1px solid var(--line);
     border-radius:20px;
@@ -586,39 +592,30 @@ html[data-theme="dark"] .status-pill {
 }
 .bq-peek-char{
     position: absolute;
-    top: -70px;
-    right: 20px;
-    width: 110px;
+    top: -95px;
+    right: 24px;
+    width: 100px;
     height: auto;
-    transform-origin: 50% 100%;
-    animation: bqPeekTilt 3.2s ease-in-out infinite;
+    animation: bqPeek 3.6s ease-in-out infinite;
     pointer-events: none;
-}
-.bq-peek-eyes{
-    transform-origin: center;
-    transform-box: fill-box;
-    animation: bqPeekBlink 4.5s ease-in-out infinite;
 }
 .bq-peek-q{
     transform-origin: center;
     transform-box: fill-box;
-    animation: bqPeekQBounce 2.4s ease-in-out infinite;
+    animation: bqPeekQ 3.6s ease-in-out infinite;
 }
-@keyframes bqPeekTilt {
-    0%, 100% { transform: rotate(-4deg); }
-    50% { transform: rotate(5deg); }
+@keyframes bqPeek {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    30%, 45% { transform: translateY(-6px) rotate(2.5deg); }
+    75% { transform: translateY(0) rotate(0deg); }
 }
-@keyframes bqPeekBlink {
-    0%, 88%, 100% { transform: scaleY(1); }
-    92% { transform: scaleY(0.1); }
-    96% { transform: scaleY(1); }
-}
-@keyframes bqPeekQBounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-4px); }
+@keyframes bqPeekQ {
+    0%, 100% { transform: translateY(0) rotate(-6deg); }
+    30%, 45% { transform: translateY(-2.5px) rotate(-3deg); }
+    75% { transform: translateY(0) rotate(-6deg); }
 }
 @media (prefers-reduced-motion: reduce) {
-    .bq-peek-char, .bq-peek-eyes, .bq-peek-q { animation: none; }
+    .bq-peek-char, .bq-peek-q { animation: none; }
 }
 
 .challenge-icon{

@@ -590,7 +590,7 @@ section.design-challenge-card{
     border-radius:20px;
     background:var(--bg-soft);
 }
-.bq-peek-char{
+.bq-peek-body{
     position: absolute;
     top: -82px;
     right: 24px;
@@ -600,13 +600,28 @@ section.design-challenge-card{
     animation: bqPeek 3.6s ease-in-out infinite;
     pointer-events: none;
 }
+.bq-peek-qmark{
+    position: absolute;
+    top: -71px;
+    right: 101px;
+    width: 16px;
+    height: auto;
+    display: block;
+    animation: bqPeekQmark 3.6s ease-in-out infinite;
+    pointer-events: none;
+}
 @keyframes bqPeek {
     0%, 100% { transform: scaleX(-1) translateY(0) rotate(0deg); }
     30%, 45% { transform: scaleX(-1) translateY(-6px) rotate(2.5deg); }
     75% { transform: scaleX(-1) translateY(0) rotate(0deg); }
 }
+@keyframes bqPeekQmark {
+    0%, 100% { transform: translateY(0); }
+    30%, 45% { transform: translateY(-6px); }
+    75% { transform: translateY(0); }
+}
 @media (prefers-reduced-motion: reduce) {
-    .bq-peek-char { animation: none; }
+    .bq-peek-body, .bq-peek-qmark { animation: none; }
 }
 
 .challenge-icon{

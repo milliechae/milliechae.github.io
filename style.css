@@ -601,9 +601,9 @@ section.design-challenge-card{
     pointer-events: none;
 }
 @keyframes bqPeek {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    30%, 45% { transform: translateY(-6px) rotate(2.5deg); }
-    75% { transform: translateY(0) rotate(0deg); }
+    0%, 100% { transform: scaleX(-1) translateY(0) rotate(0deg); }
+    30%, 45% { transform: scaleX(-1) translateY(-6px) rotate(2.5deg); }
+    75% { transform: scaleX(-1) translateY(0) rotate(0deg); }
 }
 @media (prefers-reduced-motion: reduce) {
     .bq-peek-char { animation: none; }

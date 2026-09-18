@@ -586,9 +586,9 @@ html[data-theme="dark"] .status-pill {
 }
 .bq-peek-char{
     position: absolute;
-    top: -46px;
-    right: 28px;
-    width: 76px;
+    top: -70px;
+    right: 20px;
+    width: 110px;
     height: auto;
     transform-origin: 50% 100%;
     animation: bqPeekTilt 3.2s ease-in-out infinite;

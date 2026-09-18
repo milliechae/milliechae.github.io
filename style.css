@@ -592,7 +592,7 @@ section.design-challenge-card{
 }
 .bq-peek-char{
     position: absolute;
-    top: -95px;
+    top: -70px;
     right: 24px;
     width: 100px;
     height: auto;

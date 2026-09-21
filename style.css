@@ -581,7 +581,7 @@ html[data-theme="dark"] .status-pill {
     margin-top: 76px;
 }
 section.design-challenge-card{
-    margin-top: 40px;
+    margin-top: 16px;
 }
 .design-challenge-card{
     position: relative;
@@ -809,7 +809,7 @@ section.design-challenge-card{
 
     display:flex;
     justify-content:center;
-    margin:56px 0 48px;
+    margin:56px 0 16px;
 
 }
 

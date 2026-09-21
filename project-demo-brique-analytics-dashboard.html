@@ -117,15 +117,19 @@
         </span>
       </span>
     </button>
+    <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
+      <span class="lang-seg lang-en">EN</span>
+      <span class="lang-seg lang-ko">한글</span>
+    </button>
     <a href="index.html" class="back-arrow" aria-label="뒤로가기">←</a>
   </header>
 
   <header class="hero-header">
     <span class="status-pill">
-      <span class="status-dot"></span> Shipped
+      <span class="status-dot"></span> <span data-i18n="b1">Shipped</span>
     </span>
     <h1>BRIQUE Analytics</h1>
-    <p class="subtitle">A no-code workflow builder that enables enterprise analysts to visually connect, process, and manage complex data without writing a single line of code.</p>
+    <p class="subtitle" data-i18n="b3">A no-code workflow builder that enables enterprise analysts to visually connect, process, and manage complex data without writing a single line of code.</p>
   </header>
 
   <div class="hero-media" style="background: transparent;">
@@ -133,7 +137,7 @@
   </div>
 
   <section class="intro">
-    <p>
+    <p data-i18n-html="b4">
       I designed <strong>BRIQUE Analytics,</strong> a workflow-based data platform used by enterprise
       clients including Samsung and SK hynix. It enables data analysts to visually build complex data
       workflows without coding, monitor execution status and errors, and manage the entire process independently.
@@ -142,25 +146,25 @@
 
   <section class="meta-grid meta-grid-6">
     <div class="meta-item">
-      <span class="meta-label">Product</span>
-      <span class="meta-value"><strong class="meta-value__main">BRIQUE Analytics</strong><br><span class="meta-value__sub">No-Code Data Workflow Platform</span></span>
+      <span class="meta-label" data-i18n="b5">Product</span>
+      <span class="meta-value"><strong class="meta-value__main">BRIQUE Analytics</strong><br><span class="meta-value__sub" data-i18n="b7">No-Code Data Workflow Platform</span></span>
     </div>
     <div class="meta-item">
-      <span class="meta-label">My role</span>
-      <span class="meta-value">Product Designer</span>
+      <span class="meta-label" data-i18n="b8">My role</span>
+      <span class="meta-value" data-i18n="b9">Product Designer</span>
     </div>
     <div class="meta-item">
-      <span class="meta-label">Timeline</span>
+      <span class="meta-label" data-i18n="b10">Timeline</span>
       <span class="meta-value">Q3 2020 – Q1 2021</span>
     </div>
     <div class="meta-item">
-      <span class="meta-label">Client</span>
-      <span class="meta-value">Samsung · SK hynix</span>
+      <span class="meta-label" data-i18n="b12">Client</span>
+      <span class="meta-value" data-i18n="b13">Samsung · SK hynix</span>
     </div>
     <div class="meta-item meta-item--spacer" aria-hidden="true"></div>
     <div class="meta-item">
-      <span class="meta-label">Skills</span>
-      <span class="meta-value">Product Design, Design Systems, Data Visualization, User Research</span>
+      <span class="meta-label" data-i18n="b14">Skills</span>
+      <span class="meta-value" data-i18n="b15">Product Design, Design Systems, Data Visualization, User Research</span>
     </div>
   </section>
 
@@ -168,38 +172,38 @@
 
   <figure class="quote-media">
     <img src="images/brique-pipeline-canvas.jpg" alt="">
-    <blockquote>
+    <blockquote data-i18n="b16">
       Complex data workflows shouldn't require complex code.
     </blockquote>
   </figure>
 
   <section class="content-block">
 
-    <span class="section-label">PAIN POINT</span>
+    <span class="section-label" data-i18n="b17">PAIN POINT</span>
 
-    <h2 class="pain-heading">
+    <h2 class="pain-heading" data-i18n="b18">
       Complex data workflows were difficult to build, understand, and manage.
     </h2>
 
-    <p>
+    <p data-i18n="b19">
       As data workflows became more complex, analysts had difficulty configuring each step,
       understanding how data moved through the process, and identifying where problems occurred.
     </p>
 
     <ul class="pain-list">
       <li>
-        <strong>Difficult to build and modify</strong><br>
-        As workflows grew more complex, configuring new processes or modifying existing ones became increasingly difficult.
+        <strong data-i18n="b20">Difficult to build and modify</strong><br>
+        <span data-i18n="b21">As workflows grew more complex, configuring new processes or modifying existing ones became increasingly difficult.</span>
       </li>
 
       <li>
-        <strong>Hard to understand the overall flow</strong><br>
-        It was difficult to see how each step was connected and understand how data moved from one stage to the next.
+        <strong data-i18n="b22">Hard to understand the overall flow</strong><br>
+        <span data-i18n="b23">It was difficult to see how each step was connected and understand how data moved from one stage to the next.</span>
       </li>
 
       <li>
-        <strong>Limited visibility into errors</strong><br>
-        When something went wrong, analysts had difficulty identifying where the issue occurred and which parts of the workflow were affected.
+        <strong data-i18n="b24">Limited visibility into errors</strong><br>
+        <span data-i18n="b25">When something went wrong, analysts had difficulty identifying where the issue occurred and which parts of the workflow were affected.</span>
       </li>
     </ul>
 
@@ -208,13 +212,13 @@
       <img class="bq-peek-qmark" src="images/bq-doodle-qmark.png" alt="" aria-hidden="true">
 
       <div class="design-challenge-card">
-        <span class="challenge-label"><span class="challenge-icon">✦</span> DESIGN CHALLENGE</span>
+        <span class="challenge-label"><span class="challenge-icon">✦</span> <span data-i18n="b26">DESIGN CHALLENGE</span></span>
 
-        <h3>
+        <h3 data-i18n="b27">
           How might we simplify complex data workflows for analysts?
         </h3>
 
-        <p>
+        <p data-i18n="b28">
           The goal was to turn complex data logic into a visual, intuitive workflow, making it easier to configure each step, understand the overall flow, and identify issues when they occur.
         </p>
 
@@ -225,13 +229,13 @@
 
   <section class="content-block">
 
-    <span class="section-label">RESEARCH</span>
+    <span class="section-label" data-i18n="b29">RESEARCH</span>
 
-    <h2 class="pain-heading">
+    <h2 class="pain-heading" data-i18n="b30">
       Understanding how analysts work with complex data.
     </h2>
 
-    <p>
+    <p data-i18n="b31">
       I spoke with analysts to understand how they prepared, transformed, and analyzed data,
       and where friction occurred throughout the process.
     </p>
@@ -245,9 +249,9 @@
       <div class="research-item">
         <span class="research-number">01</span>
 
-        <h3>Repetitive tasks slowed down the workflow.</h3>
+        <h3 data-i18n="b32">Repetitive tasks slowed down the workflow.</h3>
 
-        <p>
+        <p data-i18n="b33">
           Analysts repeatedly cleaned, filtered, and joined data, often rebuilding similar processes from scratch.
         </p>
       </div>
@@ -255,9 +259,9 @@
       <div class="research-item">
         <span class="research-number">02</span>
 
-        <h3>Errors were difficult to trace.</h3>
+        <h3 data-i18n="b34">Errors were difficult to trace.</h3>
 
-        <p>
+        <p data-i18n="b35">
           When something went wrong, it was difficult to identify where the issue occurred and understand how it affected the rest of the workflow.
         </p>
       </div>
@@ -265,9 +269,9 @@
       <div class="research-item">
         <span class="research-number">03</span>
 
-        <h3>The overall process lacked visibility.</h3>
+        <h3 data-i18n="b36">The overall process lacked visibility.</h3>
 
-        <p>
+        <p data-i18n="b37">
           As workflows became more complex, analysts struggled to understand each step and inspect intermediate results.
         </p>
       </div>
@@ -288,31 +292,31 @@
 
   <section class="design-challenge-card">
 
-    <span class="challenge-label"><span class="challenge-icon">✦</span> DESIGN HYPOTHESIS</span>
+    <span class="challenge-label"><span class="challenge-icon">✦</span> <span data-i18n="b38">DESIGN HYPOTHESIS</span></span>
 
-    <h2>
+    <h2 data-i18n="b39">
       Three principles shaped the experience.
     </h2>
 
-    <p class="challenge-description">
+    <p class="challenge-description" data-i18n="b40">
       Research findings were translated into three assumptions that guided our design decisions before moving into interface exploration.
     </p>
 
     <div class="hypothesis-list">
 
       <div class="hypothesis-item">
-        <strong>01&nbsp;&nbsp;Visualize the workflow</strong>
-        <p>Make complex processes easier to understand.</p>
+        <strong data-i18n-html="b41">01&nbsp;&nbsp;Visualize the workflow</strong>
+        <p data-i18n="b42">Make complex processes easier to understand.</p>
       </div>
 
       <div class="hypothesis-item">
-        <strong>02&nbsp;&nbsp;Make issues visible</strong>
-        <p>Surface status and errors where they happen.</p>
+        <strong data-i18n-html="b43">02&nbsp;&nbsp;Make issues visible</strong>
+        <p data-i18n="b44">Surface status and errors where they happen.</p>
       </div>
 
       <div class="hypothesis-item">
-        <strong>03&nbsp;&nbsp;Make repeated work reusable</strong>
-        <p>Turn frequently used steps into reusable components.</p>
+        <strong data-i18n-html="b45">03&nbsp;&nbsp;Make repeated work reusable</strong>
+        <p data-i18n="b46">Turn frequently used steps into reusable components.</p>
       </div>
 
     </div>
@@ -321,9 +325,9 @@
 
   <section class="content-block">
 
-    <h2>Design Solution</h2>
+    <h2 data-i18n="b47">Design Solution</h2>
 
-    <p>
+    <p data-i18n="b48">
       We turned complex data processes into a visual workflow, making it easier to build,
       understand, and manage each step in one place.
     </p>
@@ -349,19 +353,19 @@
     </div>
 
     <div class="finding">
-      <h3>A visual canvas for complex workflows.</h3>
-      <p>Analysts can connect and configure each step visually, making the overall data flow easier to understand and manage.</p>
+      <h3 data-i18n="b49">A visual canvas for complex workflows.</h3>
+      <p data-i18n="b50">Analysts can connect and configure each step visually, making the overall data flow easier to understand and manage.</p>
       <div class="bq-single-img">
         <img src="images/brique-complib-canvas.png" alt="워크플로우 캔버스">
       </div>
     </div>
     <div class="finding">
-      <h3>See what's happening at every step.</h3>
-      <p>Execution status and intermediate results are visible within the workflow, helping analysts identify where issues occur.</p>
+      <h3 data-i18n="b51">See what's happening at every step.</h3>
+      <p data-i18n="b52">Execution status and intermediate results are visible within the workflow, helping analysts identify where issues occur.</p>
     </div>
     <div class="finding">
-      <h3>Build once, reuse when needed.</h3>
-      <p>Frequently used steps can be saved as reusable components, reducing the need to rebuild the same workflows from scratch.</p>
+      <h3 data-i18n="b53">Build once, reuse when needed.</h3>
+      <p data-i18n="b54">Frequently used steps can be saved as reusable components, reducing the need to rebuild the same workflows from scratch.</p>
       <div class="bq-pair-img">
         <img src="images/brique-complib-attribute.png" alt="Attribute 패널">
         <img src="images/brique-complib-library.png" alt="Library 패널">
@@ -370,18 +374,18 @@
   </section>
 
   <section class="content-block">
-    <h2>Impact</h2>
-    <h3>A clearer, more manageable way to work with complex data.</h3>
-    <p>
+    <h2 data-i18n="b55">Impact</h2>
+    <h3 data-i18n="b56">A clearer, more manageable way to work with complex data.</h3>
+    <p data-i18n="b57">
       By bringing workflow creation, monitoring, and reusable components into one visual
       experience, BRIQUE Analytics made complex data processes easier to understand and manage.
     </p>
   </section>
 
   <section class="content-block">
-    <h2>Reflection</h2>
-    <h3>Visibility mattered as much as simplicity.</h3>
-    <p>
+    <h2 data-i18n="b58">Reflection</h2>
+    <h3 data-i18n="b59">Visibility mattered as much as simplicity.</h3>
+    <p data-i18n="b60">
       Simplifying how workflows were built was only part of the challenge. Making each step
       visible helped analysts understand what was happening throughout the process and identify
       issues with greater clarity.
@@ -389,7 +393,7 @@
   </section>
 
   <footer class="page-footer">
-    <a class="footer-cta" href="milliechae-portfolio.pdf" target="_blank" rel="noopener" aria-label="전체 포트폴리오 PDF 보기">See the full story <span aria-hidden="true">→</span></a>
+    <a class="footer-cta" href="milliechae-portfolio.pdf" target="_blank" rel="noopener" aria-label="전체 포트폴리오 PDF 보기"><span data-i18n="b61">See the full story</span> <span aria-hidden="true">→</span></a>
     <div class="footer-nav">
       <a href="project-demo-android-private-space.html" aria-label="이전 프로젝트">←</a>
       <a href="project-demo-bee-equipment-notification.html" aria-label="다음 프로젝트">→</a>
@@ -408,6 +412,104 @@
       var next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
+    });
+  }
+
+  // 언어 토글 (EN / 한글)
+  var i18nDict = {
+    b1:  { ko: '출시' },
+    b3:  { ko: '코드 한 줄 없이 엔터프라이즈 분석가가 복잡한 데이터를 시각적으로 연결하고, 처리하고, 관리할 수 있게 해주는 노코드 워크플로우 빌더입니다.' },
+    b4:  { ko: '저는 <strong>BRIQUE Analytics,</strong> 삼성전자와 SK하이닉스를 포함한 엔터프라이즈 고객사에서 사용하는 워크플로우 기반 데이터 플랫폼을 디자인했습니다. 데이터 분석가가 코드 없이 복잡한 데이터 워크플로우를 시각적으로 구축하고, 실행 상태와 오류를 모니터링하고, 전체 과정을 독립적으로 관리할 수 있게 해줍니다.' },
+    b5:  { ko: '제품' },
+    b7:  { ko: '노코드 데이터 워크플로우 플랫폼' },
+    b8:  { ko: '역할' },
+    b9:  { ko: '프로덕트 디자이너' },
+    b10: { ko: '기간' },
+    b12: { ko: '클라이언트' },
+    b13: { ko: '삼성전자 · SK하이닉스' },
+    b14: { ko: '스킬' },
+    b15: { ko: '프로덕트 디자인, 디자인 시스템, 데이터 시각화, 사용자 리서치' },
+    b16: { ko: '복잡한 데이터 워크플로우가 복잡한 코드를 요구해서는 안 됩니다.' },
+    b17: { ko: '문제 상황' },
+    b18: { ko: '복잡한 데이터 워크플로우는 만들고, 이해하고, 관리하기 어려웠습니다.' },
+    b19: { ko: '데이터 워크플로우가 복잡해질수록 분석가들은 각 단계를 설정하고, 데이터가 어떻게 흘러가는지 이해하고, 문제가 발생한 지점을 파악하는 데 어려움을 겪었습니다.' },
+    b20: { ko: '만들고 수정하기 어려움' },
+    b21: { ko: '워크플로우가 복잡해질수록 새로운 프로세스를 구성하거나 기존 프로세스를 수정하는 일이 점점 더 어려워졌습니다.' },
+    b22: { ko: '전체 흐름을 이해하기 어려움' },
+    b23: { ko: '각 단계가 어떻게 연결되어 있는지, 데이터가 한 단계에서 다음 단계로 어떻게 이동하는지 파악하기 어려웠습니다.' },
+    b24: { ko: '오류에 대한 가시성 부족' },
+    b25: { ko: '문제가 발생했을 때 어디서 이슈가 생겼는지, 워크플로우의 어느 부분이 영향을 받았는지 파악하기 어려웠습니다.' },
+    b26: { ko: '디자인 챌린지' },
+    b27: { ko: '어떻게 하면 분석가를 위해 복잡한 데이터 워크플로우를 단순화할 수 있을까?' },
+    b28: { ko: '목표는 복잡한 데이터 로직을 시각적이고 직관적인 워크플로우로 바꿔서, 각 단계를 설정하고 전체 흐름을 이해하고 문제가 생겼을 때 파악하기 쉽게 만드는 것이었습니다.' },
+    b29: { ko: '리서치' },
+    b30: { ko: '분석가들이 복잡한 데이터를 다루는 방식을 이해하기.' },
+    b31: { ko: '분석가들과 직접 이야기하며 그들이 데이터를 준비하고, 변형하고, 분석하는 과정, 그리고 그 과정에서 어디서 마찰이 생기는지 파악했습니다.' },
+    b32: { ko: '반복적인 작업이 워크플로우를 느리게 만들었습니다.' },
+    b33: { ko: '분석가들은 데이터를 반복적으로 정제하고, 필터링하고, 조인했으며, 비슷한 프로세스를 처음부터 다시 만드는 경우가 많았습니다.' },
+    b34: { ko: '오류를 추적하기 어려웠습니다.' },
+    b35: { ko: '문제가 발생했을 때 어디서 이슈가 생겼는지, 그것이 나머지 워크플로우에 어떤 영향을 미쳤는지 파악하기 어려웠습니다.' },
+    b36: { ko: '전체 프로세스에 대한 가시성이 부족했습니다.' },
+    b37: { ko: '워크플로우가 복잡해질수록 분석가들은 각 단계를 이해하고 중간 결과를 확인하는 데 어려움을 겪었습니다.' },
+    b38: { ko: '디자인 가설' },
+    b39: { ko: '세 가지 원칙이 경험을 만들었습니다.' },
+    b40: { ko: '리서치 결과는 인터페이스 탐색으로 넘어가기 전, 디자인 결정을 이끈 세 가지 가설로 정리되었습니다.' },
+    b41: { ko: '01&nbsp;&nbsp;워크플로우 시각화하기' },
+    b42: { ko: '복잡한 프로세스를 더 쉽게 이해할 수 있게 만들기.' },
+    b43: { ko: '02&nbsp;&nbsp;문제를 눈에 보이게 만들기' },
+    b44: { ko: '상태와 오류를 발생한 지점에서 바로 보여주기.' },
+    b45: { ko: '03&nbsp;&nbsp;반복되는 작업을 재사용 가능하게 만들기' },
+    b46: { ko: '자주 쓰는 단계를 재사용 가능한 컴포넌트로 만들기.' },
+    b47: { ko: '디자인 솔루션' },
+    b48: { ko: '복잡한 데이터 프로세스를 시각적 워크플로우로 바꿔서, 각 단계를 한 곳에서 더 쉽게 만들고 이해하고 관리할 수 있게 했습니다.' },
+    b49: { ko: '복잡한 워크플로우를 위한 시각적 캔버스.' },
+    b50: { ko: '분석가는 각 단계를 시각적으로 연결하고 설정할 수 있어, 전체 데이터 흐름을 더 쉽게 이해하고 관리할 수 있습니다.' },
+    b51: { ko: '모든 단계에서 무슨 일이 일어나는지 확인하기.' },
+    b52: { ko: '실행 상태와 중간 결과가 워크플로우 안에서 바로 보여서, 분석가가 문제가 생긴 지점을 파악하는 데 도움을 줍니다.' },
+    b53: { ko: '한 번 만들고, 필요할 때 재사용하기.' },
+    b54: { ko: '자주 쓰는 단계는 재사용 가능한 컴포넌트로 저장할 수 있어, 같은 워크플로우를 처음부터 다시 만들 필요가 줄어듭니다.' },
+    b55: { ko: '임팩트' },
+    b56: { ko: '복잡한 데이터를 다루는 더 명확하고 관리하기 쉬운 방법.' },
+    b57: { ko: '워크플로우 생성, 모니터링, 재사용 가능한 컴포넌트를 하나의 시각적 경험으로 통합함으로써, BRIQUE Analytics는 복잡한 데이터 프로세스를 더 쉽게 이해하고 관리할 수 있게 만들었습니다.' },
+    b58: { ko: '회고' },
+    b59: { ko: '가시성은 단순함만큼이나 중요했습니다.' },
+    b60: { ko: '워크플로우를 만드는 과정을 단순화하는 것은 과제의 일부일 뿐이었습니다. 각 단계를 눈에 보이게 만드는 것이 분석가들이 전체 과정에서 무슨 일이 일어나는지 이해하고, 더 명확하게 문제를 파악하는 데 도움을 주었습니다.' },
+    b61: { ko: '전체 스토리 보기' }
+  };
+
+  function applyLang(lang) {
+    var els = document.querySelectorAll('[data-i18n]');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (!el.dataset.enCache) el.dataset.enCache = el.textContent;
+      var key = el.getAttribute('data-i18n');
+      el.textContent = lang === 'ko' ? (i18nDict[key] ? i18nDict[key].ko : el.dataset.enCache) : el.dataset.enCache;
+    }
+    var elsHtml = document.querySelectorAll('[data-i18n-html]');
+    for (var j = 0; j < elsHtml.length; j++) {
+      var elH = elsHtml[j];
+      if (!elH.dataset.enCache) elH.dataset.enCache = elH.innerHTML;
+      var keyH = elH.getAttribute('data-i18n-html');
+      elH.innerHTML = lang === 'ko' ? (i18nDict[keyH] ? i18nDict[keyH].ko : elH.dataset.enCache) : elH.dataset.enCache;
+    }
+    document.documentElement.setAttribute('lang', lang === 'ko' ? 'ko' : 'en');
+    var enSeg = document.querySelector('.lang-toggle .lang-en');
+    var koSeg = document.querySelector('.lang-toggle .lang-ko');
+    if (enSeg && koSeg) {
+      enSeg.classList.toggle('active', lang !== 'ko');
+      koSeg.classList.toggle('active', lang === 'ko');
+    }
+  }
+
+  var langToggle = document.getElementById('langToggle');
+  if (langToggle) {
+    var savedLang = localStorage.getItem('lang') || 'en';
+    applyLang(savedLang);
+    langToggle.addEventListener('click', function () {
+      var current = document.documentElement.getAttribute('lang') === 'ko' ? 'ko' : 'en';
+      var next = current === 'ko' ? 'en' : 'ko';
+      localStorage.setItem('lang', next);
+      applyLang(next);
     });
   }
 

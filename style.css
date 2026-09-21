@@ -105,7 +105,7 @@ html[data-theme="dark"] .icon-dark { display: inline; }
 /* ---------- 상단 바: 다크모드 토글(홈과 동일한 슬라이더) + 뒤로가기 ---------- */
 .site-header {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   gap: 10px;
   position: relative;

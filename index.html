@@ -316,17 +316,43 @@ html[data-theme="dark"] .site-header.is-scrolled {
 }
 
 .hero .tags {
-  font-size: 16px;
-  color: var(--ink-soft);
-  margin: 0 0 28px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 520px;
+  margin: 6px 0 30px;
   opacity: 0;
   transform: translateY(10px);
   animation: rise 0.7s ease forwards;
   animation-delay: 0.26s;
 }
-.hero .tags span:not(:last-child)::after {
-  content: " / ";
-  color: var(--ink-faint);
+.hero .tags span {
+  display: inline-block;
+  margin: 5px 4px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  cursor: default;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+/* LinkedIn 배너 팔레트: 핑크 / 옐로우 / 딥그린 / 라임 (+ 라벤더) */
+.hero .tags span:nth-child(1) { background: #F8D3E1; color: #8A1F4B; transform: rotate(-3deg); }
+.hero .tags span:nth-child(2) { background: #FBE7A0; color: #594A0A; transform: rotate(2deg); }
+.hero .tags span:nth-child(3) { background: #2F5B46; color: #FFFFFF; transform: rotate(-2deg); }
+.hero .tags span:nth-child(4) { background: #CDF3A6; color: #33531B; transform: rotate(3deg); }
+.hero .tags span:nth-child(5) { background: #DAD7FB; color: #3E3799; transform: rotate(-3deg); }
+.hero .tags span:hover {
+  transform: rotate(0deg) translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.10);
+}
+html[data-theme="dark"] .hero .tags span:nth-child(3) { background: #3F7C5F; }
+html[data-theme="dark"] .hero .tags span:hover { box-shadow: 0 6px 14px rgba(0,0,0,0.35); }
+@media (prefers-reduced-motion: reduce) {
+  .hero .tags span:hover { transform: none; }
 }
 
 .hero .cta-row {

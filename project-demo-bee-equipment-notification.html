@@ -7,6 +7,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="style.css">
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = saved || (systemDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+<style>
+  .bq-single-img { margin: 20px 0 0; }
+  .bq-single-img img { width: 100%; height: auto; display: block; border-radius: 12px; }
+</style>
 </head>
 <body>
 
@@ -21,25 +33,27 @@
         <span class="knob-moon">☾</span>
       </span>
     </button>
+    <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
+      <span class="lang-seg lang-en">EN</span>
+      <span class="lang-seg lang-ko">한글</span>
+    </button>
     <a href="index.html" class="back-arrow" aria-label="뒤로가기">←</a>
   </header>
 
   <header class="hero-header">
-    <div class="hero-header__text">
-      <h1>Equipment Notification System</h1>
-      <p class="subtitle">A real-time equipment monitoring dashboard (Bee) that turns scattered alerts into a single, prioritized workflow.</p>
-    </div>
     <span class="status-pill">
-      <span class="status-dot"></span> Shipped
+      <span class="status-dot"></span> <span data-i18n="e2">Shipped</span>
     </span>
+    <h1>Equipment Notification System</h1>
+    <p class="subtitle" data-i18n="e1">A real-time equipment monitoring dashboard (Bee) that turns scattered alerts into a single, prioritized workflow.</p>
   </header>
 
-  <div class="hero-media">
+  <div class="hero-media" style="background: transparent;">
     <img src="images/bee-hero.jpg" alt="Bee 실시간 장비 데이터 대시보드">
   </div>
 
   <section class="intro">
-    <p>
+    <p data-i18n-html="e3">
       I designed <strong>Bee,</strong> an equipment notification and monitoring system sold to
       manufacturing companies including SK hynix. The product visualizes complex, real-time
       equipment data and surfaces the issues that actually need a human's attention.
@@ -48,25 +62,25 @@
 
   <section class="meta-grid meta-grid-6">
     <div class="meta-item">
-      <span class="meta-label">Product</span>
-      <span class="meta-value">Equipment Notification System (Bee)</span>
+      <span class="meta-label" data-i18n="e4">Product</span>
+      <span class="meta-value" data-i18n="e5">Equipment Notification System (Bee)</span>
     </div>
     <div class="meta-item">
-      <span class="meta-label">My role</span>
-      <span class="meta-value">UI/UX Designer</span>
+      <span class="meta-label" data-i18n="e6">My role</span>
+      <span class="meta-value" data-i18n="e7">UI/UX Designer</span>
     </div>
     <div class="meta-item">
-      <span class="meta-label">Timeline</span>
+      <span class="meta-label" data-i18n="e8">Timeline</span>
       <span class="meta-value">BRIQUE — 날짜 확인 필요</span>
     </div>
     <div class="meta-item">
-      <span class="meta-label">Client</span>
-      <span class="meta-value">SK hynix</span>
+      <span class="meta-label" data-i18n="e9">Client</span>
+      <span class="meta-value" data-i18n="e10">SK hynix</span>
     </div>
     <div class="meta-item meta-item--spacer" aria-hidden="true"></div>
     <div class="meta-item">
-      <span class="meta-label">Skills</span>
-      <span class="meta-value">Product design, Design systems, User research</span>
+      <span class="meta-label" data-i18n="e11">Skills</span>
+      <span class="meta-value" data-i18n="e12">Product design, Design systems, User research</span>
     </div>
   </section>
 
@@ -74,261 +88,205 @@
 
   <figure class="quote-media">
     <img src="images/bee-anomaly-list.png" alt="">
-    <blockquote>
+    <blockquote data-i18n-html="e13">
       Green means go. Yellow means look closer.<br>
       Never make anyone guess.
     </blockquote>
   </figure>
 
-  <!-- <section class="content-block">
-  <h2>Pain Point</h2>
-  <p class="pain-heading"> 
-  Operators spent more time finding the right information than acting on it.
-  </p>
-  <p>
-    Operators had access to all the data they needed, but not the clarity to understand what required attention first.
-    Critical alerts were often buried among routine notifications, making quick decision-making increasingly difficult.
-  </p>
+  <section class="content-block">
 
-  <ul class="pain-list">
-    <li>Hundreds of real-time alerts</li>
-    <li>Difficult prioritization</li>
-    <li>Frequent context switching</li>
-  </ul>
+    <span class="section-label" data-i18n="e14">PAIN POINT</span>
 
-  <div class="design-challenge-card">
-    <span class="challenge-label">DESIGN CHALLENGE</span>
-
-    <h3>
-      How might we help operators instantly recognize what matters most in complex equipment data,
-      while keeping the interface intuitive and scalable?
-    </h3>
-
-    <p>
-      The goal was to reduce cognitive load by surfacing only the most relevant information,
-      allowing operators to identify priorities and respond faster without disrupting their workflow.
-    </p>
-  </div>
-
-</section>
--->
-
-<section class="content-block">
-
-  <span class="section-label">PAIN POINT</span>
-
-  <h2 class="pain-heading">
-    Operators spent more time finding the right information than acting on it.
-  </h2>
-
-  <p>
-    Operators had access to all the data they needed, but not the clarity to understand what required attention first.
-    Critical alerts were often buried among routine notifications, making quick decision-making increasingly difficult.
-  </p>
-
-  <ul class="pain-list">
-    <li>
-      <strong>Hundreds of real-time alerts</strong><br>
-      Large volumes of notifications made it difficult to identify what truly required immediate attention.
-    </li>
-
-    <li>
-      <strong>Difficult prioritization</strong><br>
-      Critical equipment issues were easily mixed with routine operational updates.
-    </li>
-
-    <li>
-      <strong>Frequent context switching</strong><br>
-      Operators constantly moved between multiple screens before understanding the full situation.
-    </li>
-  </ul>
-
-  <div class="design-challenge-card">
-
-    <span class="challenge-label">✦ DESIGN CHALLENGE</span>
-
-    <h3>
-      How might we help operators instantly recognize what matters most in complex equipment data,
-      while keeping the interface intuitive and scalable?
-    </h3>
-
-    <p>
-      The goal was to reduce cognitive load by presenting only the most relevant information,
-      allowing operators to recognize priorities and take action faster.
-    </p>
-
-  </div>
-
-</section>
-
-<section class="content-block">
-
-  <span class="section-label">USER RESEARCH</span>
-
-  <h2 class="pain-heading">
-    Understanding how operators actually work.
-  </h2>
-
-  <p>
-    Before exploring interface solutions, I focused on understanding how operators monitored equipment,
-    responded to anomalies, and searched for information throughout their daily workflow.
-    Through interviews, workflow analysis, and collaborative discussions with domain experts,
-    several behavioral patterns consistently emerged.
-  </p>
-
- 
-<div class="research-media">
-    <img src="images/bee-research.png" alt="Research">
-</div>
-
-  <div class="research-grid">
-
-    <div class="research-item">
-      <span class="research-number">01</span>
-
-      <h3>Operators searched by task, not hierarchy.</h3>
-
-      <p>
-        Rather than navigating complex equipment trees,
-        operators relied on search, recently viewed equipment,
-        and production context to locate information quickly.
-      </p>
-    </div>
-
-    <div class="research-item">
-      <span class="research-number">02</span>
-
-      <h3>Not every alert deserved equal attention.</h3>
-
-      <p>
-        Users mentally separated notifications into
-        critical, monitor, and ignore.
-        Existing interfaces treated every alert equally,
-        increasing cognitive load.
-      </p>
-    </div>
-
-    <div class="research-item">
-      <span class="research-number">03</span>
-
-      <h3>Context switching slowed response time.</h3>
-
-      <p>
-        Investigating a single anomaly often required
-        opening multiple pages before enough context
-        was available to make a decision.
-      </p>
-    </div>
-
-  </div>
-
-</section>
-
-<div class="section-flow">
-
-<svg class="flow-line" viewBox="0 0 220 180">
-
-<path
-d="
-M110 5
-L110 42
-
-C110 62,
-125 74,
-138 82
-
-S178 92,
-188 122
-
-S198 148,
-205 170
-"/>
-
-</svg>
-
-</div>
-
-
-<section class="design-challenge-card">
-
-    <span class="challenge-label">✦ DESIGN HYPOTHESIS</span>
-
-    <h2>
-        Three hypotheses guided the redesign of the monitoring experience.
+    <h2 class="pain-heading" data-i18n="e15">
+      Operators spent more time finding the right information than acting on it.
     </h2>
 
-    <p class="challenge-description">
-        Research findings were translated into three assumptions that guided our design decisions before moving into interface exploration.
+    <p data-i18n="e16">
+      Operators had access to all the data they needed, but not the clarity to understand what required attention first.
+      Critical alerts were often buried among routine notifications, making quick decision-making increasingly difficult.
+    </p>
+
+    <ul class="pain-list">
+      <li>
+        <strong data-i18n="e17">Hundreds of real-time alerts</strong><br>
+        <span data-i18n="e18">Large volumes of notifications made it difficult to identify what truly required immediate attention.</span>
+      </li>
+
+      <li>
+        <strong data-i18n="e19">Difficult prioritization</strong><br>
+        <span data-i18n="e20">Critical equipment issues were easily mixed with routine operational updates.</span>
+      </li>
+
+      <li>
+        <strong data-i18n="e21">Frequent context switching</strong><br>
+        <span data-i18n="e22">Operators constantly moved between multiple screens before understanding the full situation.</span>
+      </li>
+    </ul>
+
+    <div class="bq-challenge-wrap">
+      <img class="bq-peek-body" src="images/bq-doodle-body.png" alt="" aria-hidden="true">
+      <img class="bq-peek-qmark" src="images/bq-doodle-qmark.png" alt="" aria-hidden="true">
+
+      <div class="design-challenge-card">
+        <span class="challenge-label"><span class="challenge-icon">✦</span> <span data-i18n="e23">DESIGN CHALLENGE</span></span>
+
+        <h3 data-i18n="e24">
+          How might we help operators instantly recognize what matters most in complex equipment data,
+          while keeping the interface intuitive and scalable?
+        </h3>
+
+        <p data-i18n="e25">
+          The goal was to reduce cognitive load by presenting only the most relevant information,
+          allowing operators to recognize priorities and take action faster.
+        </p>
+
+      </div>
+    </div>
+
+  </section>
+
+  <section class="content-block">
+
+    <span class="section-label" data-i18n="e26">USER RESEARCH</span>
+
+    <h2 class="pain-heading" data-i18n="e27">
+      Understanding how operators actually work.
+    </h2>
+
+    <p data-i18n="e28">
+      Before exploring interface solutions, I focused on understanding how operators monitored equipment,
+      responded to anomalies, and searched for information throughout their daily workflow.
+      Through interviews, workflow analysis, and collaborative discussions with domain experts,
+      several behavioral patterns consistently emerged.
+    </p>
+
+    <div class="research-media">
+      <img src="images/bee-research.png" alt="Research">
+    </div>
+
+    <div class="research-grid">
+
+      <div class="research-item">
+        <span class="research-number">01</span>
+        <h3 data-i18n="e29">Operators searched by task, not hierarchy.</h3>
+        <p data-i18n="e30">
+          Rather than navigating complex equipment trees,
+          operators relied on search, recently viewed equipment,
+          and production context to locate information quickly.
+        </p>
+      </div>
+
+      <div class="research-item">
+        <span class="research-number">02</span>
+        <h3 data-i18n="e31">Not every alert deserved equal attention.</h3>
+        <p data-i18n="e32">
+          Users mentally separated notifications into
+          critical, monitor, and ignore.
+          Existing interfaces treated every alert equally,
+          increasing cognitive load.
+        </p>
+      </div>
+
+      <div class="research-item">
+        <span class="research-number">03</span>
+        <h3 data-i18n="e33">Context switching slowed response time.</h3>
+        <p data-i18n="e34">
+          Investigating a single anomaly often required
+          opening multiple pages before enough context
+          was available to make a decision.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <div class="section-flow">
+
+    <svg class="flow-line" viewBox="0 0 120 160">
+      <path d="M62 8 C90 35, 95 68, 64 100"/>
+      <path d="M42 80 L66 104"/>
+      <path d="M90 84 L64 104"/>
+    </svg>
+
+  </div>
+
+  <section class="design-challenge-card">
+
+    <span class="challenge-label"><span class="challenge-icon">✦</span> <span data-i18n="e35">DESIGN HYPOTHESIS</span></span>
+
+    <h2 data-i18n="e36">
+      Three hypotheses guided the redesign of the monitoring experience.
+    </h2>
+
+    <p class="challenge-description" data-i18n="e37">
+      Research findings were translated into three assumptions that guided our design decisions before moving into interface exploration.
     </p>
 
     <div class="hypothesis-list">
 
-        <div class="hypothesis-item">
-            <strong>01&nbsp;&nbsp;Prioritize critical information</strong>
-            <p>If critical alerts are surfaced before secondary information, operators will recognize urgent issues faster.</p>
-        </div>
-
-        <div class="hypothesis-item">
-            <strong>02&nbsp;&nbsp;Reduce context switching</strong>
-            <p>If monitoring and issue reporting happen in one continuous workflow, unnecessary navigation will decrease.</p>
-        </div>
-
-        <div class="hypothesis-item">
-            <strong>03&nbsp;&nbsp;Make information instantly scannable</strong>
-            <p>If equipment status can be understood at a glance, cognitive load during monitoring will be reduced.</p>
-        </div>
-
-    </div>
-
-</section>
-
-<!-- 디자인 솔루션 기존 기획 -->
-<section class="content-block">
-
-  <span class="section-label">SOLUTION</span>
-
-  <h2 class="pain-heading">Designing around workflows, not just data.</h2>
-
-  <p>
-    Rather than displaying every piece of equipment data equally, the dashboard was designed around
-    user workflows—prioritizing critical information, reducing unnecessary navigation, and helping
-    operators move from detection to action as quickly as possible.
-  </p>
-
-    <div class="finding">
-      <h3><span class="finding-icon">🔍</span>Lists, not category trees.</h3>
-      <div class="media-dark">
-        <img src="images/bee-solution01.png" alt="장비 리스트에서 특정 장비를 선택했을 때 보이는 상세 상태 화면">
+      <div class="hypothesis-item">
+        <strong data-i18n-html="e38">01&nbsp;&nbsp;Prioritize critical information</strong>
+        <p data-i18n="e39">If critical alerts are surfaced before secondary information, operators will recognize urgent issues faster.</p>
       </div>
-      <p>In detailed user tests, we found that users did not want to dig through a category tree to find the equipment they needed. The result is a simple list where operators can pin priority items to the top or bottom and use context search to find what they need right away.</p>
-    </div>
-    <div class="finding">
-      <h3><span class="finding-icon">🎨</span>Prioritized, color-balanced cards.</h3>
-      <div class="media-dark">
-        <img src="images/bee-solution03.jpg" alt="개별 장비 카드를 확대해서 보여주는 화면과 전체 대시보드">
-      </div>
-      <p>Working with analysts, we identified and prioritized the hierarchy of essential data to display, incorporating a variety of colors to avoid monotony while keeping clarity intact. Status, MTBF, and uptime are all organized within each card, so it says a lot without saying too much.</p>
-    </div>
-  </section>
 
-  <section class="content-block detail-block">
-    <h3><span class="detail-icon">🐝</span> Record an issue the moment it happens.</h3>
-    <div class="media-light">
-      <img src="images/bee-solution04.jpg" alt="이상 상세 정보 입력 팝업이 포함된 장비 상세 상태 화면">
+      <div class="hypothesis-item">
+        <strong data-i18n-html="e40">02&nbsp;&nbsp;Reduce context switching</strong>
+        <p data-i18n="e41">If monitoring and issue reporting happen in one continuous workflow, unnecessary navigation will decrease.</p>
+      </div>
+
+      <div class="hypothesis-item">
+        <strong data-i18n-html="e42">03&nbsp;&nbsp;Make information instantly scannable</strong>
+        <p data-i18n="e43">If equipment status can be understood at a glance, cognitive load during monitoring will be reduced.</p>
+      </div>
+
     </div>
-    <p>
-      The anomaly input popup lets operators record issues and related information immediately when
-      an anomaly occurs, with an auto-suggestion feature that retrieves existing issue records or
-      lets them add new related data on the spot.
-    </p>
+
   </section>
 
   <section class="content-block">
-    <span class="section-label">IMPACT</span>
 
-    <h2 class="pain-heading">Faster decisions, less digging.</h2>
+    <h2 data-i18n="e44">Design Solution</h2>
+    <h3 data-i18n="e45">Designing around workflows, not just data.</h3>
 
-    <p>
+    <p data-i18n="e46">
+      Rather than displaying every piece of equipment data equally, the dashboard was designed around
+      user workflows—prioritizing critical information, reducing unnecessary navigation, and helping
+      operators move from detection to action as quickly as possible.
+    </p>
+
+    <div class="finding">
+      <h3 data-i18n="e47">Lists, not category trees.</h3>
+      <p data-i18n="e48">In detailed user tests, we found that users did not want to dig through a category tree to find the equipment they needed. The result is a simple list where operators can pin priority items to the top or bottom and use context search to find what they need right away.</p>
+      <div class="bq-single-img">
+        <img src="images/bee-solution01.png" alt="장비 리스트에서 특정 장비를 선택했을 때 보이는 상세 상태 화면">
+      </div>
+    </div>
+
+    <div class="finding">
+      <h3 data-i18n="e49">Prioritized, color-balanced cards.</h3>
+      <p data-i18n="e50">Working with analysts, we identified and prioritized the hierarchy of essential data to display, incorporating a variety of colors to avoid monotony while keeping clarity intact. Status, MTBF, and uptime are all organized within each card, so it says a lot without saying too much.</p>
+      <div class="bq-single-img">
+        <img src="images/bee-solution03.jpg" alt="개별 장비 카드를 확대해서 보여주는 화면과 전체 대시보드">
+      </div>
+    </div>
+
+    <div class="finding">
+      <h3 data-i18n="e51">Record an issue the moment it happens.</h3>
+      <p data-i18n="e52">The anomaly input popup lets operators record issues and related information immediately when an anomaly occurs, with an auto-suggestion feature that retrieves existing issue records or lets them add new related data on the spot.</p>
+      <div class="bq-single-img">
+        <img src="images/bee-solution04.jpg" alt="이상 상세 정보 입력 팝업이 포함된 장비 상세 상태 화면">
+      </div>
+    </div>
+
+  </section>
+
+  <section class="content-block">
+    <h2 data-i18n="e53">Impact</h2>
+    <h3 data-i18n="e54">Faster decisions, less digging.</h3>
+
+    <p data-i18n="e55">
       The UI was designed with a workflow-centric approach that let users interpret data quickly and
       eliminated unnecessary steps to make decision-making easier. The redesigned interface
       highlighted easy access to critical data and integrated real-time alerts seamlessly, easing the
@@ -341,35 +299,34 @@ S198 148,
           <span class="stat-number" data-target="30">0</span><span class="stat-percent">%</span>
           <span class="stat-arrow" aria-hidden="true">↓</span>
         </div>
-        <p class="stat-label">Average response time</p>
+        <p class="stat-label" data-i18n="e56">Average response time</p>
       </div>
       <div class="stat-card">
         <div class="stat-number-row">
           <span class="stat-number" data-target="55">0</span><span class="stat-percent">%</span>
           <span class="stat-arrow" aria-hidden="true">↓</span>
         </div>
-        <p class="stat-label">Time to locate the right equipment</p>
+        <p class="stat-label" data-i18n="e57">Time to locate the right equipment</p>
       </div>
     </div>
 
-    <div class="media-dark">
+    <div class="bq-single-img">
       <img src="images/bee-attention-heatmap.jpg" alt="장비 대시보드 위에 오버레이한 사용자 시선 집중도 히트맵">
     </div>
   </section>
 
   <section class="content-block">
-    <span class="section-label">REFLECTION</span>
+    <h2 data-i18n="e58">Reflection</h2>
+    <h3 data-i18n="e59">Cutting screens mattered more than adding them.</h3>
 
-    <h2 class="pain-heading">Cutting screens mattered more than adding them.</h2>
-
-    <p>
+    <p data-i18n-html="e60">
       Real-time monitoring tools live or die by what they <em>don't</em> show. Bee's biggest wins came from
       cutting screens, not adding them.
     </p>
   </section>
 
   <footer class="page-footer">
-    <a class="footer-cta" href="milliechae-portfolio.pdf" target="_blank" rel="noopener" aria-label="전체 포트폴리오 PDF 보기">See the full story <span aria-hidden="true">→</span></a>
+    <a class="footer-cta" href="milliechae-portfolio.pdf" target="_blank" rel="noopener" aria-label="전체 포트폴리오 PDF 보기"><span data-i18n="e61">See the full story</span> <span aria-hidden="true">→</span></a>
     <div class="footer-nav">
       <a href="project-demo-brique-analytics-dashboard.html" aria-label="이전 프로젝트">←</a>
       <a href="project-demo-pumkin-finance-dashboard.html" aria-label="다음 프로젝트">→</a>
@@ -413,5 +370,120 @@ S198 148,
   })();
 </script>
 
+<script>
+  // 다크모드 토글
+  var themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var current = document.documentElement.getAttribute('data-theme');
+      var next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  }
+
+  // 언어 토글 (EN / 한글)
+  var i18nDict = {
+    e1: { ko: "흩어진 알림을 하나의 우선순위 워크플로우로 바꿔주는 실시간 장비 모니터링 대시보드(Bee)입니다." },
+    e2: { ko: "출시" },
+    e3: { ko: "저는 SK하이닉스를 포함한 제조 기업에 공급되는 장비 알림·모니터링 시스템 <strong>Bee,</strong>를 디자인했습니다. 이 제품은 복잡한 실시간 장비 데이터를 시각화하고, 실제로 사람의 주의가 필요한 이슈를 끌어올려 보여줍니다." },
+    e4: { ko: "제품" },
+    e5: { ko: "장비 알림 시스템 (Bee)" },
+    e6: { ko: "역할" },
+    e7: { ko: "UI/UX 디자이너" },
+    e8: { ko: "기간" },
+    e9: { ko: "클라이언트" },
+    e10: { ko: "SK하이닉스" },
+    e11: { ko: "스킬" },
+    e12: { ko: "프로덕트 디자인, 디자인 시스템, 사용자 리서치" },
+    e13: { ko: "초록은 진행, 노랑은 자세히 확인하라는 뜻입니다.<br>누구에게도 추측하게 만들지 마세요." },
+    e14: { ko: "문제 상황" },
+    e15: { ko: "운영자들은 정보를 바탕으로 행동하는 것보다, 올바른 정보를 찾는 데 더 많은 시간을 썼습니다." },
+    e16: { ko: "운영자들은 필요한 데이터에는 모두 접근할 수 있었지만, 무엇에 먼저 주의를 기울여야 하는지 알 수 있는 명확성은 없었습니다. 중요한 알림이 일상적인 알림 속에 묻히는 경우가 많아, 빠른 의사결정이 점점 더 어려워졌습니다." },
+    e17: { ko: "수백 건의 실시간 알림" },
+    e18: { ko: "알림이 너무 많아 무엇이 정말 즉각적인 주의가 필요한지 구분하기 어려웠습니다." },
+    e19: { ko: "우선순위 판단의 어려움" },
+    e20: { ko: "중요한 장비 이슈가 일상적인 운영 업데이트와 쉽게 뒤섞였습니다." },
+    e21: { ko: "잦은 화면 전환" },
+    e22: { ko: "운영자들은 전체 상황을 파악하기 전까지 여러 화면을 계속 오가야 했습니다." },
+    e23: { ko: "디자인 챌린지" },
+    e24: { ko: "어떻게 하면 복잡한 장비 데이터 속에서 운영자가 가장 중요한 것을 즉시 알아보게 하면서도, 인터페이스를 직관적이고 확장 가능하게 유지할 수 있을까?" },
+    e25: { ko: "목표는 가장 관련성 높은 정보만 보여줌으로써 인지 부하를 줄이고, 운영자가 우선순위를 파악해 더 빠르게 조치할 수 있게 하는 것이었습니다." },
+    e26: { ko: "사용자 리서치" },
+    e27: { ko: "운영자들이 실제로 어떻게 일하는지 이해하기." },
+    e28: { ko: "인터페이스 해법을 탐색하기 전에, 운영자들이 일상 업무 속에서 장비를 어떻게 모니터링하고, 이상에 어떻게 대응하고, 정보를 어떻게 찾는지 이해하는 데 집중했습니다. 인터뷰, 워크플로우 분석, 현업 전문가와의 협업 논의를 통해 몇 가지 행동 패턴이 일관되게 나타났습니다." },
+    e29: { ko: "운영자들은 계층 구조가 아니라 업무 기준으로 찾았습니다." },
+    e30: { ko: "복잡한 장비 트리를 탐색하는 대신, 운영자들은 검색, 최근 본 장비, 생산 맥락에 의존해 정보를 빠르게 찾았습니다." },
+    e31: { ko: "모든 알림이 같은 주의를 받을 만한 것은 아니었습니다." },
+    e32: { ko: "사용자들은 알림을 머릿속으로 '중요', '지켜볼 것', '무시해도 되는 것'으로 나눴습니다. 기존 인터페이스는 모든 알림을 동일하게 취급해 인지 부하를 높였습니다." },
+    e33: { ko: "화면 전환이 대응 속도를 늦췄습니다." },
+    e34: { ko: "이상 하나를 조사하려면 판단에 필요한 맥락을 얻기까지 여러 페이지를 열어야 하는 경우가 많았습니다." },
+    e35: { ko: "디자인 가설" },
+    e36: { ko: "세 가지 가설이 모니터링 경험의 재설계를 이끌었습니다." },
+    e37: { ko: "리서치 결과는 인터페이스 탐색으로 넘어가기 전, 디자인 결정을 이끈 세 가지 가설로 정리되었습니다." },
+    e38: { ko: "01&nbsp;&nbsp;중요한 정보를 우선 보여주기" },
+    e39: { ko: "중요한 알림을 부차적인 정보보다 먼저 보여주면, 운영자는 긴급한 이슈를 더 빠르게 인식할 것이다." },
+    e40: { ko: "02&nbsp;&nbsp;화면 전환 줄이기" },
+    e41: { ko: "모니터링과 이슈 기록이 하나의 연속된 워크플로우에서 이뤄지면, 불필요한 이동이 줄어들 것이다." },
+    e42: { ko: "03&nbsp;&nbsp;정보를 한눈에 훑어볼 수 있게 만들기" },
+    e43: { ko: "장비 상태를 한눈에 이해할 수 있으면, 모니터링 중 인지 부하가 줄어들 것이다." },
+    e44: { ko: "디자인 솔루션" },
+    e45: { ko: "데이터만이 아니라 워크플로우를 중심으로 디자인하기." },
+    e46: { ko: "모든 장비 데이터를 똑같이 보여주는 대신, 대시보드를 사용자 워크플로우 중심으로 설계했습니다 — 중요한 정보를 우선하고, 불필요한 이동을 줄이고, 운영자가 감지에서 조치까지 최대한 빠르게 이어지도록 도왔습니다." },
+    e47: { ko: "카테고리 트리가 아닌 리스트." },
+    e48: { ko: "상세한 사용자 테스트에서, 사용자들은 필요한 장비를 찾기 위해 카테고리 트리를 파고들고 싶어 하지 않는다는 것을 확인했습니다. 그 결과 운영자가 우선순위 항목을 위나 아래에 고정하고, 컨텍스트 검색으로 필요한 것을 바로 찾을 수 있는 단순한 리스트를 만들었습니다." },
+    e49: { ko: "우선순위와 색 균형을 고려한 카드." },
+    e50: { ko: "분석가들과 함께 표시해야 할 핵심 데이터의 위계를 정하고 우선순위를 매겼으며, 명확성은 유지하되 단조롭지 않도록 다양한 색을 활용했습니다. 상태, MTBF, 가동률이 각 카드 안에 정리되어 있어, 많은 말을 하지 않고도 많은 것을 전달합니다." },
+    e51: { ko: "이슈가 발생한 순간 바로 기록하기." },
+    e52: { ko: "이상 입력 팝업을 통해 운영자는 이상이 발생하는 즉시 이슈와 관련 정보를 기록할 수 있고, 자동 제안 기능이 기존 이슈 기록을 불러오거나 그 자리에서 새 관련 데이터를 추가할 수 있게 해줍니다." },
+    e53: { ko: "임팩트" },
+    e54: { ko: "더 빠른 의사결정, 덜한 탐색." },
+    e55: { ko: "UI는 워크플로우 중심 접근으로 설계되어, 사용자가 데이터를 빠르게 해석할 수 있게 하고 불필요한 단계를 없애 의사결정을 더 쉽게 만들었습니다. 재설계된 인터페이스는 핵심 데이터에 쉽게 접근할 수 있도록 강조하고 실시간 알림을 자연스럽게 통합해, 알림을 분류하는 일상적인 인지 부하를 덜어주었습니다." },
+    e56: { ko: "평균 대응 시간" },
+    e57: { ko: "올바른 장비를 찾는 데 걸리는 시간" },
+    e58: { ko: "회고" },
+    e59: { ko: "화면을 추가하는 것보다 줄이는 것이 더 중요했습니다." },
+    e60: { ko: "실시간 모니터링 도구의 성패는 무엇을 <em>보여주지 않느냐</em>에 달려 있습니다. Bee의 가장 큰 성과는 화면을 추가한 것이 아니라 줄인 데서 나왔습니다." },
+    e61: { ko: "전체 스토리 보기" }
+  };
+
+  function applyLang(lang) {
+    var els = document.querySelectorAll('[data-i18n]');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (!el.dataset.enCache) el.dataset.enCache = el.textContent;
+      var key = el.getAttribute('data-i18n');
+      el.textContent = lang === 'ko' ? (i18nDict[key] ? i18nDict[key].ko : el.dataset.enCache) : el.dataset.enCache;
+    }
+    var elsHtml = document.querySelectorAll('[data-i18n-html]');
+    for (var j = 0; j < elsHtml.length; j++) {
+      var elH = elsHtml[j];
+      if (!elH.dataset.enCache) elH.dataset.enCache = elH.innerHTML;
+      var keyH = elH.getAttribute('data-i18n-html');
+      elH.innerHTML = lang === 'ko' ? (i18nDict[keyH] ? i18nDict[keyH].ko : elH.dataset.enCache) : elH.dataset.enCache;
+    }
+    document.documentElement.setAttribute('lang', lang === 'ko' ? 'ko' : 'en');
+    var enSeg = document.querySelector('.lang-toggle .lang-en');
+    var koSeg = document.querySelector('.lang-toggle .lang-ko');
+    if (enSeg && koSeg) {
+      enSeg.classList.toggle('active', lang !== 'ko');
+      koSeg.classList.toggle('active', lang === 'ko');
+    }
+  }
+
+  var langToggle = document.getElementById('langToggle');
+  if (langToggle) {
+    var savedLang = localStorage.getItem('lang') || 'en';
+    applyLang(savedLang);
+    langToggle.addEventListener('click', function () {
+      var current = document.documentElement.getAttribute('lang') === 'ko' ? 'ko' : 'en';
+      var next = current === 'ko' ? 'en' : 'ko';
+      localStorage.setItem('lang', next);
+      applyLang(next);
+    });
+  }
+</script>
+
 </body>
 </html>
+

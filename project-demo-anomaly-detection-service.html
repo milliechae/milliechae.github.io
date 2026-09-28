@@ -15,6 +15,14 @@
     document.documentElement.setAttribute('data-theme', theme);
   })();
 </script>
+<style>
+  .bq-single-img { margin: 20px 0 0; }
+  .bq-single-img img { width: 100%; height: auto; display: block; border-radius: 12px; }
+  .research-grid.research-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 900px) {
+    .research-grid.research-grid-4 { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
@@ -98,170 +106,225 @@
 
   <!-- ⑦ 인용구 이미지 섹션: images/quote-bg.jpg 로 교체 -->
   <figure class="quote-media">
-    <img src="images/quote-bg.jpg" alt="" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
-    <span class="placeholder-label">여기에 images/quote-bg.jpg 를 넣으세요 (가로로 넓은 분위기 사진)</span>
-    <blockquote data-i18n-html="a14">
-      "Handing someone your phone<br>
-      can feel like handing over your whole diary…"
+    <img src="images/quote-bg.jpg" alt="">
+    <blockquote data-i18n="a14">
+      Detecting anomalies isn't the problem. Understanding them is.
     </blockquote>
   </figure>
 
-  <!-- ⑧ 본문 섹션: Problem -->
   <section class="content-block">
-    <h2 data-i18n="a15">Problem: Detecting anomalies isn't the problem. Understanding them is.</h2>
-    <p data-i18n="a16">
-      Manufacturing systems already generate thousands of real-time alerts and sensor readings every day. The real challenge begins after an anomaly is detected.
 
-Operators still spend valuable time identifying which equipment is affected, locating the exact component, and understanding what caused the issue before taking action.
-    </p>
+    <span class="section-label" data-i18n="a15">PAIN POINT</span>
+
+    <h2 class="pain-heading" data-i18n="a16">
+      After an anomaly is detected, the real challenge begins.
+    </h2>
+
     <p data-i18n="a17">
-      Recognising this gap, we saw an opportunity to help operators regain control of the
-      investigation process — turning a wall of raw alerts into a clear, guided path to the root cause.
+      Manufacturing systems already generate thousands of real-time alerts and sensor readings every day.
+      Operators still spend valuable time identifying which equipment is affected, locating the exact component,
+      and understanding what caused the issue before taking action.
     </p>
+
+    <ul class="pain-list">
+      <li>
+        <strong data-i18n="a18">Finding the affected equipment</strong><br>
+        <span data-i18n="a19">Operators had to work out which equipment and chamber were affected before they could act.</span>
+      </li>
+
+      <li>
+        <strong data-i18n="a20">Understanding the cause</strong><br>
+        <span data-i18n="a21">Alerts told operators something was wrong, but not what changed or why it mattered.</span>
+      </li>
+
+      <li>
+        <strong data-i18n="a22">Piecing information together</strong><br>
+        <span data-i18n="a23">Related information lived across separate dashboards, logs, and monitoring screens.</span>
+      </li>
+    </ul>
+
+    <div class="bq-challenge-wrap">
+      <img class="bq-peek-body" src="images/bq-doodle-body.png" alt="" aria-hidden="true">
+      <img class="bq-peek-qmark" src="images/bq-doodle-qmark.png" alt="" aria-hidden="true">
+
+      <div class="design-challenge-card">
+        <span class="challenge-label"><span class="challenge-icon">✦</span> <span data-i18n="a24">DESIGN CHALLENGE</span></span>
+
+        <h3 data-i18n="a25">
+          How might we help operators understand an anomaly as quickly as they detect it?
+        </h3>
+
+        <p data-i18n="a26">
+          The goal was to turn a wall of raw alerts into a clear, guided path to the root cause, so operators can respond before production is affected.
+        </p>
+
+      </div>
+    </div>
+
   </section>
 
-  <!-- ⑨ Research -->
   <section class="content-block">
-    <h2 data-i18n="a18">Research</h2>
-    <p data-i18n="a19">
-      Understanding how operators investigate anomalies. To understand how operators respond to equipment anomalies in real manufacturing environments, I conducted user interviews, workflow analysis, and collaborated closely with domain experts throughout the design process.
+
+    <span class="section-label" data-i18n="a27">RESEARCH</span>
+
+    <h2 class="pain-heading" data-i18n="a28">
+      Understanding how operators investigate anomalies.
+    </h2>
+
+    <p data-i18n="a29">
+      To understand how operators respond to equipment anomalies in real manufacturing environments, I conducted user interviews, workflow analysis, and collaborated closely with domain experts throughout the design process.
       Rather than focusing on what users clicked, the research aimed to uncover how they made decisions under time pressure and what information they needed most when responding to equipment failures.
     </p>
 
-    <div class="media-light" style="background: transparent;">
-      <img src="images/research-affinity-map.jpg" alt="리서치 어피니티 맵 — 장비 식별, 알림 맥락, 근본 원인 분석 등으로 분류된 사용자 인터뷰 결과" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
-      <span class="placeholder-label">여기에 images/research-affinity-map.jpg 를 넣으세요</span>
+    <div class="research-media">
+      <img src="images/research-affinity-map.jpg" alt="리서치 어피니티 맵 — 장비 식별, 알림 맥락, 근본 원인 분석 등으로 분류된 사용자 인터뷰 결과">
     </div>
 
-    <div class="finding">
-      <h3 data-i18n="a20">Finding the affected equipment takes too long.</h3>
-      <p data-i18n="a21">Operators often knew an anomaly had occurred, but identifying the exact equipment or chamber required navigating multiple screens and interpreting complex equipment IDs.</p>
-    </div>
-    <div class="finding">
-      <h3 data-i18n="a22">AI detects anomalies, but doesn't provide enough context.</h3>
-      <p data-i18n="a23">Receiving an alert wasn't enough. Operators needed to understand what changed, why it mattered, and whether immediate action was required.</p>
-    </div>
-    <div class="finding">
-      <h3 data-i18n="a24">Critical information is scattered across multiple views.</h3>
-      <p data-i18n="a25">Investigating a single anomaly required switching between dashboards, logs, equipment information, and monitoring screens.
+    <div class="research-grid research-grid-4">
 
-This fragmented workflow increased cognitive load during time-sensitive situations.</p>
+      <div class="research-item">
+        <span class="research-number">01</span>
+        <h3 data-i18n="a30">Finding the affected equipment takes too long.</h3>
+        <p data-i18n="a31">Operators often knew an anomaly had occurred, but identifying the exact equipment or chamber required navigating multiple screens and interpreting complex equipment IDs.</p>
+      </div>
+
+      <div class="research-item">
+        <span class="research-number">02</span>
+        <h3 data-i18n="a32">AI detects anomalies, but doesn't provide enough context.</h3>
+        <p data-i18n="a33">Receiving an alert wasn't enough. Operators needed to understand what changed, why it mattered, and whether immediate action was required.</p>
+      </div>
+
+      <div class="research-item">
+        <span class="research-number">03</span>
+        <h3 data-i18n="a34">Critical information is scattered across multiple views.</h3>
+        <p data-i18n="a35">Investigating a single anomaly required switching between dashboards, logs, equipment information, and monitoring screens. This fragmented workflow increased cognitive load during time-sensitive situations.</p>
+      </div>
+
+      <div class="research-item">
+        <span class="research-number">04</span>
+        <h3 data-i18n="a36">Repetitive equipment management slows daily operations.</h3>
+        <p data-i18n="a37">Routine configuration tasks were repeated across multiple pieces of equipment, increasing manual effort and creating opportunities for human error.</p>
+      </div>
+
     </div>
-    <div class="finding">
-      <h3 data-i18n="a26">Repetitive equipment management slows daily operations.</h3>
-      <p data-i18n="a27">Routine configuration tasks were repeated across multiple pieces of equipment, increasing manual effort and creating opportunities for human error.</p>
-    </div>
+
   </section>
 
-  <!-- ⑩ Solution -->
+  <div class="section-flow">
+
+    <svg class="flow-line" viewBox="0 0 120 160">
+      <path d="M62 8 C90 35, 95 68, 64 100"/>
+      <path d="M42 80 L66 104"/>
+      <path d="M90 84 L64 104"/>
+    </svg>
+
+  </div>
+
+  <section class="design-challenge-card">
+
+    <span class="challenge-label"><span class="challenge-icon">✦</span> <span data-i18n="a38">DESIGN HYPOTHESIS</span></span>
+
+    <h2 data-i18n="a39">
+      Four principles shaped the experience.
+    </h2>
+
+    <p class="challenge-description" data-i18n="a40">
+      Research findings were translated into four assumptions that guided our design decisions before moving into interface exploration.
+    </p>
+
+    <div class="hypothesis-list">
+
+      <div class="hypothesis-item">
+        <strong data-i18n-html="a41">01&nbsp;&nbsp;See the affected equipment visually</strong>
+        <p data-i18n="a42">Show which chamber is affected without decoding equipment IDs.</p>
+      </div>
+
+      <div class="hypothesis-item">
+        <strong data-i18n-html="a43">02&nbsp;&nbsp;Make status instantly recognizable</strong>
+        <p data-i18n="a44">Communicate status through consistent visual indicators.</p>
+      </div>
+
+      <div class="hypothesis-item">
+        <strong data-i18n-html="a45">03&nbsp;&nbsp;Keep investigation in one place</strong>
+        <p data-i18n="a46">Bring related information into a single workflow.</p>
+      </div>
+
+      <div class="hypothesis-item">
+        <strong data-i18n-html="a47">04&nbsp;&nbsp;Reduce repetitive work</strong>
+        <p data-i18n="a48">Make routine configuration faster with bulk management.</p>
+      </div>
+
+    </div>
+
+  </section>
+
   <section class="content-block">
-    <h2 data-i18n="a28">Solution: Designing for faster understanding, not just better monitoring.</h2>
-    <p data-i18n="a29">
+
+    <h2 data-i18n="a49">Design Solution</h2>
+
+    <p data-i18n="a50">
       Based on the research findings, I redesigned the monitoring experience to help operators move seamlessly from detection to understanding, and finally to action.
       Instead of exposing more data, the interface prioritizes the information users need most at the moment an anomaly occurs.
     </p>
 
-    <!-- 기능 카드 4개: 아이콘(이모지)과 텍스트만 바꾸면 됩니다 -->
-    <div class="feature-grid">
-      <div class="feature-card">
-        <span class="feature-icon">🔕</span>
-        <span data-i18n="a30">See the affected equipment at a glance.</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">🖼️</span>
-        <span data-i18n="a31">Make anomaly status instantly recognizable.</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">⭐</span>
-        <span data-i18n="a32">Keep investigation in a single workflow.</span>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">↺</span>
-        <span data-i18n="a33">Reduce repetitive operational tasks.</span>
+    <div class="finding">
+      <h3 data-i18n="a51">See the affected equipment at a glance.</h3>
+      <p data-i18n="a52">Operators no longer need to interpret complex equipment IDs or switch between multiple screens. By introducing a visual equipment map based on the real manufacturing environment, the affected chamber can be identified immediately.</p>
+      <p data-i18n="a53">We paid meticulous attention to how each equipment card represents its real physical layout — going beyond a single alert icon to show exactly which chamber is affected and how it fits into the wider line.</p>
+      <div class="bq-single-img">
+        <img src="images/equipment-card-detail.jpg" alt="장비 카드 상세 화면 — 각 장비가 하나의 카드로 표현되고, 이상감지가 필요한 챔버가 표시됨">
       </div>
     </div>
-  </section>
 
-  <!-- ⑪ 세부 기능 1 -->
-  <section class="content-block detail-block">
-    <h3><span class="detail-icon">🧭</span> <span data-i18n="a34">See the affected equipment at a glance.</span></h3>
-    <p data-i18n="a35">
-      Operators no longer need to interpret complex equipment IDs or switch between multiple screens.
-      By introducing a visual equipment map based on the real manufacturing environment, the affected chamber can be identified immediately.
-    </p>
-    <div class="media-dark" style="background: transparent;">
-      <img src="images/equipment-card-detail.jpg" alt="장비 카드 상세 화면 — 각 장비가 하나의 카드로 표현되고, 이상감지가 필요한 챔버가 표시됨" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
-      <span class="placeholder-label">여기에 images/equipment-card-detail.jpg 를 넣으세요</span>
+    <div class="finding">
+      <h3 data-i18n="a54">Make anomaly status instantly recognizable.</h3>
+      <p data-i18n="a55">Rather than relying on tables and numbers, equipment status is communicated through consistent visual indicators and standardized color semantics. This reduces cognitive load and allows operators to recognize abnormal conditions without reading detailed information.</p>
+      <div class="bq-single-img">
+        <img src="images/anomaly-status-detail.jpg" alt="장비 이상 상태를 색상으로 표시하는 대시보드 화면 — 정상/경고/이상 상태 색상 구분">
+      </div>
     </div>
-    <p data-i18n="a36">
-      We paid meticulous attention to how each equipment card represents its real physical layout —
-      going beyond a single alert icon to show exactly which chamber is affected and how it fits into the wider line.
-    </p>
-  </section>
 
-  <!-- ⑫ 세부 기능 2 -->
-  <section class="content-block detail-block">
-    <h3><span class="detail-icon">🔑</span> <span data-i18n="a37">Make anomaly status instantly recognizable.</span></h3>
-    <div class="media-dark" style="background: transparent;">
-      <img src="images/anomaly-status-detail.jpg" alt="장비 이상 상태를 색상으로 표시하는 대시보드 화면 — 정상/경고/이상 상태 색상 구분" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
-      <span class="placeholder-label">여기에 images/anomaly-status-detail.jpg 를 넣으세요</span>
+    <div class="finding">
+      <h3 data-i18n="a56">Keep investigation in a single workflow.</h3>
+      <p data-i18n="a57">Investigating an anomaly previously required switching between multiple systems. The redesigned workflow consolidates related information into one place, helping operators investigate, verify, and respond without interrupting their flow.</p>
+      <div class="bq-single-img">
+        <img src="images/workflow-pattern-detail.jpg" alt="이상 패턴 인식 및 조사 워크플로우 화면 — 데이터 트레이스와 패턴 선택을 한 화면에서 처리">
+      </div>
     </div>
-    <p data-i18n="a38">
-      Rather than relying on tables and numbers, equipment status is communicated through consistent visual indicators and standardized color semantics.
-      This reduces cognitive load and allows operators to recognize abnormal conditions without reading detailed information.
-    </p>
-  </section>
 
-  <!-- ⑬ 세부 기능 3 + 이미지(다크 배경 목업) -->
-  <section class="content-block detail-block">
-    <h3><span class="detail-icon">🔒</span> <span data-i18n="a39">Keep investigation in a single workflow.</span></h3>
-    <p data-i18n="a40">
-      Investigating an anomaly previously required switching between multiple systems.
-      The redesigned workflow consolidates related information into one place, helping operators investigate, verify, and respond without interrupting their flow.
-    </p>
-    <div class="media-light" style="background: transparent;">
-      <img src="images/workflow-pattern-detail.jpg" alt="이상 패턴 인식 및 조사 워크플로우 화면 — 데이터 트레이스와 패턴 선택을 한 화면에서 처리" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
-      <span class="placeholder-label">여기에 images/workflow-pattern-detail.jpg 를 넣으세요</span>
+    <div class="finding">
+      <h3 data-i18n="a58">Reduce repetitive operational tasks.</h3>
+      <p data-i18n="a59">Managing equipment settings often involved repeating the same actions across multiple devices. To improve operational efficiency, bulk management features and simplified configuration flows were introduced.</p>
+      <div class="bq-single-img">
+        <img src="images/bulk-config-detail.jpg" alt="장비 설정 일괄 적용 화면 — 여러 장비에 동일한 이벤트 설정을 한번에 적용">
+      </div>
     </div>
+
   </section>
 
-  <!-- ⑭ 세부 기능 4 + 이미지(라이트 배경 + 토글) -->
-  <section class="content-block detail-block">
-    <h3><span class="detail-icon">📱</span> <span data-i18n="a41">Reduce repetitive operational tasks.</span></h3>
-    <p data-i18n="a42">
-      Managing equipment settings often involved repeating the same actions across multiple devices.
-      To improve operational efficiency, bulk management features and simplified configuration flows were introduced.
-    </p>
-    <div class="media-light" style="background: transparent;">
-      <img src="images/bulk-config-detail.jpg" alt="장비 설정 일괄 적용 화면 — 여러 장비에 동일한 이벤트 설정을 한번에 적용" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
-      <span class="placeholder-label">여기에 images/bulk-config-detail.jpg 를 넣으세요</span>
-    </div>
-  </section>
-
-  <!-- ⑮ Impact -->
   <section class="content-block">
-    <h2 data-i18n="a43">Impact: Helping operators make faster decisions with greater confidence.</h2>
-    <p data-i18n="a44">
+    <h2 data-i18n="a60">Impact</h2>
+    <h3 data-i18n="a61">Helping operators make faster decisions with greater confidence.</h3>
+    <p data-i18n="a62">
       The redesigned monitoring experience reduced the time required to identify abnormal equipment and streamlined the investigation workflow.
       By simplifying complex operational data into actionable information, the platform helped operators respond more confidently in time-critical situations.
     </p>
-    <div class="media-light" style="background: transparent;">
-      <img src="images/impact-detail.jpg" alt="라이트/다크 테마로 전환 가능한 장비 상세 카드 화면" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
-      <span class="placeholder-label">여기에 images/impact-detail.jpg 를 넣으세요</span>
+    <div class="bq-single-img">
+      <img src="images/impact-detail.jpg" alt="라이트/다크 테마로 전환 가능한 장비 상세 카드 화면">
     </div>
   </section>
 
-  <!-- ⑮ reflection -->
   <section class="content-block">
-    <h2 data-i18n="a45">Reflection</h2>
-    <p data-i18n="a46">
-    Building AI-powered products isn't just about surfacing predictions.
-    It's about helping people trust the system, understand uncertainty, and make confident decisions under pressure.</p>
+    <h2 data-i18n="a63">Reflection</h2>
+    <h3 data-i18n="a64">Building AI-powered products isn't just about surfacing predictions.</h3>
+    <p data-i18n="a65">
+      It's about helping people trust the system, understand uncertainty, and make confident decisions under pressure.
+    </p>
   </section>
 
   <footer class="page-footer">
     <!-- ⑯ 전체 포트폴리오 PDF로 연결되는 버튼. 나중에 다른 PDF로 바꾸려면 href만 수정하면 됩니다 -->
-    <a class="footer-cta" href="milliechae-portfolio.pdf" target="_blank" rel="noopener" aria-label="전체 포트폴리오 PDF 보기"><span data-i18n="a47">See the full story</span> <span aria-hidden="true">→</span></a>
+    <a class="footer-cta" href="milliechae-portfolio.pdf" target="_blank" rel="noopener" aria-label="전체 포트폴리오 PDF 보기"><span data-i18n="a66">See the full story</span> <span aria-hidden="true">→</span></a>
     <div class="footer-nav">
       <a href="project-demo-pumkin-finance-dashboard.html" aria-label="이전 프로젝트">←</a>
       <a href="project-demo-brique-analytics-dashboard.html" aria-label="다음 프로젝트">→</a>
@@ -284,52 +347,71 @@ This fragmented workflow increased cognitive load during time-sensitive situatio
 
   // 언어 토글 (EN / 한글)
   var i18nDict = {
-    a1:  { ko: '반도체 운영자가 생산 손실로 이어지기 전에 장비 결함을 감지할 수 있도록 돕습니다.' },
-    a2:  { ko: '출시' },
-    a3:  { ko: '저는 <strong>Semiconductor Anomaly Detection Service,</strong> 반도체 제조 환경을 위해 설계된 AI 기반 모니터링 플랫폼의 디자인을 이끌었습니다. 데이터 분석가, 개발자와 긴밀히 협업하며, 운영자가 비정상적인 장비 상태를 빠르게 파악하고, 근본 원인을 이해하고, 생산에 영향을 미치기 전에 대응할 수 있는 모니터링 경험을 디자인했습니다.' },
-    a5:  { ko: '제품' },
-    a6:  { ko: '반도체 이상감지 서비스' },
-    a7:  { ko: '역할' },
-    a8:  { ko: '디자인 리드' },
-    a9:  { ko: '기간' },
-    a10: { ko: '클라이언트' },
-    a11: { ko: '삼성전자' },
-    a12: { ko: '스킬' },
-    a13: { ko: '프로덕트 디자인, 인터랙티브 프로토타이핑, 사용자 리서치 & 테스트' },
-    a14: { ko: '"누군가에게 내 휴대폰을 건네는 건<br>일기장을 통째로 넘기는 것처럼 느껴질 수 있습니다…"' },
-    a15: { ko: '문제: 이상을 감지하는 것이 문제가 아니라, 이해하는 것이 문제였습니다.' },
-    a16: { ko: '제조 시스템은 이미 매일 수천 건의 실시간 알림과 센서 데이터를 생성합니다. 진짜 문제는 이상이 감지된 이후부터 시작됩니다.\n\n운영자들은 여전히 어떤 장비가 영향을 받았는지 파악하고, 정확한 부품 위치를 찾고, 조치를 취하기 전에 원인을 이해하는 데 많은 시간을 씁니다.' },
-    a17: { ko: '이 지점에 기회가 있다고 판단해, 운영자가 조사 과정을 다시 주도할 수 있도록 — 산더미 같은 원시 알림을 근본 원인까지 이어지는 명확한 경로로 바꾸고자 했습니다.' },
-    a18: { ko: '리서치' },
-    a19: { ko: '운영자가 이상을 조사하는 방식을 이해하기. 실제 제조 환경에서 운영자들이 장비 이상에 어떻게 대응하는지 이해하기 위해, 사용자 인터뷰와 워크플로우 분석을 진행하고 현업 전문가들과 디자인 과정 내내 긴밀히 협업했습니다.\n무엇을 클릭했는지보다, 시간 압박 속에서 어떻게 의사결정을 내리는지, 장비 결함에 대응할 때 어떤 정보가 가장 필요한지를 파악하는 데 집중했습니다.' },
-    a20: { ko: '영향받은 장비를 찾는 데 시간이 너무 오래 걸렸습니다.' },
-    a21: { ko: '운영자들은 이상이 발생했다는 것은 알아도, 정확한 장비나 챔버를 특정하려면 여러 화면을 오가며 복잡한 장비 ID를 해석해야 했습니다.' },
-    a22: { ko: 'AI가 이상을 감지하지만, 충분한 맥락을 제공하지 않았습니다.' },
-    a23: { ko: '알림을 받는 것만으로는 충분하지 않았습니다. 운영자는 무엇이 바뀌었는지, 왜 중요한지, 즉각적인 조치가 필요한지를 이해해야 했습니다.' },
-    a24: { ko: '중요한 정보가 여러 화면에 흩어져 있었습니다.' },
-    a25: { ko: '이상 하나를 조사하려면 대시보드, 로그, 장비 정보, 모니터링 화면을 계속 오가야 했습니다.\n\n이렇게 파편화된 워크플로우는 시간이 촉박한 상황에서 인지 부하를 높였습니다.' },
-    a26: { ko: '반복적인 장비 관리가 일상 업무 속도를 늦췄습니다.' },
-    a27: { ko: '여러 장비에 걸쳐 같은 설정 작업이 반복되면서, 수작업 부담이 늘고 실수가 발생할 여지도 커졌습니다.' },
-    a28: { ko: '솔루션: 더 나은 모니터링을 넘어, 더 빠른 이해를 위한 디자인.' },
-    a29: { ko: '리서치 결과를 바탕으로, 운영자가 감지에서 이해, 그리고 조치까지 매끄럽게 이어질 수 있도록 모니터링 경험을 다시 디자인했습니다.\n더 많은 데이터를 보여주는 대신, 이상이 발생한 그 순간에 사용자에게 가장 필요한 정보를 우선적으로 보여주는 인터페이스를 설계했습니다.' },
-    a30: { ko: '영향받은 장비를 한눈에 확인하기.' },
-    a31: { ko: '이상 상태를 즉시 알아볼 수 있게 만들기.' },
-    a32: { ko: '조사 과정을 하나의 워크플로우 안에서 처리하기.' },
-    a33: { ko: '반복적인 운영 작업 줄이기.' },
-    a34: { ko: '영향받은 장비를 한눈에 확인하기.' },
-    a35: { ko: '운영자는 더 이상 복잡한 장비 ID를 해석하거나 여러 화면을 오갈 필요가 없습니다. 실제 제조 환경을 기반으로 한 시각적 장비 맵을 도입해, 영향받은 챔버를 즉시 식별할 수 있게 했습니다.' },
-    a36: { ko: '각 장비 카드가 실제 물리적 배치를 어떻게 표현할지 세심하게 신경 썼습니다 — 단순한 알림 아이콘 하나를 넘어, 정확히 어느 챔버가 영향을 받았고 전체 라인에서 어디에 위치하는지 보여줍니다.' },
-    a37: { ko: '이상 상태를 즉시 알아볼 수 있게 만들기.' },
-    a38: { ko: '표와 숫자에 의존하는 대신, 일관된 시각적 지표와 표준화된 색상 체계로 장비 상태를 전달합니다. 이는 인지 부하를 줄이고, 운영자가 세부 정보를 읽지 않고도 비정상 상태를 인식할 수 있게 합니다.' },
-    a39: { ko: '조사 과정을 하나의 워크플로우 안에서 처리하기.' },
-    a40: { ko: '이전에는 이상을 조사하려면 여러 시스템을 오가야 했습니다. 재설계된 워크플로우는 관련 정보를 한 곳에 모아, 운영자가 흐름이 끊기지 않고 조사·검증·대응할 수 있게 돕습니다.' },
-    a41: { ko: '반복적인 운영 작업 줄이기.' },
-    a42: { ko: '장비 설정 관리는 여러 기기에 걸쳐 같은 작업을 반복하는 경우가 많았습니다. 운영 효율을 높이기 위해 일괄 관리 기능과 간소화된 설정 플로우를 도입했습니다.' },
-    a43: { ko: '임팩트: 운영자가 더 빠르고 확신 있게 의사결정을 내릴 수 있도록.' },
-    a44: { ko: '재설계된 모니터링 경험은 비정상 장비를 식별하는 데 걸리는 시간을 줄이고 조사 워크플로우를 간소화했습니다. 복잡한 운영 데이터를 실행 가능한 정보로 단순화함으로써, 시간이 촉박한 상황에서도 운영자가 더 확신을 갖고 대응할 수 있게 도왔습니다.' },
-    a45: { ko: '회고' },
-    a46: { ko: 'AI 기반 제품을 만드는 것은 단순히 예측 결과를 보여주는 것이 아닙니다.\n사람들이 시스템을 신뢰하고, 불확실성을 이해하고, 압박 속에서도 확신 있는 결정을 내릴 수 있도록 돕는 일입니다.' },
-    a47: { ko: '전체 스토리 보기' }
+    a1: { ko: "반도체 운영자가 생산 손실로 이어지기 전에 장비 결함을 감지할 수 있도록 돕습니다." },
+    a2: { ko: "출시" },
+    a3: { ko: "저는 <strong>Semiconductor Anomaly Detection Service,</strong> 반도체 제조 환경을 위해 설계된 AI 기반 모니터링 플랫폼의 디자인을 이끌었습니다. 데이터 분석가, 개발자와 긴밀히 협업하며, 운영자가 비정상적인 장비 상태를 빠르게 파악하고, 근본 원인을 이해하고, 생산에 영향을 미치기 전에 대응할 수 있는 모니터링 경험을 디자인했습니다." },
+    a5: { ko: "제품" },
+    a6: { ko: "반도체 이상감지 서비스" },
+    a7: { ko: "역할" },
+    a8: { ko: "디자인 리드" },
+    a9: { ko: "기간" },
+    a10: { ko: "클라이언트" },
+    a11: { ko: "삼성전자" },
+    a12: { ko: "스킬" },
+    a13: { ko: "프로덕트 디자인, 인터랙티브 프로토타이핑, 사용자 리서치 & 테스트" },
+    a14: { ko: "이상을 감지하는 것이 문제가 아닙니다. 이해하는 것이 문제입니다." },
+    a15: { ko: "문제 상황" },
+    a16: { ko: "이상이 감지된 이후부터, 진짜 문제가 시작됩니다." },
+    a17: { ko: "제조 시스템은 이미 매일 수천 건의 실시간 알림과 센서 데이터를 생성합니다. 그럼에도 운영자들은 조치를 취하기 전에 어떤 장비가 영향을 받았는지 파악하고, 정확한 부품 위치를 찾고, 원인을 이해하는 데 많은 시간을 씁니다." },
+    a18: { ko: "영향받은 장비 찾기" },
+    a19: { ko: "운영자는 조치를 취하기 전에 어떤 장비와 챔버가 영향을 받았는지부터 파악해야 했습니다." },
+    a20: { ko: "원인 이해하기" },
+    a21: { ko: "알림은 무언가 잘못되었다는 것만 알려줄 뿐, 무엇이 바뀌었고 왜 중요한지는 알려주지 않았습니다." },
+    a22: { ko: "흩어진 정보 조합하기" },
+    a23: { ko: "관련 정보가 별도의 대시보드, 로그, 모니터링 화면에 흩어져 있었습니다." },
+    a24: { ko: "디자인 챌린지" },
+    a25: { ko: "어떻게 하면 운영자가 이상을 감지하는 만큼 빠르게 이해할 수 있도록 도울 수 있을까?" },
+    a26: { ko: "목표는 산더미 같은 원시 알림을 근본 원인까지 이어지는 명확한 안내 경로로 바꿔, 운영자가 생산에 영향을 미치기 전에 대응할 수 있게 하는 것이었습니다." },
+    a27: { ko: "리서치" },
+    a28: { ko: "운영자가 이상을 조사하는 방식을 이해하기." },
+    a29: { ko: "실제 제조 환경에서 운영자들이 장비 이상에 어떻게 대응하는지 이해하기 위해, 사용자 인터뷰와 워크플로우 분석을 진행하고 현업 전문가들과 디자인 과정 내내 긴밀히 협업했습니다. 무엇을 클릭했는지보다, 시간 압박 속에서 어떻게 의사결정을 내리는지, 장비 결함에 대응할 때 어떤 정보가 가장 필요한지를 파악하는 데 집중했습니다." },
+    a30: { ko: "영향받은 장비를 찾는 데 시간이 너무 오래 걸렸습니다." },
+    a31: { ko: "운영자들은 이상이 발생했다는 것은 알아도, 정확한 장비나 챔버를 특정하려면 여러 화면을 오가며 복잡한 장비 ID를 해석해야 했습니다." },
+    a32: { ko: "AI가 이상을 감지하지만, 충분한 맥락을 제공하지 않았습니다." },
+    a33: { ko: "알림을 받는 것만으로는 충분하지 않았습니다. 운영자는 무엇이 바뀌었는지, 왜 중요한지, 즉각적인 조치가 필요한지를 이해해야 했습니다." },
+    a34: { ko: "중요한 정보가 여러 화면에 흩어져 있었습니다." },
+    a35: { ko: "이상 하나를 조사하려면 대시보드, 로그, 장비 정보, 모니터링 화면을 계속 오가야 했습니다. 이렇게 파편화된 워크플로우는 시간이 촉박한 상황에서 인지 부하를 높였습니다." },
+    a36: { ko: "반복적인 장비 관리가 일상 업무 속도를 늦췄습니다." },
+    a37: { ko: "여러 장비에 걸쳐 같은 설정 작업이 반복되면서, 수작업 부담이 늘고 실수가 발생할 여지도 커졌습니다." },
+    a38: { ko: "디자인 가설" },
+    a39: { ko: "네 가지 원칙이 경험을 만들었습니다." },
+    a40: { ko: "리서치 결과는 인터페이스 탐색으로 넘어가기 전, 디자인 결정을 이끈 네 가지 가설로 정리되었습니다." },
+    a41: { ko: "01&nbsp;&nbsp;영향받은 장비를 시각적으로 보여주기" },
+    a42: { ko: "장비 ID를 해석하지 않고도 어느 챔버가 영향받았는지 보여주기." },
+    a43: { ko: "02&nbsp;&nbsp;상태를 즉시 알아볼 수 있게 만들기" },
+    a44: { ko: "일관된 시각적 지표로 상태를 전달하기." },
+    a45: { ko: "03&nbsp;&nbsp;조사를 한 곳에서 이어가기" },
+    a46: { ko: "관련 정보를 하나의 워크플로우로 모으기." },
+    a47: { ko: "04&nbsp;&nbsp;반복 작업 줄이기" },
+    a48: { ko: "일괄 관리로 반복적인 설정 작업을 더 빠르게 만들기." },
+    a49: { ko: "디자인 솔루션" },
+    a50: { ko: "리서치 결과를 바탕으로, 운영자가 감지에서 이해, 그리고 조치까지 매끄럽게 이어질 수 있도록 모니터링 경험을 다시 디자인했습니다. 더 많은 데이터를 보여주는 대신, 이상이 발생한 그 순간에 사용자에게 가장 필요한 정보를 우선적으로 보여주는 인터페이스를 설계했습니다." },
+    a51: { ko: "영향받은 장비를 한눈에 확인하기." },
+    a52: { ko: "운영자는 더 이상 복잡한 장비 ID를 해석하거나 여러 화면을 오갈 필요가 없습니다. 실제 제조 환경을 기반으로 한 시각적 장비 맵을 도입해, 영향받은 챔버를 즉시 식별할 수 있게 했습니다." },
+    a53: { ko: "각 장비 카드가 실제 물리적 배치를 어떻게 표현할지 세심하게 신경 썼습니다 — 단순한 알림 아이콘 하나를 넘어, 정확히 어느 챔버가 영향을 받았고 전체 라인에서 어디에 위치하는지 보여줍니다." },
+    a54: { ko: "이상 상태를 즉시 알아볼 수 있게 만들기." },
+    a55: { ko: "표와 숫자에 의존하는 대신, 일관된 시각적 지표와 표준화된 색상 체계로 장비 상태를 전달합니다. 이는 인지 부하를 줄이고, 운영자가 세부 정보를 읽지 않고도 비정상 상태를 인식할 수 있게 합니다." },
+    a56: { ko: "조사 과정을 하나의 워크플로우 안에서 처리하기." },
+    a57: { ko: "이전에는 이상을 조사하려면 여러 시스템을 오가야 했습니다. 재설계된 워크플로우는 관련 정보를 한 곳에 모아, 운영자가 흐름이 끊기지 않고 조사·검증·대응할 수 있게 돕습니다." },
+    a58: { ko: "반복적인 운영 작업 줄이기." },
+    a59: { ko: "장비 설정 관리는 여러 기기에 걸쳐 같은 작업을 반복하는 경우가 많았습니다. 운영 효율을 높이기 위해 일괄 관리 기능과 간소화된 설정 플로우를 도입했습니다." },
+    a60: { ko: "임팩트" },
+    a61: { ko: "운영자가 더 빠르고 확신 있게 의사결정을 내릴 수 있도록." },
+    a62: { ko: "재설계된 모니터링 경험은 비정상 장비를 식별하는 데 걸리는 시간을 줄이고 조사 워크플로우를 간소화했습니다. 복잡한 운영 데이터를 실행 가능한 정보로 단순화함으로써, 시간이 촉박한 상황에서도 운영자가 더 확신을 갖고 대응할 수 있게 도왔습니다." },
+    a63: { ko: "회고" },
+    a64: { ko: "AI 기반 제품을 만드는 것은 단순히 예측 결과를 보여주는 것이 아닙니다." },
+    a65: { ko: "사람들이 시스템을 신뢰하고, 불확실성을 이해하고, 압박 속에서도 확신 있는 결정을 내릴 수 있도록 돕는 일입니다." },
+    a66: { ko: "전체 스토리 보기" }
   };
 
   function applyLang(lang) {

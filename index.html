@@ -278,6 +278,7 @@ html[data-theme="dark"] .site-header.is-scrolled {
   opacity: 0;
   transform: translateY(10px);
   animation: rise 0.7s ease forwards;
+  animation-delay: 0.1s;
 }
 .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .avatar .avatar-fallback {
@@ -298,11 +299,11 @@ html[data-theme="dark"] .site-header.is-scrolled {
   line-height: 1.2;
   letter-spacing: -0.01em;
   color: var(--ink);
-  margin: 0 0 8px;
+  margin: 0 0 24px;
   opacity: 0;
   transform: translateY(10px);
   animation: rise 0.7s ease forwards;
-  animation-delay: 0.1s;
+  animation-delay: 0.2s;
 }
 
 .hero .location {
@@ -320,11 +321,10 @@ html[data-theme="dark"] .site-header.is-scrolled {
   flex-wrap: wrap;
   justify-content: center;
   max-width: 520px;
-  margin: 6px 0 30px;
+  margin: 0 0 22px;
   opacity: 0;
   transform: translateY(10px);
   animation: rise 0.7s ease forwards;
-  animation-delay: 0.26s;
 }
 .hero .tags span {
   display: inline-block;
@@ -674,26 +674,26 @@ section.block { padding: 64px 0; }
 
 <section class="hero wrap">
   <div class="hero-profile">
-    <!-- ① 프로필 사진: images/profile.jpg 를 넣으면 자동으로 반영됩니다. 없으면 이니셜로 표시돼요 -->
+    <!-- ① 태그: 프로필 사진 위에 배치 (원하는 만큼 추가/삭제 가능) -->
+    <div class="tags">
+      <span data-i18n="k1">Product Design</span>
+      <span data-i18n="k2">Data Visualization</span>
+      <span data-i18n="k3">Design Systems</span>
+      <span data-i18n="k4">B2B SaaS</span>
+      <span data-i18n="k5">User Research</span>
+    </div>
+
+    <!-- ② 프로필 사진: images/profile.jpg 를 넣으면 자동으로 반영됩니다. 없으면 이니셜로 표시돼요 -->
     <div class="avatar">
       <img src="images/Profile01.svg" alt="Millie Chae" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
       <span class="avatar-fallback">MC</span>
     </div>
 
     <div class="hero-text">
-      <!-- ② 이름 -->
+      <!-- ③ 이름 -->
       <h1>Millie Chae</h1>
 
       <!-- ③ 위치: 표시 안 함 -->
-
-      <!-- ④ 태그: 원하는 만큼 추가/삭제 가능 -->
-      <div class="tags">
-        <span data-i18n="k1">Product Design</span>
-        <span data-i18n="k2">Data Visualization</span>
-        <span data-i18n="k3">Design Systems</span>
-        <span data-i18n="k4">B2B SaaS</span>
-        <span data-i18n="k5">User Research</span>
-      </div>
 
       <div class="cta-row">
         <a href="https://www.linkedin.com/in/milliechae/" target="_blank" rel="noopener" class="btn btn-primary">LinkedIn</a>

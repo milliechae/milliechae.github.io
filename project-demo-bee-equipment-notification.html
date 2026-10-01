@@ -18,7 +18,7 @@
 <style>
   .bq-single-img { margin: 20px 0 0; }
   .bq-single-img img { width: 100%; height: auto; display: block; border-radius: 12px; }
-  .insight-eyebrow { margin: 28px 0 -12px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; color: var(--text-secondary); }
+  .insight-eyebrow { margin: 8px 0 -12px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; color: var(--text-secondary); }
   .insight-card { text-align: left; }
   .insight-title { margin: 0; font-size: 16px; font-weight: 600; color: var(--text-primary); }
 </style>
@@ -296,6 +296,21 @@
       day-to-day cognitive load of triaging alerts.
     </p>
 
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-number-row">
+          <span class="stat-number" data-target="3">0</span>
+        </div>
+        <p class="stat-label" data-i18n="e64">Key metrics on every equipment card: status, MTBF, and uptime</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number-row">
+          <span class="stat-number" data-target="1">0</span>
+        </div>
+        <p class="stat-label" data-i18n="e65">Popup to log an issue the moment it happens, right from the dashboard</p>
+      </div>
+    </div>
+
     <p class="insight-eyebrow" data-i18n="e61">What operators told us after rollout</p>
     <div class="stat-grid">
       <div class="stat-card insight-card">
@@ -442,6 +457,8 @@
     e61: { ko: "출시 후 운영자 인터뷰에서 들은 변화" },
     e62: { ko: "화면 이동이 줄었어요" },
     e63: { ko: "운영자들은 카테고리 트리를 파고드는 대신 검색과 고정 리스트로 필요한 장비를 바로 찾았습니다." },
+    e64: { ko: "모든 장비 카드에 담은 핵심 지표: 상태, MTBF, 가동률" },
+    e65: { ko: "이슈가 생긴 순간 대시보드에서 바로 기록하는 팝업" },
     e58: { ko: "회고" },
     e59: { ko: "화면을 추가하는 것보다 줄이는 것이 더 중요했습니다." },
     e60: { ko: "실시간 모니터링 도구의 성패는 무엇을 <em>보여주지 않느냐</em>에 달려 있습니다. Bee의 가장 큰 성과는 화면을 추가한 것이 아니라 줄인 데서 나왔습니다." },

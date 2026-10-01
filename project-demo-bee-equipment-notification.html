@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Equipment Notification System (Bee) Project</title>
+<title>Real-time Equipment Monitoring Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="style.css">
@@ -18,9 +18,23 @@
 <style>
   .bq-single-img { margin: 20px 0 0; }
   .bq-single-img img { width: 100%; height: auto; display: block; border-radius: 12px; }
-  .insight-eyebrow { margin: 8px 0 -12px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; color: var(--text-secondary); }
-  .insight-card { text-align: left; }
-  .insight-title { margin: 0; font-size: 16px; font-weight: 600; color: var(--text-primary); }
+  .content-block .insight-eyebrow { margin: 28px 0 -18px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; color: var(--text-secondary); }
+  .insight-card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 20px 24px; text-align: center; }
+  .content-block .insight-card .insight-title { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.4; color: var(--text-primary); }
+  .content-block .insight-card .insight-quote { margin: 0; max-width: 32ch; font-size: 14px; line-height: 1.55; color: var(--text-secondary); }
+  html[lang="en"] .content-block .insight-card .insight-quote { font-style: italic; }
+  .content-block .insight-card .insight-source { margin: 4px 0 0; font-size: 11px; line-height: 1.4; color: var(--text-tertiary); color: color-mix(in srgb, var(--text-secondary) 55%, var(--text-tertiary)); }
+  .bq-hypo-wrap > .design-challenge-card { margin-top: 0; }
+  .research-item { border-top: none; padding-top: 0; }
+  .section-flow--tight { margin-top: -32px; margin-bottom: -84px; position: relative; z-index: 1; pointer-events: none; }
+  .bq-peek-body--left { right: auto; left: 24px; animation-name: bqPeekLeft; }
+  .bq-peek-excl { position: absolute; top: -72px; left: 146px; height: 26px; width: auto; display: block; pointer-events: none; animation: bqPeekQmark 3.6s ease-in-out infinite; }
+  @keyframes bqPeekLeft {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    30%, 45% { transform: translateY(-6px) rotate(-2.5deg); }
+    75% { transform: translateY(0) rotate(0deg); }
+  }
+  @media (prefers-reduced-motion: reduce) { .bq-peek-excl { animation: none; } }
 </style>
 </head>
 <body>
@@ -47,8 +61,8 @@
     <span class="status-pill">
       <span class="status-dot"></span> <span data-i18n="e2">Shipped</span>
     </span>
-    <h1>Equipment Notification System</h1>
-    <p class="subtitle" data-i18n="e1">A real-time equipment monitoring dashboard (Bee) that turns scattered alerts into a single, prioritized workflow.</p>
+    <h1 data-i18n="e68">Real-time Equipment Monitoring Dashboard</h1>
+    <p class="subtitle" data-i18n="e1">A real-time equipment monitoring dashboard for manufacturing that turns scattered alerts into a single, prioritized workflow.</p>
   </header>
 
   <div class="hero-media" style="background: transparent;">
@@ -57,16 +71,14 @@
 
   <section class="intro">
     <p data-i18n-html="e3">
-      I designed <strong>Bee,</strong> an equipment notification and monitoring system sold to
-      manufacturing companies including SK hynix. The product visualizes complex, real-time
-      equipment data and surfaces the issues that actually need a human's attention.
+      I designed <strong>Bee</strong> end to end, from user research to high-fidelity UI. Bee is a B2B equipment monitoring and notification platform sold to manufacturing companies including SK hynix. Working closely with PMs, engineers, and data analysts, I turned complex real-time equipment data into an interface that surfaces only the issues that need a human's attention.
     </p>
   </section>
 
   <section class="meta-grid meta-grid-6">
     <div class="meta-item">
       <span class="meta-label" data-i18n="e4">Product</span>
-      <span class="meta-value" data-i18n="e5">Equipment Notification System (Bee)</span>
+      <span class="meta-value" data-i18n="e5">Real-time Equipment Monitoring Dashboard</span>
     </div>
     <div class="meta-item">
       <span class="meta-label" data-i18n="e6">My role</span>
@@ -74,7 +86,7 @@
     </div>
     <div class="meta-item">
       <span class="meta-label" data-i18n="e8">Timeline</span>
-      <span class="meta-value">2023 – 2025</span>
+      <span class="meta-value">Q2 2024</span>
     </div>
     <div class="meta-item">
       <span class="meta-label" data-i18n="e9">Client</span>
@@ -83,7 +95,7 @@
     <div class="meta-item meta-item--spacer" aria-hidden="true"></div>
     <div class="meta-item">
       <span class="meta-label" data-i18n="e11">Skills</span>
-      <span class="meta-value" data-i18n="e12">Product design, Design systems, User research</span>
+      <span class="meta-value" data-i18n="e12">Product design, User research, Usability testing, Information architecture, Data visualization, Design systems</span>
     </div>
   </section>
 
@@ -134,14 +146,12 @@
       <div class="design-challenge-card">
         <span class="challenge-label"><span class="challenge-icon">✦</span> <span data-i18n="e23">DESIGN CHALLENGE</span></span>
 
-        <h3 data-i18n="e24">
-          How might we help operators instantly recognize what matters most in complex equipment data,
-          while keeping the interface intuitive and scalable?
+        <h3 data-i18n-html="e24">
+          How might we help operators spot the alerts that matter most, at a glance?
         </h3>
 
         <p data-i18n="e25">
-          The goal was to reduce cognitive load by presenting only the most relevant information,
-          allowing operators to recognize priorities and take action faster.
+          Show only what's relevant, so operators can cut through the noise and act faster.
         </p>
 
       </div>
@@ -205,7 +215,7 @@
 
   </section>
 
-  <div class="section-flow">
+  <div class="section-flow section-flow--tight">
 
     <svg class="flow-line" viewBox="0 0 120 160">
       <path d="M62 8 C90 35, 95 68, 64 100"/>
@@ -215,6 +225,9 @@
 
   </div>
 
+  <div class="bq-challenge-wrap bq-hypo-wrap">
+  <img class="bq-peek-body bq-peek-body--left" src="images/bq-doodle-body.png" alt="" aria-hidden="true">
+  <img class="bq-peek-excl" src="images/bq-doodle-exclaim.png" alt="" aria-hidden="true">
   <section class="design-challenge-card">
 
     <span class="challenge-label"><span class="challenge-icon">✦</span> <span data-i18n="e35">DESIGN HYPOTHESIS</span></span>
@@ -224,7 +237,7 @@
     </h2>
 
     <p class="challenge-description" data-i18n="e37">
-      Research findings were translated into three assumptions that guided our design decisions before moving into interface exploration.
+      I translated the research findings into three testable hypotheses that guided my design decisions before moving into wireframes and prototypes.
     </p>
 
     <div class="hypothesis-list">
@@ -247,6 +260,7 @@
     </div>
 
   </section>
+  </div>
 
   <section class="content-block">
 
@@ -254,14 +268,12 @@
     <h3 data-i18n="e45">Designing around workflows, not just data.</h3>
 
     <p data-i18n="e46">
-      Rather than displaying every piece of equipment data equally, the dashboard was designed around
-      user workflows—prioritizing critical information, reducing unnecessary navigation, and helping
-      operators move from detection to action as quickly as possible.
+      Instead of displaying every data point equally, I designed the dashboard around operator workflows: prioritizing critical information, cutting unnecessary navigation, and helping operators move from detection to action as quickly as possible.
     </p>
 
     <div class="finding">
       <h3 data-i18n="e47">Lists, not category trees.</h3>
-      <p data-i18n="e48">In detailed user tests, we found that users did not want to dig through a category tree to find the equipment they needed. The result is a simple list where operators can pin priority items to the top or bottom and use context search to find what they need right away.</p>
+      <p data-i18n="e48">Usability tests showed that operators didn't want to dig through a category tree to find equipment. So I replaced it with a simple list where they can pin priority items to the top or bottom and use contextual search to find what they need right away.</p>
       <div class="bq-single-img">
         <img src="images/bee-solution01.png" alt="Detail status view shown when an operator selects equipment from the list">
       </div>
@@ -269,7 +281,7 @@
 
     <div class="finding">
       <h3 data-i18n="e49">Prioritized, color-balanced cards.</h3>
-      <p data-i18n="e50">Working with analysts, we identified and prioritized the hierarchy of essential data to display, incorporating a variety of colors to avoid monotony while keeping clarity intact. Status, MTBF, and uptime are all organized within each card, so it says a lot without saying too much.</p>
+      <p data-i18n="e50">I worked with data analysts to define which metrics mattered most and set a clear information hierarchy for each card. Status, MTBF, and uptime sit together in every card, and a balanced color system keeps the screen readable without feeling monotonous.</p>
       <div class="bq-single-img">
         <img src="images/bee-solution03.jpg" alt="Close-up of an individual equipment card alongside the full dashboard">
       </div>
@@ -277,7 +289,7 @@
 
     <div class="finding">
       <h3 data-i18n="e51">Record an issue the moment it happens.</h3>
-      <p data-i18n="e52">The anomaly input popup lets operators record issues and related information immediately when an anomaly occurs, with an auto-suggestion feature that retrieves existing issue records or lets them add new related data on the spot.</p>
+      <p data-i18n="e52">I designed an anomaly input popup so operators can log an issue the moment it happens, without leaving the dashboard. Auto-suggestions pull in existing issue records or let them add new related data on the spot.</p>
       <div class="bq-single-img">
         <img src="images/bee-solution04.jpg" alt="Equipment detail view with the anomaly input popup">
       </div>
@@ -290,36 +302,20 @@
     <h3 data-i18n="e54">Faster decisions, less digging.</h3>
 
     <p data-i18n="e55">
-      The UI was designed with a workflow-centric approach that let users interpret data quickly and
-      eliminated unnecessary steps to make decision-making easier. The redesigned interface
-      highlighted easy access to critical data and integrated real-time alerts seamlessly, easing the
-      day-to-day cognitive load of triaging alerts.
+      By designing around operator workflows, I removed unnecessary steps between seeing an alert and acting on it. Critical data became easier to reach, and real-time alerts fit into one continuous flow, easing the daily cognitive load of triaging alerts.
     </p>
 
-    <div class="stat-grid">
-      <div class="stat-card">
-        <div class="stat-number-row">
-          <span class="stat-number" data-target="3">0</span>
-        </div>
-        <p class="stat-label" data-i18n="e64">Key metrics on every equipment card: status, MTBF, and uptime</p>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number-row">
-          <span class="stat-number" data-target="1">0</span>
-        </div>
-        <p class="stat-label" data-i18n="e65">Popup to log an issue the moment it happens, right from the dashboard</p>
-      </div>
-    </div>
-
-    <p class="insight-eyebrow" data-i18n="e61">What operators told us after rollout</p>
+    <p class="insight-eyebrow" data-i18n="e66">What operators told us after rollout</p>
     <div class="stat-grid">
       <div class="stat-card insight-card">
         <p class="insight-title" data-i18n="e56">Critical alerts stood out</p>
-        <p class="stat-label" data-i18n="e57">Operators said urgent issues were easier to spot without scanning every notification.</p>
+        <p class="stat-label insight-quote" data-i18n="e57">“I can spot urgent issues without scanning every notification.”</p>
+        <p class="insight-source" data-i18n="e67">Paraphrased from operator interviews</p>
       </div>
       <div class="stat-card insight-card">
         <p class="insight-title" data-i18n="e62">Less screen-hopping</p>
-        <p class="stat-label" data-i18n="e63">Operators found the right equipment through search and pinned lists instead of digging through category trees.</p>
+        <p class="stat-label insight-quote" data-i18n="e63">“I just search or check my pinned list instead of digging through the tree.”</p>
+        <p class="insight-source" data-i18n="e67">Paraphrased from operator interviews</p>
       </div>
     </div>
 
@@ -330,11 +326,10 @@
 
   <section class="content-block">
     <h2 data-i18n="e58">Reflection</h2>
-    <h3 data-i18n="e59">Cutting screens mattered more than adding them.</h3>
+    <h3 data-i18n="e59">Removing steps mattered more than adding features.</h3>
 
     <p data-i18n-html="e60">
-      Real-time monitoring tools live or die by what they <em>don't</em> show. Bee's biggest wins came from
-      cutting screens, not adding them.
+      Real-time monitoring tools succeed or fail by what they leave out. The fewer steps operators had between seeing an alert and acting on it, the faster they could decide. Next time, I'd set baseline metrics before launch so the impact could be measured, not just heard.
     </p>
   </section>
 
@@ -397,71 +392,71 @@
 
   // 언어 토글 (EN / 한글)
   var i18nDict = {
-    e1: { ko: "흩어진 알림을 하나의 우선순위 워크플로우로 바꿔주는 실시간 장비 모니터링 대시보드(Bee)입니다." },
+    e1: { ko: "흩어진 알림을 하나의 우선순위 워크플로우로 바꾼, 제조업을 위한 실시간 장비 모니터링 대시보드입니다." },
     e2: { ko: "출시" },
-    e3: { ko: "저는 SK하이닉스를 포함한 제조 기업에 공급되는 장비 알림·모니터링 시스템 <strong>Bee,</strong>를 디자인했습니다. 이 제품은 복잡한 실시간 장비 데이터를 시각화하고, 실제로 사람의 주의가 필요한 이슈를 끌어올려 보여줍니다." },
+    e3: { ko: "저는 SK하이닉스를 포함한 제조 기업에 판매된 B2B 장비 모니터링·알림 플랫폼 <strong>Bee</strong>를 사용자 리서치부터 최종 UI까지 엔드투엔드로 디자인했습니다. PM, 엔지니어, 데이터 분석가와 긴밀히 협업하며, 복잡한 실시간 장비 데이터를 사람이 꼭 봐야 할 이슈만 드러내는 인터페이스로 바꿨습니다." },
     e4: { ko: "제품" },
-    e5: { ko: "장비 알림 시스템 (Bee)" },
+    e5: { ko: "실시간 장비 모니터링 대시보드" },
+    e68: { ko: "실시간 장비 모니터링 대시보드" },
     e6: { ko: "역할" },
     e7: { ko: "프로덕트 디자이너" },
     e8: { ko: "기간" },
     e9: { ko: "클라이언트" },
     e10: { ko: "SK하이닉스" },
     e11: { ko: "스킬" },
-    e12: { ko: "프로덕트 디자인, 디자인 시스템, 사용자 리서치" },
+    e12: { ko: "프로덕트 디자인, 사용자 리서치, 사용성 테스트, 정보 구조 설계, 데이터 시각화, 디자인 시스템" },
     e13: { ko: "초록은 진행, 노랑은 자세히 확인하라는 뜻입니다.<br>누구에게도 추측하게 만들지 마세요." },
     e14: { ko: "문제 상황" },
-    e15: { ko: "운영자들은 정보를 바탕으로 행동하는 것보다, 올바른 정보를 찾는 데 더 많은 시간을 썼습니다." },
-    e16: { ko: "운영자들은 필요한 데이터에는 모두 접근할 수 있었지만, 무엇에 먼저 주의를 기울여야 하는지 알 수 있는 명확성은 없었습니다. 중요한 알림이 일상적인 알림 속에 묻히는 경우가 많아, 빠른 의사결정이 점점 더 어려워졌습니다." },
+    e15: { ko: "현장 담당자들은 문제에 대응하는 시간보다 정보를 찾는 시간이 더 길었습니다." },
+    e16: { ko: "현장 담당자들은 필요한 데이터에는 모두 접근할 수 있었지만, 무엇에 먼저 주의를 기울여야 하는지 알 수 있는 명확성은 없었습니다. 중요한 알림이 일상적인 알림 속에 묻히는 경우가 많아, 빠른 의사결정이 점점 더 어려워졌습니다." },
     e17: { ko: "수백 건의 실시간 알림" },
     e18: { ko: "알림이 너무 많아 무엇이 정말 즉각적인 주의가 필요한지 구분하기 어려웠습니다." },
     e19: { ko: "우선순위 판단의 어려움" },
     e20: { ko: "중요한 장비 이슈가 일상적인 운영 업데이트와 쉽게 뒤섞였습니다." },
     e21: { ko: "잦은 화면 전환" },
-    e22: { ko: "운영자들은 전체 상황을 파악하기 전까지 여러 화면을 계속 오가야 했습니다." },
+    e22: { ko: "현장 담당자들은 전체 상황을 파악하기 전까지 여러 화면을 계속 오가야 했습니다." },
     e23: { ko: "디자인 챌린지" },
-    e24: { ko: "어떻게 하면 복잡한 장비 데이터 속에서 운영자가 가장 중요한 것을 즉시 알아보게 하면서도, 인터페이스를 직관적이고 확장 가능하게 유지할 수 있을까?" },
-    e25: { ko: "목표는 가장 관련성 높은 정보만 보여줌으로써 인지 부하를 줄이고, 운영자가 우선순위를 파악해 더 빠르게 조치할 수 있게 하는 것이었습니다." },
+    e24: { ko: "현장 담당자가 가장 중요한 알림을 한눈에 알아보게 하려면<br>어떻게 해야 할까?" },
+    e25: { ko: "꼭 필요한 정보만 보여줘서, 더 빠르게 판단하고 대응할 수 있게 하는 것이 목표였습니다." },
     e26: { ko: "사용자 리서치" },
-    e27: { ko: "운영자들이 실제로 어떻게 일하는지 이해하기." },
-    e28: { ko: "인터페이스 해법을 탐색하기 전에, 운영자들이 일상 업무 속에서 장비를 어떻게 모니터링하고, 이상에 어떻게 대응하고, 정보를 어떻게 찾는지 이해하는 데 집중했습니다. 인터뷰, 워크플로우 분석, 현업 전문가와의 협업 논의를 통해 몇 가지 행동 패턴이 일관되게 나타났습니다." },
-    e29: { ko: "운영자들은 계층 구조가 아니라 업무 기준으로 찾았습니다." },
-    e30: { ko: "복잡한 장비 트리를 탐색하는 대신, 운영자들은 검색, 최근 본 장비, 생산 맥락에 의존해 정보를 빠르게 찾았습니다." },
+    e27: { ko: "현장 담당자들이 실제로 어떻게 일하는지 이해하기." },
+    e28: { ko: "화면을 디자인하기 전에, 현장 담당자들이 일상 업무 속에서 장비를 어떻게 모니터링하고, 이상에 어떻게 대응하고, 정보를 어떻게 찾는지 이해하는 데 집중했습니다. 인터뷰, 워크플로우 분석, 현업 전문가와의 협업 논의를 통해 몇 가지 행동 패턴이 일관되게 나타났습니다." },
+    e29: { ko: "현장 담당자들은 계층 구조가 아니라 업무 기준으로 찾았습니다." },
+    e30: { ko: "복잡한 장비 트리를 탐색하는 대신, 현장 담당자들은 검색, 최근 본 장비, 생산 맥락에 의존해 정보를 빠르게 찾았습니다." },
     e31: { ko: "모든 알림이 같은 주의를 받을 만한 것은 아니었습니다." },
     e32: { ko: "사용자들은 알림을 머릿속으로 '중요', '지켜볼 것', '무시해도 되는 것'으로 나눴습니다. 기존 인터페이스는 모든 알림을 동일하게 취급해 인지 부하를 높였습니다." },
     e33: { ko: "화면 전환이 대응 속도를 늦췄습니다." },
     e34: { ko: "이상 하나를 조사하려면 판단에 필요한 맥락을 얻기까지 여러 페이지를 열어야 하는 경우가 많았습니다." },
     e35: { ko: "디자인 가설" },
-    e36: { ko: "세 가지 가설이 모니터링 경험의 재설계를 이끌었습니다." },
-    e37: { ko: "리서치 결과는 인터페이스 탐색으로 넘어가기 전, 디자인 결정을 이끈 세 가지 가설로 정리되었습니다." },
+    e36: { ko: "위의 세 가지 가설이 모니터링 경험의 재설계를 이끌었습니다." },
+    e37: { ko: "리서치 결과를 검증 가능한 세 가지 가설로 정리했고, 와이어프레임과 프로토타입 단계로 넘어가기 전 이 가설들을 디자인 결정의 기준으로 삼았습니다." },
     e38: { ko: "01&nbsp;&nbsp;중요한 정보를 우선 보여주기" },
-    e39: { ko: "중요한 알림을 부차적인 정보보다 먼저 보여주면, 운영자는 긴급한 이슈를 더 빠르게 인식할 것이다." },
+    e39: { ko: "중요한 알림을 부차적인 정보보다 먼저 보여주면, 현장 담당자는 긴급한 이슈를 더 빠르게 인식할 것이다." },
     e40: { ko: "02&nbsp;&nbsp;화면 전환 줄이기" },
     e41: { ko: "모니터링과 이슈 기록이 하나의 연속된 워크플로우에서 이뤄지면, 불필요한 이동이 줄어들 것이다." },
     e42: { ko: "03&nbsp;&nbsp;정보를 한눈에 훑어볼 수 있게 만들기" },
     e43: { ko: "장비 상태를 한눈에 이해할 수 있으면, 모니터링 중 인지 부하가 줄어들 것이다." },
     e44: { ko: "디자인 솔루션" },
     e45: { ko: "데이터만이 아니라 워크플로우를 중심으로 디자인하기." },
-    e46: { ko: "모든 장비 데이터를 똑같이 보여주는 대신, 대시보드를 사용자 워크플로우 중심으로 설계했습니다 — 중요한 정보를 우선하고, 불필요한 이동을 줄이고, 운영자가 감지에서 조치까지 최대한 빠르게 이어지도록 도왔습니다." },
+    e46: { ko: "모든 데이터를 똑같이 보여주는 대신, 현장 담당자의 워크플로우를 중심으로 대시보드를 설계했습니다. 중요한 정보를 먼저 보여주고, 불필요한 화면 이동을 줄이고, 감지에서 대응까지 최대한 빠르게 이어지도록 했습니다." },
     e47: { ko: "카테고리 트리가 아닌 리스트." },
-    e48: { ko: "상세한 사용자 테스트에서, 사용자들은 필요한 장비를 찾기 위해 카테고리 트리를 파고들고 싶어 하지 않는다는 것을 확인했습니다. 그 결과 운영자가 우선순위 항목을 위나 아래에 고정하고, 컨텍스트 검색으로 필요한 것을 바로 찾을 수 있는 단순한 리스트를 만들었습니다." },
+    e48: { ko: "사용성 테스트에서 현장 담당자들은 장비를 찾기 위해 카테고리 트리를 파고들고 싶어 하지 않았습니다. 그래서 트리 대신 단순한 리스트로 바꾸고, 우선순위 항목을 위나 아래에 고정하고 컨텍스트 검색으로 필요한 것을 바로 찾을 수 있게 했습니다." },
     e49: { ko: "우선순위와 색 균형을 고려한 카드." },
-    e50: { ko: "분석가들과 함께 표시해야 할 핵심 데이터의 위계를 정하고 우선순위를 매겼으며, 명확성은 유지하되 단조롭지 않도록 다양한 색을 활용했습니다. 상태, MTBF, 가동률이 각 카드 안에 정리되어 있어, 많은 말을 하지 않고도 많은 것을 전달합니다." },
+    e50: { ko: "데이터 분석가와 함께 어떤 지표가 가장 중요한지 정하고, 카드마다 명확한 정보 위계를 세웠습니다. 상태, MTBF, 가동률을 모든 카드에 함께 담고, 균형 잡힌 색 체계로 단조롭지 않으면서도 읽기 쉬운 화면을 만들었습니다." },
     e51: { ko: "이슈가 발생한 순간 바로 기록하기." },
-    e52: { ko: "이상 입력 팝업을 통해 운영자는 이상이 발생하는 즉시 이슈와 관련 정보를 기록할 수 있고, 자동 제안 기능이 기존 이슈 기록을 불러오거나 그 자리에서 새 관련 데이터를 추가할 수 있게 해줍니다." },
-    e53: { ko: "임팩트" },
+    e52: { ko: "현장 담당자가 대시보드를 떠나지 않고 이상이 발생한 순간 바로 이슈를 기록할 수 있도록 이상 입력 팝업을 디자인했습니다. 자동 제안 기능이 기존 이슈 기록을 불러오거나, 그 자리에서 새 관련 데이터를 추가할 수 있게 해줍니다." },
+    e53: { ko: "성과" },
     e54: { ko: "더 빠른 의사결정, 덜한 탐색." },
-    e55: { ko: "UI는 워크플로우 중심 접근으로 설계되어, 사용자가 데이터를 빠르게 해석할 수 있게 하고 불필요한 단계를 없애 의사결정을 더 쉽게 만들었습니다. 재설계된 인터페이스는 핵심 데이터에 쉽게 접근할 수 있도록 강조하고 실시간 알림을 자연스럽게 통합해, 알림을 분류하는 일상적인 인지 부하를 덜어주었습니다." },
+    e55: { ko: "현장 담당자의 워크플로우를 중심으로 설계해, 알림을 보고 대응하기까지의 불필요한 단계를 없앴습니다. 핵심 데이터에 더 쉽게 접근할 수 있게 되었고, 실시간 알림이 하나의 흐름 안에 자연스럽게 들어오면서 매일 알림을 분류하는 인지 부하가 줄었습니다." },
     e56: { ko: "중요한 알림이 눈에 띄었어요" },
-    e57: { ko: "운영자들은 모든 알림을 훑어보지 않아도 긴급한 이슈를 더 쉽게 알아볼 수 있었다고 말했습니다." },
-    e61: { ko: "출시 후 운영자 인터뷰에서 들은 변화" },
+    e57: { ko: "“모든 알림을 훑어보지 않아도 긴급한 이슈가 바로 보여요.”" },
+    e67: { ko: "현장 담당자 인터뷰 요약" },
     e62: { ko: "화면 이동이 줄었어요" },
-    e63: { ko: "운영자들은 카테고리 트리를 파고드는 대신 검색과 고정 리스트로 필요한 장비를 바로 찾았습니다." },
-    e64: { ko: "모든 장비 카드에 담은 핵심 지표: 상태, MTBF, 가동률" },
-    e65: { ko: "이슈가 생긴 순간 대시보드에서 바로 기록하는 팝업" },
+    e63: { ko: "“트리를 파고들 필요 없이, 검색이나 고정 리스트에서 바로 찾아요.”" },
+    e66: { ko: "출시 후 현장 담당자 인터뷰에서 들은 변화" },
     e58: { ko: "회고" },
-    e59: { ko: "화면을 추가하는 것보다 줄이는 것이 더 중요했습니다." },
-    e60: { ko: "실시간 모니터링 도구의 성패는 무엇을 <em>보여주지 않느냐</em>에 달려 있습니다. Bee의 가장 큰 성과는 화면을 추가한 것이 아니라 줄인 데서 나왔습니다." },
+    e59: { ko: "기능을 더하는 것보다 단계를 줄이는 것이 더 중요했습니다." },
+    e60: { ko: "실시간 모니터링 도구는 무엇을 덜어내느냐에 따라 성패가 갈립니다. 현장 담당자가 알림을 보고 대응하기까지 거치는 단계를 줄일수록, 판단은 더 빨라졌습니다. 다음에는 출시 전에 기준 지표를 먼저 정해, 성과를 듣는 데 그치지 않고 측정할 수 있게 하겠습니다." },
     e61: { ko: "전체 스토리 보기" }
   };
 

@@ -22,6 +22,17 @@
   @media (max-width: 900px) {
     .research-grid.research-grid-4 { grid-template-columns: 1fr; }
   }
+  .research-item { border-top: none; padding-top: 0; }
+  .bq-hypo-wrap > .design-challenge-card { margin-top: 0; }
+  .section-flow--tight { margin-top: -32px; margin-bottom: -84px; position: relative; z-index: 1; pointer-events: none; }
+  .bq-peek-body--left { right: auto; left: 24px; animation-name: bqPeekLeft; }
+  .bq-peek-excl { position: absolute; top: -72px; left: 146px; height: 26px; width: auto; display: block; pointer-events: none; animation: bqPeekQmark 3.6s ease-in-out infinite; }
+  @keyframes bqPeekLeft {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    30%, 45% { transform: translateY(-6px) rotate(-2.5deg); }
+    75% { transform: translateY(0) rotate(0deg); }
+  }
+  @media (prefers-reduced-motion: reduce) { .bq-peek-excl { animation: none; } }
 </style>
 </head>
 <body>
@@ -207,7 +218,7 @@
 
   </section>
 
-  <div class="section-flow">
+  <div class="section-flow section-flow--tight">
 
     <svg class="flow-line" viewBox="0 0 120 160">
       <path d="M62 8 C90 35, 95 68, 64 100"/>
@@ -217,6 +228,9 @@
 
   </div>
 
+  <div class="bq-challenge-wrap bq-hypo-wrap">
+  <img class="bq-peek-body bq-peek-body--left" src="images/bq-doodle-body.png" alt="" aria-hidden="true">
+  <img class="bq-peek-excl" src="images/bq-doodle-exclaim.png" alt="" aria-hidden="true">
   <section class="design-challenge-card">
 
     <span class="challenge-label"><span class="challenge-icon">✦</span> <span data-i18n="a38">DESIGN HYPOTHESIS</span></span>
@@ -254,6 +268,7 @@
     </div>
 
   </section>
+  </div>
 
   <section class="content-block">
 

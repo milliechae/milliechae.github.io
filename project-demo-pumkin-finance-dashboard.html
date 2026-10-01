@@ -342,6 +342,17 @@
   .mp-slider-track { height: 3px; }
 }
 
+  .research-item { border-top: none; padding-top: 0; }
+  .bq-hypo-wrap > .design-challenge-card { margin-top: 0; }
+  .section-flow--tight { margin-top: -32px; margin-bottom: -84px; position: relative; z-index: 1; pointer-events: none; }
+  .bq-peek-body--left { right: auto; left: 24px; animation-name: bqPeekLeft; }
+  .bq-peek-excl { position: absolute; top: -72px; left: 146px; height: 26px; width: auto; display: block; pointer-events: none; animation: bqPeekQmark 3.6s ease-in-out infinite; }
+  @keyframes bqPeekLeft {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    30%, 45% { transform: translateY(-6px) rotate(-2.5deg); }
+    75% { transform: translateY(0) rotate(0deg); }
+  }
+  @media (prefers-reduced-motion: reduce) { .bq-peek-excl { animation: none; } }
 </style>
 </head>
 <body>
@@ -464,19 +475,24 @@
       </li>
     </ul>
 
-    <div class="design-challenge-card">
+    <div class="bq-challenge-wrap">
+      <img class="bq-peek-body" src="images/bq-doodle-body.png" alt="" aria-hidden="true">
+      <img class="bq-peek-qmark" src="images/bq-doodle-qmark.png" alt="" aria-hidden="true">
 
-      <span class="challenge-label">✦ DESIGN CHALLENGE</span>
+      <div class="design-challenge-card">
 
-      <h3>
-        How might we make saving money feel rewarding in the moment, not just as a distant future outcome?
-      </h3>
+        <span class="challenge-label"><span class="challenge-icon">✦</span> DESIGN CHALLENGE</span>
 
-      <p>
-        The goal was to shrink the distance between an action — putting money aside — and a feeling of
-        progress, so saving reinforces itself instead of relying on willpower alone.
-      </p>
+        <h3>
+          How might we make saving money feel rewarding in the moment, not just as a distant future outcome?
+        </h3>
 
+        <p>
+          The goal was to shrink the distance between an action — putting money aside — and a feeling of
+          progress, so saving reinforces itself instead of relying on willpower alone.
+        </p>
+
+      </div>
     </div>
 
   </section>
@@ -537,33 +553,22 @@
 
   </section>
 
-  <div class="section-flow">
+  <div class="section-flow section-flow--tight">
 
-    <svg class="flow-line" viewBox="0 0 220 180">
-
-      <path
-      d="
-      M110 5
-      L110 42
-
-      C110 62,
-      125 74,
-      138 82
-
-      S178 92,
-      188 122
-
-      S198 148,
-      205 170
-      "/>
-
+    <svg class="flow-line" viewBox="0 0 120 160">
+      <path d="M62 8 C90 35, 95 68, 64 100"/>
+      <path d="M42 80 L66 104"/>
+      <path d="M90 84 L64 104"/>
     </svg>
 
   </div>
 
+  <div class="bq-challenge-wrap bq-hypo-wrap">
+  <img class="bq-peek-body bq-peek-body--left" src="images/bq-doodle-body.png" alt="" aria-hidden="true">
+  <img class="bq-peek-excl" src="images/bq-doodle-exclaim.png" alt="" aria-hidden="true">
   <section class="design-challenge-card">
 
-    <span class="challenge-label">✦ DESIGN HYPOTHESIS</span>
+    <span class="challenge-label"><span class="challenge-icon">✦</span> DESIGN HYPOTHESIS</span>
 
     <h2>
       Three hypotheses guided the direction of Mochi Pay.
@@ -593,6 +598,7 @@
     </div>
 
   </section>
+  </div>
 
   <section class="content-block">
 

@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="style.css">
 <script>
   (function () {
-    var saved = localStorage.getItem('theme');
+    var saved = (function(k){try{return localStorage.getItem(k);}catch(e){return null;}})('theme');
     var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     var theme = saved || (systemDark ? 'dark' : 'light');
     document.documentElement.setAttribute('data-theme', theme);
@@ -93,7 +93,7 @@
 <div class="page">
 
   <header class="site-header">
-    <button class="theme-toggle" id="themeToggle" aria-label="다크모드 전환" type="button">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" type="button">
       <span class="track-icon sun">☀</span>
       <span class="track-icon moon">☾</span>
       <span class="knob">
@@ -121,7 +121,7 @@
       <span class="lang-seg lang-en">EN</span>
       <span class="lang-seg lang-ko">한글</span>
     </button>
-    <a href="index.html" class="back-arrow" aria-label="뒤로가기">←</a>
+    <a href="index.html" class="back-arrow" aria-label="Back to home">←</a>
   </header>
 
   <header class="hero-header">
@@ -129,17 +129,17 @@
       <span class="status-dot"></span> <span data-i18n="b1">Shipped</span>
     </span>
     <h1>BRIQUE Analytics</h1>
-    <p class="subtitle" data-i18n="b3">A no-code workflow builder that enables enterprise analysts to visually connect, process, and manage complex data without writing a single line of code.</p>
+    <p class="subtitle" data-i18n="b3">A data analytics platform that lets enterprise analysts visually build, run, and monitor complex data workflows without writing code.</p>
   </header>
 
   <div class="hero-media" style="background: transparent;">
-    <img src="images/brique-hero.png" alt="BRIQUE Analytics 워크플로우 기반 데이터 파이프라인 대시보드">
+    <img src="images/brique-hero.png" alt="BRIQUE Analytics data workflow dashboard">
   </div>
 
   <section class="intro">
     <p data-i18n-html="b4">
-      I designed <strong>BRIQUE Analytics,</strong> a workflow-based data platform used by enterprise
-      clients including Samsung and SK hynix. It enables data analysts to visually build complex data
+      I designed <strong>BRIQUE Analytics,</strong> a data analytics platform used by enterprise
+      clients including Samsung Electronics and SK hynix. It enables data analysts to visually build complex data
       workflows without coding, monitor execution status and errors, and manage the entire process independently.
     </p>
   </section>
@@ -147,7 +147,7 @@
   <section class="meta-grid meta-grid-6">
     <div class="meta-item">
       <span class="meta-label" data-i18n="b5">Product</span>
-      <span class="meta-value"><strong class="meta-value__main">BRIQUE Analytics</strong><br><span class="meta-value__sub" data-i18n="b7">No-Code Data Workflow Platform</span></span>
+      <span class="meta-value"><strong class="meta-value__main">BRIQUE Analytics</strong><br><span class="meta-value__sub" data-i18n="b7">Data Analytics Platform</span></span>
     </div>
     <div class="meta-item">
       <span class="meta-label" data-i18n="b8">My role</span>
@@ -155,11 +155,11 @@
     </div>
     <div class="meta-item">
       <span class="meta-label" data-i18n="b10">Timeline</span>
-      <span class="meta-value">Q3 2020 – Q1 2021</span>
+      <span class="meta-value">Jul 2020 – Dec 2022</span>
     </div>
     <div class="meta-item">
       <span class="meta-label" data-i18n="b12">Client</span>
-      <span class="meta-value" data-i18n="b13">Samsung · SK hynix</span>
+      <span class="meta-value" data-i18n="b13">Samsung Electronics · SK hynix</span>
     </div>
     <div class="meta-item meta-item--spacer" aria-hidden="true"></div>
     <div class="meta-item">
@@ -356,7 +356,7 @@
       <h3 data-i18n="b49">A visual canvas for complex workflows.</h3>
       <p data-i18n="b50">Analysts can connect and configure each step visually, making the overall data flow easier to understand and manage.</p>
       <div class="bq-single-img">
-        <img src="images/brique-complib-canvas.png" alt="워크플로우 캔버스">
+        <img src="images/brique-complib-canvas.png" alt="Workflow canvas">
       </div>
     </div>
     <div class="finding">
@@ -367,8 +367,8 @@
       <h3 data-i18n="b53">Build once, reuse when needed.</h3>
       <p data-i18n="b54">Frequently used steps can be saved as reusable components, reducing the need to rebuild the same workflows from scratch.</p>
       <div class="bq-pair-img">
-        <img src="images/brique-complib-attribute.png" alt="Attribute 패널">
-        <img src="images/brique-complib-library.png" alt="Library 패널">
+        <img src="images/brique-complib-attribute.png" alt="Attribute panel">
+        <img src="images/brique-complib-library.png" alt="Library panel">
       </div>
     </div>
   </section>
@@ -393,10 +393,10 @@
   </section>
 
   <footer class="page-footer">
-    <a class="footer-cta" href="milliechae-portfolio.pdf" target="_blank" rel="noopener" aria-label="전체 포트폴리오 PDF 보기"><span data-i18n="b61">See the full story</span> <span aria-hidden="true">→</span></a>
+    <a class="footer-cta" href="milliechae-portfolio.pdf" target="_blank" rel="noopener" aria-label="View full portfolio PDF"><span data-i18n="b61">See the full story</span> <span aria-hidden="true">→</span></a>
     <div class="footer-nav">
-      <a href="project-demo-anomaly-detection-service.html" aria-label="이전 프로젝트">←</a>
-      <a href="project-demo-bee-equipment-notification.html" aria-label="다음 프로젝트">→</a>
+      <a href="project-demo-anomaly-detection-service.html" aria-label="Previous project">←</a>
+      <a href="project-demo-bee-equipment-notification.html" aria-label="Next project">→</a>
     </div>
   </footer>
 
@@ -411,17 +411,17 @@
       var current = document.documentElement.getAttribute('data-theme');
       var next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
     });
   }
 
   // 언어 토글 (EN / 한글)
   var i18nDict = {
     b1:  { ko: '출시' },
-    b3:  { ko: '코드 한 줄 없이 엔터프라이즈 분석가가 복잡한 데이터를 시각적으로 연결하고, 처리하고, 관리할 수 있게 해주는 노코드 워크플로우 빌더입니다.' },
-    b4:  { ko: '저는 <strong>BRIQUE Analytics,</strong> 삼성전자와 SK하이닉스를 포함한 엔터프라이즈 고객사에서 사용하는 워크플로우 기반 데이터 플랫폼을 디자인했습니다. 데이터 분석가가 코드 없이 복잡한 데이터 워크플로우를 시각적으로 구축하고, 실행 상태와 오류를 모니터링하고, 전체 과정을 독립적으로 관리할 수 있게 해줍니다.' },
+    b3:  { ko: '엔터프라이즈 분석가가 코드 없이 복잡한 데이터 워크플로우를 시각적으로 만들고, 실행하고, 모니터링할 수 있는 데이터 분석 플랫폼입니다.' },
+    b4:  { ko: '저는 <strong>BRIQUE Analytics,</strong> 삼성전자와 SK하이닉스를 포함한 엔터프라이즈 고객사에서 사용하는 데이터 분석 플랫폼을 디자인했습니다. 데이터 분석가가 코드 없이 복잡한 데이터 워크플로우를 시각적으로 구축하고, 실행 상태와 오류를 모니터링하고, 전체 과정을 독립적으로 관리할 수 있게 해줍니다.' },
     b5:  { ko: '제품' },
-    b7:  { ko: '노코드 데이터 워크플로우 플랫폼' },
+    b7:  { ko: '데이터 분석 플랫폼' },
     b8:  { ko: '역할' },
     b9:  { ko: '프로덕트 디자이너' },
     b10: { ko: '기간' },
@@ -503,12 +503,12 @@
 
   var langToggle = document.getElementById('langToggle');
   if (langToggle) {
-    var savedLang = localStorage.getItem('lang') || 'en';
+    var savedLang = (function(k){try{return localStorage.getItem(k);}catch(e){return null;}})('lang') || 'en';
     applyLang(savedLang);
     langToggle.addEventListener('click', function () {
       var current = document.documentElement.getAttribute('lang') === 'ko' ? 'ko' : 'en';
       var next = current === 'ko' ? 'en' : 'ko';
-      localStorage.setItem('lang', next);
+      try { localStorage.setItem('lang', next); } catch (e) {}
       applyLang(next);
     });
   }

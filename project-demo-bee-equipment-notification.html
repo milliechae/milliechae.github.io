@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="style.css">
 <script>
   (function () {
-    var saved = localStorage.getItem('theme');
+    var saved = (function(k){try{return localStorage.getItem(k);}catch(e){return null;}})('theme');
     var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     var theme = saved || (systemDark ? 'dark' : 'light');
     document.documentElement.setAttribute('data-theme', theme);
@@ -18,6 +18,9 @@
 <style>
   .bq-single-img { margin: 20px 0 0; }
   .bq-single-img img { width: 100%; height: auto; display: block; border-radius: 12px; }
+  .insight-eyebrow { margin: 28px 0 -12px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; color: var(--text-secondary); }
+  .insight-card { text-align: left; }
+  .insight-title { margin: 0; font-size: 16px; font-weight: 600; color: var(--text-primary); }
 </style>
 </head>
 <body>
@@ -25,7 +28,7 @@
 <div class="page">
 
   <header class="site-header">
-    <button class="theme-toggle" id="themeToggle" aria-label="다크모드 전환" type="button">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" type="button">
       <span class="track-icon sun">☀</span>
       <span class="track-icon moon">☾</span>
       <span class="knob">
@@ -37,7 +40,7 @@
       <span class="lang-seg lang-en">EN</span>
       <span class="lang-seg lang-ko">한글</span>
     </button>
-    <a href="index.html" class="back-arrow" aria-label="뒤로가기">←</a>
+    <a href="index.html" class="back-arrow" aria-label="Back to home">←</a>
   </header>
 
   <header class="hero-header">
@@ -49,7 +52,7 @@
   </header>
 
   <div class="hero-media" style="background: transparent;">
-    <img src="images/bee-hero.png" alt="Bee 실시간 장비 데이터 대시보드">
+    <img src="images/bee-hero.png" alt="Bee real-time equipment monitoring dashboard">
   </div>
 
   <section class="intro">
@@ -67,11 +70,11 @@
     </div>
     <div class="meta-item">
       <span class="meta-label" data-i18n="e6">My role</span>
-      <span class="meta-value" data-i18n="e7">UI/UX Designer</span>
+      <span class="meta-value" data-i18n="e7">Product Designer</span>
     </div>
     <div class="meta-item">
       <span class="meta-label" data-i18n="e8">Timeline</span>
-      <span class="meta-value">BRIQUE — 날짜 확인 필요</span>
+      <span class="meta-value">2023 – 2025</span>
     </div>
     <div class="meta-item">
       <span class="meta-label" data-i18n="e9">Client</span>
@@ -260,7 +263,7 @@
       <h3 data-i18n="e47">Lists, not category trees.</h3>
       <p data-i18n="e48">In detailed user tests, we found that users did not want to dig through a category tree to find the equipment they needed. The result is a simple list where operators can pin priority items to the top or bottom and use context search to find what they need right away.</p>
       <div class="bq-single-img">
-        <img src="images/bee-solution01.png" alt="장비 리스트에서 특정 장비를 선택했을 때 보이는 상세 상태 화면">
+        <img src="images/bee-solution01.png" alt="Detail status view shown when an operator selects equipment from the list">
       </div>
     </div>
 
@@ -268,7 +271,7 @@
       <h3 data-i18n="e49">Prioritized, color-balanced cards.</h3>
       <p data-i18n="e50">Working with analysts, we identified and prioritized the hierarchy of essential data to display, incorporating a variety of colors to avoid monotony while keeping clarity intact. Status, MTBF, and uptime are all organized within each card, so it says a lot without saying too much.</p>
       <div class="bq-single-img">
-        <img src="images/bee-solution03.jpg" alt="개별 장비 카드를 확대해서 보여주는 화면과 전체 대시보드">
+        <img src="images/bee-solution03.jpg" alt="Close-up of an individual equipment card alongside the full dashboard">
       </div>
     </div>
 
@@ -276,7 +279,7 @@
       <h3 data-i18n="e51">Record an issue the moment it happens.</h3>
       <p data-i18n="e52">The anomaly input popup lets operators record issues and related information immediately when an anomaly occurs, with an auto-suggestion feature that retrieves existing issue records or lets them add new related data on the spot.</p>
       <div class="bq-single-img">
-        <img src="images/bee-solution04.jpg" alt="이상 상세 정보 입력 팝업이 포함된 장비 상세 상태 화면">
+        <img src="images/bee-solution04.jpg" alt="Equipment detail view with the anomaly input popup">
       </div>
     </div>
 
@@ -293,25 +296,20 @@
       day-to-day cognitive load of triaging alerts.
     </p>
 
+    <p class="insight-eyebrow" data-i18n="e61">What operators told us after rollout</p>
     <div class="stat-grid">
-      <div class="stat-card">
-        <div class="stat-number-row">
-          <span class="stat-number" data-target="30">0</span><span class="stat-percent">%</span>
-          <span class="stat-arrow" aria-hidden="true">↓</span>
-        </div>
-        <p class="stat-label" data-i18n="e56">Average response time</p>
+      <div class="stat-card insight-card">
+        <p class="insight-title" data-i18n="e56">Critical alerts stood out</p>
+        <p class="stat-label" data-i18n="e57">Operators said urgent issues were easier to spot without scanning every notification.</p>
       </div>
-      <div class="stat-card">
-        <div class="stat-number-row">
-          <span class="stat-number" data-target="55">0</span><span class="stat-percent">%</span>
-          <span class="stat-arrow" aria-hidden="true">↓</span>
-        </div>
-        <p class="stat-label" data-i18n="e57">Time to locate the right equipment</p>
+      <div class="stat-card insight-card">
+        <p class="insight-title" data-i18n="e62">Less screen-hopping</p>
+        <p class="stat-label" data-i18n="e63">Operators found the right equipment through search and pinned lists instead of digging through category trees.</p>
       </div>
     </div>
 
     <div class="bq-single-img">
-      <img src="images/bee-attention-heatmap.jpg" alt="장비 대시보드 위에 오버레이한 사용자 시선 집중도 히트맵">
+      <img src="images/bee-attention-heatmap.jpg" alt="Attention heatmap from user testing overlaid on the equipment dashboard">
     </div>
   </section>
 
@@ -326,10 +324,10 @@
   </section>
 
   <footer class="page-footer">
-    <a class="footer-cta" href="milliechae-portfolio.pdf" target="_blank" rel="noopener" aria-label="전체 포트폴리오 PDF 보기"><span data-i18n="e61">See the full story</span> <span aria-hidden="true">→</span></a>
+    <a class="footer-cta" href="milliechae-portfolio.pdf" target="_blank" rel="noopener" aria-label="View full portfolio PDF"><span data-i18n="e61">See the full story</span> <span aria-hidden="true">→</span></a>
     <div class="footer-nav">
-      <a href="project-demo-brique-analytics-dashboard.html" aria-label="이전 프로젝트">←</a>
-      <a href="project-demo-pumkin-finance-dashboard.html" aria-label="다음 프로젝트">→</a>
+      <a href="project-demo-brique-analytics-dashboard.html" aria-label="Previous project">←</a>
+      <a href="project-demo-pumkin-finance-dashboard.html" aria-label="Next project">→</a>
     </div>
   </footer>
 
@@ -378,7 +376,7 @@
       var current = document.documentElement.getAttribute('data-theme');
       var next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
     });
   }
 
@@ -390,7 +388,7 @@
     e4: { ko: "제품" },
     e5: { ko: "장비 알림 시스템 (Bee)" },
     e6: { ko: "역할" },
-    e7: { ko: "UI/UX 디자이너" },
+    e7: { ko: "프로덕트 디자이너" },
     e8: { ko: "기간" },
     e9: { ko: "클라이언트" },
     e10: { ko: "SK하이닉스" },
@@ -439,8 +437,11 @@
     e53: { ko: "임팩트" },
     e54: { ko: "더 빠른 의사결정, 덜한 탐색." },
     e55: { ko: "UI는 워크플로우 중심 접근으로 설계되어, 사용자가 데이터를 빠르게 해석할 수 있게 하고 불필요한 단계를 없애 의사결정을 더 쉽게 만들었습니다. 재설계된 인터페이스는 핵심 데이터에 쉽게 접근할 수 있도록 강조하고 실시간 알림을 자연스럽게 통합해, 알림을 분류하는 일상적인 인지 부하를 덜어주었습니다." },
-    e56: { ko: "평균 대응 시간" },
-    e57: { ko: "올바른 장비를 찾는 데 걸리는 시간" },
+    e56: { ko: "중요한 알림이 눈에 띄었어요" },
+    e57: { ko: "운영자들은 모든 알림을 훑어보지 않아도 긴급한 이슈를 더 쉽게 알아볼 수 있었다고 말했습니다." },
+    e61: { ko: "출시 후 운영자 인터뷰에서 들은 변화" },
+    e62: { ko: "화면 이동이 줄었어요" },
+    e63: { ko: "운영자들은 카테고리 트리를 파고드는 대신 검색과 고정 리스트로 필요한 장비를 바로 찾았습니다." },
     e58: { ko: "회고" },
     e59: { ko: "화면을 추가하는 것보다 줄이는 것이 더 중요했습니다." },
     e60: { ko: "실시간 모니터링 도구의 성패는 무엇을 <em>보여주지 않느냐</em>에 달려 있습니다. Bee의 가장 큰 성과는 화면을 추가한 것이 아니라 줄인 데서 나왔습니다." },
@@ -473,12 +474,12 @@
 
   var langToggle = document.getElementById('langToggle');
   if (langToggle) {
-    var savedLang = localStorage.getItem('lang') || 'en';
+    var savedLang = (function(k){try{return localStorage.getItem(k);}catch(e){return null;}})('lang') || 'en';
     applyLang(savedLang);
     langToggle.addEventListener('click', function () {
       var current = document.documentElement.getAttribute('lang') === 'ko' ? 'ko' : 'en';
       var next = current === 'ko' ? 'en' : 'ko';
-      localStorage.setItem('lang', next);
+      try { localStorage.setItem('lang', next); } catch (e) {}
       applyLang(next);
     });
   }

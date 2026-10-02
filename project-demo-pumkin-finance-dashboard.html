@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mochi Pay Project</title>
+<title>Mochi Pay I Personal Finance Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="style.css">
@@ -384,15 +384,19 @@
         </span>
       </span>
     </button>
+    <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
+      <span class="lang-seg lang-en">EN</span>
+      <span class="lang-seg lang-ko">한글</span>
+    </button>
     <a href="index.html" class="back-arrow" aria-label="Back to home">←</a>
   </header>
 
   <header class="hero-header">
     <span class="status-pill">
-      <span class="status-dot"></span> Concept
+      <span class="status-dot"></span> <span data-i18n="m0">Concept</span>
     </span>
-    <h1>Mochi Pay I Personal Finance Dashboard</h1>
-    <p class="subtitle">A self-directed exploration of why saving money feels so hard, and a dashboard designed to make progress visible.</p>
+    <h1 data-i18n="m1">Mochi Pay I Personal Finance Dashboard</h1>
+    <p class="subtitle" data-i18n="m2">A personal finance dashboard that shows where your money goes and where it's growing, side by side.</p>
   </header>
 
   <div class="hero-media" style="background: transparent;">
@@ -404,34 +408,30 @@
   </div>
 
   <section class="intro">
-    <p>
-      I designed <strong>Mochi Pay,</strong> a self-directed personal finance dashboard, to explore a question
-      most budgeting apps never really answer: if the math of saving is simple, why does saving still feel
-      so hard? The product reframes saving as something you can watch happening, not just a number you're told to hit.
-    </p>
+    <p data-i18n-html="m3">I designed <strong>Mochi Pay</strong> end to end as a self-initiated concept, from user research to high-fidelity UI. It's a personal finance service focused on two things: tracking spending and building savings, alongside balance, transfers, and cards. The desktop dashboard brings the full picture into one view for reviewing a month of spending, while mobile screens cover what people do on the go, like checking recent transactions or opening a savings plan. Most finance apps treat spending and saving as separate jobs. I wanted to show them as two sides of the same decision.</p>
   </section>
 
   <section class="meta-grid meta-grid-6">
     <div class="meta-item">
-      <span class="meta-label">Product</span>
-      <span class="meta-value">Mochi Pay I Personal Finance Dashboard</span>
+      <span class="meta-label" data-i18n="m4">Product</span>
+      <span class="meta-value" data-i18n="m9">Mochi Pay I Personal Finance Dashboard</span>
     </div>
     <div class="meta-item">
-      <span class="meta-label">My role</span>
-      <span class="meta-value">Product Designer (solo)</span>
+      <span class="meta-label" data-i18n="m5">My role</span>
+      <span class="meta-value" data-i18n="m10">Product Designer (solo)</span>
     </div>
     <div class="meta-item">
-      <span class="meta-label">Timeline</span>
-      <span class="meta-value">2025 · Self-initiated</span>
+      <span class="meta-label" data-i18n="m6">Timeline</span>
+      <span class="meta-value" data-i18n="m11">2025 · Self-initiated</span>
     </div>
     <div class="meta-item">
-      <span class="meta-label">Client</span>
-      <span class="meta-value">Self-directed</span>
+      <span class="meta-label" data-i18n="m7">Client</span>
+      <span class="meta-value" data-i18n="m12">Personal project</span>
     </div>
     <div class="meta-item meta-item--spacer" aria-hidden="true"></div>
     <div class="meta-item">
-      <span class="meta-label">Skills</span>
-      <span class="meta-value">Product design, Behavioral design, Interaction design</span>
+      <span class="meta-label" data-i18n="m8">Skills</span>
+      <span class="meta-value" data-i18n="m13">Product design, User research, Behavioral design, Interaction design, Prototyping</span>
     </div>
   </section>
 
@@ -439,40 +439,26 @@
 
   <figure class="quote-media">
     <img src="images/pumkin-receipts-quote.jpg" alt="A pile of crumpled paper receipts">
-    <blockquote>
-      Saving isn't a math problem.<br>
-      It's a motivation problem.
-    </blockquote>
+    <blockquote data-i18n-html="m14">You can't save what<br>you can't see.</blockquote>
   </figure>
 
   <section class="content-block">
 
-    <span class="section-label">PAIN POINT</span>
+    <span class="section-label" data-i18n="m15">PAIN POINT</span>
 
-    <h2 class="pain-heading">
-      People don't fail at saving because they can't do the math. They fail because saving feels invisible and joyless.
-    </h2>
+    <h2 class="pain-heading" data-i18n="m16">Spending and saving lived in different places, so neither felt in control.</h2>
 
-    <p>
-      Most budgeting tools show a number once a month and expect that to be motivating. In practice, the gap
-      between deciding to save and actually seeing it work is where most people give up.
-    </p>
+    <p data-i18n="m17">Most finance apps show spending as a long list of transactions and saving as a number once a month. Without seeing how today's spending connects to a goal, people lose track of both, and that gap is where most of them give up.</p>
 
     <ul class="pain-list">
-      <li>
-        <strong>Progress feels invisible</strong><br>
-        A balance that updates once a month gives no sense of momentum day to day, so there's nothing to feel good about in the meantime.
-      </li>
+      <li data-i18n-html="m18"><strong>Spending is just a list</strong><br>
+        Transactions pile up as a long list, so it's hard to tell where money actually goes or what to change.</li>
 
-      <li>
-        <strong>One-size-fits-all budgets</strong><br>
-        Generic categories like "dining" or "entertainment" don't map to what someone is actually saving for, so the numbers feel arbitrary.
-      </li>
+      <li data-i18n-html="m19"><strong>Categories don't match real life</strong><br>
+        Generic categories like "dining" or "entertainment" don't match how people think about their money, so the numbers feel arbitrary.</li>
 
-      <li>
-        <strong>No emotional payoff</strong><br>
-        Saving is framed as restriction — what you can't spend — instead of progress toward something you chose.
-      </li>
+      <li data-i18n-html="m20"><strong>Saving progress feels invisible</strong><br>
+        A savings balance that updates once a month gives no sense of momentum, and no link to the spending choices behind it.</li>
     </ul>
 
     <div class="bq-challenge-wrap">
@@ -481,16 +467,11 @@
 
       <div class="design-challenge-card">
 
-        <span class="challenge-label"><span class="challenge-icon">✦</span> DESIGN CHALLENGE</span>
+        <span class="challenge-label"><span class="challenge-icon">✦</span> <span data-i18n="mc1">DESIGN CHALLENGE</span></span>
 
-        <h3>
-          How might we make saving money feel rewarding in the moment, not just as a distant future outcome?
-        </h3>
+        <h3 data-i18n-html="m21">How might we help people see where their money goes and feel progress toward what they're saving for?</h3>
 
-        <p>
-          The goal was to shrink the distance between an action — putting money aside — and a feeling of
-          progress, so saving reinforces itself instead of relying on willpower alone.
-        </p>
+        <p data-i18n="m22">Connect everyday spending to savings goals in one view, so each choice feels like progress instead of restriction.</p>
 
       </div>
     </div>
@@ -499,54 +480,37 @@
 
   <section class="content-block">
 
-    <span class="section-label">RESEARCH</span>
+    <span class="section-label" data-i18n="m23">USER RESEARCH</span>
 
-    <h2 class="pain-heading">
-      Understanding why saving apps get abandoned.
-    </h2>
+    <h2 class="pain-heading" data-i18n="m24">Understanding why people stop tracking their money.</h2>
 
-    <p>
-      Before designing any screens, I talked to people about their actual relationship with money — not the
-      budget they think they should follow, but the one they actually live by. A few patterns kept coming up.
-    </p>
+    <p data-i18n="m25">Before designing any screens, I interviewed people about how they actually track spending and save: not the budget they think they should follow, but the one they actually live by. Three patterns kept coming up.</p>
 
-    <div class="research-media">
-      <img src="images/pumkin-research.png" alt="Research">
-    </div>
 
     <div class="research-grid">
 
       <div class="research-item">
         <span class="research-number">01</span>
 
-        <h3>People compare "should" budgets against actual life.</h3>
+        <h3 data-i18n="m26">Planned budgets rarely matched real life.</h3>
 
-        <p>
-          Preset budget categories rarely matched how people actually thought about their spending,
-          which made the numbers feel disconnected from reality.
-        </p>
+        <p data-i18n="m27">Preset budget categories rarely matched how people actually thought about their spending, which made the numbers feel disconnected from reality.</p>
       </div>
 
       <div class="research-item">
         <span class="research-number">02</span>
 
-        <h3>Small wins mattered more than big totals.</h3>
+        <h3 data-i18n="m28">Small wins mattered more than big totals.</h3>
 
-        <p>
-          A large end goal felt abstract and far away. What kept people engaged was noticing
-          progress on a much shorter timescale.
-        </p>
+        <p data-i18n="m29">A large end goal felt abstract and far away. What kept people engaged was noticing progress on a much shorter timescale.</p>
       </div>
 
       <div class="research-item">
         <span class="research-number">03</span>
 
-        <h3>Shame killed consistency.</h3>
+        <h3 data-i18n="m30">Shame killed consistency.</h3>
 
-        <p>
-          Apps that flagged "bad" spending made people disengage entirely rather than course-correct,
-          breaking the habit instead of reinforcing it.
-        </p>
+        <p data-i18n="m31">Apps that flagged "bad" spending made people disengage entirely rather than course-correct, breaking the habit instead of reinforcing it.</p>
       </div>
 
     </div>
@@ -568,31 +532,27 @@
   <img class="bq-peek-excl" src="images/bq-doodle-exclaim.png" alt="" aria-hidden="true">
   <section class="design-challenge-card">
 
-    <span class="challenge-label"><span class="challenge-icon">✦</span> DESIGN HYPOTHESIS</span>
+    <span class="challenge-label"><span class="challenge-icon">✦</span> <span data-i18n="mc2">DESIGN HYPOTHESIS</span></span>
 
-    <h2>
-      Three hypotheses guided the direction of Mochi Pay.
-    </h2>
+    <h2 data-i18n="m32">Three hypotheses guided the design of Mochi Pay.</h2>
 
-    <p class="challenge-description">
-      Research findings were translated into three assumptions that shaped the design before any interface exploration began.
-    </p>
+    <p class="challenge-description" data-i18n="m33">I translated the research findings into three testable hypotheses that guided my design decisions before moving into wireframes and prototypes.</p>
 
     <div class="hypothesis-list">
 
       <div class="hypothesis-item">
-        <strong>01&nbsp;&nbsp;Make progress visible in real time</strong>
-        <p>If people can see savings accumulate as it happens, they'll feel more connected to the outcome than to a monthly summary.</p>
+        <strong data-i18n-html="m34">01&nbsp;&nbsp;Show where money goes, not just a list</strong>
+        <p data-i18n="m35">If spending is summarized into patterns people can scan, they'll understand where their money goes without digging through every transaction.</p>
       </div>
 
       <div class="hypothesis-item">
-        <strong>02&nbsp;&nbsp;Let goals be personal, not generic categories</strong>
-        <p>If users define their own goals instead of picking from preset categories, the numbers will feel more relevant and worth tracking.</p>
+        <strong data-i18n-html="m36">02&nbsp;&nbsp;Put saving right next to spending</strong>
+        <p data-i18n="m37">If savings goals sit beside balance and transactions, every check on spending will also show progress toward a goal.</p>
       </div>
 
       <div class="hypothesis-item">
-        <strong>03&nbsp;&nbsp;Celebrate small wins immediately</strong>
-        <p>If every deposit — no matter how small — gets acknowledged, saving will start to feel rewarding on its own, not just as a means to an end.</p>
+        <strong data-i18n-html="m38">03&nbsp;&nbsp;Celebrate small wins instead of flagging spending</strong>
+        <p data-i18n="m39">If small deposits get celebrated instead of "bad" spending getting flagged, people will keep tracking instead of avoiding the app.</p>
       </div>
 
     </div>
@@ -602,19 +562,15 @@
 
   <section class="content-block">
 
-    <h2>Design Solution</h2>
+    <h2 data-i18n="m40">Design Solution</h2>
 
-    <p>
-      Rather than treating saving as a spreadsheet exercise, Mochi Pay was built around the feeling of
-      watching something grow — reframing every part of the experience around progress the user
-      can see and feel.
-    </p>
+    <p data-i18n="m41">I designed Mochi Pay across desktop and mobile. The desktop dashboard shows the full picture in one view, while mobile screens cover everyday moments: checking recent spending, switching cards, and setting up a savings plan.</p>
 
     <div class="mp-bleed">
       <div class="mp-bleed-inner">
         <div class="media-light" style="background: transparent; padding: 0;">
           <div class="mp-cards-frame" id="mpCardsFrame">
-            <img src="images/pumkin-goals-overview.jpg" alt="Mochi Pay card carousel with recent transactions and balance" id="mpCardsImg">
+            <img src="images/pumkin-goals-overview.jpg" alt="Mobile screen with card carousel, recent transactions grouped by day, and weekly balance" id="mpCardsImg">
             <span class="mp-goals-cover" aria-hidden="true"></span>
             <div class="mp-list-block" aria-hidden="true">
               <img class="mp-static" src="images/mp-seg0-header.png" alt="">
@@ -648,55 +604,46 @@
     </div>
 
     <div class="finding">
-      <h3>Goals you actually chose, not categories a bank picked.</h3>
-      <p>Instead of preset budget categories, users name what they're actually saving for. Each goal has its own visual identity, so the dashboard reflects intention, not just transaction history.</p>
+      <h3 data-i18n="m42">Spending you can read at a glance.</h3>
+      <p data-i18n="m43">Recent transactions are grouped by day, with money in and out marked by color and a running balance on every line. A Spend Analysis tab sits right next to it, so users can switch from what happened to where their money is going in one tap.</p>
     </div>
     <div class="finding">
-      <h3>A growth visual instead of a spreadsheet.</h3>
-      <p>Balances are shown as a living, growing visual rather than a static number, so progress reads at a glance and updates the moment money moves.</p>
+      <h3 data-i18n="m44">All your cards, one swipe away.</h3>
+      <p data-i18n="m45">Cards sit in a carousel above the transactions, so users can switch between them without leaving the screen, while the weekly balance stays visible at the top.</p>
     </div>
     <div class="finding">
-      <h3>Small deposits that feel like a win, not a chore.</h3>
-      <p>Every deposit, even a small one, triggers a brief, positive moment — reinforcing the habit instead of waiting for a milestone to feel good about progress.</p>
+      <h3 data-i18n="m46">Goals you name, with progress you can see.</h3>
+      <p data-i18n="m47">Users create savings goals in their own words, like Traveling, Car, or House, each with its own icon and progress bar. Every deposit, even a small one, triggers a brief celebration, so saving feels rewarding in the moment instead of only at the finish line.</p>
+      <div class="mp-demo" id="mpDemo">
+        <div class="mp-demo-card">
+          <span class="mp-demo-icon">🏝️</span>
+          <div class="mp-demo-info">
+            <div class="mp-demo-toprow">
+              <span class="mp-demo-title">Traveling</span>
+              <span class="mp-demo-amount" id="mpAmount">€1,600</span>
+            </div>
+            <span class="mp-demo-sub">Achieved in 6 months</span>
+            <div class="mp-demo-track"><div class="mp-demo-fill" id="mpFill"></div></div>
+          </div>
+          <span class="mp-demo-float" id="mpFloat">+€25</span>
+          <span class="mp-demo-confetti c1"></span>
+          <span class="mp-demo-confetti c2"></span>
+          <span class="mp-demo-confetti c3"></span>
+          <span class="mp-demo-confetti c4"></span>
+        </div>
+        <div class="mp-demo-toast" id="mpToast">Nice! €25 closer to Traveling 🎉</div>
+      </div>
     </div>
   </section>
 
-  <section class="content-block detail-block">
-    <h3><span class="detail-icon">🎉</span> Celebrate the deposit, not just the goal.</h3>
-    <p>
-      A micro-celebration appears the moment money is set aside, no matter the amount — reinforcing
-      the habit in the moment instead of asking users to wait for a milestone to feel good about progress.
-    </p>
-    <div class="mp-demo" id="mpDemo">
-      <div class="mp-demo-card">
-        <span class="mp-demo-icon">🏝️</span>
-        <div class="mp-demo-info">
-          <div class="mp-demo-toprow">
-            <span class="mp-demo-title">Traveling</span>
-            <span class="mp-demo-amount" id="mpAmount">€1,600</span>
-          </div>
-          <span class="mp-demo-sub">Achieved in 6 months</span>
-          <div class="mp-demo-track"><div class="mp-demo-fill" id="mpFill"></div></div>
-        </div>
-        <span class="mp-demo-float" id="mpFloat">+€25</span>
-        <span class="mp-demo-confetti c1"></span>
-        <span class="mp-demo-confetti c2"></span>
-        <span class="mp-demo-confetti c3"></span>
-        <span class="mp-demo-confetti c4"></span>
-      </div>
-      <div class="mp-demo-toast" id="mpToast">Nice! €25 closer to Traveling 🎉</div>
-    </div>
-  </section>
 
   <section class="content-block">
-    <h2>Outcome: Validating the idea before the metrics exist.</h2>
-    <p>
-      As a self-directed concept, Mochi Pay's results so far come from prototype testing rather than
-      production data.
-    </p>
+    <h2 data-i18n="m50">Interaction Demo</h2>
+    <h3 data-i18n="m54">Show the payoff before the commitment.</h3>
+    <p data-i18n="m51">When opening a savings plan, users slide to choose the term and the annual interest rate updates instantly. Before confirming, a summary shows the estimated principal, expected interest, and total at maturity, so users know exactly what they'll get before they commit.</p>
     <div class="media-light" style="background: transparent; padding: 0;">
       <div class="mp-savings-frame" id="mpSavingsFrame">
-        <img src="images/pumkin-savings-plan.png" alt="Four-week savings plan setup with projected amount" id="mpSavingsImg">
+        <img src="images/pumkin-savings-plan.png" alt="Savings plan setup with term slider, interest rate, goals, and maturity summary" id="mpSavingsImg">
         <span class="mp-rate-cover" aria-hidden="true"></span>
         <span class="mp-rate-value" id="mpRateValue" aria-hidden="true">3.70<span class="mp-rate-pct">%</span></span>
         <span class="mp-slider-cover" aria-hidden="true"></span>
@@ -710,16 +657,13 @@
   </section>
 
   <section class="content-block">
-    <h2>Reflection</h2>
-    <p>
-      Motivation is a design problem, not just a math problem. The hardest part of Mochi Pay wasn't the
-      interface — it was resisting the urge to add more numbers. The moments that mattered most were
-      the smallest ones: a deposit landing, a goal inching forward.
-    </p>
+    <h2 data-i18n="m52">Reflection</h2>
+    <h3 data-i18n="m55">Spending and saving are the same decision.</h3>
+    <p data-i18n="m53">The hardest part of Mochi Pay wasn't the interface. It was resisting the urge to add more numbers, because the moments that mattered most were the smallest ones: seeing where a payment went, a deposit landing, a goal inching forward. Next time, I'd put the prototype in front of real users early, to test whether seeing spending and saving together actually changes how they spend.</p>
   </section>
 
   <footer class="page-footer">
-    <a class="footer-cta" href="milliechae-portfolio.pdf" target="_blank" rel="noopener" aria-label="View full portfolio PDF">See the full story <span aria-hidden="true">→</span></a>
+    <a class="footer-cta" href="milliechae-portfolio.pdf" target="_blank" rel="noopener" aria-label="View full portfolio PDF"><span data-i18n="mf">See the full story</span> <span aria-hidden="true">→</span></a>
     <div class="footer-nav">
       <a href="project-demo-bee-equipment-notification.html" aria-label="Previous project">←</a>
       <a href="project-demo-anomaly-detection-service.html" aria-label="Next project">→</a>
@@ -978,6 +922,102 @@
     }, { threshold: 0.5 });
     observer.observe(demo);
   })();
+</script>
+<script>
+  // EN / 한글 전환 (다른 프로젝트 페이지와 동일)
+  var i18nDict = {
+    m0: { ko: "콘셉트" },
+    m1: { ko: "모찌페이 I 개인 자산관리 대시보드" },
+    m2: { ko: "돈이 어디로 나가고, 어디서 자라고 있는지를 한 화면에서 함께 보여주는 개인 금융 대시보드입니다." },
+    m3: { ko: "저는 <strong>모찌페이</strong>를 사용자 리서치부터 최종 UI까지 혼자 기획하고 디자인한 셀프 프로젝트로 진행했습니다. 잔액, 송금, 카드와 함께 지출 관리와 저축, 두 가지에 집중한 개인 금융 서비스입니다. 데스크톱 대시보드는 한 달 지출을 돌아볼 수 있도록 전체 그림을 한 화면에 모으고, 모바일 화면은 최근 거래 확인이나 저축 플랜 개설처럼 이동 중에 하는 일을 담당합니다. 대부분의 금융 앱은 지출과 저축을 따로 다루지만, 저는 둘을 하나의 결정의 양면으로 보여주고 싶었습니다." },
+    m4: { ko: "제품" },
+    m5: { ko: "역할" },
+    m6: { ko: "기간" },
+    m7: { ko: "클라이언트" },
+    m8: { ko: "스킬" },
+    m9: { ko: "모찌페이 I 개인 자산관리 대시보드" },
+    m10: { ko: "프로덕트 디자이너 (1인)" },
+    m11: { ko: "2025 · 셀프 프로젝트" },
+    m12: { ko: "개인 프로젝트" },
+    m13: { ko: "프로덕트 디자인, 사용자 리서치, 행동 디자인, 인터랙션 디자인, 프로토타이핑" },
+    m14: { ko: "보이지 않는 돈은,<br>모을 수도 없습니다." },
+    m15: { ko: "문제 상황" },
+    m16: { ko: "지출과 저축이 서로 떨어져 있어서, 어느 쪽도 관리하고 있다는 느낌이 들지 않았습니다." },
+    m17: { ko: "대부분의 금융 앱은 지출을 긴 거래 목록으로, 저축은 한 달에 한 번 바뀌는 숫자로 보여줍니다. 오늘의 지출이 목표와 어떻게 연결되는지 보이지 않으니 둘 다 놓치게 되고, 대부분은 바로 그 간격에서 포기합니다." },
+    m18: { ko: "<strong>지출은 그냥 목록일 뿐</strong><br>거래 내역이 긴 목록으로 쌓이기만 해서, 돈이 실제로 어디로 가는지, 무엇을 바꿔야 하는지 알기 어렵습니다." },
+    m19: { ko: "<strong>현실과 맞지 않는 카테고리</strong><br>\"식비\", \"여가\" 같은 일반적인 카테고리는 사람들이 실제로 돈을 생각하는 방식과 맞지 않아, 숫자가 무의미하게 느껴집니다." },
+    m20: { ko: "<strong>눈에 보이지 않는 저축</strong><br>한 달에 한 번 바뀌는 저축 잔액으로는 쌓여가는 느낌을 받을 수 없고, 그 뒤에 있는 지출 선택과도 연결되지 않습니다." },
+    mc1: { ko: "디자인 챌린지" },
+    mc2: { ko: "디자인 가설" },
+    m21: { ko: "돈이 어디로 가는지 보면서, 저축이 쌓이는 것도<br>함께 느끼게 하려면 어떻게 해야 할까?" },
+    m22: { ko: "일상의 지출과 저축 목표를 한 화면에서 연결해, 하나하나의 선택이 제한이 아니라 목표에 다가가는 과정으로 느껴지게 하는 것이 목표였습니다." },
+    m23: { ko: "사용자 리서치" },
+    m24: { ko: "사람들이 돈 관리를 그만두는 이유 이해하기." },
+    m25: { ko: "화면을 디자인하기 전에, 사람들이 실제로 지출을 관리하고 저축하는 방식을 인터뷰했습니다. 지켜야 한다고 생각하는 예산이 아니라 실제로 살아가는 방식에 집중했고, 세 가지 패턴이 반복해서 나타났습니다." },
+    m26: { ko: "계획한 예산과 실제로 쓰는 돈은 늘 달랐습니다." },
+    m27: { ko: "미리 정해진 예산 카테고리는 사람들이 실제로 지출을 생각하는 방식과 거의 맞지 않았고, 그래서 숫자가 현실과 동떨어지게 느껴졌습니다." },
+    m28: { ko: "큰 금액보다 작은 성취가 더 중요했습니다." },
+    m29: { ko: "커다란 최종 목표는 막연하고 멀게 느껴졌습니다. 사람들을 계속 움직이게 한 건 훨씬 짧은 주기로 조금씩 모이는 걸 확인하는 경험이었습니다." },
+    m30: { ko: "죄책감은 꾸준함을 무너뜨렸습니다." },
+    m31: { ko: "\"나쁜\" 지출을 지적하는 앱은 사람들이 습관을 고치기보다 아예 앱을 떠나게 만들었고, 습관을 강화하는 대신 끊어버렸습니다." },
+    m32: { ko: "위의 세 가지 가설이 모찌페이의 설계를 이끌었습니다." },
+    m33: { ko: "리서치 결과를 검증 가능한 세 가지 가설로 정리했고, 와이어프레임과 프로토타입 단계로 넘어가기 전 이 가설들을 디자인 결정의 기준으로 삼았습니다." },
+    m34: { ko: "01&nbsp;&nbsp;목록이 아니라, 돈의 흐름을 보여주기" },
+    m35: { ko: "지출을 한눈에 훑어볼 수 있는 패턴으로 요약하면, 모든 거래를 하나하나 찾아보지 않아도 돈이 어디로 가는지 이해할 것입니다." },
+    m36: { ko: "02&nbsp;&nbsp;저축을 지출 바로 옆에 두기" },
+    m37: { ko: "저축 목표가 잔액과 거래 내역 옆에 있다면, 지출을 확인할 때마다 목표에 얼마나 가까워졌는지도 함께 보게 될 것입니다." },
+    m38: { ko: "03&nbsp;&nbsp;지출을 지적하는 대신, 작은 성취를 축하하기" },
+    m39: { ko: "\"나쁜\" 지출을 지적하는 대신 작은 입금을 축하한다면, 사람들은 앱을 피하지 않고 계속 돈을 관리할 것입니다." },
+    m40: { ko: "디자인 솔루션" },
+    m41: { ko: "모찌페이는 데스크톱과 모바일 모두를 디자인했습니다. 데스크톱 대시보드는 전체 그림을 한 화면에 보여주고, 모바일 화면은 최근 지출 확인, 카드 전환, 저축 플랜 설정처럼 일상적인 순간을 담당합니다." },
+    m42: { ko: "한눈에 읽히는 지출 내역." },
+    m43: { ko: "최근 거래를 날짜별로 묶고, 들어온 돈과 나간 돈을 색으로 구분하고, 거래마다 남은 잔액을 함께 보여줍니다. 바로 옆에 지출 분석 탭을 두어, 무슨 일이 있었는지에서 돈이 어디로 가고 있는지까지 한 번에 전환할 수 있습니다." },
+    m44: { ko: "모든 카드를, 스와이프 한 번으로." },
+    m45: { ko: "카드를 거래 내역 위에 캐러셀로 배치해, 화면을 벗어나지 않고 카드를 바꿀 수 있습니다. 이번 주 잔액은 맨 위에 항상 보이도록 했습니다." },
+    m46: { ko: "내가 이름 붙인 목표, 눈에 보이는 진행률." },
+    m47: { ko: "여행, 자동차, 집처럼 사용자가 직접 이름 붙인 저축 목표를 만들고, 목표마다 아이콘과 진행 바를 보여줍니다. 작은 입금이라도 매번 짧은 축하가 나타나, 목표를 다 이룬 순간뿐 아니라 모으는 순간에도 저축이 보람 있게 느껴집니다." },
+    m50: { ko: "인터랙션 데모" },
+    m54: { ko: "결정하기 전에 보상을 먼저 보여주기." },
+    m51: { ko: "저축 플랜을 열 때 슬라이더로 기간을 고르면 연 이자율이 즉시 바뀝니다. 확정하기 전에는 예상 원금, 예상 이자, 만기 시 총액을 요약해 보여줘, 결정하기 전에 무엇을 얻게 되는지 정확히 알 수 있습니다." },
+    m52: { ko: "회고" },
+    m55: { ko: "지출과 저축은 같은 결정이었습니다." },
+    m53: { ko: "모찌페이에서 가장 어려웠던 건 인터페이스가 아니라, 숫자를 더 넣고 싶은 유혹을 참는 일이었습니다. 가장 중요한 순간은 가장 작은 순간들이었기 때문입니다. 결제한 돈이 어디로 갔는지 보는 순간, 입금이 들어오는 순간, 목표가 조금 가까워지는 순간처럼요. 다음에는 실제 사용자에게 프로토타입을 일찍 보여주고, 지출과 저축을 함께 보는 것이 실제로 소비 방식을 바꾸는지 검증하겠습니다." },
+    mf: { ko: "전체 스토리 보기" }
+  };
+  function applyLang(lang) {
+    var els = document.querySelectorAll('[data-i18n]');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (!el.dataset.enCache) el.dataset.enCache = el.textContent;
+      var key = el.getAttribute('data-i18n');
+      el.textContent = lang === 'ko' ? (i18nDict[key] ? i18nDict[key].ko : el.dataset.enCache) : el.dataset.enCache;
+    }
+    var elsHtml = document.querySelectorAll('[data-i18n-html]');
+    for (var j = 0; j < elsHtml.length; j++) {
+      var elH = elsHtml[j];
+      if (!elH.dataset.enCache) elH.dataset.enCache = elH.innerHTML;
+      var keyH = elH.getAttribute('data-i18n-html');
+      elH.innerHTML = lang === 'ko' ? (i18nDict[keyH] ? i18nDict[keyH].ko : elH.dataset.enCache) : elH.dataset.enCache;
+    }
+    document.documentElement.setAttribute('lang', lang === 'ko' ? 'ko' : 'en');
+    var enSeg = document.querySelector('.lang-toggle .lang-en');
+    var koSeg = document.querySelector('.lang-toggle .lang-ko');
+    if (enSeg && koSeg) {
+      enSeg.classList.toggle('active', lang !== 'ko');
+      koSeg.classList.toggle('active', lang === 'ko');
+    }
+  }
+  var langToggle = document.getElementById('langToggle');
+  if (langToggle) {
+    var savedLang = (function(k){try{return localStorage.getItem(k);}catch(e){return null;}})('lang') || 'en';
+    applyLang(savedLang);
+    langToggle.addEventListener('click', function () {
+      var current = document.documentElement.getAttribute('lang') === 'ko' ? 'ko' : 'en';
+      var next = current === 'ko' ? 'en' : 'ko';
+      try { localStorage.setItem('lang', next); } catch (e) {}
+      applyLang(next);
+    });
+  }
 </script>
 </body>
 </html>

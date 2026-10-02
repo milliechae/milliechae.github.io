@@ -105,6 +105,14 @@
   transition: opacity 0.35s ease, transform 0.35s ease;
 }
 .mp-demo-toast.show { opacity: 1; transform: translateY(0); }
+/* 다크모드에서도 앱 화면처럼 하얀 카드로 */
+html[data-theme="dark"] .mp-demo-card { background: #FFFFFF; }
+html[data-theme="dark"] .mp-demo-title,
+html[data-theme="dark"] .mp-demo-amount { color: #121212; }
+html[data-theme="dark"] .mp-demo-card.playing .mp-demo-amount { color: #6C5CE7; }
+html[data-theme="dark"] .mp-demo-sub { color: #8A8A8E; }
+html[data-theme="dark"] .mp-demo-track { background: #ECEBF3; }
+html[data-theme="dark"] .mp-demo-toast { background: #FFFFFF; color: #3A3A3C; }
 
 /* ---------- Design Solution 이미지: 이 섹션만 본문 폭(760px) 밖으로 확장 ---------- */
 .mp-bleed {

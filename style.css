@@ -60,9 +60,9 @@
 html[data-theme="dark"] {
   --bg-page: #17140F;
   --bg-soft: #211D16;
-  --text-primary: #F3EFE6;
-  --text-secondary: #B9B2A2;
-  --text-tertiary: #6E6858;
+  --text-primary: #FAFAF8;
+  --text-secondary: #C9C4B8;
+  --text-tertiary: #8C8676;
   --line: #332E24;
 }
 
@@ -843,7 +843,7 @@ section.design-challenge-card{
 
 }
 html[data-theme="dark"] .flow-line path{
-    stroke:#B9B2A2;
+    stroke:#FAFAF8;
 }
 
 .hypothesis-list{
@@ -1126,3 +1126,10 @@ html[data-theme="dark"] .status-pill {
   color: #EDEDED;
 }
 html[data-theme="dark"] .status-pill.status-concept .status-dot { background: #A3A3A3; }
+
+/* 다크모드: 손그림 캐릭터·물음표·느낌표를 흰색으로 */
+html[data-theme="dark"] .bq-peek-body,
+html[data-theme="dark"] .bq-peek-qmark,
+html[data-theme="dark"] .bq-peek-excl {
+  filter: invert(1);
+}

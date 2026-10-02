@@ -104,11 +104,8 @@ html[data-theme="dark"] .icon-dark { display: inline; }
 
 /* ---------- 상단 바: 다크모드 토글(홈과 동일한 슬라이더) + 뒤로가기 ---------- */
 .site-header {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 10px;
   position: relative;
+  min-height: 34px;
   padding: 8px 0 40px;
 }
 .lang-toggle {
@@ -136,7 +133,7 @@ html[data-theme="dark"] .icon-dark { display: inline; }
   transition: color 0.25s ease, background-color 0.25s ease;
 }
 .lang-toggle .lang-seg.active {
-  color: var(--text-primary);
+  color: #141414;
   background: #fff;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
@@ -144,91 +141,70 @@ html[data-theme="dark"] .lang-toggle .lang-seg.active {
   box-shadow: 0 2px 6px rgba(0,0,0,0.4);
 }
 .back-arrow {
-  position: absolute;
-  left: 0;
-  top: 8px;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
   width: 34px;
   height: 34px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.6);
-  background: rgba(255,255,255,0.55);
-  -webkit-backdrop-filter: blur(14px) saturate(160%);
-  backdrop-filter: blur(14px) saturate(160%);
-  box-shadow:
-    0 6px 16px rgba(0,0,0,0.12),
-    0 2px 6px rgba(0,0,0,0.06),
-    inset 0 0 10px rgba(120,170,255,0.2);
-  color: var(--text-secondary);
+  border: none;
+  background: #F0F0F0;
+  color: #525252;
   text-decoration: none;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-html[data-theme="dark"] .back-arrow {
-  box-shadow:
-    0 6px 18px rgba(0,0,0,0.35),
-    0 2px 6px rgba(0,0,0,0.2),
-    inset 0 0 10px rgba(120,170,255,0.28);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* ---------- 다크/라이트 토글: 메인 홈과 완전히 동일한 스타일 ---------- */
+
+/* ---------- 다크/라이트 + 언어 토글: 홈(index.html)과 위치·스타일 동일 ---------- */
+.toggles {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  display: flex;
+  gap: 8px;
+}
 .theme-toggle {
   position: relative;
   width: 64px;
-  height: 36px;
+  height: 34px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.6);
-  background: rgba(255,255,255,0.55);
-  -webkit-backdrop-filter: blur(14px) saturate(160%);
-  backdrop-filter: blur(14px) saturate(160%);
+  border: none;
+  background: var(--bg-soft);
   cursor: pointer;
   display: flex;
   align-items: center;
   padding: 0 9px;
-  box-shadow:
-    0 6px 16px rgba(0,0,0,0.12),
-    0 2px 6px rgba(0,0,0,0.06),
-    inset 0 0 10px rgba(120,170,255,0.2);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease;
 }
-.theme-toggle .track-icon {
-  font-size: 13px;
-  color: var(--text-tertiary);
-  line-height: 1;
-}
+.theme-toggle .track-icon { font-size: 13px; color: var(--text-tertiary); line-height: 1; }
 .theme-toggle .track-icon.sun { margin-right: auto; }
 .theme-toggle .track-icon.moon { margin-left: auto; }
 .theme-toggle .knob {
   position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 28px;
-  height: 28px;
+  top: 3px; left: 3px;
+  width: 28px; height: 28px;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 0 6px rgba(0,0,0,0.18);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+  display: flex; align-items: center; justify-content: center;
   font-size: 14px;
-  color: var(--text-primary);
+  color: #141414;
   transition: transform 0.35s cubic-bezier(.4,0,.2,1);
 }
 .theme-toggle .knob svg { width: 15px; height: 15px; display: block; }
+
 html[data-theme="dark"] .theme-toggle .knob { transform: translateX(30px); }
-.theme-toggle .knob-sun { display: flex; color: #808080; }
-.theme-toggle .knob-moon { display: none; color: #808080; }
+.theme-toggle .knob-sun { display: flex; }
+.theme-toggle .knob-moon { display: none; }
 html[data-theme="dark"] .theme-toggle .knob-sun { display: none; }
 html[data-theme="dark"] .theme-toggle .knob-moon { display: flex; }
-html[data-theme="dark"] .theme-toggle {
-  box-shadow:
-    0 6px 18px rgba(0,0,0,0.35),
-    0 2px 6px rgba(0,0,0,0.2),
-    inset 0 0 10px rgba(120,170,255,0.28);
-}
 
 /* ---------- 헤더 ---------- */
 .hero-header {
@@ -1039,4 +1015,102 @@ html[data-theme="dark"] .flow-line path{
     line-height:1.75;
 
     color:#666;
+}
+
+/* ---------- 컨트롤 공통: 그림자 있는 하얀 글래스모피즘 (홈·상세 페이지 동일) ---------- */
+.toggles .theme-toggle, .toggles .lang-toggle, .back-arrow {
+  height: 36px;
+  border: 1px solid rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.55);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  box-shadow:
+    0 6px 16px rgba(0,0,0,0.12),
+    0 2px 6px rgba(0,0,0,0.06),
+    inset 0 0 10px rgba(120,170,255,0.2);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+.toggles .lang-toggle { padding: 3px; }
+.back-arrow { width: 36px; }
+.toggles .theme-toggle .track-icon, .toggles .lang-toggle .lang-seg { color: #4D4D4D; }
+.toggles .theme-toggle .track-icon { font-size: 14px; }
+.toggles .lang-toggle .lang-seg.active { color: #141414; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+.back-arrow { color: #333333; }
+.back-arrow:hover { background: rgba(255,255,255,0.8); color: #141414; }
+html[data-theme="dark"] .toggles .theme-toggle,
+html[data-theme="dark"] .toggles .lang-toggle,
+html[data-theme="dark"] .back-arrow {
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.35),
+    0 2px 6px rgba(0,0,0,0.2),
+    inset 0 0 10px rgba(120,170,255,0.28);
+}
+
+/* 다크모드: 어두운 글래스 + 밝은 아이콘 */
+html[data-theme="dark"] .toggles .theme-toggle,
+html[data-theme="dark"] .toggles .lang-toggle,
+html[data-theme="dark"] .back-arrow {
+  background: rgba(40,40,40,0.6);
+  border-color: rgba(255,255,255,0.14);
+}
+html[data-theme="dark"] .toggles .theme-toggle .track-icon,
+html[data-theme="dark"] .toggles .lang-toggle .lang-seg { color: #D4D4D4; }
+html[data-theme="dark"] .toggles .lang-toggle .lang-seg.active { color: #141414; }
+html[data-theme="dark"] .back-arrow { color: #E5E5E5; }
+html[data-theme="dark"] .back-arrow:hover { background: rgba(60,60,60,0.75); color: #FFFFFF; }
+
+/* ---------- 토글 인터랙션: 부드럽게 ---------- */
+/* 누를 때 살짝 눌리는 피드백 */
+.toggles .theme-toggle, .toggles .lang-toggle, .back-arrow {
+  transition: transform 0.18s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
+}
+.toggles .theme-toggle:active, .toggles .lang-toggle:active, .back-arrow:active { transform: scale(0.95); }
+
+/* 다크모드 노브: 살짝 튕기듯 이동 + 해/달 아이콘 회전 크로스페이드 */
+.theme-toggle .knob { transition: transform 0.45s cubic-bezier(.34,1.35,.64,1), background-color 0.4s ease; }
+.theme-toggle .knob > span {
+  position: absolute; inset: 0;
+  display: flex !important; align-items: center; justify-content: center;
+  transition: opacity 0.3s ease, transform 0.45s cubic-bezier(.34,1.35,.64,1);
+}
+.theme-toggle .knob-sun { opacity: 1; transform: rotate(0deg) scale(1); }
+.theme-toggle .knob-moon { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+html[data-theme="dark"] .theme-toggle .knob-sun { opacity: 0; transform: rotate(90deg) scale(0.5); }
+html[data-theme="dark"] .theme-toggle .knob-moon { opacity: 1; transform: rotate(0deg) scale(1); }
+.theme-toggle .track-icon { transition: opacity 0.3s ease, color 0.4s ease; }
+.theme-toggle .track-icon.sun { opacity: 0.35; }
+html[data-theme="dark"] .theme-toggle .track-icon.sun { opacity: 1; }
+html[data-theme="dark"] .theme-toggle .track-icon.moon { opacity: 0.35; }
+
+/* 언어 토글: 흰 알약이 미끄러지듯 이동 */
+.toggles .lang-toggle { position: relative; }
+.toggles .lang-toggle .lang-seg { position: relative; z-index: 1; width: 44px; padding: 0; transition: color 0.3s ease; }
+.toggles .lang-toggle .lang-seg.active { background: transparent !important; box-shadow: none !important; }
+.toggles .lang-toggle::before {
+  content: "";
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 44px; height: 28px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: transform 0.4s cubic-bezier(.34,1.25,.64,1);
+}
+.toggles .lang-toggle:has(.lang-ko.active)::before { transform: translateX(46px); }
+
+/* 테마 전환 순간에만 페이지 색이 부드럽게 바뀌도록 */
+html.theme-transition, html.theme-transition *, html.theme-transition *::before, html.theme-transition *::after {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, fill 0.4s ease, stroke 0.4s ease !important;
+}
+html.theme-transition .theme-toggle .knob { transition: transform 0.45s cubic-bezier(.34,1.35,.64,1), background-color 0.4s ease !important; }
+html.theme-transition .theme-toggle .knob > span { transition: opacity 0.3s ease, transform 0.45s cubic-bezier(.34,1.35,.64,1) !important; }
+html.theme-transition .theme-toggle .track-icon { transition: opacity 0.3s ease, color 0.4s ease !important; }
+
+/* 언어 전환 시 글자가 살짝 페이드 인 */
+@keyframes langFadeIn { from { opacity: 0; } to { opacity: 1; } }
+html.lang-fade [data-i18n], html.lang-fade [data-i18n-html] { animation: langFadeIn 0.35s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle .knob, .theme-toggle .knob > span, .toggles .lang-toggle::before { transition: none !important; }
+  html.lang-fade [data-i18n], html.lang-fade [data-i18n-html] { animation: none; }
 }

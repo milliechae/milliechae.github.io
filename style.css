@@ -855,14 +855,14 @@ html[data-theme="dark"] .flow-line path{
 
 .hypothesis-item{
     padding-top:18px;
-    border-top:1px solid #e5e5e5;
+    border-top:1px solid var(--line);
 }
 
 .hypothesis-item strong{
     display:block;
     font-size:18px;
     font-weight:700;
-    color:#111;
+    color:var(--text-primary);
     margin-bottom:8px;
 }
 
@@ -870,7 +870,7 @@ html[data-theme="dark"] .flow-line path{
     margin:0;
     font-size:16px;
     line-height:1.75;
-    color:#666;
+    color:var(--text-secondary);
 }
 
 /* ===========================
@@ -919,7 +919,7 @@ html[data-theme="dark"] .flow-line path{
     font-size:18px;
     line-height:1.7;
 
-    color:#666;
+    color:var(--text-secondary);
 }
 
 .solution-image{
@@ -996,7 +996,7 @@ html[data-theme="dark"] .flow-line path{
 
     padding-top:18px;
 
-    border-top:1px solid #e8e8e8;
+    border-top:1px solid var(--line);
 }
 
 .solution-point h3{
@@ -1014,7 +1014,7 @@ html[data-theme="dark"] .flow-line path{
 
     line-height:1.75;
 
-    color:#666;
+    color:var(--text-secondary);
 }
 
 /* ---------- 컨트롤 공통: 그림자 있는 하얀 글래스모피즘 (홈·상세 페이지 동일) ---------- */
@@ -1114,3 +1114,15 @@ html.lang-fade [data-i18n], html.lang-fade [data-i18n-html] { animation: langFad
   .theme-toggle .knob, .theme-toggle .knob > span, .toggles .lang-toggle::before { transition: none !important; }
   html.lang-fade [data-i18n], html.lang-fade [data-i18n-html] { animation: none; }
 }
+
+/* ---------- 다크모드 가시성 보정 ---------- */
+/* 가설·챌린지 카드 라벨이 너무 어두워 보이던 문제 */
+html[data-theme="dark"] .challenge-label,
+html[data-theme="dark"] .section-label { color: var(--text-secondary); }
+/* 상태 배지(Shipped / Concept): 컨트롤과 같은 어두운 글래스 + 밝은 글자 */
+html[data-theme="dark"] .status-pill {
+  background: rgba(40,40,40,0.6);
+  border-color: rgba(255,255,255,0.14);
+  color: #EDEDED;
+}
+html[data-theme="dark"] .status-pill.status-concept .status-dot { background: #A3A3A3; }

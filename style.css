@@ -38,7 +38,7 @@
 ============================================================ */
 :root {
   --bg-page: #ffffff;
-  --bg-soft: #efeeec;      /* 히어로/이미지 박스 배경 */
+  --bg-soft: #f2f4f6;      /* 히어로/이미지 박스 배경 (쿨그레이) */
   --bg-dark: #0b0b0c;      /* 다크 목업 배경 */
   --text-primary: #121212;
   --text-secondary: #6b6b6e;
@@ -46,7 +46,7 @@
   --accent-green: #00c556; /* Shipped 점 색상 */
   --accent-amber: #f5a623;
   --accent-red: #e14b4b;
-  --line: #e7e6e3;
+  --line: #e5e8eb;
   --radius-lg: 20px;
   --radius-md: 12px;
   --radius-sm: 8px;

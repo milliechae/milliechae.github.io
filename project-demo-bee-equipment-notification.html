@@ -36,18 +36,17 @@
   }
   @media (prefers-reduced-motion: reduce) { .bq-peek-excl { animation: none; } }
   .research-item--wide { grid-column: 1 / -1; }
-  #threshold-deep-dive { --cool-soft: #F2F4F6; }
-  html[data-theme="dark"] #threshold-deep-dive { --cool-soft: #25272B; }
   .reframe-compare { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); gap: 12px; align-items: stretch; margin: 24px 0 0; }
-  .reframe-compare .rc-card { background: var(--cool-soft); border-radius: var(--radius-md); padding: 20px; }
+  .reframe-compare .rc-card { background: var(--bg-soft); border-radius: var(--radius-md); padding: 20px; }
   .reframe-compare .rc-card--new { background: var(--text-primary); }
   .reframe-compare .rc-card--new .rc-tag { color: color-mix(in srgb, var(--bg-page) 65%, transparent); }
   .content-block .reframe-compare .rc-card.rc-card--new p { color: var(--bg-page); }
   .reframe-compare .rc-tag { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text-tertiary); }
   .content-block .reframe-compare .rc-card p { margin: 8px 0 0; color: var(--text-primary); font-size: 16px; font-weight: 600; line-height: 1.5; }
   .reframe-compare .rc-arrow { align-self: center; color: var(--text-tertiary); font-size: 20px; }
-  .option-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; margin: 28px 0 0; }
-  .option-card { background: var(--cool-soft); border-radius: var(--radius-lg); padding: 10px; display: flex; flex-direction: column; transition: transform .25s cubic-bezier(.2,.8,.2,1); }
+  .option-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 24px 16px; margin: 28px 0 0; }
+  .finding .option-grid + p { margin-top: 28px; }
+  .option-card { background: var(--bg-soft); border-radius: var(--radius-lg); padding: 10px; display: flex; flex-direction: column; transition: transform .25s cubic-bezier(.2,.8,.2,1); }
   .option-card:hover { transform: translateY(-2px); }
   .option-card--chosen { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0,1.5fr) minmax(0,1fr); align-items: center; gap: 8px; }
   .option-card .opt-img { border-radius: var(--radius-md); overflow: hidden; background: #fff; aspect-ratio: 16 / 10; }

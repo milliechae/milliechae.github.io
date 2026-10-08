@@ -52,11 +52,11 @@
   .option-card { background: var(--bg-soft); border-radius: var(--radius-lg); padding: 10px; display: flex; flex-direction: column; transition: transform .25s cubic-bezier(.2,.8,.2,1); }
   .option-card:hover { transform: translateY(-2px); }
   .option-card--chosen { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0,1.5fr) minmax(0,1fr); align-items: center; gap: 8px; }
-  .option-card .opt-img { border-radius: var(--radius-md); overflow: hidden; background: #fff; aspect-ratio: 16 / 10; }
+  .option-card .opt-img { border-radius: var(--radius-md); overflow: hidden; background: #fff; aspect-ratio: 16 / 10; position: relative; }
   .option-card--chosen .opt-img { aspect-ratio: auto; }
   .option-card .opt-img img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
   .option-card--chosen .opt-img img { height: auto; }
-  .option-card:not(.option-card--chosen) .opt-img img { filter: grayscale(.4); opacity: .7; }
+  .option-card:not(.option-card--chosen) .opt-img .tm-frame { filter: grayscale(.4); opacity: .72; }
   .option-card .opt-body { padding: 16px 10px 10px; }
   .option-card--chosen .opt-body { padding: 12px 22px; }
   .option-card .opt-tag { display: inline-flex; align-items: center; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: color-mix(in srgb, var(--text-primary) 7%, transparent); color: var(--text-secondary); }
@@ -92,6 +92,66 @@
     .option-card--chosen .opt-body { padding: 14px 10px 10px; }
     .ai-list li { grid-template-columns: 1fr; gap: 8px; }
   }
+  /* ---------- Threshold modal mockups (drawn in code) ---------- */
+  .tm-frame { width: 100%; position: relative; overflow: hidden; }
+  .tm-frame > .tm { position: absolute; top: 0; left: 0; transform-origin: top left; }
+  .tm { width: 680px; background: #fff; border-radius: 8px; color: #222; font-family: "Pretendard", var(--font-body); -webkit-font-smoothing: antialiased; text-align: left; }
+  .bq-single-img .tm-frame { border-radius: 12px; box-shadow: 0 0 0 1px var(--line); }
+  .tm-head { display: flex; justify-content: space-between; align-items: baseline; padding: 20px 22px 12px; }
+  .tm-title { font-size: 15px; font-weight: 700; }
+  .tm-sub { font-size: 11px; color: #8a8d93; }
+  .tm-ctl { display: flex; align-items: center; gap: 14px; padding: 0 22px 6px; height: 30px; }
+  .tm-ctl-label { font-size: 12px; color: #55585e; flex: none; }
+  .tm-slider { flex: 1; height: 24px; position: relative; cursor: pointer; touch-action: none; outline: none; }
+  .tm-track, .tm-fill { position: absolute; top: 10px; height: 4px; border-radius: 2px; }
+  .tm-track { left: 0; right: 0; background: #e4e4e4; }
+  .tm-fill { left: 0; background: #3f3f3f; }
+  .tm-knob { position: absolute; top: 3px; width: 18px; height: 18px; margin-left: -9px; border-radius: 50%; background: #fff; border: 1.5px solid #3f3f3f; box-shadow: 0 1px 3px rgba(0,0,0,.18); box-sizing: border-box; transition: box-shadow .15s; }
+  .tm-slider:focus-visible .tm-knob, .tm-slider.is-drag .tm-knob { box-shadow: 0 0 0 5px rgba(63,63,63,.14); }
+  .tm-val { font-size: 14px; font-weight: 700; width: 36px; text-align: right; flex: none; font-variant-numeric: tabular-nums; }
+  .tm-presets { display: flex; gap: 6px; }
+  .tm-presets button { font: inherit; font-size: 12.5px; padding: 6px 14px; border: 1px solid #dadada; background: #fff; color: #55585e; border-radius: 4px; cursor: pointer; }
+  .tm-presets button.on { background: #3f3f3f; border-color: #3f3f3f; color: #fff; }
+  .tm-chart { display: flex; gap: 10px; padding: 8px 22px 0; }
+  .tm-y { position: relative; width: 26px; height: 240px; font-size: 12px; color: #8a8d93; flex: none; }
+  .tm-y span { position: absolute; right: 0; transform: translateY(-50%); }
+  .tm-plotwrap { flex: 1; min-width: 0; }
+  .tm-plot { position: relative; height: 240px; background: #fff2f2; }
+  .tm-band { position: absolute; left: 0; right: 0; background: #e6f2ea; border-top: 1.5px dashed #2f9e5a; border-bottom: 1.5px dashed #2f9e5a; box-sizing: border-box; transition: bottom .12s ease-out, height .12s ease-out; }
+  .tm-gap { position: absolute; top: 0; bottom: 0; background: repeating-linear-gradient(135deg, rgba(0,0,0,.035) 0 4px, transparent 4px 8px); }
+  .tm-pt { position: absolute; width: 7px; height: 7px; border-radius: 50%; background: #3f3f3f; transform: translate(-50%, 50%); transition: width .12s, height .12s, background .12s; }
+  .tm-pt.out { width: 10px; height: 10px; background: #d93a2b; }
+  .tm-xl { position: relative; height: 26px; }
+  .tm-xl span { position: absolute; top: 6px; transform: translateX(-50%); font-size: 11px; font-weight: 600; color: #d93a2b; background: #fbe3e1; padding: 2px 6px; border-radius: 3px; white-space: nowrap; }
+  .tm-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 10px 22px 20px; }
+  .tm-card { border: 1px solid #e8e8e8; border-radius: 4px; padding: 10px 12px; min-height: 64px; box-sizing: border-box; transition: background .15s; }
+  .tm-card small { display: block; font-size: 11px; color: #55585e; }
+  .tm-card b { display: block; margin-top: 4px; font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .tm-card.verdict { border-color: transparent; }
+  .tm-card.verdict b { font-size: 14px; margin-top: 8px; }
+  .tm-foot { display: flex; justify-content: flex-end; gap: 8px; padding: 14px 22px 18px; border-top: 1px solid #eee; }
+  .tm-btn { font-size: 13px; font-weight: 600; padding: 10px 26px; border-radius: 4px; background: #f0f0f0; color: #222; }
+  .tm-btn.pri { background: #3f3f3f; color: #fff; }
+  /* numeric (AI first draft) */
+  .tm-n .tm-head { padding-bottom: 8px; }
+  .tm-n .tm-title { font-size: 17px; }
+  .tm-n-meta { padding: 4px 22px 16px; font-size: 13.5px; display: grid; grid-template-columns: 90px 1fr; row-gap: 8px; border-bottom: 1px solid #eee; }
+  .tm-n-meta span:nth-child(odd) { color: #8a8d93; } .tm-n-meta span:nth-child(even) { font-weight: 600; }
+  .tm-n-body { padding: 16px 22px 8px; background: #fbfbfb; }
+  .tm-n-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .tm-n-inputs label { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+  .tm-n-inputs i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+  .tm-n-field { display: flex; justify-content: space-between; align-items: center; border: 1px solid #ddd; background: #fff; border-radius: 4px; padding: 10px 14px; font-size: 16px; font-weight: 700; }
+  .tm-n-field em { font-style: normal; font-weight: 400; font-size: 13px; color: #8a8d93; }
+  .tm-n-bar { display: grid; grid-template-columns: 40fr 30fr 30fr; margin-top: 16px; font-size: 12px; font-weight: 600; text-align: center; }
+  .tm-n-bar span { padding: 9px 0; }
+  .tm-n-scale { display: flex; justify-content: space-between; font-size: 11px; color: #8a8d93; padding: 6px 0 4px; }
+  .tm-n-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 22px; font-size: 14px; border-top: 1px solid #f0f0f0; }
+  .tm-n-tog { width: 36px; height: 20px; border-radius: 10px; background: #2f5fd0; position: relative; }
+  .tm-n-tog::after { content: ""; position: absolute; right: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background: #fff; }
+  .tm-n .tm-foot { border-top: 0; }
+  .tm-n .tm-btn { background: #e8e8ea; } .tm-n .tm-btn.pri { background: #2f5fd0; }
+  .finding .tm-hint { margin: 10px 0 0; font-size: 13px; color: var(--text-tertiary); }
 </style>
 </head>
 <body>
@@ -355,7 +415,8 @@
       <h3 data-i18n="u7">Decide with the consequence in view.</h3>
       <p data-i18n="u8">The setting opens from the chart where operators notice odd data, in one click. Dragging the slider shows right away which readings fall outside and how many alerts the setting would trigger.</p>
       <div class="bq-single-img">
-        <img src="images/threshold-slider-en.gif" data-src-en="images/threshold-slider-en.gif" data-src-ko="images/threshold-slider-ko.gif" alt="Dragging the threshold slider resizes the reliable range and updates the alert count">
+        <div class="tm-frame" data-mock="slider" data-interactive data-k="20"></div>
+        <p class="tm-hint"></p>
       </div>
     </div>
 
@@ -363,7 +424,7 @@
       <h3 data-i18n="u9">Why the slider won over two other options.</h3>
       <div class="option-grid">
         <div class="option-card option-card--chosen">
-          <div class="opt-img"><img src="images/threshold-option-a-en.png" data-src-en="images/threshold-option-a-en.png" data-src-ko="images/threshold-option-a-ko.png" alt="Option A: slider with live zones"></div>
+          <div class="opt-img"><div class="tm-frame" data-mock="slider" data-k="20"></div></div>
           <div class="opt-body">
             <div class="opt-head"><span class="opt-letter">A</span><span class="opt-tag" data-i18n="u11">Shipped</span></div>
             <div class="opt-name" data-i18n="u10">Slider with live zones</div>
@@ -371,7 +432,7 @@
           </div>
         </div>
         <div class="option-card">
-          <div class="opt-img"><img src="images/threshold-option-b.png" alt="Option B: numeric inputs with an apply step"></div>
+          <div class="opt-img"><div class="tm-frame" data-mock="numeric"></div></div>
           <div class="opt-body">
             <div class="opt-head"><span class="opt-letter">B</span><span class="opt-tag" data-i18n="u32">Explored</span></div>
             <div class="opt-name" data-i18n="u13">Numeric input</div>
@@ -379,7 +440,7 @@
           </div>
         </div>
         <div class="option-card">
-          <div class="opt-img"><img src="images/threshold-option-c-en.png" data-src-en="images/threshold-option-c-en.png" data-src-ko="images/threshold-option-c-ko.png" alt="Option C: strict, balanced and relaxed presets"></div>
+          <div class="opt-img"><div class="tm-frame" data-mock="preset" data-interactive data-k="20"></div></div>
           <div class="opt-body">
             <div class="opt-head"><span class="opt-letter">C</span><span class="opt-tag" data-i18n="u33">Explored</span></div>
             <div class="opt-name" data-i18n="u15">Presets</div>
@@ -663,6 +724,7 @@
       elH.innerHTML = lang === 'ko' ? (i18nDict[keyH] ? i18nDict[keyH].ko : elH.dataset.enCache) : elH.dataset.enCache;
     }
     document.documentElement.setAttribute('lang', lang === 'ko' ? 'ko' : 'en');
+    document.dispatchEvent(new Event('langchange'));
     var imgs = document.querySelectorAll('img[data-src-en]');
     for (var m = 0; m < imgs.length; m++) {
       var want = lang === 'ko' ? imgs[m].getAttribute('data-src-ko') : imgs[m].getAttribute('data-src-en');
@@ -709,6 +771,148 @@
       lTimer = setTimeout(function () { root.classList.remove('lang-fade'); }, 400);
     });
   })();
+</script>
+<script>
+(function () {
+  var DATA = [50,52,49,51,56,48,47,53,50,null,null,51,49,58,62,50,48,96,52,51,49,47,54,50,8,51,53,49,50,52,57,46,50,null,51,49,63,50,48,52];
+  var T = {
+    en: { sub: 'Last 24 hours', thr: 'Threshold', gap2: 'No data ×2', gap1: 'No data', inr: 'Data in reliable range', al: 'Alerts this would trigger', vd: 'Verdict',
+          ok: 'Balanced', strict: 'Too strict: false alerts', loose: 'Too loose: spikes missed', unit: '', cancel: 'Cancel', save: 'Save',
+          presets: ['Strict', 'Balanced', 'Relaxed'], hint: 'Drag the slider to try it.' },
+    ko: { sub: '최근 24시간', thr: 'Threshold', gap2: '빈값 2구간', gap1: '빈값', inr: '정상 영역 데이터', al: '발생할 알림', vd: '판단',
+          ok: '적정 범위', strict: '알림 과다, 오탐 많음', loose: '느슨함, 튀는 값 놓침', unit: '건', cancel: '취소', save: '저장',
+          presets: ['엄격', '보통', '느슨'], hint: '슬라이더를 직접 움직여 보세요.' }
+  };
+  var MIN = 5, MAX = 45, PRESET = [10, 20, 35];
+  function lang() { return document.documentElement.getAttribute('lang') === 'ko' ? 'ko' : 'en'; }
+  function x(i) { return i / (DATA.length - 1) * 100; }
+
+  function sliderModal(t, k, mode) {
+    var ctl;
+    if (mode === 'preset') {
+      ctl = '<div class="tm-presets">' + t.presets.map(function (p, i) {
+        return '<button type="button" data-k="' + PRESET[i] + '"' + (PRESET[i] === k ? ' class="on"' : '') + '>' + p + '</button>';
+      }).join('') + '</div>';
+    } else {
+      ctl = '<div class="tm-slider" role="slider" tabindex="0" aria-label="Threshold" aria-valuemin="' + MIN + '" aria-valuemax="' + MAX + '">' +
+            '<div class="tm-track"></div><div class="tm-fill"></div><div class="tm-knob"></div></div>' +
+            '<span class="tm-val"></span>';
+    }
+    var pts = DATA.map(function (v, i) {
+      return v === null ? '' : '<div class="tm-pt" data-v="' + v + '" style="left:' + x(i) + '%;bottom:' + v + '%"></div>';
+    }).join('');
+    var step = 100 / (DATA.length - 1);
+    return '<div class="tm">' +
+      '<div class="tm-head"><span class="tm-title">CMP-S3-1F43 · Pressure</span><span class="tm-sub">' + t.sub + '</span></div>' +
+      '<div class="tm-ctl"><span class="tm-ctl-label">' + t.thr + '</span>' + ctl + '</div>' +
+      '<div class="tm-chart"><div class="tm-y"><span style="top:0">100</span><span style="top:50%">50</span><span style="top:100%">0</span></div>' +
+      '<div class="tm-plotwrap"><div class="tm-plot"><div class="tm-band"></div>' +
+      '<div class="tm-gap" style="left:' + (x(9) - step / 2) + '%;width:' + (2 * step) + '%"></div>' +
+      '<div class="tm-gap" style="left:' + (x(33) - step / 2) + '%;width:' + step + '%"></div>' + pts + '</div>' +
+      '<div class="tm-xl"><span style="left:' + (x(9) + step / 2) + '%">' + t.gap2 + '</span><span style="left:' + (x(33) + step / 2) + '%">' + t.gap1 + '</span></div></div></div>' +
+      '<div class="tm-cards"><div class="tm-card"><small>' + t.inr + '</small><b class="tm-inr"></b></div>' +
+      '<div class="tm-card"><small>' + t.al + '</small><b class="tm-al"></b></div>' +
+      '<div class="tm-card verdict"><small>' + t.vd + '</small><b class="tm-vd"></b></div></div>' +
+      '<div class="tm-foot"><span class="tm-btn">' + t.cancel + '</span><span class="tm-btn pri">' + t.save + '</span></div></div>';
+  }
+
+  function numericModal() {
+    return '<div class="tm tm-n">' +
+      '<div class="tm-head"><span class="tm-title">MSI Threshold Settings</span><span class="tm-sub">Updated 2023-04-26 08:24</span></div>' +
+      '<div class="tm-n-meta"><span>Equipment</span><span>Brake Press X0123789</span><span>Metric</span><span>MSI Rate (%)</span></div>' +
+      '<div class="tm-n-body"><div class="tm-n-inputs">' +
+      '<div><label><i style="background:#e8963a"></i>Warning</label><div class="tm-n-field">70<em>% below</em></div></div>' +
+      '<div><label><i style="background:#d93a2b"></i>Critical</label><div class="tm-n-field">40<em>% below</em></div></div></div>' +
+      '<div class="tm-n-bar"><span style="background:#fff2f2;color:#c0392b;border-top:2px solid #d93a2b">Abnormal</span>' +
+      '<span style="background:#fdf2e4;color:#e8963a;border-top:2px solid #e8963a">Warning</span>' +
+      '<span style="background:#e6f2ea;color:#2f9e5a;border-top:2px solid #2f9e5a">Normal</span></div>' +
+      '<div class="tm-n-scale"><span>0%</span><span>100%</span></div></div>' +
+      '<div class="tm-n-row">Notify me when below threshold<span class="tm-n-tog"></span></div>' +
+      '<div class="tm-n-row">Show threshold lines on chart<span class="tm-n-tog"></span></div>' +
+      '<div class="tm-foot"><span class="tm-btn">Cancel</span><span class="tm-btn pri">Save</span></div></div>';
+  }
+
+  function update(root, k) {
+    var t = T[lang()];
+    root.dataset.k = k;
+    var band = root.querySelector('.tm-band');
+    band.style.bottom = (50 - k) + '%'; band.style.height = (2 * k) + '%';
+    var tot = 0, inn = 0;
+    root.querySelectorAll('.tm-pt').forEach(function (p) {
+      var v = +p.dataset.v, out = v < 50 - k || v > 50 + k;
+      p.classList.toggle('out', out); tot++; if (!out) inn++;
+    });
+    var al = tot - inn, pct = Math.round(inn / tot * 100);
+    var inr = root.querySelector('.tm-inr'); inr.textContent = pct + '%'; inr.style.color = k < 10 ? '#d93a2b' : '#2f9e5a';
+    root.querySelector('.tm-al').textContent = al + t.unit;
+    var vd = root.querySelector('.tm-vd'), card = vd.parentElement, c, bg, txt;
+    if (k < 10) { txt = t.strict; c = '#d93a2b'; bg = '#fff2f2'; }
+    else if (k > 35) { txt = t.loose; c = '#e8963a'; bg = '#fdf2e4'; }
+    else { txt = t.ok; c = '#2f9e5a'; bg = '#e6f2ea'; }
+    vd.textContent = txt; vd.style.color = c; card.style.background = bg;
+    var s = root.querySelector('.tm-slider');
+    if (s) {
+      var p = (k - MIN) / (MAX - MIN) * 100;
+      root.querySelector('.tm-fill').style.width = p + '%';
+      root.querySelector('.tm-knob').style.left = p + '%';
+      root.querySelector('.tm-val').textContent = '±' + k;
+      s.setAttribute('aria-valuenow', k);
+    }
+    root.querySelectorAll('.tm-presets button').forEach(function (b) { b.classList.toggle('on', +b.dataset.k === k); });
+  }
+
+  function fit(frame) {
+    var tm = frame.querySelector('.tm'); if (!tm) return;
+    var s = frame.clientWidth / 680;
+    tm.style.transform = 'scale(' + s + ')';
+    frame.style.height = (tm.offsetHeight * s) + 'px';
+  }
+
+  function render(frame) {
+    var mode = frame.dataset.mock, t = T[lang()];
+    var k = +(frame.dataset.k || 20);
+    frame.innerHTML = mode === 'numeric' ? numericModal() : sliderModal(t, k, mode);
+    if (mode !== 'numeric') update(frame, k);
+    fit(frame);
+    var hint = frame.nextElementSibling;
+    if (hint && hint.classList.contains('tm-hint')) hint.textContent = t.hint;
+    if (frame.hasAttribute('data-interactive')) bind(frame);
+  }
+
+  function bind(frame) {
+    var s = frame.querySelector('.tm-slider');
+    if (s) {
+      var setFromX = function (cx) {
+        var r = s.getBoundingClientRect(), p = Math.min(1, Math.max(0, (cx - r.left) / r.width));
+        update(frame, Math.round(MIN + p * (MAX - MIN)));
+      };
+      s.addEventListener('pointerdown', function (e) { s.setPointerCapture(e.pointerId); s.classList.add('is-drag'); setFromX(e.clientX); });
+      s.addEventListener('pointermove', function (e) { if (s.classList.contains('is-drag')) setFromX(e.clientX); });
+      var end = function () { s.classList.remove('is-drag'); };
+      s.addEventListener('pointerup', end); s.addEventListener('pointercancel', end);
+      s.addEventListener('keydown', function (e) {
+        var k = +frame.dataset.k;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowUp') k++;
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') k--;
+        else return;
+        e.preventDefault(); update(frame, Math.min(MAX, Math.max(MIN, k)));
+      });
+    }
+    frame.querySelectorAll('.tm-presets button').forEach(function (b) {
+      b.addEventListener('click', function () { update(frame, +b.dataset.k); });
+    });
+  }
+
+  var frames = document.querySelectorAll('.tm-frame');
+  frames.forEach(render);
+  if (window.ResizeObserver) {
+    var ro = new ResizeObserver(function (es) { es.forEach(function (e) { fit(e.target); }); });
+    frames.forEach(function (f) { ro.observe(f); });
+  } else {
+    window.addEventListener('resize', function () { frames.forEach(fit); });
+  }
+  document.addEventListener('langchange', function () { frames.forEach(render); });
+})();
 </script>
 </body>
 </html>

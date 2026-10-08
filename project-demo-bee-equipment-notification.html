@@ -56,7 +56,10 @@
   .option-card .opt-body { padding: 16px 10px 10px; }
   .option-card--chosen .opt-body { padding: 12px 22px; }
   .option-card .opt-tag { display: inline-flex; align-items: center; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: color-mix(in srgb, var(--text-primary) 7%, transparent); color: var(--text-secondary); }
-  .option-card--chosen .opt-tag { background: var(--text-primary); color: var(--bg-page); }
+  .option-card--chosen { background: var(--text-primary); }
+  .option-card--chosen .opt-tag { background: var(--bg-page); color: var(--text-primary); }
+  .option-card.option-card--chosen .opt-name { color: var(--bg-page); }
+  .finding .option-card--chosen .opt-note { color: color-mix(in srgb, var(--bg-page) 72%, transparent); }
   .option-card .opt-name { margin-top: 10px; font-weight: 700; font-size: 16px; letter-spacing: -0.01em; color: var(--text-primary); }
   .option-card--chosen .opt-name { font-size: 22px; margin-top: 14px; line-height: 1.4; }
   .finding .option-card .opt-note { margin: 6px 0 0; font-size: 14.5px; color: var(--text-secondary); line-height: 1.6; }

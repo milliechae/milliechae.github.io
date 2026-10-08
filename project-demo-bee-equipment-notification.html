@@ -50,6 +50,7 @@
   .option-card .opt-body { padding: 14px 16px 16px; }
   .option-card .opt-name { font-weight: 600; font-size: 15px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
   .option-card .opt-badge { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--text-primary); color: var(--bg-page); }
+  .option-card .opt-note { margin: 8px 0 0; font-size: 13.5px; color: var(--text-secondary); line-height: 1.5; }
   .option-card dl { margin: 10px 0 0; font-size: 13.5px; }
   .option-card dt { color: var(--text-tertiary); font-size: 12px; margin-top: 8px; }
   .option-card dd { margin: 2px 0 0; color: var(--text-secondary); }
@@ -350,106 +351,79 @@
 
   </section>
 
-  <!-- ★ Deep dive: threshold flow. 이미지 파일을 images/ 에 아래 이름으로 넣으면 점선 박스가 자동으로 이미지로 바뀝니다 -->
+  <!-- ★ Deep dive: threshold flow. 이미지는 언어 토글에 따라 -en / -ko 파일로 바뀝니다 -->
   <section class="content-block" id="threshold-deep-dive">
 
-    <span class="section-label" data-i18n="t72">DEEP DIVE · ONE FLOW</span>
+    <span class="section-label" data-i18n="u1">DEEP DIVE · ONE FLOW</span>
 
-    <h2 class="pain-heading" data-i18n="t73">The real problem wasn't finding alerts. It was checking alerts that didn't matter.</h2>
+    <h2 class="pain-heading" data-i18n="u2">The real problem wasn't finding alerts. It was checking alerts that didn't matter.</h2>
 
     <div class="reframe-compare">
       <div class="rc-card">
-        <span class="rc-tag" data-i18n="t74">The brief</span>
-        <p data-i18n="t75">Help operators spot the alerts that matter faster.</p>
+        <span class="rc-tag" data-i18n="u3">The brief</span>
+        <p data-i18n="u4">Help operators spot the alerts that matter faster.</p>
       </div>
       <span class="rc-arrow" aria-hidden="true">→</span>
       <div class="rc-card rc-card--new">
-        <span class="rc-tag" data-i18n="t76">What I reframed it to</span>
-        <p data-i18n="t77">Stop bad data from becoming alerts, so there is less to check in the first place.</p>
+        <span class="rc-tag" data-i18n="u5">Reframed</span>
+        <p data-i18n="u6">Stop bad data from becoming alerts, so there's less to check at all.</p>
       </div>
     </div>
 
-    <p data-i18n="t78">Interviews showed that speeding up each check would only help so much when many checks were pointless. So I added a per-equipment data-quality threshold. Operators decide how strict the filter is, and readings outside it no longer reach them as alerts.</p>
-
     <div class="finding">
-      <h3 data-i18n="t79">Decide with the consequence in view.</h3>
-      <p data-i18n="t80">Operators notice odd data while looking at the chart, so the setting opens from a settings icon on that same chart: one click, no trip to a settings menu. Inside, dragging the slider resizes a green "reliable" band over the last 24 hours of data. Points outside turn red, missing values are marked on the axis, and a summary shows how many alerts this setting would trigger. The result is visible before saving, not after the next alert.</p>
+      <h3 data-i18n="u7">Decide with the consequence in view.</h3>
+      <p data-i18n="u8">The setting opens from the chart where operators notice odd data, in one click. Dragging the slider shows right away which readings fall outside and how many alerts the setting would trigger.</p>
       <div class="bq-single-img">
-        <img src="images/threshold-slider.gif" alt="Dragging the threshold slider resizes the green reliable band on the sensor chart and updates the alert count" onerror="this.outerHTML='&lt;div class=&quot;img-slot&quot;&gt;images/threshold-slider.gif — slider interaction recording&lt;/div&gt;'">
+        <img src="images/threshold-slider-en.gif" data-src-en="images/threshold-slider-en.gif" data-src-ko="images/threshold-slider-ko.gif" alt="Dragging the threshold slider resizes the reliable range and updates the alert count">
       </div>
-      <!-- 프로토타입 공유 링크가 생기면 href에 넣고 hidden 을 지우세요 -->
-      <a class="proto-link" href="#" target="_blank" rel="noopener" hidden><span data-i18n="t81">Open the interactive prototype</span> <span aria-hidden="true">↗</span></a>
     </div>
 
     <div class="finding">
-      <h3 data-i18n="t82">One decision, three options.</h3>
-      <p data-i18n="t83">The core choice was how operators set the threshold. I compared three directions on speed, control, and how soon the user sees the result.</p>
+      <h3 data-i18n="u9">One decision, three options.</h3>
       <div class="option-grid">
         <div class="option-card option-card--chosen">
-          <div class="opt-img"><img src="images/threshold-option-a.png" alt="Option A: slider with live green and red zones" onerror="this.outerHTML='&lt;div class=&quot;img-slot&quot;&gt;threshold-option-a.png&lt;/div&gt;'"></div>
+          <div class="opt-img"><img src="images/threshold-option-a-en.png" data-src-en="images/threshold-option-a-en.png" data-src-ko="images/threshold-option-a-ko.png" alt="Option A: slider with live zones"></div>
           <div class="opt-body">
-            <div class="opt-name"><span data-i18n="t84">A. Slider with live zones</span> <span class="opt-badge" data-i18n="t85">Chosen</span></div>
-            <dl>
-              <dt data-i18n="t86">Gains</dt><dd data-i18n="t87">Sees the result while adjusting; fast trial and error</dd>
-              <dt data-i18n="t88">Costs</dt><dd data-i18n="t89">Less suited to typing an exact value</dd>
-            </dl>
+            <div class="opt-name"><span data-i18n="u10">A. Slider with live zones</span> <span class="opt-badge" data-i18n="u11">Chosen</span></div>
+            <p class="opt-note" data-i18n="u12">See the result while adjusting. Less suited to exact values.</p>
           </div>
         </div>
         <div class="option-card">
-          <div class="opt-img"><img src="images/threshold-option-b.png" alt="Option B: numeric input fields with an apply button" onerror="this.outerHTML='&lt;div class=&quot;img-slot&quot;&gt;threshold-option-b.png&lt;/div&gt;'"></div>
+          <div class="opt-img"><img src="images/threshold-option-b.png" alt="Option B: numeric inputs with an apply step"></div>
           <div class="opt-body">
-            <div class="opt-name" data-i18n="t90">B. Numeric input</div>
-            <dl>
-              <dt data-i18n="t91">Gains</dt><dd data-i18n="t92">Precise values</dd>
-              <dt data-i18n="t93">Costs</dt><dd data-i18n="t94">Result only after applying, so more attempts and guesswork</dd>
-            </dl>
+            <div class="opt-name" data-i18n="u13">B. Numeric input</div>
+            <p class="opt-note" data-i18n="u14">Precise, but the result shows only after applying.</p>
           </div>
         </div>
         <div class="option-card">
-          <div class="opt-img"><img src="images/threshold-option-c.png" alt="Option C: strict, balanced and relaxed presets" onerror="this.outerHTML='&lt;div class=&quot;img-slot&quot;&gt;threshold-option-c.png&lt;/div&gt;'"></div>
+          <div class="opt-img"><img src="images/threshold-option-c-en.png" data-src-en="images/threshold-option-c-en.png" data-src-ko="images/threshold-option-c-ko.png" alt="Option C: strict, balanced and relaxed presets"></div>
           <div class="opt-body">
-            <div class="opt-name" data-i18n="t95">C. Presets</div>
-            <dl>
-              <dt data-i18n="t96">Gains</dt><dd data-i18n="t97">Fewest decisions</dd>
-              <dt data-i18n="t98">Costs</dt><dd data-i18n="t99">Ignores that each machine behaves differently</dd>
-            </dl>
+            <div class="opt-name" data-i18n="u15">C. Presets</div>
+            <p class="opt-note" data-i18n="u16">Fewest decisions, but ignores how each machine differs.</p>
           </div>
         </div>
       </div>
-      <p data-i18n="t100">I also kept it a modal rather than a separate page or side panel. It's a short task on one machine: open, adjust, save, return. The chart inside the modal carries the context the operator needs.</p>
     </div>
 
     <div class="finding">
-      <h3 data-i18n="t101">Every state defined before build.</h3>
-      <p data-i18n="t102">A threshold that silently fails to save is worse than none, so each state had an answer before engineering started.</p>
+      <h3 data-i18n="u17">Every state defined before build.</h3>
       <table class="state-table">
-        <thead><tr><th data-i18n="t103">State</th><th data-i18n="t104">What the user sees</th></tr></thead>
         <tbody>
-          <tr><td data-i18n="t105">Missing values in the data</td><td data-i18n="t106">Marked on the axis and excluded from the alert count</td></tr>
-          <tr><td data-i18n="t107">Not enough data to suggest a range</td><td data-i18n="t108">Empty state explaining when the setting becomes available</td></tr>
-          <tr><td data-i18n="t109">Too strict or too loose</td><td data-i18n="t110">The verdict warns about too many alerts or missed spikes</td></tr>
-          <tr><td data-i18n="t111">Closing with unsaved changes</td><td data-i18n="t112">Choose to discard or keep editing</td></tr>
-          <tr><td data-i18n="t113">Save fails</td><td data-i18n="t114">Modal stays open with the value kept, inline error and retry</td></tr>
-          <tr><td data-i18n="t115">Applied to several machines, some fail</td><td data-i18n="t116">Lists which failed and why; retry only those</td></tr>
+          <tr><td data-i18n="u18">Missing values</td><td data-i18n="u19">Marked on the axis, excluded from the alert count</td></tr>
+          <tr><td data-i18n="u20">Not enough data</td><td data-i18n="u21">Empty state explaining when it becomes available</td></tr>
+          <tr><td data-i18n="u22">Unsaved changes on close</td><td data-i18n="u23">Discard or keep editing</td></tr>
+          <tr><td data-i18n="u24">Save fails</td><td data-i18n="u25">Value kept, inline error and retry</td></tr>
+          <tr><td data-i18n="u26">Some machines fail in bulk apply</td><td data-i18n="u27">Shows which and why; retry only those</td></tr>
         </tbody>
       </table>
-      <div class="bq-single-img">
-        <img src="images/threshold-states.png" alt="Unsaved changes, save failed and not enough data states of the threshold modal" onerror="this.outerHTML='&lt;div class=&quot;img-slot&quot;&gt;images/threshold-states.png — state screens&lt;/div&gt;'">
-      </div>
     </div>
 
     <div class="finding">
-      <h3 data-i18n="t117">Rebuilt with AI, judged by hand.</h3>
-      <p data-i18n="t118">I rebuilt this flow in Claude Design on top of the existing product screen and its design system. The first output looked finished but missed the point, so most of the work was judging and correcting it.</p>
-      <ul class="ai-list">
-        <li><div class="ai-got"><span class="ai-col-label" data-i18n="t119">AI's first version</span><span data-i18n="t120">A generic "alert when health drops below X%" setting with number inputs</span></div><div class="ai-fix"><span class="ai-col-label" data-i18n="t121">What I changed</span><span data-i18n="t122">Refocused it on data quality, and replaced inputs with the slider and live chart</span></div></li>
-        <li><div class="ai-got"><span data-i18n="t123">Saturated blue buttons and heavy, muddy chart colors</span></div><div class="ai-fix"><span data-i18n="t124">Matched the product's palette: soft tinted zones, strong color only for numbers and markers</span></div></li>
-        <li><div class="ai-got"><span data-i18n="t125">English modal inside a Korean product, and an extra mascot</span></div><div class="ai-fix"><span data-i18n="t126">Korean copy matching the product, extra elements removed</span></div></li>
-        <li><div class="ai-got"><span data-i18n="t127">No unsaved-changes or save-failure states</span></div><div class="ai-fix"><span data-i18n="t128">Added every state in the table above</span></div></li>
-      </ul>
+      <h3 data-i18n="u28">Rebuilt with AI, judged by hand.</h3>
+      <p data-i18n="u29">I rebuilt this flow in Claude Design on the existing product screen. Its first version (option B) was a generic health alert with blue buttons and English copy. I refocused it on data quality, matched the product's palette and Korean copy, and added the missing states.</p>
     </div>
 
-    <p class="reconstruct-note" data-i18n="t129">The original screens are confidential. This flow is reconstructed from memory; data and numbers are illustrative.</p>
+    <p class="reconstruct-note" data-i18n="u30">Original screens are confidential. Reconstructed from memory; data is illustrative.</p>
 
   </section>
 
@@ -618,64 +592,36 @@
     t69: { ko: "빈값이나 튀는 센서 값도 실제 이상과 똑같이 알림을 발생시켰습니다. 현장 담당자는 알림을 하나하나 직접 확인했지만, 상당수는 의미 없는 알림이었습니다. 사람이 볼 필요가 없던 알림에 많은 노력이 쓰이고 있었습니다." },
     t70: { ko: "04&nbsp;&nbsp;의미 없는 알림 자체를 줄이기" },
     t71: { ko: "잘못된 센서 데이터를 알림이 되기 전에 걸러내면, 현장 담당자가 필요 없는 확인에 쓰는 시간이 줄어들 것이다." },
-    t72: { ko: "딥다이브 · 하나의 플로우" },
-    t73: { ko: "진짜 문제는 알림을 찾는 게 아니라, 볼 필요 없는 알림까지 확인하는 것이었습니다." },
-    t74: { ko: "처음 받은 과제" },
-    t75: { ko: "현장 담당자가 중요한 알림을 더 빨리 알아보게 하기." },
-    t76: { ko: "다시 정의한 문제" },
-    t77: { ko: "잘못된 데이터가 알림이 되지 않게 해서, 확인할 일 자체를 줄이기." },
-    t78: { ko: "인터뷰를 통해, 확인할 필요 없는 알림이 많은 상황에서는 확인 속도를 높이는 것만으로 한계가 있다는 걸 알게 됐습니다. 그래서 장비별 데이터 정확도 기준(threshold) 설정을 추가했습니다. 현장 담당자가 필터의 엄격함을 정하면, 그 범위를 벗어난 값은 더 이상 알림으로 오지 않습니다." },
-    t79: { ko: "결과를 보면서 결정하기." },
-    t80: { ko: "현장 담당자는 차트를 보다가 이상한 데이터를 발견하기 때문에, 설정은 바로 그 차트의 설정 아이콘에서 열립니다. 설정 메뉴로 이동하지 않고 클릭 한 번이면 됩니다. 슬라이더를 움직이면 최근 24시간 데이터 위의 초록색 '신뢰 범위'가 바로 바뀌고, 범위를 벗어난 값은 빨간색으로, 빈값은 축 위에 표시됩니다. 이 설정으로 알림이 몇 건 발생할지도 함께 보여, 다음 알림이 오기 전이 아니라 저장하기 전에 결과를 확인할 수 있습니다." },
-    t81: { ko: "인터랙티브 프로토타입 보기" },
-    t82: { ko: "하나의 결정, 세 가지 대안." },
-    t83: { ko: "핵심 결정은 현장 담당자가 기준을 어떻게 설정하느냐였습니다. 속도, 통제력, 결과를 얼마나 빨리 볼 수 있는지를 기준으로 세 가지 방향을 비교했습니다." },
-    t84: { ko: "A. 실시간 영역 슬라이더" },
-    t85: { ko: "선택" },
-    t86: { ko: "얻는 것" },
-    t87: { ko: "조정하면서 결과를 바로 봄, 시행착오가 빠름" },
-    t88: { ko: "잃는 것" },
-    t89: { ko: "정확한 수치 입력에는 덜 적합" },
-    t90: { ko: "B. 숫자 직접 입력" },
-    t91: { ko: "얻는 것" },
-    t92: { ko: "정밀한 값 설정" },
-    t93: { ko: "잃는 것" },
-    t94: { ko: "적용해야 결과를 볼 수 있어 시도와 추측이 늘어남" },
-    t95: { ko: "C. 프리셋" },
-    t96: { ko: "얻는 것" },
-    t97: { ko: "결정이 가장 적음" },
-    t98: { ko: "잃는 것" },
-    t99: { ko: "장비마다 다른 특성을 반영하지 못함" },
-    t100: { ko: "형태는 별도 페이지나 사이드 패널이 아닌 모달로 유지했습니다. 장비 하나에 대한 짧은 작업이라 열고, 조정하고, 저장하고, 돌아가면 끝납니다. 필요한 맥락은 모달 안의 차트가 담고 있습니다." },
-    t101: { ko: "개발 전에 모든 상태를 정의하기." },
-    t102: { ko: "저장에 조용히 실패하는 기준값은 없느니만 못하기 때문에, 개발을 시작하기 전에 모든 상태에 대한 답을 정해두었습니다." },
-    t103: { ko: "상태" },
-    t104: { ko: "사용자가 보는 것" },
-    t105: { ko: "데이터에 빈값이 있음" },
-    t106: { ko: "축 위에 표시하고 알림 계산에서 제외" },
-    t107: { ko: "기준을 제안할 데이터가 부족함" },
-    t108: { ko: "언제 설정할 수 있는지 설명하는 빈 상태" },
-    t109: { ko: "기준이 너무 엄격하거나 느슨함" },
-    t110: { ko: "판단 영역이 알림 과다 또는 튀는 값 누락을 경고" },
-    t111: { ko: "저장하지 않고 닫기" },
-    t112: { ko: "변경 취소 또는 계속 편집 선택" },
-    t113: { ko: "저장 실패" },
-    t114: { ko: "입력값을 유지한 채 모달이 열려 있고, 오류와 다시 시도 표시" },
-    t115: { ko: "여러 장비에 적용 중 일부 실패" },
-    t116: { ko: "실패한 장비와 이유를 보여주고, 실패한 것만 다시 시도" },
-    t117: { ko: "AI로 다시 만들고, 판단은 직접 하기." },
-    t118: { ko: "기존 제품 화면과 디자인 시스템 위에서 Claude Design으로 이 플로우를 재구성했습니다. 첫 결과물은 완성돼 보였지만 핵심을 놓치고 있었고, 대부분의 작업은 그것을 판단하고 고치는 일이었습니다." },
-    t119: { ko: "AI의 첫 결과" },
-    t120: { ko: "숫자 입력으로 된 일반적인 '건전성이 X% 이하일 때 알림' 설정" },
-    t121: { ko: "내가 바꾼 것" },
-    t122: { ko: "데이터 정확도 개념으로 다시 맞추고, 입력창을 슬라이더와 실시간 차트로 교체" },
-    t123: { ko: "진한 파란 버튼과 무겁고 탁한 차트 색상" },
-    t124: { ko: "제품 팔레트에 맞춤: 영역은 연한 틴트, 강한 색은 숫자와 표시에만" },
-    t125: { ko: "한국어 제품 안의 영어 모달, 불필요한 캐릭터" },
-    t126: { ko: "제품에 맞는 한국어 문구, 불필요한 요소 제거" },
-    t127: { ko: "저장하지 않고 닫기, 저장 실패 상태 없음" },
-    t128: { ko: "위 표의 모든 상태 추가" },
-    t129: { ko: "원본 화면은 보안상 공개할 수 없어, 기억을 바탕으로 재구성했습니다. 데이터와 수치는 예시입니다." }
+    u1: { ko: "딥다이브 · 하나의 플로우" },
+    u2: { ko: "진짜 문제는 알림을 찾는 게 아니라, 볼 필요 없는 알림까지 확인하는 것이었습니다." },
+    u3: { ko: "처음 받은 과제" },
+    u4: { ko: "현장 담당자가 중요한 알림을 더 빨리 알아보게 하기." },
+    u5: { ko: "다시 정의한 문제" },
+    u6: { ko: "잘못된 데이터가 알림이 되지 않게 해서, 확인할 일 자체를 줄이기." },
+    u7: { ko: "결과를 보면서 결정하기." },
+    u8: { ko: "설정은 현장 담당자가 이상한 데이터를 발견하는 바로 그 차트에서 클릭 한 번으로 열립니다. 슬라이더를 움직이면 어떤 값이 범위를 벗어나는지, 이 설정으로 알림이 몇 건 발생할지 바로 보입니다." },
+    u9: { ko: "하나의 결정, 세 가지 대안." },
+    u10: { ko: "A. 실시간 영역 슬라이더" },
+    u11: { ko: "선택" },
+    u12: { ko: "조정하면서 결과를 바로 봄. 정확한 수치 입력에는 덜 적합." },
+    u13: { ko: "B. 숫자 직접 입력" },
+    u14: { ko: "정밀하지만, 적용해야 결과가 보임." },
+    u15: { ko: "C. 프리셋" },
+    u16: { ko: "결정은 가장 적지만, 장비마다 다른 특성을 반영 못 함." },
+    u17: { ko: "개발 전에 모든 상태를 정의하기." },
+    u18: { ko: "빈값" },
+    u19: { ko: "축 위에 표시, 알림 계산에서 제외" },
+    u20: { ko: "데이터 부족" },
+    u21: { ko: "언제 설정할 수 있는지 설명하는 빈 상태" },
+    u22: { ko: "저장하지 않고 닫기" },
+    u23: { ko: "변경 취소 또는 계속 편집" },
+    u24: { ko: "저장 실패" },
+    u25: { ko: "입력값 유지, 오류 표시와 다시 시도" },
+    u26: { ko: "일괄 적용 중 일부 실패" },
+    u27: { ko: "실패한 장비와 이유 표시, 그것만 다시 시도" },
+    u28: { ko: "AI로 다시 만들고, 판단은 직접 하기." },
+    u29: { ko: "기존 제품 화면 위에서 Claude Design으로 이 플로우를 재구성했습니다. 첫 결과물(B안)은 파란 버튼과 영어 문구의 일반적인 건전성 알림 설정이었습니다. 이를 데이터 정확도 개념으로 다시 맞추고, 제품 팔레트와 한국어 문구에 맞췄으며, 빠진 상태를 추가했습니다." },
+    u30: { ko: "원본 화면은 보안상 공개할 수 없어 기억을 바탕으로 재구성했으며, 데이터는 예시입니다." },
   };
 
   function applyLang(lang) {
@@ -694,6 +640,11 @@
       elH.innerHTML = lang === 'ko' ? (i18nDict[keyH] ? i18nDict[keyH].ko : elH.dataset.enCache) : elH.dataset.enCache;
     }
     document.documentElement.setAttribute('lang', lang === 'ko' ? 'ko' : 'en');
+    var imgs = document.querySelectorAll('img[data-src-en]');
+    for (var m = 0; m < imgs.length; m++) {
+      var want = lang === 'ko' ? imgs[m].getAttribute('data-src-ko') : imgs[m].getAttribute('data-src-en');
+      if (imgs[m].getAttribute('src') !== want) imgs[m].setAttribute('src', want);
+    }
     var enSeg = document.querySelector('.lang-toggle .lang-en');
     var koSeg = document.querySelector('.lang-toggle .lang-ko');
     if (enSeg && koSeg) {

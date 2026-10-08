@@ -46,8 +46,10 @@
   .reframe-compare .rc-arrow { align-self: center; color: var(--text-tertiary); font-size: 20px; }
   .option-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 24px 16px; margin: 28px 0 0; }
   .finding .option-grid + p { margin-top: 28px; }
-  .option-card--chosen .opt-img { box-shadow: 0 0 0 3px var(--bg-soft), 0 0 0 5px var(--text-primary); }
-  .option-card--chosen { padding: 14px; }
+  .option-card--chosen .opt-img { box-shadow: 0 0 0 3px var(--bg-page), 0 0 0 5px var(--text-primary); }
+  .option-card.option-card--chosen { background: transparent; padding: 5px; gap: 28px; }
+  .option-card.option-card--chosen:hover { transform: none; }
+  .option-card.option-card--chosen .opt-body { padding: 0; }
   .option-card .opt-eyebrow { display: block; font-size: 11.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text-tertiary); }
   .option-card--chosen .opt-eyebrow { color: var(--text-primary); display: inline-flex; align-items: center; gap: 6px; }
   .option-card--chosen .opt-eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-green); }

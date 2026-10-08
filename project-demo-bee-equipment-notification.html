@@ -46,6 +46,9 @@
   .reframe-compare .rc-arrow { align-self: center; color: var(--text-tertiary); font-size: 20px; }
   .option-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 24px 16px; margin: 28px 0 0; }
   .finding .option-grid + p { margin-top: 28px; }
+  .option-card .opt-head { display: flex; align-items: center; gap: 10px; }
+  .option-card .opt-letter { font-size: 28px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: var(--text-tertiary); }
+  .option-card.option-card--chosen .opt-letter { font-size: 40px; color: var(--bg-page); }
   .option-card { background: var(--bg-soft); border-radius: var(--radius-lg); padding: 10px; display: flex; flex-direction: column; transition: transform .25s cubic-bezier(.2,.8,.2,1); }
   .option-card:hover { transform: translateY(-2px); }
   .option-card--chosen { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0,1.5fr) minmax(0,1fr); align-items: center; gap: 8px; }
@@ -362,7 +365,7 @@
         <div class="option-card option-card--chosen">
           <div class="opt-img"><img src="images/threshold-option-a-en.png" data-src-en="images/threshold-option-a-en.png" data-src-ko="images/threshold-option-a-ko.png" alt="Option A: slider with live zones"></div>
           <div class="opt-body">
-            <span class="opt-tag" data-i18n="u11">Chosen</span>
+            <div class="opt-head"><span class="opt-letter">A</span><span class="opt-tag" data-i18n="u11">Shipped</span></div>
             <div class="opt-name" data-i18n="u10">Slider with live zones</div>
             <p class="opt-note" data-i18n="u12">See the result while adjusting. Less suited to exact values.</p>
           </div>
@@ -370,7 +373,7 @@
         <div class="option-card">
           <div class="opt-img"><img src="images/threshold-option-b.png" alt="Option B: numeric inputs with an apply step"></div>
           <div class="opt-body">
-            <span class="opt-tag" data-i18n="u32">Not chosen</span>
+            <div class="opt-head"><span class="opt-letter">B</span><span class="opt-tag" data-i18n="u32">Explored</span></div>
             <div class="opt-name" data-i18n="u13">Numeric input</div>
             <p class="opt-note" data-i18n="u14">Precise, but the result shows only after applying.</p>
           </div>
@@ -378,7 +381,7 @@
         <div class="option-card">
           <div class="opt-img"><img src="images/threshold-option-c-en.png" data-src-en="images/threshold-option-c-en.png" data-src-ko="images/threshold-option-c-ko.png" alt="Option C: strict, balanced and relaxed presets"></div>
           <div class="opt-body">
-            <span class="opt-tag" data-i18n="u33">Not chosen</span>
+            <div class="opt-head"><span class="opt-letter">C</span><span class="opt-tag" data-i18n="u33">Explored</span></div>
             <div class="opt-name" data-i18n="u15">Presets</div>
             <p class="opt-note" data-i18n="u16">Fewest decisions, but ignores how each machine differs.</p>
           </div>
@@ -619,7 +622,7 @@
     u8: { ko: "설정은 현장 담당자가 이상한 데이터를 발견하는 바로 그 차트에서 클릭 한 번으로 열립니다. 슬라이더를 움직이면 어떤 값이 범위를 벗어나는지, 이 설정으로 알림이 몇 건 발생할지 바로 보입니다." },
     u9: { ko: "두 가지 대안 대신 슬라이더를 선택한 이유." },
     u10: { ko: "실시간 영역 슬라이더" },
-    u11: { ko: "선택" },
+    u11: { ko: "출시" },
     u12: { ko: "조정하면서 결과를 바로 봄. 정확한 수치 입력에는 덜 적합." },
     u13: { ko: "숫자 직접 입력" },
     u14: { ko: "정밀하지만, 적용해야 결과가 보임." },
@@ -639,8 +642,8 @@
     u28: { ko: "AI로 다시 만들고, 판단은 직접 하기." },
     u29: { ko: "기존 제품 화면 위에서 Claude Design으로 이 플로우를 재구성했습니다. 첫 결과물(위의 숫자 입력 안)은 파란 버튼과 영어 문구의 일반적인 건전성 알림 설정이었습니다. 이를 데이터 정확도 개념으로 다시 맞추고, 제품 팔레트와 한국어 문구에 맞췄으며, 빠진 상태를 추가했습니다." },
     u31: { ko: "현장 담당자는 적정 값을 미리 알지 못합니다. 데이터가 어떻게 반응하는지 보면서 맞춰갑니다. 숫자 입력은 적용하기 전까지 그 반응을 보여주지 못했고, 프리셋은 장비별로 조정할 수 없었습니다. 즉각적인 피드백과 세밀한 조정을 모두 지킨 건 슬라이더뿐이었습니다." },
-    u32: { ko: "제외" },
-    u33: { ko: "제외" },
+    u32: { ko: "검토" },
+    u33: { ko: "검토" },
     u30: { ko: "원본 화면은 보안상 공개할 수 없어 기억을 바탕으로 재구성했으며, 데이터는 예시입니다." },
   };
 

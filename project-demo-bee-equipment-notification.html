@@ -42,18 +42,23 @@
   .reframe-compare .rc-tag { font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--text-tertiary); }
   .reframe-compare .rc-card p { margin: 8px 0 0; color: var(--text-primary); font-size: 16px; }
   .reframe-compare .rc-arrow { align-self: center; color: var(--text-tertiary); font-size: 20px; }
-  .option-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; margin: 24px 0 0; }
-  .option-card { border: 1px solid var(--line); border-radius: var(--radius-md); overflow: hidden; display: flex; flex-direction: column; }
-  .option-card--chosen { border-color: var(--text-primary); }
-  .option-card .opt-img { aspect-ratio: 4 / 3; background: var(--bg-soft); }
+  .option-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; margin: 28px 0 0; }
+  .option-card { background: var(--bg-soft); border-radius: 22px; padding: 10px; display: flex; flex-direction: column; transition: transform .25s cubic-bezier(.2,.8,.2,1); }
+  .option-card:hover { transform: translateY(-2px); }
+  .option-card--chosen { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0,1.5fr) minmax(0,1fr); align-items: center; gap: 8px; }
+  .option-card .opt-img { border-radius: 14px; overflow: hidden; background: #fff; aspect-ratio: 16 / 10; }
+  .option-card--chosen .opt-img { aspect-ratio: auto; }
   .option-card .opt-img img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
-  .option-card .opt-body { padding: 14px 16px 16px; }
-  .option-card .opt-name { font-weight: 600; font-size: 15px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-  .option-card .opt-badge { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--text-primary); color: var(--bg-page); }
-  .option-card .opt-note { margin: 8px 0 0; font-size: 13.5px; color: var(--text-secondary); line-height: 1.5; }
-  .option-card dl { margin: 10px 0 0; font-size: 13.5px; }
-  .option-card dt { color: var(--text-tertiary); font-size: 12px; margin-top: 8px; }
-  .option-card dd { margin: 2px 0 0; color: var(--text-secondary); }
+  .option-card--chosen .opt-img img { height: auto; }
+  .option-card:not(.option-card--chosen) .opt-img img { filter: grayscale(.4); opacity: .7; }
+  .option-card .opt-body { padding: 16px 10px 10px; }
+  .option-card--chosen .opt-body { padding: 12px 22px; }
+  .option-card .opt-tag { display: inline-flex; align-items: center; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: color-mix(in srgb, var(--text-primary) 7%, transparent); color: var(--text-secondary); }
+  .option-card--chosen .opt-tag { background: var(--text-primary); color: var(--bg-page); }
+  .option-card .opt-name { margin-top: 10px; font-weight: 700; font-size: 16px; letter-spacing: -0.01em; color: var(--text-primary); }
+  .option-card--chosen .opt-name { font-size: 22px; margin-top: 14px; line-height: 1.3; }
+  .option-card .opt-note { margin: 6px 0 0; font-size: 13.5px; color: var(--text-secondary); line-height: 1.55; }
+  .option-card--chosen .opt-note { font-size: 15px; margin-top: 10px; }
   .state-table { width: 100%; border-collapse: collapse; margin: 20px 0 0; font-size: 14.5px; }
   .state-table th, .state-table td { text-align: left; padding: 12px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
   .state-table th { color: var(--text-tertiary); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
@@ -74,6 +79,8 @@
     .reframe-compare { grid-template-columns: 1fr; }
     .reframe-compare .rc-arrow { transform: rotate(90deg); justify-self: center; }
     .option-grid { grid-template-columns: 1fr; }
+    .option-card--chosen { grid-template-columns: 1fr; }
+    .option-card--chosen .opt-body { padding: 14px 10px 10px; }
     .ai-list li { grid-template-columns: 1fr; gap: 8px; }
   }
 </style>
@@ -384,21 +391,24 @@
         <div class="option-card option-card--chosen">
           <div class="opt-img"><img src="images/threshold-option-a-en.png" data-src-en="images/threshold-option-a-en.png" data-src-ko="images/threshold-option-a-ko.png" alt="Option A: slider with live zones"></div>
           <div class="opt-body">
-            <div class="opt-name"><span data-i18n="u10">A. Slider with live zones</span> <span class="opt-badge" data-i18n="u11">Chosen</span></div>
+            <span class="opt-tag" data-i18n="u11">Chosen</span>
+            <div class="opt-name" data-i18n="u10">Slider with live zones</div>
             <p class="opt-note" data-i18n="u12">See the result while adjusting. Less suited to exact values.</p>
           </div>
         </div>
         <div class="option-card">
           <div class="opt-img"><img src="images/threshold-option-b.png" alt="Option B: numeric inputs with an apply step"></div>
           <div class="opt-body">
-            <div class="opt-name" data-i18n="u13">B. Numeric input</div>
+            <span class="opt-tag" data-i18n="u32">Not chosen</span>
+            <div class="opt-name" data-i18n="u13">Numeric input</div>
             <p class="opt-note" data-i18n="u14">Precise, but the result shows only after applying.</p>
           </div>
         </div>
         <div class="option-card">
           <div class="opt-img"><img src="images/threshold-option-c-en.png" data-src-en="images/threshold-option-c-en.png" data-src-ko="images/threshold-option-c-ko.png" alt="Option C: strict, balanced and relaxed presets"></div>
           <div class="opt-body">
-            <div class="opt-name" data-i18n="u15">C. Presets</div>
+            <span class="opt-tag" data-i18n="u33">Not chosen</span>
+            <div class="opt-name" data-i18n="u15">Presets</div>
             <p class="opt-note" data-i18n="u16">Fewest decisions, but ignores how each machine differs.</p>
           </div>
         </div>
@@ -421,7 +431,7 @@
 
     <div class="finding">
       <h3 data-i18n="u28">Rebuilt with AI, judged by hand.</h3>
-      <p data-i18n="u29">I rebuilt this flow in Claude Design on the existing product screen. Its first version (option B) was a generic health alert with blue buttons and English copy. I refocused it on data quality, matched the product's palette and Korean copy, and added the missing states.</p>
+      <p data-i18n="u29">I rebuilt this flow in Claude Design on the existing product screen. Its first version (the numeric input above) was a generic health alert with blue buttons and English copy. I refocused it on data quality, matched the product's palette and Korean copy, and added the missing states.</p>
     </div>
 
     <p class="reconstruct-note" data-i18n="u30">Original screens are confidential. Reconstructed from memory; data is illustrative.</p>
@@ -602,12 +612,12 @@
     u7: { ko: "결과를 보면서 결정하기." },
     u8: { ko: "설정은 현장 담당자가 이상한 데이터를 발견하는 바로 그 차트에서 클릭 한 번으로 열립니다. 슬라이더를 움직이면 어떤 값이 범위를 벗어나는지, 이 설정으로 알림이 몇 건 발생할지 바로 보입니다." },
     u9: { ko: "두 가지 대안 대신 슬라이더를 선택한 이유." },
-    u10: { ko: "A. 실시간 영역 슬라이더" },
+    u10: { ko: "실시간 영역 슬라이더" },
     u11: { ko: "선택" },
     u12: { ko: "조정하면서 결과를 바로 봄. 정확한 수치 입력에는 덜 적합." },
-    u13: { ko: "B. 숫자 직접 입력" },
+    u13: { ko: "숫자 직접 입력" },
     u14: { ko: "정밀하지만, 적용해야 결과가 보임." },
-    u15: { ko: "C. 프리셋" },
+    u15: { ko: "프리셋" },
     u16: { ko: "결정은 가장 적지만, 장비마다 다른 특성을 반영 못 함." },
     u17: { ko: "개발 전에 모든 상태를 정의하기." },
     u18: { ko: "빈값" },
@@ -621,8 +631,10 @@
     u26: { ko: "일괄 적용 중 일부 실패" },
     u27: { ko: "실패한 장비와 이유 표시, 그것만 다시 시도" },
     u28: { ko: "AI로 다시 만들고, 판단은 직접 하기." },
-    u29: { ko: "기존 제품 화면 위에서 Claude Design으로 이 플로우를 재구성했습니다. 첫 결과물(B안)은 파란 버튼과 영어 문구의 일반적인 건전성 알림 설정이었습니다. 이를 데이터 정확도 개념으로 다시 맞추고, 제품 팔레트와 한국어 문구에 맞췄으며, 빠진 상태를 추가했습니다." },
+    u29: { ko: "기존 제품 화면 위에서 Claude Design으로 이 플로우를 재구성했습니다. 첫 결과물(위의 숫자 입력 안)은 파란 버튼과 영어 문구의 일반적인 건전성 알림 설정이었습니다. 이를 데이터 정확도 개념으로 다시 맞추고, 제품 팔레트와 한국어 문구에 맞췄으며, 빠진 상태를 추가했습니다." },
     u31: { ko: "현장 담당자는 적정 값을 미리 알지 못합니다. 데이터가 어떻게 반응하는지 보면서 맞춰갑니다. 숫자 입력은 적용하기 전까지 그 반응을 보여주지 못했고, 프리셋은 장비별로 조정할 수 없었습니다. 즉각적인 피드백과 세밀한 조정을 모두 지킨 건 슬라이더뿐이었습니다." },
+    u32: { ko: "제외" },
+    u33: { ko: "제외" },
     u30: { ko: "원본 화면은 보안상 공개할 수 없어 기억을 바탕으로 재구성했으며, 데이터는 예시입니다." },
   };
 

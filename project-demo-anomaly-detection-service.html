@@ -33,6 +33,17 @@
     75% { transform: translateY(0) rotate(0deg); }
   }
   @media (prefers-reduced-motion: reduce) { .bq-peek-excl { animation: none; } }
+  /* ---------- Hypothesis card: compact, no divider lines ---------- */
+  .bq-hypo-wrap .design-challenge-card { padding: 22px 26px 24px; }
+  .bq-hypo-wrap .challenge-label { margin-bottom: 8px; }
+  .bq-hypo-wrap .design-challenge-card h2 { margin: 0 0 6px; font-size: 22px; line-height: 1.35; letter-spacing: -0.02em; }
+  .bq-hypo-wrap .challenge-description { font-size: 14px; line-height: 1.6; }
+  .bq-hypo-wrap .hypothesis-list { margin-top: 18px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 24px; }
+  .bq-hypo-wrap .hypothesis-item { padding: 0; border: 0; }
+  .bq-hypo-wrap .hypothesis-item strong { display: flex; gap: 10px; margin: 0; font-size: 15.5px; font-weight: 600; line-height: 1.45; }
+  .bq-hypo-wrap .hypothesis-item .hn { flex: none; color: var(--text-tertiary); font-variant-numeric: tabular-nums; font-weight: 600; }
+  html[lang="ko"] .bq-hypo-wrap .hypothesis-item strong, html[lang="ko"] .bq-hypo-wrap h2 { word-break: keep-all; }
+  @media (max-width: 640px) { .bq-hypo-wrap .hypothesis-list { grid-template-columns: 1fr; } }
   /* ---------- Deep dive: chamber map (same patterns as the notification page) ---------- */
   .reframe-compare { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); gap: 12px; align-items: stretch; margin: 24px 0 0; }
   .reframe-compare .rc-card { background: var(--bg-soft); border-radius: var(--radius-md); padding: 20px; }
@@ -354,19 +365,19 @@
     <div class="hypothesis-list">
 
       <div class="hypothesis-item">
-        <strong data-i18n-html="a41">01&nbsp;&nbsp;Pinpoint the faulty part, not just the machine</strong>
+        <strong data-i18n-html="a41"><span class="hn">01</span><span>Pinpoint the faulty part, not just the machine</span></strong>
       </div>
 
       <div class="hypothesis-item">
-        <strong data-i18n-html="a43">02&nbsp;&nbsp;Make status instantly recognizable</strong>
+        <strong data-i18n-html="a43"><span class="hn">02</span><span>Make status instantly recognizable</span></strong>
       </div>
 
       <div class="hypothesis-item">
-        <strong data-i18n-html="a45">03&nbsp;&nbsp;Keep investigation in one place</strong>
+        <strong data-i18n-html="a45"><span class="hn">03</span><span>Keep investigation in one place</span></strong>
       </div>
 
       <div class="hypothesis-item">
-        <strong data-i18n-html="a47">04&nbsp;&nbsp;Reduce repetitive work</strong>
+        <strong data-i18n-html="a47"><span class="hn">04</span><span>Reduce repetitive work</span></strong>
       </div>
 
     </div>
@@ -573,15 +584,15 @@
     a36: { ko: "반복적인 장비 관리가 일상 업무 속도를 늦췄습니다." },
     a37: { ko: "같은 설정을 장비마다 반복하면서 실수가 생길 여지가 컸습니다." },
     a38: { ko: "디자인 가설" },
-    a39: { ko: "위의 네 가지 가설이 모니터링 경험의 재설계를 이끌었습니다." },
+    a39: { ko: "네 가지 가설이 모니터링 경험의 재설계를 이끌었습니다." },
     a40: { ko: "리서치에서 나온 네 가지 가설이 와이어프레임 전 디자인 방향을 정했습니다." },
-    a41: { ko: "01&nbsp;&nbsp;장비를 넘어, 문제가 생긴 부분까지 보여주기" },
+    a41: { ko: "<span class=\"hn\">01</span><span>장비를 넘어, 문제가 생긴 부분까지 보여주기</span>" },
     a42: { ko: "장비 ID를 해석하지 않아도, 장비의 어느 부분(챔버)에 문제가 있는지 바로 보여주기." },
-    a43: { ko: "02&nbsp;&nbsp;상태를 즉시 알아볼 수 있게 만들기" },
+    a43: { ko: "<span class=\"hn\">02</span><span>상태를 즉시 알아볼 수 있게 만들기</span>" },
     a44: { ko: "일관된 시각적 지표로 상태를 전달하기." },
-    a45: { ko: "03&nbsp;&nbsp;조사를 한 곳에서 이어가기" },
+    a45: { ko: "<span class=\"hn\">03</span><span>조사를 한 곳에서 이어가기</span>" },
     a46: { ko: "관련 정보를 하나의 워크플로우로 모으기." },
-    a47: { ko: "04&nbsp;&nbsp;반복 작업 줄이기" },
+    a47: { ko: "<span class=\"hn\">04</span><span>반복 작업 줄이기</span>" },
     a48: { ko: "일괄 관리로 반복적인 설정 작업을 더 빠르게 만들기." },
     a49: { ko: "디자인 솔루션" },
     a50: { ko: "리서치를 바탕으로, 현장 담당자가 감지에서 이해, 조치까지 흐름이 끊기지 않도록 모니터링 경험을 다시 디자인했습니다." },

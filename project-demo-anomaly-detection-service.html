@@ -813,7 +813,6 @@
   }
   function machineSvg(mi, states) {
     var s = '<svg viewBox="-118 -116 214 204" aria-hidden="true">' +
-      tri(-104, -102, 1.25, 'em-card-tri') +
       // EFEM column with three bumps on the left, a block on the right, and the transfer arm
       '<g fill="#6b6b69">' +
       '<rect x="-99.7" y="-81.3" width="21.5" height="110" rx="3"/>' +
@@ -827,8 +826,7 @@
       var a = ANG[c] * Math.PI / 180, x = D * Math.cos(a), y = D * Math.sin(a), rot = ANG[c] + 90;
       var tx = (D + CH / 2 + 11) * Math.cos(a), ty = (D + CH / 2 + 11) * Math.sin(a);
       s += '<g class="em-ch" data-m="' + mi + '" data-c="' + c + '" role="button" tabindex="-1">' +
-        '<g transform="translate(' + x.toFixed(1) + ',' + y.toFixed(1) + ') rotate(' + rot + ')">' + chamber(TONE[states[c]]) + '</g>' +
-        tri(tx, ty, 1.2, 'em-ch-tri') + '</g>';
+        '<g transform="translate(' + x.toFixed(1) + ',' + y.toFixed(1) + ') rotate(' + rot + ')">' + chamber(TONE[states[c]]) + '</g></g>';
     }
     return s + '</svg>';
   }

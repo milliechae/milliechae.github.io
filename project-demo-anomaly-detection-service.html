@@ -95,10 +95,10 @@
   .em-legend i { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
   .em-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 16px; }
   .em-card { background: #363637; border-radius: 4px; overflow: hidden; box-shadow: inset 0 0 0 1px #3a3a3d; }
-  .em-card-h { padding: 9px 10px 7px; border-bottom: 1px solid #3c3c3f; }
+  .em-card-h { padding: 12px 14px 11px; border-bottom: 1px solid #3c3c3f; }
   .em-card-h b { display: block; font-size: 10.5px; font-weight: 600; color: #fff; }
   .em-card-h small { display: block; margin-top: 3px; font-size: 7.6px; color: #b8b8bc; }
-  .em-card svg { display: block; width: 100%; height: auto; }
+  .em-card svg { display: block; width: 100%; height: auto; padding: 16px 26px 18px; box-sizing: border-box; }
   /* alarm motion: colour eases in, pentagon follows, two soft ripples, then a slow breathing glow */
   .em-card { transition: box-shadow .6s ease; }
   .em-card.has-an { box-shadow: inset 0 0 0 1px rgba(255,69,58,.5), 0 0 22px -4px rgba(255,69,58,.28); }
@@ -812,7 +812,7 @@
       '<rect class="sel" x="' + (-w - 2.6) + '" y="' + (-h - 2.6) + '" width="' + (CW + 5.2) + '" height="' + (CH + 5.2) + '" rx="5"/>';
   }
   function machineSvg(mi, states) {
-    var s = '<svg viewBox="-118 -116 214 204" aria-hidden="true">' +
+    var s = '<svg viewBox="-113 -92 208 182" aria-hidden="true">' +
       // EFEM column with three bumps on the left, a block on the right, and the transfer arm
       '<g fill="#6b6b69">' +
       '<rect x="-99.7" y="-81.3" width="21.5" height="110" rx="3"/>' +

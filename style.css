@@ -1133,3 +1133,15 @@ html[data-theme="dark"] .bq-peek-qmark,
 html[data-theme="dark"] .bq-peek-excl {
   filter: invert(1);
 }
+
+/* ---------- Design hypothesis card: compact, shared by all project pages ---------- */
+.bq-hypo-wrap .design-challenge-card{ padding:22px 26px 24px; }
+.bq-hypo-wrap .challenge-label{ margin-bottom:8px; }
+.bq-hypo-wrap .design-challenge-card h2{ margin:0 0 6px; font-size:22px; line-height:1.35; letter-spacing:-0.02em; }
+.bq-hypo-wrap .challenge-description{ font-size:14px; line-height:1.6; }
+.bq-hypo-wrap .hypothesis-list{ margin-top:18px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 24px; }
+.bq-hypo-wrap .hypothesis-item{ padding:0; border:0; }
+.bq-hypo-wrap .hypothesis-item strong{ display:flex; gap:8px; margin:0; font-size:15.5px; font-weight:600; line-height:1.45; }
+.bq-hypo-wrap .hypothesis-item .hn{ flex:none; min-width:1.45em; color:var(--text-tertiary); font-variant-numeric:tabular-nums; font-weight:600; }
+html[lang="ko"] .bq-hypo-wrap .hypothesis-item strong, html[lang="ko"] .bq-hypo-wrap h2{ word-break:keep-all; }
+@media (max-width:640px){ .bq-hypo-wrap .hypothesis-list{ grid-template-columns:1fr; } }

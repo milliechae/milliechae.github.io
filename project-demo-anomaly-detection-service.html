@@ -33,17 +33,6 @@
     75% { transform: translateY(0) rotate(0deg); }
   }
   @media (prefers-reduced-motion: reduce) { .bq-peek-excl { animation: none; } }
-  /* ---------- Hypothesis card: compact, no divider lines ---------- */
-  .bq-hypo-wrap .design-challenge-card { padding: 22px 26px 24px; }
-  .bq-hypo-wrap .challenge-label { margin-bottom: 8px; }
-  .bq-hypo-wrap .design-challenge-card h2 { margin: 0 0 6px; font-size: 22px; line-height: 1.35; letter-spacing: -0.02em; }
-  .bq-hypo-wrap .challenge-description { font-size: 14px; line-height: 1.6; }
-  .bq-hypo-wrap .hypothesis-list { margin-top: 18px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 24px; }
-  .bq-hypo-wrap .hypothesis-item { padding: 0; border: 0; }
-  .bq-hypo-wrap .hypothesis-item strong { display: flex; gap: 10px; margin: 0; font-size: 15.5px; font-weight: 600; line-height: 1.45; }
-  .bq-hypo-wrap .hypothesis-item .hn { flex: none; color: var(--text-tertiary); font-variant-numeric: tabular-nums; font-weight: 600; }
-  html[lang="ko"] .bq-hypo-wrap .hypothesis-item strong, html[lang="ko"] .bq-hypo-wrap h2 { word-break: keep-all; }
-  @media (max-width: 640px) { .bq-hypo-wrap .hypothesis-list { grid-template-columns: 1fr; } }
   /* ---------- Deep dive: chamber map (same patterns as the notification page) ---------- */
   .reframe-compare { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); gap: 12px; align-items: stretch; margin: 24px 0 0; }
   .reframe-compare .rc-card { background: var(--bg-soft); border-radius: var(--radius-md); padding: 20px; }

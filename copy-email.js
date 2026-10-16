@@ -5,12 +5,12 @@
   if (!btn) return;
   var addr = btn.getAttribute('data-copy-email');
   var label = btn.querySelector('[data-i18n]');
-  var TEXT = { copy: { en: 'Copy email', ko: '이메일 복사' }, copied: { en: 'Copied', ko: '복사됨' } };
+  var TEXT = { copy: { en: 'Let\u2019s work together', ko: '함께 일해요' }, copied: { en: 'Email copied \u2713', ko: '이메일이 복사됐어요 \u2713' } };
   var timer = null;
 
   function lang() { return document.documentElement.getAttribute('lang') === 'ko' ? 'ko' : 'en'; }
   function showCopied() {
-    if (!btn.classList.contains('copied')) btn.style.width = btn.offsetWidth + 'px'; // 글자가 짧아져도 버튼 폭 유지
+    if (!btn.classList.contains('copied')) btn.style.minWidth = btn.offsetWidth + 'px'; // 글자가 짧아져도 버튼이 줄어들지 않게
     label.textContent = TEXT.copied[lang()];
     btn.classList.add('copied');
     btn.style.justifyContent = 'center';
@@ -18,7 +18,7 @@
     timer = setTimeout(function () {
       btn.classList.remove('copied');
       label.textContent = TEXT.copy[lang()];
-      btn.style.width = '';
+      btn.style.minWidth = '';
     }, 1500);
   }
   function legacyCopy() {

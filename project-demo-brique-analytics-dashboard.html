@@ -251,7 +251,7 @@
     </p>
 
     <div class="research-media">
-      <img src="images/brique-research.jpg" alt="Research">
+      <img src="images/brique-research.jpg" data-src-en="images/brique-research.jpg" data-src-ko="images/brique-research-ko.jpg" alt="Research">
     </div>
 
     <div class="research-grid">
@@ -497,6 +497,11 @@
       elH.innerHTML = lang === 'ko' ? (i18nDict[keyH] ? i18nDict[keyH].ko : elH.dataset.enCache) : elH.dataset.enCache;
     }
     document.documentElement.setAttribute('lang', lang === 'ko' ? 'ko' : 'en');
+    var imgs = document.querySelectorAll('img[data-src-en]');
+    for (var m = 0; m < imgs.length; m++) {
+      var want = lang === 'ko' ? imgs[m].getAttribute('data-src-ko') : imgs[m].getAttribute('data-src-en');
+      if (imgs[m].getAttribute('src') !== want) imgs[m].setAttribute('src', want);
+    }
     var enSeg = document.querySelector('.lang-toggle .lang-en');
     var koSeg = document.querySelector('.lang-toggle .lang-ko');
     if (enSeg && koSeg) {

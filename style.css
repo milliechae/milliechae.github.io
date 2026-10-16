@@ -546,16 +546,9 @@ html[data-theme="dark"] .status-pill {
   letter-spacing: 0.01em;
   text-decoration: none;
   cursor: pointer;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  transition: opacity 0.15s ease;
 }
-.footer-cta span { transition: transform 0.15s ease; }
-.footer-cta:hover {
-  opacity: 0.85;
-  transform: translateY(-2px);
-}
-.footer-cta:hover span {
-  transform: translateX(3px);
-}
+.footer-cta:hover { opacity: 0.85; }
 .footer-nav { display: flex; gap: 12px; }
 .footer-nav a {
   width: 36px;
